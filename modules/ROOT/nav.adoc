@@ -68,7 +68,7 @@
 **** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
 **** xref:language-guide:motoko.adoc[Motoko]
 ***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
-***** xref:base-libraries:stdlib-intro.adoc[Motoko Base Library]
+***** xref:base-libraries:stdlib-intro.adoc[Motoko基础库]
 ***** Motoko Guide
 ****** xref:language-guide:about-this-guide.adoc[关于本指南]
 ****** xref:language-guide:motoko-introduction.adoc[介绍]
