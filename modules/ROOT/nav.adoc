@@ -1,26 +1,26 @@
-* xref:introduction:welcome.adoc[**Introduction**]
-** xref:introduction:welcome.adoc#for-first-timers[For: First-Timers]
-** xref:introduction:welcome.adoc#for-developers[For: Developers]
-** xref:introduction:welcome.adoc#for-protocol-enthusiasts[For: Protocol Enthusiasts]
+* xref:introduction:welcome.adoc[**介绍**]
+** xref:introduction:welcome.adoc#for-first-timers[适合: 初学者]
+** xref:introduction:welcome.adoc#for-developers[适合: 开发者]
+** xref:introduction:welcome.adoc#for-protocol-enthusiasts[适合: 协议爱好者]
 
-* xref:quickstart:quickstart-intro.adoc[Quick Start]
-** xref:quickstart:newcomers.adoc[For Newcomers]
-** xref:quickstart:cycles-faucet.adoc[Claim Your Free Cycles]
-** xref:quickstart:host-a-website.adoc[Host a Static Website]
-** xref:quickstart:local-quickstart.adoc[Local Development]
-** xref:quickstart:network-quickstart.adoc[Network Deployment]
+* xref:quickstart:quickstart-intro.adoc[快速开始]
+** xref:quickstart:newcomers.adoc[对于新人]
+** xref:quickstart:cycles-faucet.adoc[获取免费的Cycles]
+** xref:quickstart:host-a-website.adoc[托管静态网站]
+** xref:quickstart:local-quickstart.adoc[本地开发]
+** xref:quickstart:network-quickstart.adoc[网络部署]
 
-* xref:examples:index.adoc[Example Code]
-*** xref:examples:hello.adoc[Hello Example]
-*** link:https://github.com/dfinity/examples[Dfinity Examples^]
-*** link:https://github.com/dfinity/awesome-dfinity[Open-source Community Projects^]
-*** xref:examples:hackathon-projects.adoc[Hackathon Projects]
-*** xref:examples:codelabs.adoc[CodeLabs]
+* xref:examples:index.adoc[示例代码]
+*** xref:examples:hello.adoc[Hello示例]
+*** link:https://github.com/dfinity/examples[官方示例仓库]
+*** link:https://github.com/dfinity/awesome-dfinity[开源社区项目]
+*** xref:examples:hackathon-projects.adoc[黑客松项目]
+*** xref:examples:codelabs.adoc[Codlabs]
 
-* Developer Docs
-** Getting Started
-*** Introducing the SDK
-**** xref:developers-guide:install-upgrade-remove.adoc[Install, upgrade, or remove software]
+* 开发者文档
+** 入门
+*** SDK介绍
+**** xref:developers-guide:install-upgrade-remove.adoc[安装、升级或删除软件]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
 ***** xref:release-notes:0.9.0-rn.adoc[0.9.0]
 ***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
@@ -39,35 +39,35 @@
 ***** xref:release-notes:0.6.22-rn.adoc[0.6.22]
 ***** xref:release-notes:0.6.21-rn.adoc[0.6.21]
 ***** xref:release-notes:0.6.20-rn.adoc[0.6.20]
-*** Introducing DFX
-**** xref:developers-guide:cli-reference.adoc[DFX commands]
-**** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX environment variables]
-**** xref:developers-guide:glossary.adoc[Glossary]
-** Building on the Internet Computer
-*** Learn how to:
-**** xref:developers-guide:sdk-guide.adoc[Develop smart contracts on the IC]
-**** xref:developers-guide:design-apps.adoc[Design apps]
-**** xref:developers-guide:customize-projects.adoc[Manage projects]
-**** xref:developers-guide:working-with-canisters.adoc[Manage canisters]
-**** xref:developers-guide:default-wallet.adoc[Use the default cycles wallet]
-**** xref:developers-guide:tutorials/explore-templates.adoc[Explore the default project]
-**** xref:developers-guide:tutorials/define-an-actor.adoc[Query using an actor]
-**** xref:developers-guide:tutorials/hello-location.adoc[Pass text arguments]
-**** xref:developers-guide:tutorials/counter-tutorial.adoc[Increment a natural number]
-**** xref:developers-guide:tutorials/calculator.adoc[Use integers in calculator functions]
-**** xref:developers-guide:tutorials/phonebook.adoc[Import library modules]
-**** xref:developers-guide:tutorials/multiple-actors.adoc[Use multiple actors]
-**** xref:developers-guide:tutorials/intercanister-calls.adoc[Make inter-canister calls]
-**** xref:developers-guide:tutorials/access-control.adoc[Add access control with identities]
-**** xref:developers-guide:tutorials/simple-cycles.adoc[Accept cycles from a wallet]
-**** xref:developers-guide:tutorials/reproducible-builds.adoc[Build canisters reproducibly]
-**** xref:developers-guide:troubleshooting.adoc[Troubleshoot issues]
+*** DFX介绍
+**** xref:developers-guide:cli-reference.adoc[DFX命令]
+**** xref:developers-guide:cli-reference/dfx-envars.adoc[DFX环境变量]
+**** xref:developers-guide:glossary.adoc[术语表]
+** 在互联网计算机上构建
+*** 了解如何构建:
+**** xref:developers-guide:sdk-guide.adoc[在IC上开发智能合约]
+**** xref:developers-guide:design-apps.adoc[设计应用程序]
+**** xref:developers-guide:customize-projects.adoc[管理项目]
+**** xref:developers-guide:working-with-canisters.adoc[管理容器]
+**** xref:developers-guide:default-wallet.adoc[使用默认的cycles钱包]
+**** xref:developers-guide:tutorials/explore-templates.adoc[探索默认项目]
+**** xref:developers-guide:tutorials/define-an-actor.adoc[使用actor查询]
+**** xref:developers-guide:tutorials/hello-location.adoc[传递text参数]
+**** xref:developers-guide:tutorials/counter-tutorial.adoc[递增自然数]
+**** xref:developers-guide:tutorials/calculator.adoc[在计算器函数中使用整型]
+**** xref:developers-guide:tutorials/phonebook.adoc[导入库模块]
+**** xref:developers-guide:tutorials/multiple-actors.adoc[使用多个actor]
+**** xref:developers-guide:tutorials/intercanister-calls.adoc[进行canister之间调用]
+**** xref:developers-guide:tutorials/access-control.adoc[使用身份添加访问控制]
+**** xref:developers-guide:tutorials/simple-cycles.adoc[从钱包接受cycles]
+**** xref:developers-guide:tutorials/reproducible-builds.adoc[可重复地构建容器]
+**** xref:developers-guide:troubleshooting.adoc[故障排查]
 
-*** Explore our languages
+*** 探索开发语言
 
-**** xref:developers-guide:work-with-languages.adoc[Develop using different languages]
+**** xref:developers-guide:work-with-languages.adoc[使用不同的语言进行开发]
 **** xref:language-guide:motoko.adoc[Motoko]
-***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
+***** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko在线环境]
 ***** xref:base-libraries:stdlib-intro.adoc[Motoko基础库]
 ***** Motoko Guide
 ****** xref:language-guide:about-this-guide.adoc[关于本指南]
@@ -96,63 +96,63 @@
 ****** xref:language-guide:style.adoc[Motoko编程规范]
 
 **** xref:rust-guide:rust-intro.adoc[Rust]
-***** xref:rust-guide:rust-quickstart.adoc[Hello, World! Quick Start]
-***** xref:rust-guide:rust-counter.adoc[Simple counter tutorial]
-***** xref:rust-guide:multiply-dependency.adoc[Basic dependency tutorial]
-***** xref:rust-guide:rust-profile.adoc[Profile tutorial]
-***** xref:rust-guide:rust-optimize.adoc[Optimize a Rust program]
+***** xref:rust-guide:rust-quickstart.adoc[快速开始]
+***** xref:rust-guide:rust-counter.adoc[简单的计数器]
+***** xref:rust-guide:multiply-dependency.adoc[基础依赖]
+***** xref:rust-guide:rust-profile.adoc[简介]
+***** xref:rust-guide:rust-optimize.adoc[优化Rust程序]
 
 **** xref:candid-guide:candid-intro.adoc[Candid]
-***** xref:candid-guide:candid-concepts.adoc[What is Candid?]
-***** xref:candid-guide:candid-howto.adoc[How to]
-***** xref:candid-guide:candid-ref.adoc[Reference]
-****** xref:candid-guide:candid-types.adoc[Supported types]
-****** link:https://github.com/dfinity/candid[Candid specification^]
-****** link:https://docs.rs/candid[Candid Rust crate^]
+***** xref:candid-guide:candid-concepts.adoc[什么是Candid?]
+***** xref:candid-guide:candid-howto.adoc[如何使用]
+***** xref:candid-guide:candid-ref.adoc[参考]
+****** xref:candid-guide:candid-types.adoc[支持的类型]
+****** link:https://github.com/dfinity/candid[Candid规范]
+****** link:https://docs.rs/candid[Candid的Rust库]
 
-*** Introducing the Internet Identity
-**** xref:ic-identity-guide:what-is-ic-identity.adoc[What is Internet Identity]
-**** xref:ic-identity-guide:auth-how-to.adoc[How to use the Internet Identity]
-**** xref:ic-identity-guide:hello-guide.adoc[Windows Hello Guide]
+*** 介绍互联网身份
+**** xref:ic-identity-guide:what-is-ic-identity.adoc[什么是互联网身份]
+**** xref:ic-identity-guide:auth-how-to.adoc[如何使用互联网身份]
+**** xref:ic-identity-guide:hello-guide.adoc[Windows Hello指南]
 
-*** Frontend development
-**** xref:developers-guide:webpack-config.adoc[Add frontend assets]
-**** xref:developers-guide:tutorials/custom-frontend.adoc[Customize the front-end]
-**** xref:developers-guide:tutorials/my-contacts.adoc[Add a stylesheet]
+*** 前端开发
+**** xref:developers-guide:webpack-config.adoc[添加前端资源]
+**** xref:developers-guide:tutorials/custom-frontend.adoc[自定义前端]
+**** xref:developers-guide:tutorials/my-contacts.adoc[添加CSS样式]
 
-* Protocol Docs
-** .xref:developers-guide:concepts/concepts-intro.adoc[Concepts]
-*** xref:developers-guide:concepts/what-is-IC.adoc[What is the {IC}]
-*** xref:interface-spec:index.adoc[Internet Computer Interface Specification]
-*** xref:developers-guide:concepts/nodes-subnets.adoc[Nodes and sub-networks]
-*** xref:developers-guide:concepts/data-centers.adoc[Decentralized data centers]
-*** xref:developers-guide:concepts/canisters-code.adoc[Canisters and code]
-*** xref:developers-guide:concepts/trust-in-canisters.adoc[Trust in canisters]
-*** xref:developers-guide:concepts/tokens-cycles.adoc[Tokens and cycles]
-*** xref:developers-guide:concepts/governance.adoc[Neurons and governance]
-*** xref:developers-guide:concepts/bitcoin-integration.adoc[Bitcoin integration]
+* 协议文档
+** .xref:developers-guide:concepts/concepts-intro.adoc[概念]
+*** xref:developers-guide:concepts/what-is-IC.adoc[什么是IC(互联网计算机)]
+*** xref:interface-spec:index.adoc[互联网计算机接口规范]
+*** xref:developers-guide:concepts/nodes-subnets.adoc[节点和子网络]
+*** xref:developers-guide:concepts/data-centers.adoc[去中心化数据中心]
+*** xref:developers-guide:concepts/canisters-code.adoc[Canister和代码]
+*** xref:developers-guide:concepts/trust-in-canisters.adoc[信任canister]
+*** xref:developers-guide:concepts/tokens-cycles.adoc[代币和cycles]
+*** xref:developers-guide:concepts/governance.adoc[神经元和治理]
+*** xref:developers-guide:concepts/bitcoin-integration.adoc[比特币整合]
 
-* General Docs
+* 通用文档
 ** Overview of self-custody
 *** xref:token-holders:custody-options-intro.adoc[Choosing self-custody for digital assets]
 *** xref:token-holders:self-custody-quickstart.adoc[Self-custody quick start]
-** Overview of ledger
-*** xref:integration:ledger-quick-start.adoc[Ledger quick start]
-** Overview of the NNS App
-*** xref:token-holders:nns-app-quickstart.adoc[NNS App quick start]
+** 账本概述
+*** xref:integration:ledger-quick-start.adoc[账本快速开始]
+** NNS概述
+*** xref:token-holders:nns-app-quickstart.adoc[NNS应用快速开始]
 
-* Additional Resources
-** Developer videos
+* 其他资源
+** 开发者视频
 *** link:https://www.youtube.com/watch?v=oxEr8UzGeBo&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=11&ab_channel=DFINITY[Internet Identity^]
 *** link:https://www.youtube.com/watch?v=4eSceDOS-Ms&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=21&ab_channel=DFINITY[Motoko^]
 *** link:https://www.youtube.com/watch?v=GzkRsbqPaA0&ab_channel=DFINITY[Building a multiplayer game for the Internet Computer^]
 *** link:https://www.youtube.com/watch?v=b_nc6yx5_DQ&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=7&ab_channel=DFINITY[Deploying static sites to the Internet Computer^]
 *** link:https://www.youtube.com/watch?v=2miweY9-vZc&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=6&ab_channel=DFINITY[Zero to fullstack: web apps on the Internet Computer ^]
 
-** Protocol videos
+** 协议视频
 *** link:https://dfinity.org/technicals/[Technical library^]
 
-** Developer tooling
+** 开发者工具
 *** xref:ROOT:download.adoc[DFINITY Canister SDK]
 *** link:https://github.com/dfinity/cdk-rs[Rust CDK^]
 *** link:https://github.com/kritzcreek/vessel[Vessel Package Manager^]
@@ -163,7 +163,7 @@
 *** link:https://m7sm4-2iaaa-aaaab-qabra-cai.raw.ic0.app/[Motoko Playground^]
 *** link:https://github.com/dfinity/quill[Quill^]
 
-** Community created resources
+** 社区资源
 *** link:https://ic.rocks/[ic.rocks (Block explorer)^]
 *** link:https://plugwallet.ooo/[Plug (Browser-based wallet extension)^]
 *** link:https://fleek.co/[Fleek (Netlify for the open web)^]
@@ -171,6 +171,6 @@
 
 ** xref:developers-guide:computation-and-storage-costs.adoc[Computation and Storage Costs]
 
-* Community
+* 社区
 ** link:https://discord.gg/cA7y6ezyE2[Developer Discord^]
 ** link:https://forum.dfinity.org/[Developer Forum^]
