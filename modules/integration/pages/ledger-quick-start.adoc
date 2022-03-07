@@ -1,118 +1,118 @@
-= Integrate with the Internet Computer ledger
-:proglang: Motoko
-:platform: Internet Computer platform
-:IC: Internet Computer
+= 与互联网计算机账本集成
+:编程语言: Motoko
+:平台: 互联网计算机平台
+:IC: 互联网计算机
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[ledger-intro]]
-This guide is an introduction to the Internet Computer Protocol (ICP) components for token distribution, transaction management, token-based staking, and payments for services.
-The document includes an overview of the design, implementation, security guarantees, system requirements, and the application programming interface (API) that support token management for the Internet Computer Protocol.
+本指南介绍了用于代币分发、交易管理、基于代币的质押和服务支付的互联网计算机协议 (ICP) 组件。
+该文档概述了支持互联网计算机协议代币管理的设计、实施、安全保证、系统要求和应用程序编程接口 (API)。
 
-_{doctitle}_ is intended as a high-level overview for organizations and developers who need to understand the terminology and overall transaction management flow for Internet Computer Protocol (ICP) utility tokens.
+_{doctitle}_ 旨在为需要了解互联网计算机协议 (ICP) 实用程序代币的术语和整体事务管理流程的组织和开发人员提供高级概述。
 
-While you read this guide, be aware that additional details about specific components or interfaces might be available in subsequent documents to supplement the overview provided in this document.
-In addition, this overview focuses on how to integrate with the Internet Computer using the link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
-Other options for integration are possible. 
-Information about other integration options and procedures might be available in future documentation.
+当你阅读本指南时，请注意在随后的文件中可能会有关于特定组件或接口的额外细节，以补充本文件中提供的概述。
+此外，本概述重点介绍如何使用链接与互联网计算机集成:https://www.rosetta-api.org/docs/welcome.html[Rosetta API]. 
+其他集成选项也是可能的。
+未来的文档中可能会提供有关其他集成选项和过程的信息。
 
-== Basic terminology 
+== 基本术语
 
-The Internet Computer is a blockchain system comprised of several subnet blockchains for running dapps.
-When you write dapps that run on the Internet Computer, you deploy your program in the form of a conceptual computational unit called a **canister**. 
-A canister is a "smart contract" in that it consists of the source code of a program as well as its running state, and is replicated on a subnet blockchain that guarantees security as well as liveness.
+互联网计算机是一个区块链系统，由多个子网区块链组成，用于运行 dapp。
+当您编写在互联网计算机上运行的 dapp 时，您以一种称为 **容器** 的概念计算单元的形式部署您的程序。
+容器是一种“智能合约”，它由程序的源代码及其运行状态组成，并在保证安全性和活性的子网区块链上复制。
 
-End-users or other canisters can send messages to canister functions to perform specific operations. 
-The messages can be either **query calls** that retrieve information without modifying the state of a canister or **update calls** that may modify the state of canister.
-The order in which updates are executed is agreed upon using a consensus protocol between all nodes in the subnet that runs the canister.
+最终用户或其他容器可以向容器功能发送消息以执行特定操作。
+消息可以是在不修改容器状态的情况下检索信息的**查询调用**，也可以是可能修改容器状态的**更新调用**。
+执行更新的顺序是在运行容器的子网中的所有节点之间使用共识协议商定的。
 
-== Ledger canister overview
+== 账本容器概述
 
-The Internet Computer Protocol (ICP) implements management of its utility token (ticker "ICP") using a specialized canister, called the **ledger canister**.
-There is a single ledger canister which runs alongside other canisters on a special subnet of the Internet Computer, viz., the NNS subnet.
-The ledger canister is a smart contract that holds **accounts** and **transactions**.
-These transactions either **mint ICP tokens** for accounts,  **transfer ICP tokens** from one account to another, or **burn ICP tokens**, eliminating them from existence.
-The ledger canister maintains a traceable history of all transactions starting from its genesis state (initial state).
+互联网计算机协议（ICP）使用一个专门的容器，称为**账本容器**，实现对其实用代币（代号 "ICP"）的管理。
+在互联网计算机的一个特殊子网（即 NNS 子网）上，有一个单一的账本容器与其他容器一起运行。
+账本容器是一个智能合约，包含**账户**和**交易**。
+这些交易要么为账户**铸造 ICP 代币**，从一个账户**转移ICP 代币**到另一个账户，要么**燃烧 ICP 代币**，使它们不复存在。
+账本容器维护从其创世状态（初始状态）开始的所有交易的可追溯历史记录。
 
-=== Accounts
+=== 账户
 
-An account belongs to and is controlled by the account owner who must be an IC principal. No account can be owned by two or more IC principals (no "joint accounts").
+帐户属于帐户所有者并由其控制，而帐户所有者必须是IC负责人。任何账户都不能由两个或更多的IC负责人拥有（没有 "联合账户"）。
 
-An account owner may control more than one account. In this case, each account corresponds to a pair (account_owner, sub_account). The sub-account is an optional bitstring which helps distinguish between the different sub-accounts of the same owner.
+一个账户所有者可以控制一个以上的账户。在这种情况下，每个账户对应一对(account_owner, sub_account)。子账户是一个可选的位串，有助于区分同一所有者的不同子账户。
 
-An account on the ledger is identified by its address, which is derived from the principal ID and sub-account identifier.
-
-
-In this context, you can think of principal identifiers as a rough equivalent to the hash of a user's public key for Bitcoin or Ethereum. You use the corresponding secret key to sign messages and therefore authenticate to the ledger canister and operate on the principal's account. Canisters can also have accounts in the ledger canister, in which case the address is derived from the canister's principal.
-
-The ledger canister is initialized using administrative operations that are internal to the Internet Computer.
-As part of the initialization process, the canister is created with the set of accounts and associated ICP token balances.
-
-=== Transaction types
-
-There are three operations that can change the internal state of the ledger canister: 
-
-* **Minting ICP tokens** for accounts.
-* **Transferring ICP tokens** between accounts.
-* **Burning ICP tokens**.
-
-All operations are recorded as transactions in the ledger canister. 
+分类账上的一个账户由其地址识别，该地址由主账户ID和子账户标识符得出。
 
 
+在这种情况下，您可以将主体标识符视为粗略等同于比特币或以太坊的用户公钥的哈希值。 您使用相应的密钥对消息进行签名，从而对分类帐容器进行身份验证并在委托人的帐户上进行操作。 容器也可以在分类帐容器中拥有帐户，在这种情况下，地址来自容器的本金。
 
-The ledger maintains the transactions as a hashed blockchain, i.e., a blockchain running inside a cansiter smart contract (the ledger canister), which in turn is running on the NNS subnet blockchain.
+分类帐容器使用互联网计算机内部的管理操作进行初始化。
+作为初始化过程的一部分，容器是使用一组帐户和关联的 ICP 代币余额创建的。
 
-As state changes are recorded, each new transaction is placed in a block and assigned a unique index.
-The entire chain is regularly authenticated by signing the latest chain link. The signature used to authenticate the chain can be verified by any third party who has access to the root public key of the Internet Computer.
-Specific transactions can be retrieved by querying the ledger.
+=== 交易类型
 
-== Integrate with the {IC} ledger canister using the Rosetta API
+有三种操作可以改变账本容器的内部状态：
 
-One can interact with the Internet Computer and ledger canister in several ways.
-This document outlines how to integrate with the ledger canister using the https://www.rosetta-api.org/[Rosetta application programming interface]. This is a https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] designed to support multiple blockchain data formats and structured communication for exchange transactions.
+* **为账户铸造 ICP 代币**。
+* **在账户之间转移 ICP 代币**。
+* **燃烧 ICP 代币**。
 
-
-The interface is implemented by the integration software—`+dfinity/rosetta-api+. This piece of software enables you to deploy a passive Rosetta node outside of the Internet Computer blockchain and use the node to communicate with the ledger canister running on the Internet Computer.
+所有操作都记录为账本容器中的事务。
 
 
-The following diagram provides a simplified view of the communication between the Rosetta node and the Internet Computer using the `+dfinity/rosetta-api+` integration software.
+
+该账本以哈希区块链的形式维护交易，即在容器智能合约（账本容器）内运行的区块链，而该合约又在NNS子网区块链上运行。
+
+随着状态变化的记录，每个新的交易都被放在一个区块中，并分配一个唯一的索引。
+整个链是通过签署最新的链路来定期认证的。用于认证链的签名可以由任何能够访问互联网计算机根公钥的第三方进行验证。
+具体的交易可以通过查询账本来检索。
+
+== 使用 Rosetta API 与 {IC} 分类帐容器集成
+
+可以通过多种方式与互联网计算机和分类帐容器进行交互。
+本文档概述了如何使用 https://www.rosetta-api.org/[Rosetta application programming interface]. 这是https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] 旨在支持多种区块链数据格式和用于交易所交易的结构化通信。
+
+
+接口由集成软件——`+dfinity/rosetta-api+实现。 该软件使您能够在互联网计算机区块链之外部署一个被动 Rosetta 节点，并使用该节点与互联网计算机上运行的分类帐容器进行通信。
+
+
+下图提供了 Rosetta 节点和互联网计算机之间使用 `+dfinity/rosetta-api+` 集成软件进行通信的简化视图。
 
 image:basic-rosetta-api-integration.svg[]
 
-As this diagram suggests, the Rosetta node maintains a local copy of the {IC} ledger canister. 
-Periodically, the `+dfinity/rosetta-api+` software running on the Rosetta node updates its local view of the ledger by querying the ledger canister for the latest block of the ledger chain, then querying for any missing ledger blocks.
-The Rosetta node uses the root key of the Internet Computer to ensure that the local copy of the ledger is genuine.
-The integration software also allows you to use the Rosetta node to submit transactions to the {IC} ledger. 
+正如该图所示，Rosetta 节点维护 {IC} 帐本容器的本地副本。
+在 Rosetta 节点上运行的“+dfinity/rosetta-api+”软件会定期更新其本地账本视图，方法是向账本容器查询账本链的最新块，然后查询任何丢失的账本块。
+Rosetta 节点使用互联网计算机的根密钥来确保账本的本地副本是真实的。
+集成软件还允许您使用 Rosetta 节点向 {IC} 帐本提交交易。
 
-=== Integration workflow overview
+=== 集成工作流程概述
 
-The following summarizes the basic operational workflow for transferring ICP tokens if you're using a Rosetta node to communicate with the {IC} ledger canister. In this scenario, you must be an {IC} principal who authenticates to the {IC} using a signing key stored in a wallet.
+下面总结了如果你使用Rosetta节点与{IC}账本容器通信，转移ICP代币的基本操作流程。在这种情况下，你必须是一个{IC}主体，使用存储在钱包中的签名密钥对{IC}进行认证。
 
-After a user submits a request to the Rosetta node to make a transaction, the request is passed to the integration software running on that node to interact with the {IC} and completes the following operations:
+用户向Rosetta节点提交交易请求后，该请求被传递给该节点上运行的集成软件与{IC}交互并完成以下操作：
 
-. It reads from the local copy of the ledger to determine the state of the latest transaction index and block height identified by the `+latest_index+` label.
-. It generates a random `+nonce+` value -- used to ensure transactions are unique.
-. It creates an ingress message for the ledger canister that invokes the `+send+` function and specifies the amount and the destination for the transaction:
+. 它从账本的本地副本中读取，以确定由`+latest_index+`标签标识的最新交易索引和块高度的状态。
+. 它生成一个随机的“+nonce+”值——用于确保交易是唯一的。
+. 它为调用 `+send+` 函数并指定交易金额和目的地的分类帐容器创建一个入口消息：
 +
 ....
-send(nonce, latest_index, dst, amount)
+发送（nonce，latest_index，dst，数量）
 ....
-. It signs the ingress message using the key stored in the wallet to identify the principal ID for the owner.
-. It forwards the message to the ledger canister on the Internet Computer.
+. 它使用存储在钱包中的密钥对入口消息进行签名，以识别所有者的主体 ID。
+. 它将消息转发到互联网计算机上的分类帐容器。
 
-=== Set up a Rosetta node
+=== 设置 Rosetta 节点
 
-You can set up a Rosetta API-compliant node to interact with the Internet Computer and exchange Internet Computer Protocol (ICP) tokens.
-To keep the instructions simple, we use a Docker image to create the integration with the Rosetta API  -- one can also build and run binary using the source code.
-If you don't already have Docker on your local computer, download and install the latest version.
+您可以设置符合 Rosetta API 的节点来与互联网计算机交互并交换互联网计算机协议 (ICP) 代币。
+为了使说明简单，我们使用 Docker 映像来创建与 Rosetta API 的集成——也可以使用源代码构建和运行二进制文件。
+如果您的本地计算机上还没有 Docker，请下载并安装最新版本。
 
-To set up a Rosetta node (which connects to a testnet):
+设置 Rosetta 节点（连接到测试网）：
 
-. https://docs.docker.com/get-docker/[Install Docker] and https://docs.docker.com/config/daemon/[start the Docker daemon].
+. https://docs.docker.com/get-docker/[Install Docker] 和 https://docs.docker.com/config/daemon/[start the Docker daemon].
 +
-The Docker daemon (`+dockerd+`) should automatically start when you reboot your computer. If you start the Docker daemon manually, the instructions vary depending on the local operating system.
+当您重新启动计算机时，Docker 守护进程 (`+dockerd+`) 应该会自动启动。 如果您手动启动 Docker 守护程序，则说明因本地操作系统而异。
 
-. Pull the latest `+dfinity/rosetta-api+` image from the Docker Hub by running the following command:
+. 通过运行以下命令从 Docker Hub 中拉取最新的 `+dfinity/rosetta-api+` 映像：
 +
 [source,bash]
 ----
@@ -131,7 +131,7 @@ docker run \
    dfinity/rosetta-api
 ----
 +
-This command starts the software on the local host and displays output similar to the following:
+此命令在本地主机上启动软件并显示类似于以下内容的输出：
 +
 ....
 Listening on 0.0.0.0:8080
@@ -139,10 +139,10 @@ Starting Rosetta API server
 ....
 +
 
-By default, the software *does not* connect to the ledger canister running on the Internet Computer blockchain mainnet, but rather it connects to a testnets.
+默认情况下，该软件*不*连接到运行在互联网计算机区块链主网上的帐本容器，而是连接到测试网。
 
 +
-If you have been assigned a test network and corresponding ledger canister identifier, you can run the command against that network by specifying an additional `+canister+` argument. For example, the following command illustrates connecting to the ledger canister on a test network by setting the `+canister+` argument to `+2xh5f-viaaa-aaaab-aae3q-cai+`.
+如果您已经分配了一个测试网络和相应的帐本容器标识符，您可以通过指定一个额外的 `+canister+` 参数来针对该网络运行该命令。 例如，以下命令说明了通过将`+canister+`参数设置为`+2xh5f-viaaa-aaaab-aae3q-cai+`来连接到测试网络上的帐本容器。
 +
 [source,bash]
 ----
@@ -156,201 +156,200 @@ docker run \
 ----
 +
 
-NOTE: The first time you run the command it might take some time for the node to catch up to the current link of the chain.
-When the node is caught up, you should see output similar to the following:
+注释: 第一次运行命令时，节点可能需要一些时间才能赶上链的当前链接。
+当节点被追上时，您应该会看到类似于以下内容的输出：
 +
 ....
-You are all caught up to block height 109
+你们都被追到块高度 109
 ....
 +
-After completing this step, the node continues to run as a **passive** node that does not participate in block making.
-. Open a new terminal window or tab and run the `ps` command to verify the status of the service.
+完成此步骤后，节点继续作为不参与出块的**被动**节点运行。
+. 打开一个新的终端窗口或选项卡并运行“ps”命令来验证服务的状态。
 +
-If you need to stop the service, press CONTROL-C. You might want to do this to change the canister identifier you are using, for example.
+如果您需要停止服务，请按 CONTROL-C。 例如，您可能希望这样做以更改您正在使用的容器标识符。
 +
-To test the integration after setting up the node, you will need to write a program to simulate a principal submitting a transaction or looking up an account balance.
+要在设置节点后测试集成，您需要编写一个程序来模拟主体提交交易或查找账户余额。
 
-=== Run the Rosetta node in production
+=== 在生产中运行Rosetta节点
 
-When you are finished testing, you should run the Docker image in production mode without the `+--interactive+`, `+--tty+`, and `+--rm+` command-line options. 
-These command-line options are used to attach an interactive terminal session and remove the container, and are primarily intended for testing purposes.
+完成测试后，您应该在生产模式下运行 Docker 映像，不带 `+--interactive+`、`+--tty+` 和 `+--rm+` 命令行选项。
+这些命令行选项用于附加交互式终端会话和删除容器，主要用于测试目的。
 
-To run the software in a production environment, you can start the Docker image using the `+--detach+` option to run the container in the background and, optionally, specify the `+--volume+` command for storing blocks.
+要在生产环境中运行该软件，您可以使用 `+--detach+` 选项启动 Docker 映像以在后台运行容器，并且可以选择指定 `+--volume+` 命令来存储块。
 
-To connect the Rosetta node instance to the mainnet, add flags:
-`+--mainnet+` and `+--not-whitelisted+`.
+要将 Rosetta 节点实例连接到主网，请添加标志：
+`+--mainnet+` 和 `+--not-whitelisted+`。
 
-For more information about Docker command-line options, see the link:https://docs.docker.com/engine/reference/commandline/run/[Docker reference documentation].
+有关 Docker 命令行选项的更多信息，请参阅链接:https://docs.docker.com/engine/reference/commandline/run/[Docker reference documentation].
 
-=== Requirements and limitations
+=== 要求和限制
 
-The integration software provided in the Docker image has one requirement that is not part of the standard Rosetta API specification. 
+Docker 映像中提供的集成软件有一项要求，该要求不属于标准 Rosetta API 规范的一部分。
 
-For transactions involving ICP tokens, the unsigned transaction must be created less than 24 hours before the network receives the signed transaction. The reason is that the '+created_at+' field of each transaction refers to an existing transaction (essentially last_index available locally at the time of transaction creation). Any submitted transaction that refers to a transaction that is too old is rejected to maintain operational efficiency.
+对于涉及 ICP 代币的交易，必须在网络收到签名交易前 24 小时内创建未签名交易。 原因是每个事务的 '+created_at+' 字段指的是现有事务（本质上是创建事务时本地可用的 last_index）。 任何提交的交易涉及太旧的交易都会被拒绝以维持运营效率。
 
-Other than this requirement, the Rosetta API integration software is fully-compliant with all standard Rosetta endpoints and passes all of the `+rosetta-cli+` tests. 
-The software can accept any valid Rosetta request. 
-However, the integration software only prompts for transactions to be signed using Ed25519, rather than https://www.rosetta-api.org/docs/models/SignatureType.html#values[all the signature schemes listed here] and only replies with a small subset of the potential responses that the specification supports. For example, the software doesn't implement any of the UTXO features of Rosetta, so you won't see any UTXO messages in any of the software responses.
+除此要求外，Rosetta API 集成软件与所有标准 Rosetta 端点完全兼容，并通过了所有 `+rosetta-cli+` 测试。
+该软件可以接受任何有效的 Rosetta 请求。
+但是，集成软件仅提示使用 Ed25519 对交易进行签名，而不是 https://www.rosetta-api.org/docs/models/SignatureType.html#values[all the signature schemes listed here] 并且只回复规范支持的一小部分潜在响应。 例如，该软件没有实现 Rosetta 的任何 UTXO 功能，因此您不会在任何软件响应中看到任何 UTXO 消息。
 
-=== Basic properties for ICP utility tokens
+=== ICP 实用代币的基本属性
 
-The ICP token is similar to utility tokens governing decentralized networks such as Bitcoin, but also differs in important ways.
+ICP 代币类似于管理去中心化网络（如比特币）的实用代币，但在重要方面也有所不同。
 
-The ICP token is similar to Bitcoin in the following ways:
+ICP代币在以下方面与比特币相似：
 
-* Each ICP token is divisible 10^8 times.
-* All transactions are stored in the ledger starting with the genesis initial state.
-* Tokens are entirely fungible.
-* Account identifiers are 32 bytes and are roughly the equivalent of the hash of a public key, optionally together with some additional sub-account specifier.
+* 每个 ICP 代币可整除 10^8 次。
+* 所有交易都存储在账本中，从创世初始状态开始。
+* 代币是完全可替代的。
+* 账户标识符为 32 字节，大致相当于公钥的哈希值，可选地与一些额外的子账户说明符一起使用。
 
-The ICP token differs from Bitcoin in the following ways:
+ICP 代币在以下方面与比特币不同：
 
-* Rather than using proof of work, staked participant nodes use a variant of threshold BLS signatures to agree on a valid state of the chain.
-* Any transaction can store an 8-byte memo -- this memo field is used by the Rosetta API to store the nonce that distinguishes between transactions. However, other uses for the field are possible.
+* 质押的参与者节点不使用工作量证明，而是使用阈值 BLS 签名的变体来就链的有效状态达成一致。
+* 任何交易都可以存储一个 8 字节的备忘录——Rosetta API 使用这个备忘录字段来存储区分交易的随机数。 然而，该领域的其他用途是可能的。
 
-== Frequently asked questions
-The following questions are taken from the most commonly reported questions and blockers from the developer community regarding Rosetta integration with the {IC}.
+== 常问问题
+以下问题摘自开发者社区最常报告的关于 Rosetta 与 {IC} 集成的问题和障碍。
 
-=== The Rosetta node
+=== Rosetta节点
 
-==== How do I run an instance of the Rosetta node?
+==== 如何运行 Rosetta 节点的实例？
 
-An easy way to accomplish this is to use the link:https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated[`dfinity/rosetta-api`] Docker image. Once the node initializes and syncs all blocks, you can perform queries and submit transactions by invoking the Rosetta API on the node. The node listens on the `8080` port.
+一个简单的方法是使用链接:https://hub.docker.com/r/dfinity/rosetta-api/tags?page=1&ordering=last_updated[`dfinity/rosetta-api`] Docker 镜像. 一旦节点初始化并同步了所有区块，您就可以通过调用节点上的 Rosetta API 来执行查询和提交交易。 该节点侦听“8080”端口。
 
-==== How do I connect the Rosetta node to the mainnet?
+==== 如何将 Rosetta 节点连接到主网？
 
-Use flags `+--mainnet+` and `+--not-whitelisted+`
+使用 flags `+--mainnet+` and `+--not-whitelisted+`
 
-==== How do I connect the Rosetta node to the mainnet?
+==== 如何将 Rosetta 节点连接到主网？
 
-Use flags `+--mainnet+` and `+--not-whitelisted+`
+使用 flags `+--mainnet+` and `+--not-whitelisted+`
 
-==== How do I know if the node has caught up with the test net?
+==== 如何知道节点是否已经赶上了测试网？
 
-Search the `Starting Rosetta API server` startup log. There will be a log entry that says `You are all caught up to block XX`. This message confirms that you are caught up with all blocks.
+搜索 `Starting Rosetta API server` 启动日志。 将会有一个日志条目显示“你们都被阻止了 XX”。 此消息确认您已了解所有块。
 
-==== How to persist synced blocks data?
+==== 如何持久化同步块数据？
 
-Mount the `/data` directory elsewhere.
+将 `/data` 目录挂载到别处。
 
-==== Is the Rosetta node versioned?
+==== Rosetta 节点是否已版本化？
 
-Not yet. Before launch, when we push to the `dfinity/rosetta-api:latest` image, it's usually a major update that we'll announce in our communication channels beforehand.
+还没有。 在发布之前，当我们推送到 `dfinity/rosetta-api:latest` 镜像时，通常是我们会提前在我们的沟通渠道中宣布的重大更新。
+我们将很快实现映像的每晚构建，CI 将确保它在推送之前工作。 除了 `最新` 之外，这些映像还将使用构建日期进行标记，因此为了提高可重复性，可以使用特定日期标记的映像而不是 `映像`。 当每晚构建可用时，我们将宣布。
 
-We'll soon implement nightly builds of the image, and CI will ensure it works before pushing. Other than `latest`, those images will also be tagged with the build date, so for more reproducibility, it's possible to use the image of a specific date tag rather than `latest`. We'll announce when nightly builds become available.
+==== 如何连接到主网而不是测试网？
 
-==== How do I connect to the main net instead of the test net?
+使用 `--help` 启动 `dfinity/rosetta-api`，您可以看到一些可以传递的额外 CLI 参数。 其中有 `--canister-id` 和 `--ic-url` 可用于配置分类帐目的地。 目前，他们默认使用测试网。
 
-Start `dfinity/rosetta-api` with `--help`, you can see some additional CLI arguments that can be passed. Among those there are `--canister-id` and `--ic-url` which can be used to configure the ledger destination. At the moment, they default to the test net.
+**注释**：主网暂未上线； 它会在公示日期前一段时间上线，我们会将更新后的镜像推送到主网上，以确保您可以提前在主网上进行测试。
 
-**Note**: The main net is not live yet; it will be live some time before the publicly announced date, and we'll push the updated image to point to the main net to ensure you can perform testing on the main net beforehand.
+=== ICP 特定的 Rosetta API 详细信息
 
-=== ICP-specific Rosetta API details
+==== 帐户是如何生成和验证的？
 
-==== How are accounts generated and verified?
+- 生成 ED25519 密钥对。
+- 密钥用于签署交易。
+- 公钥用于生成自我认证的主体 ID。 有关更多信息，请参阅： https://sdk.dfinity.org/docs/interface-spec/index.html#_principals.
+- 对主体 ID 进行哈希处理以生成帐户地址。
 
-- Generate an ED25519 keypair.
-- The secret key is used for signing transactions.
-- The public key is used for generating a self-authenticating Principal ID. For more information, see: https://sdk.dfinity.org/docs/interface-spec/index.html#_principals.
-- The Principal ID is hashed to generate the account address.
+==== 如何使用公钥生成其账户地址？
 
-==== How to use the public key to generate its account address?
+- 调用链接:https://www.rosetta-api.org/docs/ConstructionApi.html#constructionderive[`/construction/derive`] 具有十六进制编码的 32 字节公钥的端点。
+- 调用 JavaScript SDK 中的 `pub_key_to_address` 函数。
 
-- Call the link:https://www.rosetta-api.org/docs/ConstructionApi.html#constructionderive[`/construction/derive`] endpoint with the hex-encoded 32-byte public key.
-- Call the `pub_key_to_address` function in the JavaScript SDK.
+==== 如何验证账户地址的校验和？
 
-==== How to verify the checksum of an account address?
+- 十六进制解码后，前 4 个字节是地址其余部分的大端 CRC32 校验和。
+- 调用链接:https://github.com/dfinity/rosetta-client#working-with-account-addresses[`address_from_hex`] 在 JavaScript SDK 中。 如果校验和不匹配，它会返回并出错。
+- 链接:https://gist.github.com/TerrorJack/d6c79b33e5b5d0f5d52f3a2c5cdacc60[这里] 是地址验证逻辑的 Java 实现。
 
-- After hex decoding, the first 4 bytes is the big-endian CRC32 checksum of the rest of the address.
-- Call link:https://github.com/dfinity/rosetta-client#working-with-account-addresses[`address_from_hex`] in the JavaScript SDK. It returns and error if checksum doesn't match.
-- link:https://gist.github.com/TerrorJack/d6c79b33e5b5d0f5d52f3a2c5cdacc60[Here] is a Java implementation of address validation logic.
-
-==== What are `signature_type` and `curve_type` for ED25519?
+==== ED25519 的“signature_type”和“curve_type”是什么？
 
 - `signature_type` is `"ed25519"`
 - `curve_type` is `"edwards25519"`
 
-==== What kinds of transactions can appear in a block, and what do they mean?
+==== 什么样的交易可以出现在一个区块中，它们是什么意思？
 
-- Each block as queried from the link:https://www.rosetta-api.org/docs/BlockApi.html#block[`/block`] endpoint contains exactly one transaction. Note that some operations, such as `+burn+`, are not suppoted in Rosetta API calls. 
+- 从链接查询的每个块:https://www.rosetta-api.org/docs/BlockApi.html#block[`/block`] 端点只包含一个事务。 请注意，Rosetta API 调用不支持某些操作，例如 `+burn+`。
 
-- Transfer
-    * Operation 0: type `"TRANSACTION"`, subtracts the transfer amount from the source account.
-    * Operation 1: type `"TRANSACTION"`, adds the same transfer amount to the destination account.
-    * Operation 2: type `"FEE"`, subtracts the fee from the source account.
-    - Don't rely on the order above, you can rearrange them in the `/construction/payloads` call, and when parsing transactions in a block, you should check for transaction type and amount sign instead.
-- Mint
-    * Operation 0: type `"MINT"`, adds the minted amount to the destination account.
-- Burn
-    * Operation 0: type `"BURN"`, subtract the burned amount from the source account.
-- `"status"` is always `"COMPLETED"`, failed transactions don't show up in the polled blocks
+- 转移
+     * 操作0：输入`"TRANSACTION"`，从源账户中减去转账金额。
+     * 操作1：输入`"TRANSACTION"`，向目的账户添加相同的转账金额。
+     * 操作2：输入`"FEE"`，从源账户中扣除费用。
+     - 不要依赖上面的顺序，你可以在`/construction/payloads`调用中重新排列它们，当解析一个块中的交易时，你应该检查交易类型和金额符号。
+- 铸币
+     * 操作0：输入`"MINT"`，将铸币数量添加到目标账户。
+- 燃烧
+     * 操作0：输入`"BURN"`，从源账户中减去燃烧的数量。
+- `"status"` 总是 `"COMPLETED"`，失败的交易不会出现在轮询的区块中
 
-==== What fee is needed? Can I customize the fee?
+==== 需要什么费用？ 我可以自定义费用吗？
 
-- By calling link:https://www.rosetta-api.org/docs/ConstructionApi.html#constructionmetadata[`/construction/metadata`], you can get `suggested_fee`.
-- At the moment, `suggested_fee` is a constant, and the fee specified in a transfer must be equal to it.
-- Fees do not apply to Mint or Burn operations.
+- 通过调用链接:https://www.rosetta-api.org/docs/ConstructionApi.html#constructionmetadata[`/construction/metadata`]，你可以获得`suggested_fee`。
+- 目前，`suggested_fee` 是一个常数，转账中指定的费用必须等于它。
+- 费用不适用于铸币或燃烧操作。
 
-==== How do I know if the submitted transaction hit the chain?
+==== 如何知道提交的交易是否到达了链？
 
-- The Rosetta server will wait for a short period of time after a `/construction/submit` call, if the transaction hit the chain, it'll be returned.
-- In case of an error from the ledger, the error information will be available in the `/construction/submit` result.
-- It's still possible that a `/construction/submit` call has returned successfully, but there's still some time before it hits the chain. You can poll latest blocks and search for the transaction hash. We also implemented a subset of the link:https://www.rosetta-api.org/docs/SearchApi.html#searchtransactions[`/search/transactions`] endpoint which allows searching for a transaction given its hash.
-- 5 minutes is a worst case timeout.
-- Don't use `mempool` APIs, our implementation is an empty stub.
+- Rosetta 服务器会在 `/construction/submit` 调用后等待一小段时间，如果交易命中链，它将被返回。
+- 如果账本出现错误，错误信息将在`/construction/submit`结果中提供。
+- `/construction/submit` 调用仍有可能成功返回，但距离它到达链还有一段时间。您可以轮询最新的区块并搜索交易哈希。 我们还实现了链接的一个子集:https://www.rosetta-api.org/docs/SearchApi.html#searchtransactions[`/search/transactions`] 允许在给定哈希值的情况下搜索交易的端点。
+- 5 分钟是最坏情况下的超时。
+- 不要使用 `mempool` API，我们的实现是一个空存根。
 
-==== What kinds of errors might I get from Rosetta API calls?
+==== 我可能会从 Rosetta API 调用中得到哪些类型的错误？
 
-- Successful calls always have `200` response status code.
-- Failed calls always have `500` response status code, with a JSON payload containing more information. The possible Rosetta error codes and their text descriptions can be seen in the `/network/options` call result.
+- 成功的调用总是有 `200` 响应状态码。
+- 失败的调用总是有“500”响应状态码，带有一个包含更多信息的 JSON 有效负载。 可能的 Rosetta 错误代码及其文本描述可以在 `/network/options` 调用结果中看到。
 
-==== How do I send Mint or Burn transactions?
+==== 我如何发送铸币或燃烧交易？
 
-- Mint is a privileged operation; we don't support Burn through Rosetta API calls at the moment.
+- 铸币是一项特权操作； 我们目前不支持通过Rosetta API 调用燃烧。
 
-==== What happens if the same signed transaction is submitted multiple times?
+==== 如果多次提交同一个签名交易会发生什么？
 
-The ledger rejects duplicate transactions. Only the first transaction will make it to the chain and for the duplicate submissions the `/construction/submit` call will fail.
+账本拒绝重复交易。 只有第一笔交易会进入链，对于重复提交，`/construction/submit` 调用将失败。
 
-==== How to sign a transaction without calling Rosetta API?
+==== 如何在不调用 Rosetta API 的情况下签署交易？
 
-The JavaScript SDK contains an link:https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js[implementation] of the offline signing logic. This is deeply coupled with internal implementation details, so we strongly advise you to call `/construction/combine` to sign a transaction if possible.
+JavaScript SDK 包含一个链接:https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js[implementation] 离线签名逻辑。 这与内部实现细节密切相关，因此我们强烈建议您尽可能调用`/construction/combine` 来签署交易。
 
-==== How to configure the ingress time period?
+==== 如何配置入口时间段？
 
-In the `/construction/payloads` call, you can add one or all of the `ingress_start` / `ingress_end` fields to specify the ingress time period. They are nanoseconds since the Unix epoch, and must be within the next 24 hours. This enables generating & signing a transaction, but delaying the actual submission to a later time.
+在 `/construction/payloads` 调用中，您可以添加一个或全部 `ingress_start` / `ingress_end` 字段来指定入口时间段。 它们是 Unix 纪元以来的纳秒，并且必须在接下来的 24 小时内。 这可以生成和签署交易，但将实际提交延迟到以后。
 
-==== How to deserialize a signed transaction?
+==== 如何反序列化已签名的交易？
 
-The JavaScript SDK supports link:https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js[deserializing] a `signed_transaction` hex string and recovering some information about the transfer. This may be useful in the case that you'd like to perform a sanity check.
+JavaScript SDK 支持链接:https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js[deserializing] 一个`signed_transaction`十六进制字符串并恢复有关转移的一些信息。 这在您想要执行健全性检查的情况下可能很有用。
 
 ////
 
 == Ledger canister API reference
 
-In the previous sections, we outline how to integrate with the {IC} ledger canister using the Rosetta API. 
-For your reference, this section provides information about the ledger canister interfaces. You can also use this information to help you plan for interacting with the ledger canister directly, if you choose not to use the integration based on the Rosetta API.
+在前面的部分中，我们概述了如何使用 Rosetta API 与 {IC} 帐本容器集成。
+供您参考，本节提供有关帐本容器接口的信息。 如果您选择不使用基于 Rosetta API 的集成，您还可以使用此信息来帮助您计划直接与帐本容器进行交互。
 
-The ledger canister provides the following update and query application programming interfaces.
+帐本容器提供以下更新和查询应用程序编程接口。
 
-NOTE: The ledger canister interfaces described in this document are preliminary and subject to change.
+注释：本文档中描述的帐本容器接口是初步的，可能会更改。
 
 === init
 
-Initializes the canister with the set of accounts and associated ICP token balances as described in <<Accounts>>.
+使用一组帐户和关联的 ICP 代币余额初始化容器，如中 <<Accounts>>所述.
 
 ....
 init : [(PrincipalID, Amount)] -> ()
 ....
 
-The `+init+` method takes a list of the initial state of balances for individual principal IDs.
-The ledger represents this state as a series of `+mint+` operations of the form `+(Mint(dst, amount))+`
-The `+init+` method is the only way to create tokens and is only invoked once when the ledger canister is created.
+`+init+` 方法获取各个主体 ID 的初始余额状态列表。
+账本将这种状态表示为一系列 `+mint+` 操作，形式为`+(Mint(dst, amount))+`
+`+init+` 方法是创建代币的唯一方法，并且仅在创建帐本容器时调用一次。
 
 === transfer
 
-Creates a payment from the caller's principal to the specified recipient with the specified amount.
-After the `+init+` operation, the `+transfer+` method is the only method that changes the state of the canister. 
+创建从调用方的主体到指定接收方的指定金额的付款。
+在 `+init+` 操作之后，`+transfer+` 方法是唯一改变容器状态的方法。
 
 ....
 update transfer: (
@@ -363,35 +362,35 @@ amount: Amount,
 
 [width="90%",cols="<15%,<75%",options="header"]
 |===
-|Parameter |Description
-|`+memo+` |Allows the caller to set an optional value, for example. to identify and link transactions for applications that communicate with the ledger canister. The Rosetta node implementation uses this field to store the nonces that ensure uniqueness of transactions. 
+|参数 |说明
+|`+memo+` |例如，允许调用者设置一个可选值。 识别和链接与分类帐容器通信的应用程序的事务。 Rosetta 节点实现使用该字段来存储确保交易唯一性的随机数。
 
-|`+created_at+` |Provides an optional parameter to reference an already existing transaction.
+|`+created_at+` |提供一个可选参数来引用一个已经存在的事务。
 
-|`+dst+` |Specifies the destination accounts for the transaction.
+|`+dst+` |指定交易的目标账户。
 
-|`+amount+` |Specifies the amount is the amount of ICP token to be transferred.
+|`+amount+` |指定金额为转入ICP代币的数量。
 
 |===
 
-The account of the principal who invokes the transaction is the source (`+src+`) of the transfer.
-The transfer succeeds if `+balances[src]+` is greater than the `+amount+`. 
-If the transfer succeeds, the canister returns a unique index for the transaction and records the transaction in the ledger like this:
+调用交易的主体的账户是转账的来源（`+src+`）。
+如果 `+balances[src]+` 大于 `+amount+`，则转账成功。
+如果转移成功，容器会返回交易的唯一索引，并将交易记录在账本中，如下所示：
 
 ....
 (memo, created_at, timestamp, Send(src, dst, amount))
 ....
 
-The method succeeds only if:
+该方法仅在以下情况下成功：
 
-- `+created_at+` is not a block height that is more than 24 hours old.
-- `+(memo, created_at,timestamp, Send(src, dst,amount))+` is not already recorded as a transaction at any height greater than `+created_at+`.
+- `+created_at+` 不是超过 24 小时的区块高度。
+- `+(memo, created_at,timestamp, Send(src, dst,amount))+` 尚未记录为任何高度大于 `+created_at+` 的事务。
 
-Together, these conditions allow the ledger canister to efficiently ensure the uniqueness of each transaction.
+总之，这些条件允许账本罐有效地确保每笔交易的唯一性。
 
 === lookup
 
-Returns the transaction identified uniquely by the transaction index assigned to it.
+返回由分配给它的事务索引唯一标识的事务。
 
 ....
 query lookup : Transaction Index -> Option<Hashed Transaction>
@@ -399,7 +398,7 @@ query lookup : Transaction Index -> Option<Hashed Transaction>
 	 
 === last
 
-Returns the index of the most recent transaction.
+返回最近交易的索引。
 
 ....
 query last: () -> Option<(Transaction Index, Certification)>
@@ -407,15 +406,15 @@ query last: () -> Option<(Transaction Index, Certification)>
 
 === account_balance
 
-Returns the balance of a specific account.
+返回特定帐户的余额。
 
 ....
 query account_balance : (pid: Principal ID) -> Balance
 ....
 
-=== Data structures
+=== 数据结构
 
-The data structures of the ledger canister are as follows:
+账本容器的数据结构如下：
 
 ....
 memo = u64

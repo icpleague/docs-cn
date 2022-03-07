@@ -1,0 +1,31 @@
+= 介绍
+:关键词: 互联网计算机,区块链,协议,复制,子网,数据中心,容器,开发者,安全,安全最佳实践
+:proglang: Motoko, Rust
+:platform: Internet Computer platform
+:company-id: DFINITY
+
+:toc:
+
+本文档提供了在 Internet 计算机上开发 Rust 容器和容器服务的 Web 应用程序的安全最佳实践。 这些最佳实践主要受到安全审查中发现的问题的启发。
+
+我们希望向开发人员宣传这些最佳实践，以便在新 dApp 开发过程中尽早解决潜在问题，而不仅仅是在最后（如果有的话）进行安全审查时解决。 理想情况下，这将使安全 dApp 的开发更加高效。
+
+此处链接的一些优秀的罐最佳实践来自链接：https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters] 和链接：https://www.joachim-breitner.de/ blog/788-How_to_audit_an_Internet_Computer_canister[如何审核互联网计算机容器]。 相关部分链接在各个最佳实践中。
+
+== 最佳实践概述
+
+我们在后续页面中提供以下安全最佳实践：
+
+* 链接：general-security-best-practices.adoc[一般安全最佳实践]
+* 链接：web-app-development-security-best-practices.adoc[Web App Specific Security Best Practices],
+* 链接：rust-canister-development-security-best-practices.adoc[Rust Canister 开发安全最佳实践]
+
+== 目标受众
+
+本文档最初旨在供 DFINITY 内部使用。但是，我们现在将其发布到社区，以便每个开发人员都能受益。目标受众是为 Internet 计算机开发容器或 Web 应用程序的任何开发人员。这也是对此类代码进行审查的任何人的兴趣所在。
+
+== 免责声明和限制
+
+我们提供了一系列最佳实践，这些实践可能会随着时间的推移而增长。虽然我们认为这有助于提高互联网计算机上 dApp 的安全性，但我们想指出，这样的列表永远不会完整，也永远不会涵盖所有潜在的安全问题。例如，总会有特定于 dApp 用例的攻击向量，一般最佳实践无法涵盖这些用例。因此，遵循最佳实践可以补充但不能替代安全审查。特别是对于安全关键的 dApp，我们建议执行安全审查/审计。此外，请注意，最佳实践目前未根据风险或优先级排序。
+
+目前，容器最佳实践集中在 Rust。我们也将努力纳入针对 Motoko 的最佳实践。

@@ -1,0 +1,85 @@
+= 一般最佳实践
+
+== 验证与安全相关的查询响应
+
+=== 安全问题
+
+对链接的响应：https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询调用]（与更新调用相反）不是由容器/子网进行阈值签名的。 因此，单个恶意副本或边界节点可能会更改数据，从而违反其真实性。 如果更新调用依赖于对查询调用的响应，这尤其危险。
+
+=== 推荐
+
+- 所有需要真实性保证的与安全相关的查询响应数据（这需要针对每个 dApp 进行评估）都应由 IC 使用认证变量进行认证。 考虑使用现有的数据结构，例如链接：https://github.com/dfinity/cdk-rs/tree/main/src/ic-certified-map[certified-map]。 数据认证必须在前端进行验证。
+- 或者，这些调用必须由调用者作为更新调用发出（例如在 agent-js 中），但这会影响性能：它需要几秒钟。 请注意，每个查询也可以由调用者作为更新发出。
+- 示例是链接中的资产证明:https://github.com/dfinity/internet-identity/blob/b29a6f68bbe5a49d048e12bc7a3263a9f43d080b/src/internet_identity/src/main.rs#L775-L808[Internet Identity], link:https://github.com/dfinity/nns-dapp/blob/372c3562127d70c2fde059bc9c268e8ae858583e/rs/src/assets.rs#L121-L145[NNS dApp], or the link:https://github.com/dfinity/internet-identity/blob/main/src/internet_identity/src/signature_map.rs[canister signature implementation in Internet Identity].
+
+== 非特定于互联网计算机
+
+本节中的最佳实践非常笼统，并不特定于 Internet 计算机。 此列表绝不是完整的，仅列出了过去导致问题的一些非常具体的问题。
+
+=== 不要使用有已知漏洞的第三方组件
+
+==== 安全问题
+
+使用易受攻击和过时的组件是一个链接:https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/[big security risk].
+
+==== 推荐
+
+- 根据已知漏洞的数据库定期检查您的第三方组件：
+- Rust: use link:https://crates.io/crates/cargo-audit[cargo audit].
+- JavaScript / NPM: use link:https://docs.npmjs.com/cli/v8/commands/npm-audit[npm audit]
+- 这应该集成到构建过程中，如果存在已知漏洞，构建应该会失败。
+- 不要使用未维护且可能不可信的存储库的分叉版本。
+- 避免使用未广泛使用且可能没有经过充分（理想情况下是第三方）审查的第三方组件。
+- 固定您正在使用的组件的版本，以避免自动切换到损坏的更新。
+
+=== 不要自己实现加密
+
+==== 安全问题
+
+实现加密算法时很容易出错，导致安全漏洞。
+
+==== 推荐
+
+- 使用可能是开源的并且已经被许多人审查过的知名库。例如，在 JavaScript 中使用 https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API]，使用 crates 如链接：https://crates.io/crates/ Rust 中的 sha256[sha256]
+
+=== 使用安全加密方案
+
+==== 安全问题
+
+一些加密方案已被破坏（旧的 TLS 版本、MD5、SHA1、DES、...），或者它们可能太新以至于尚未得到适当的研究。使用这些会引入安全问题。
+==== 推荐
+
+如果您需要使用加密，请仅使用尚未破解且没有已知问题的加密方案。 理想情况下使用已经标准化的算法，例如 NIST 或 IETF。
+
+参考：
+
+- 链接:https://owasp.org/Top10/A02_2021-Cryptographic_Failures/[OWASP Cryptographic Failures]
+
+=== 测试你的代码
+
+==== 安全问题
+
+测试覆盖率小是有风险的，因为代码更改变得困难并且可能违反正确性和安全属性，从而导致错误。 如果没有相应的测试，就很难在审查（和安全审查）中验证正确性和安全属性。
+
+==== 推荐
+
+为容器实现和前端代码编写测试，尤其是安全相关属性和不变量。
+
+- 在链接：https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]：链接：https://mmapped.blog/posts/01-effective-rust-canisters.html #test-upgrades[测试升级]，链接：https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
+- 另见链接：rust-canister-development-security-best-practices.adoc#test-your-canister-code[即使在系统 API 调用存在的情况下测试您的容器代码]
+- 考虑链接：https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust 测试指南]
+- 对于 wasm 级别的单元测试，考虑使用链接：https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
+- 对于 Motoko 级别的单元测试，请考虑链接：https://kritzcreek.github.io/motoko-matchers/Canister.html[Canister 模块]。还有一些示例测试链接：https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[这里]和链接：https://github.com/dfinity/motoko-base /blob/master/test/textTest.mo[这里]。作为示例，另请参见链接的端到端测试和单元测试：https://github.com/dfinity/invoice-canister[invoice-canister]。
+- 对于长时间运行的测试场景，考虑链接：https://github.com/matthewhammer/motoko-bigtest[Motoko BigTest]
+
+=== 避免在生产环境中使用测试和开发代码
+
+==== 安全问题
+
+在仅用于开发或测试设置的生产代码中包含代码路径是有风险的。 如果出现问题（有时确实如此！），这可能会在生产中引入安全漏洞。
+
+例如，我们已经看到验证证书的公钥是从不受信任的来源获取的问题，因为这是在测试网络上完成的。
+
+==== 推荐
+
+尽可能避免在生产代码中使用测试和开发代码。

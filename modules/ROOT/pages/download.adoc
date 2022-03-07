@@ -1,23 +1,23 @@
-= Download center
+= 下载中心
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-Currently, you can download the {sdk-long-name} directly from within a terminal shell on your local computer.
-With this installation option, you can be logged on as any user and no additional software is required.
+目前，您可以直接从本地计算机的终端shell中下载 {sdk-long-name}。
+使用此安装选项，您可以以任何用户身份登录，无需其他软件。
 
 // tag::install[] 
 [[install-latest]]
-== Install the latest directly from a terminal
+== 直接从终端安装最新版本
 
-To download and install from a terminal shell:
+要从终端 shell 下载和安装：
 
-. Open a terminal shell on your local computer.
+. 在本地计算机上打开终端 shell。
 +
-For example, on macOS open the Applications folder, then open Utilities and double-click *Terminal*.
+例如，在 macOS 上打开 Applications 文件夹，然后打开 Utilities 并双击 *Terminal*。
 
-. Download and install the SDK package by running the following `curl` command:
+. 通过运行以下 `curl` 命令下载并安装 SDK 包：
 +
 [source,bash]
 ----
@@ -25,50 +25,50 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 [[install-version]]
-== Install a specific version from a terminal
+== 从终端安装特定版本
 
-If you want to install a specific version, for example, to test against a previous version, you can modify the installation command to include a version.
+如果要安装特定版本，例如，针对以前的版本进行测试，您可以修改安装命令以包含一个版本。
 
-To download and install a specific version from a terminal shell:
+要从终端 shell 下载和安装特定版本：
 
-. Open a terminal shell on your local computer.
+. 在本地计算机上打开终端 shell。
 
-. Set the `DFX_VERSION` environment variable to the version of the {sdk-short-name} package you want to install as a prefix to `+curl+` command.
+. 将 `DFX_VERSION` 环境变量设置为要安装的 {sdk-short-name} 包的版本，作为 `+curl+` 命令的前缀。
 +
-For example, to install version 0.8.4, you would run the following command:
+例如，要安装 0.8.4 版，您将运行以下命令：
 +
 [source,bash]
 ----
 DFX_VERSION=0.8.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
-NOTE: If you are using the DFX_VERSION environment variable to install a version of the {sdk-short-name} not yet publicly available, see this link:http-middleware{outfilesuffix}[article] for an overview of what's changed. 
+注释：如果您使用 DFX_VERSION 环境变量安装尚未公开的 {sdk-short-name} 版本，请参阅此链接：http-middleware{outfilesuffix}[article] 了解更改的概述。
 
 // end::install[]   
 
-== Next steps
+== 下一步
 
-For information about the next steps to take, see link:developers-guide/tutorials-intro{outfilesuffix}[Tutorials] in the link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_].
+有关后续步骤的信息，请参阅链接：developers-guide/tutorials-intro{outfilesuffix}[Tutorials] 中的链接：developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_]。
 
-To learn more about writing programs for the {IC} before you start experimenting with code, see link:developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts].
+要在开始试验代码之前了解有关为 {IC} 编写程序的更多信息，请参阅链接：developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts]。
 
-For information about writing programs for the {IC} using {proglang}, see the link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+有关使用 {proglang} 为 {IC} 编写程序的信息，请参阅链接：language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_]。
 
 ////
-== Download a packaged release
+== 下载打包版本
 
 [width="100%",cols=3*,"35%,30%,35%",options="header",]
 |===
 |Version |Tag |Documentation and supported platforms
 |SDK 0.5.2 (February 2020) |sdk-0.5.2-RELEASE |Release notes / changelog
 +
-Supported platforms
+支持的平台
 
 |SDK 0.5.4 (March 2020) |sdk-0.5.4-RELEASE |Release notes / changelog
 + Supported platforms
 |===
 
-== Use a package manager
+== 使用软件包管理器
 
 [source,bash]
 ----

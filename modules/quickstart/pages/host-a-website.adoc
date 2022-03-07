@@ -1,11 +1,11 @@
-Hosting a Static Website on the Internet Computer
+在互联网计算机上存储一个静态网站
 =================================================
 
-Before you begin, make sure you are set up with our {sdk-short-name} (DFX) and a Cycles Wallet, either from the link:cycles-faucet{outfilesuffix}[Faucet Quickstart] or by purchasing ICP and following our link:network-quickstart{outfilesuffix}[Network Deployment] guide.
+在开始之前，请确保您已使用我们的 {sdk-short-name} (DFX) 和燃料费钱包进行设置，可以通过链接：cycles-faucet{outfilesuffix}[Faucet快速入门] 或通过购买 ICP 并点击我们的链接 :network-quickstart{outfilesuffix}[网络部署]指南。
 
-== Set up your project
+== 设置你的项目
 
-Let's create a simple static website, and then set it up to deploy with dfx.
+让我们创建一个简单的静态网站，然后将其设置为使用 dfx 进行部署。
 
 . Create a folder named +static-ic-website+
 . In +static-ic-website+, create a new folder, named +assets+.
@@ -15,9 +15,9 @@ Let's create a simple static website, and then set it up to deploy with dfx.
     - +script.js+
     - +style.css+
 
-== Add some content
+== 添加一些内容
 
-Let's start with +index.html+. Paste the following code into your file:
+让我们从 +index.html+ 开始。 将以下代码粘贴到您的文件中:
 
 .index.html
 [source,html]
@@ -41,7 +41,7 @@ Let's start with +index.html+. Paste the following code into your file:
 </html>
 ----
 
-Next, open up +page-2.html+ and add this content.
+接下来，打开 +page-2.html+ 并添加此内容。
 
 .page-2.html
 [source,html]
@@ -62,7 +62,7 @@ Next, open up +page-2.html+ and add this content.
 </html>
 ----
 
-Then, add some simple logic to script.js.
+然后，在 script.js 中添加一些简单的逻辑。
 
 .script.js
 [source,js]
@@ -71,7 +71,7 @@ document.querySelector("#dynamic-content").innerText =
  "This paragraph is dynamically rendered using JavaScript";
 ----
 
-And then add some styles to +style.css+.
+然后在 +style.css 中添加一些样式。
 
 .style.css
 [source,css]
@@ -86,9 +86,9 @@ p:first-of-type {
 }
 ----
 
-== Configure DFX to deploy
+== 配置 DFX 进行部署
 
-To host and run this website live on the {platform}, you will need to configure DFX to upload your files to a certified asset canister. In the root directory of your project, +static-ic-website+, create a new file, +dfx.json+. Then, add the following content:
+要在 {platform} 上实时托管和运行此网站，您需要配置 DFX 以将文件上传到经过认证的资产容器。 在项目的根目录 +static-ic-website+ 中，创建一个新文件 +dfx.json+。 然后，添加以下内容：
 
 .dfx.json
 [source,json]
@@ -103,9 +103,9 @@ To host and run this website live on the {platform}, you will need to configure 
 }
 ----
 
-This tells DFX that you want to create an asset canister, and that it should upload the contents of the +asset+ folder. If you want to upload additional static assets, you can add them to the +asset+ folder or add additional folders to the +source+ configuration.
+这告诉 DFX 您要创建一个资产容器，并且它应该上传 +asset+ 文件夹的内容。 如果要上传额外的静态资产，可以将它们添加到 +asset+ 文件夹或将额外的文件夹添加到 +source+ 配置中。
 
-Now, your directory should look something like this:
+现在，您的目录应该如下所示：
 
 ----
 ├── assets
@@ -116,16 +116,16 @@ Now, your directory should look something like this:
 └── dfx.json
 ----
 
-== Deploy your website
+== 部署您的网站
 
-To deploy your website, ensure you are in your terminal at the root of the project, and run this command:
+要部署您的网站，请确保您位于项目根目录的终端中，然后运行以下命令：
 
 [source, sh]
 ----
 dfx deploy --network ic
 ----
 
-You should see some output in your console, and a success message looking something like this:
+您应该会在控制台中看到一些输出，以及如下所示的成功消息：
 
 ----
 ...
@@ -144,24 +144,24 @@ Deployed canisters.
 
 ----
 
-== See your live website
+== 查看您的实时网站
 
-Find your new canister's ID by running
+通过运行查找新容器的 ID
 
 [source, sh]
 ----
 dfx canister --network ic id website
 ----
 
-Take that canister ID and visit +https://<canister-id>.ic0.app+, inserting your own canister ID as the subdomain in the URL.
+获取该容器 ID 并访问 +https://<canister-id>.ic0.app+，在 URL 中插入您自己的容器 ID 作为子域。
 
-You should see your live, multi-page website, looking like this!
+您应该看到您的实时多页网站，看起来像这样！
 
 image:static-website.png[Static Website]
 
-=== Next steps
+=== 下一步
 
-Looking to build a full-stack dapp? Check out the 
-link:../developers-guide/tutorials/custom-frontend.html[Full-stack React Tutorial]!
+想要构建一个全栈 dapp？ 查看
+链接:../developers-guide/tutorials/custom-frontend.html[Full-stack React Tutorial]!
 
-Visit our link:https://forum.dfinity.org[Developer Forum] for inspiration and support from Dfinity Foundation engineers and the developer community.
+访问我们的链接:https://forum.dfinity.org[Developer Forum] 寻求 Dfinity 基金会工程师和开发者社区的灵感和支持。

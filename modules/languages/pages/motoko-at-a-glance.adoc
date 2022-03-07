@@ -1,73 +1,73 @@
-= {proglang} at-a-glance
-:keywords: Motoko,programming language,Internet Computer,developers
-:proglang: Motoko
+= {proglang} 一览
+:关键词: Motoko,编程语言,互联网计算机,开发人员
+:编程语言: Motoko
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:IC: Internet Computer
+:IC: 互联网计算机
 
-This summary provides a simple but comprehensive overview of {proglang} with examples of key features to help you identify operations and patterns that you might know in other languages and what they look like in {proglang}. 
+本摘要提供了对 {proglang} 的简单而全面的概述，并提供了一些关键特性示例，可帮助您识别您在其他语言中可能知道的操作和模式，以及它们在 {proglang} 中的样子。
 
-== {proglang} motivation and goals
+== {proglang} 动机和目标
 
-A simple, useful language for {company-id} and the {platform}.
+{company-id} 和 {platform} 的一种简单、有用的语言。
 
-* Familiar syntax
-* Safe by default
-* Incorporates smart contracts using the *canister* model
-* Provides seamless integration of {company-id} and the {platform} features
-* Makes the most of present and future WebAssembly
+* 熟悉的语法
+* 默认安全
+* 使用 *canister* 模型结合智能合约
+* 提供 {company-id} 和 {platform} 功能的无缝集成
+* 充分利用现在和未来的 WebAssembly
 
-## Key design points
+## 关键设计点
 
-{proglang} takes inspiration from several programming languages, including Java, JavaScript, C#, Swift, Pony, ML, Haskell.
+{proglang} 从多种编程语言中汲取灵感，包括 Java、JavaScript、C#、Swift、Pony、ML、Haskell。
 
-* Object-oriented, functional, and imperative
-* Objects as records of members
-* `async`/`await` for sequential programming of asynchronous messaging
-* Structural typing with simple generics and subtyping
-* Safe arithmetic (unbounded and checked)
-* Non-nullable types by default
-* JavaScript-like syntax but statically typed and sane
+* 面向对象、函数式和命令式
+* 对象作为成员的记录
+* `async`/`await` 用于异步消息的顺序编程
+* 具有简单泛型和子类型的结构类型
+*安全算术（无界和检查）
+* 默认情况下不可为空的类型
+* 类似 JavaScript 的语法，但静态类型和理智
 
-== Semantics
+== 语义
 
-* call-by-value (like Java, C, JS, and ML; unlike Haskell and Nix)
-* declarations are locally mutually recursive
-* parametric, bounded polymorphism
-* subtyping as subsumption, not coercion
-* no dynamic casts
-* no inheritance
+* 按值调用（如 Java、C、JS 和 ML；不像 Haskell 和 Nix）
+* 声明是局部相互递归的
+* 参数化，有界多态性
+* 子类型作为包含，而不是强制
+*没有动态演员表
+* 没有继承
 
-== Implementations
+== 实现
 
-* implemented in OCaml (leverages `wasm` library)
-* simple reference interpreter
-* less simple compiler to WebAssembly
-  * multipass with typed IR in each pass
-  * uniform representation, unboxed arithmetic
-  * two-space gc, gc between messages
-* polymorphism by erasure
+* 在 OCaml 中实现（利用 `wasm` 库）
+* 简单的参考解释器
+* WebAssembly 不太简单的编译器
+   * 多通道，每通道输入 IR
+   * 统一表示，未装箱算术
+   * 两个空格 gc，消息之间的 gc
+* 擦除多态性
 
-== Language features
+== 语言特点
 
-The next sections highlight {proglang} programming language features in simplified form.
-For additional information about using these and other features, see the link:../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_].
+接下来的部分以简化的形式重点介绍 {proglang} 编程语言功能。
+有关使用这些和其他功能的更多信息，请参阅链接：../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko编程语言指南_]。
 
-=== Expressions
+=== 表达式
 
-* identifiers such as `x`, `foo_bar`, `test'`, `List`, `Map`
+*标识符，例如`x`，`foo_bar`，`test'`，`List`，`Map`
 
-* parentheses for grouping
+* 用于分组的括号
 
-* type annotations to help type inference, for example `(42 : Int)`
+* 类型注释以帮助类型推断，例如 `(42 : Int)`
 
-=== Blocks and declarations
+=== 块和声明
 
-* semi-colons are required after each declaration
+* 每个声明后都需要分号
 
-* mutually recursive
+* 相互递归
 
-* mutable variables marked explicitly
+* 明确标记的可变变量
 
 ```
 type Delta = Nat;
@@ -80,7 +80,7 @@ counter := counter + tmp;
 print();
 ```
 
-=== Control flow
+=== 控制流
 
 if and if - else
 
@@ -110,60 +110,60 @@ for (pat in e) …
 ```
 
 ////
-=== Labels, break and continue
+=== 标签，中断并继续
 
 * `label l exp`
 * `break l` (more generally, `break l exp`)
 * `continue l`
 
-labels ensure control flow is structured (no gotos)
+标签确保控制流是结构化的 (no gotos)
 ////
 
-== Primitive types
+== 原始类型
 
-The next sections highlight the primitive types in the {proglang} programming language.
+接下来的部分重点介绍 {proglang} 编程语言中的原始类型。
 
-=== Unbounded integers
+=== 无界整数
 
 `Int`
 
-* inferred by default for negative literals
+* 默认情况下推断为负文字
 
-* literals: `13`, `0xf4`, `-20`, `+1`, `1_000_000`
+* 文字： `13`, `0xf4`, `-20`, `+1`, `1_000_000`
 
-=== Unbounded naturals
+=== 无限自然数
 
 `Nat`
 
-* non-negative numbers, trap upon underflow
+* 非负数，下溢陷阱
 
-* inferred by default for non-negative literals
+* 默认为非负文字推断
 
-* literals: `13`, `0xf4`, `1_000_000`
+* 文字：`13`、`0xf4`、`1_000_000`
 
-=== Bounded numbers (trapping)
+=== 有界数（陷阱）
 
 `Nat8`, `Nat16`, `Nat32`, `Nat64`, `Int8`, `Int16`, `Int32`, `Int64`
 
-* trap on over- and underflow
+* 上溢和下溢陷阱
 
-* need type annotations specified
+* 需要指定类型注释
 
-* literals: `13`, `0xf4`, `-20`, `1_000_000`
+* 文字： `13`, `0xf4`, `-20`, `1_000_000`
 
-=== Floating point numbers
+=== 浮点数字
 
 `Float`
 
-* IEEE 754 double precision (64 bit) semantics, normalized NaN
+* IEEE 754 双精度（64 位）语义，归一化 NaN
 
-* inferred for fractional literals
+* 推断小数字面量
 
-* literals: `0`, `-10`, `2.71`, `-0.3e+15`, `3.141_592_653_589_793_12`
+* 文字： `0`, `-10`, `2.71`, `-0.3e+15`, `3.141_592_653_589_793_12`
 
-=== Numeric operations
+=== 数值运算
 
-operators behave as you would expect (no surprises)
+操作符合你的预期（没有意外）。
 
 ```
 a - b  
@@ -171,11 +171,11 @@ a + b
 a & b
 ```
 
-=== Characters and text
+===字符和文本
 
-`Char`, `Text`
+`字符', `文本'
 
-Unicode, no random access
+Unicode，无随机访问
 
 ```
 'x', '\u{\6a}', '☃'
@@ -183,11 +183,11 @@ Unicode, no random access
 "Concat" # "enation"
 ```
 
-=== Booleans
+=== 布尔值
 
 `Bool`
 
-literals: `true`, `false`
+文字: `true`, `false`
 
 ```
 a or b
@@ -196,25 +196,25 @@ not b
 if (b) e1 else e2
 ```
 
-== Functions
+== 函数
 
-The next sections provide examples for working with functions in the {proglang} programming language.
+接下来的部分提供了在 {proglang} 编程语言中使用函数的示例。
 
-=== Function types
+=== 函数类型
 
-simple functions
+简单函数
 
 ```
 Int.toText : Int -> Text
 ```
 
-multiple arguments and return values  
+多个参数和返回值
 
 ```
 divRem : (Int, Int) -> (Int, Int)
 ```
 
-can be generic/polymorphic  
+可以是通用的/多态  
 
 ```
 Option.unwrapOr : <T>(?T, default : T) -> T
@@ -227,15 +227,15 @@ map : <A, B>(f : A -> B, xs : [A]) -> [B]
 let funcs : [<T>(T) -> T] = …
 ```
 
-=== Function declarations and use
+=== 函数声明和使用
 
 `func() { … }` short for `func() : () = { … }`
 
-parametric functions
+参数函数
 
-type instantiations may sometimes be omitted
+类型实例化有时会被省略
 
-anonymous functions (a.k.a. lambdas)
+匿名函数 (a.k.a. lambdas)
 
 ```
 func add(x : Int, y : Int) : Int = x + y;
@@ -253,15 +253,15 @@ func applyNTimes<T>(n : Nat, x : T, f : T -> ()) {
 applyNTimes<Text>(10, "Hello!", func(x) = { Debug.print(x) } );
 ```
 
-== Composite types
+== 复合类型
 
-The next sections provide examples for working with composite types in the {proglang} programming language.
+接下来的章节提供了在{proglang}编程语言中使用复合类型的例子。
 
-=== Tuples
+==== 元组
 
 `(Bool, Float, Text)`
 
-immutable, heterogeneous, fixed size
+不可变、异构、固定大小
 
 ```
 let tuple = (true, 1.2, "foo");
@@ -269,11 +269,11 @@ tuple.1 > 0.0;
 let (_,_,t) = tuple;
 ```
 
-=== Options
+=== 选项
 
 `?Text`
 
-is either a value of that type, or `null`
+要么是该类型的值，要么是“null”
 
 ```
 func foo(x : ?Text) : Text {
@@ -286,7 +286,7 @@ foo(null);
 foo(?"Test");
 ```
 
-=== Arrays (immutable)
+=== 数组（不可变）
 
 `[Text]`
 
@@ -298,7 +298,7 @@ assert(days[1] == "Tuesday");
 for (d in days.vals()) { Debug.print(d) };
 ```
 
-=== Arrays (mutable)
+=== 数组（可变）
 
 `[var Nat]`
 
@@ -309,7 +309,7 @@ counters[1] := counters[1] + 1;
 // counters[3] will trap (fixed size)
 ```
 
-=== Records
+=== 记录
 
 `{name : Text; points : var Int}`
 
@@ -322,11 +322,11 @@ Debug.print(
 player.points += 1;
 ```
 
-=== Objects
+=== 对象
 
 `{ get : () -> Int; add : Int -> () }`
 
-different syntax, same type as records
+不同的语法，与记录相同的类型
 
 ```
 object self {
@@ -336,11 +336,11 @@ object self {
 }
 ```
 
-=== Variants
+=== 变体
 
 `{ #invincible; #alive : Int; #dead }`
 
-similar to enumerated types
+类似于枚举类型
 
 ```
 type Health = { #invincible; #alive : Nat; #dead };
@@ -355,15 +355,15 @@ func takeDamage(h : Health, p : Nat) : Health {
 }
 ```
 
-== Packages and modules
+== 包和模块
 
-The next sections provide examples for working with packages and modules in the {proglang} programming language.
+接下来的部分提供了使用 {proglang} 编程语言处理包和模块的示例。
 
-=== Modules
+=== 模块
 
-* types and values like objects
+* 类型和值，如对象
 
-* restricted to _static_ content (pure, no state, …)
+* 仅限于 _static_ 内容（纯，无状态，...）
 
 ```
 // the type of base/Int.mo
@@ -374,26 +374,26 @@ module {
 }
 ```
 
-=== Module imports
+=== 模块导入
 
-* `base` package provides basic features
+* `base` 包提供基本功能
 
-* additional libraries evolving with community support
+* 在社区支持下不断发展的其他库
 
 ```
 import Debug "mo:base/Debug";
 import Int "mo:base/Int";
 ```
 
-== Platform features
+== 平台功能
 
-The next sections provide examples of the {proglang} programming language platform-specific features.
+接下来的部分提供了 {proglang} 编程语言平台特定功能的示例。
 
-=== Actor types
+=== Actor 类型
 
-* like object types, but marked as `actor`:
+* 类似对象类型，但标记为 `actor`：
 
-* _sharable_ arguments and _no_ or _async_ result type.
+* _shareable_ 参数和 _no_ 或 _async_ 结果类型。
 
 * “canister” ≈ “actor”
 
@@ -405,28 +405,27 @@ type Broadcast = actor {
 }
 ```
 
-=== Sharable ≈ serializable
+=== 可共享 ≈ 可序列化
 
-* all primitive types
+* 所有原始类型
 
-* records, tuples, arrays, variants, options with immutable sharable components
+* 记录、元组、数组、变体、具有不可变可共享组件的选项
 
-* `actor` types
+* `actor` 类型
 
-*  `shared` function type
+* `shared` 函数类型
 
-The following are **not sharable:**
+以下是**不可共享的：**
 
-* mutable things
+* 可变的东西
 
-* local functions
+* 局部函数
 
-* objects (with methods)
+* 对象（带有方法）
 
-=== Complete actor example
+=== 完整的actor示例
 
-typical canister main file
-
+典型的容器主文件
 ```
 import Array "mo:base/Array";
 actor {
@@ -444,17 +443,17 @@ actor {
 }
 ```
 
-=== Async/await
+=== 异步/等待
 
-`async T`
+`异步T`
 
-* asynchronous future or promise
+* 异步未来或承诺
 
-* introduced by `async { … }` (implicit in async function declaration)
+* 由 `async { ... }` 引入（隐含在异步函数声明中）
 
-* `await e` suspends computation pending `e`'s result
+* `await e` 暂停计算等待 `e` 的结果
 
-=== Actor import
+=== Actor导入
 
 ```
 import Broadcast "ic:ABCDEF23";
@@ -468,9 +467,9 @@ actor Self {
 }
 ```
 
-=== Principal and caller
+=== 主体和调用
 
-a `Principal` type represents the identity of a user or canister/actor
+`Principal` 类型表示用户或容器/actor的身份
 
 ```
 actor Self {
@@ -485,13 +484,13 @@ actor Self {
 }
 ```
 
-== Type system
+== 类型系统
 
-The next sections highlight details about type system used in the {proglang} programming language.
+下一节重点介绍 {proglang} 编程语言中使用的类型系统的详细信息。
 
-=== Structural
+=== 结构
 
-type definitions do not create types, but name existing types
+类型定义不创建类型，而是命名现有类型
 
 ```
 type Health1 = { #invincible; #alive : Nat; #dead };
@@ -502,7 +501,7 @@ let h : Health2 = #invincible;
 let h' = takeDamage(h, 100); // works
 ```
 
-=== Subtyping
+=== 子类型
 
 `Mortal <: Health`
 
@@ -515,9 +514,9 @@ let h : Mortal = #alive 1000;
 let h' = takeDamage(h, 100); // also works
 ```
 
-`t1 <: t2`: `t1` can be used wherever `t2` is expected
+`t1 <: t2`：`t1` 可以在任何需要 `t2` 的地方使用
 
-=== Generic types
+=== 通用类型
 
 ```
 type List<T> = ?{head : T; tail : List<T>};
@@ -525,7 +524,7 @@ type List<T> = ?{head : T; tail : List<T>};
 let l : List<Nat> = ?{head = 0; tail = ?{head = 1 ; tail = null }};
 ```
 
-== Error handling
+== 错误处理
 
 ```
 try … catch …
@@ -890,7 +889,7 @@ label L loop {
 ----
 
 a|
-Does not have do while loops -- use recursion or while
+没有 do while 循环——使用递归或 while
 
 a|
 ----

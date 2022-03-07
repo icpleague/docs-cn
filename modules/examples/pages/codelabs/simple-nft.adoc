@@ -1,4 +1,4 @@
-:page-layout: empty
+:页面布局: empty
 ++++
 
 <!doctype html>
@@ -49,32 +49,32 @@
                   feedback-link="https://github.com/dfinity/docs">
     
       <google-codelab-step label="Intro" duration="2">
-        <p>This CodeLab shows a very simple implementation of NFT minting. The project does not include functionality for payment transactions or an UI, but the functionality can be tested through the Candid interface.<br><br>The project has the following functionality:</p>
+        <p>这个 CodeLab 展示了一个非常简单的 NFT 铸币实现。 该项目不包括支付交易功能或 UI，但可以通过 Candid 界面测试该功能。<br><br>该项目具有以下功能:</p>
 <ul>
-<li>Minting a NFT</li>
-<li>Transfer ownership</li>
-<li>Checking ownership of a NFT</li>
+<li>铸造 NFT</li>
+<li>所有权转让</li>
+<li>检查 NFT 的所有权</li>
 </ul>
-<p>Other features like payment, approvals and file uploads will be covered in future CodeLabs, as an extension of this project.</p>
+<p>其他功能，如支付、批准和文件上传，将在未来的 CodeLabs 中涵盖，作为该项目的扩展。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Before you begin" duration="2">
-        <p>Before you start this tutorial, verify the following:</p>
+        <p>在开始本教程之前，请验证以下内容:</p>
 <ul>
-<li>You have an internet connection and access to a shell terminal on your local macOS or Linux computer.</li>
-<li>You have node.js installed if you want to include the default template files for front-end development in your project.</li>
-<li>You have downloaded and installed the DFINITY Canister SDK package as described in Download and install.</li>
-<li>You have installed the Visual Studio Code plugin for Motoko as described in Install the language editor plug-in if you are using Visual Studio Code as your IDE.</li>
-<li>You have stopped any Internet Computer network processes running on the local computer.</li>
+<li>您有互联网连接并可以访问本地 macOS 或 Linux 计算机上的 shell 终端。</li>
+<li>如果您想在项目中包含用于前端开发的默认模板文件，您已经安装了 node.js。</li>
+<li>您已按照下载和安装中的说明下载并安装了 DFINITY 容器 SDK 包。</li>
+<li>如果您使用 Visual Studio Code 作为 IDE，您已按照安装语言编辑器插件中的说明安装了适用于 Motoko 的 Visual Studio Code 插件。</li>
+<li>您已停止本地计算机上运行的任何互联网计算机网络进程。</li>
 </ul>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="NFT Metadata" duration="2">
-        <p>This project is <em>inspired</em> by the ERC721 token standard, and the standard&#39;s metadata format is being used. The functions are not strictly following the ERC721 standard.</p>
+        <p>该项目受到 ERC721 代币标准的<em>inspired</em>，并且正在使用该标准的元数据格式。 这些功能并未严格遵循 ERC721 标准。/p>
 <h2 is-upgraded>Metadata format</h2>
 <pre><code>{
     &#34;title&#34;: &#34;Asset Metadata&#34;,
@@ -90,21 +90,21 @@
         },
         &#34;image&#34;: {
             &#34;type&#34;: &#34;string&#34;,
-            &#34;description&#34;: &#34;A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive.&#34;
+            &#34;description&#34;: &#34;指向具有 mime 类型 image/* 的资源的 URI，表示此 NFT 所代表的资产。 考虑使任何图像的宽度在 320 到 1080 像素之间，纵横比在 1.91:1 到 4:5 之间（含）。&#34;
         }
     }
 }
 </code></pre>
-<p>For more information about the ERC721 standard <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">see here</a></p>
+<p>有关 ERC721 标准的更多信息 <a href="https://eips.ethereum.org/EIPS/eip-721" target="_blank">see here</a></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Mint NFT" duration="13">
-        <p>In this simplified NFT dapp uploading an image, and filling out name and description in a form in an UI, is not covered. Instead it&#39;s assumed that the URL for the image is already known.</p>
-<p>Minting the NFT is done in two steps. First the metadata is stored with a consecutive token ID. The next step is to register the token ID with the owner ID.</p>
+        <p>在这个简化的 NFT dapp 中，上传图像，并在 UI 中的表单中填写名称和描述，不包括在内。 相反，它假定图像的 URL 是已知的。</p>
+<p>NFT的铸币工作分两步进行。首先，元数据以连续的代币ID存储。下一步是将代币ID与所有者ID注册。</p>
 <h2 is-upgraded>Variables</h2>
-<p>Two HashMaps are used to store the metadata and the registry with token and owner IDs. The concurrent token ID is stored as a Nat32.</p>
+<p>两个HashMaps被用来存储元数据和注册表的代币和所有者ID。并发的代币ID被存储为Nat32。</p>
 <pre><code>   private stable var _registryState : [(TokenIndex, Owner)] = [];
    private var _registry : HashMap.HashMap&lt;TokenIndex, Owner&gt; = HashMap.fromIter(_registryState.vals(), 0, Core.TokenIndex.equal, Core.TokenIndex.hash);
 
@@ -114,7 +114,7 @@
    private stable var _nextTokenId : TokenIndex  = 0;
 </code></pre>
 <h2 is-upgraded>Metadata</h2>
-<p>The metadata is defined as described in the previous step, following the ERC721 token standard, and it&#39;s implemented like this:</p>
+<p>元数据的定义如上一步中所述，遵循 ERC721 代币标准，它的实现方式如下:</p>
 <pre><code>public type Properties = {
    kind        : Text;
    description : Text;
@@ -133,9 +133,9 @@ public type Metadata = {
 };
 </code></pre>
 <h2 is-upgraded>Minting function</h2>
-<p>The function will take the parameter <code>to</code>, which is the owner of the NFT, and the metadata parameters <code>name</code>, <code>description</code> and <code>tokenURI</code>.</p>
-<p>First the metadata variable is populated with the parameter values, and then the metadata is stored in the token HashMap with the next token ID as the key and the metadata as the value.</p>
-<p>After storing the token metadata, the relationship between the owner and the token is stored in the registry HashMap, with the token ID as the key and the owner ID as the value. Finally the concurrent token ID is incremented.</p>
+<p>该函数将获取参数 <code>to</code>，即 NFT 的所有者，以及元数据参数 <code>name</code>, <code>description</code> and <code>tokenURI</code>.</p>
+<p>首先使用参数值填充元数据变量，然后将元数据存储在代币 HashMap 中，其中下一个代币 ID 作为键，元数据作为值。</p>
+<p>存储了代币元数据后，所有者和代币之间的关系存储在HashMap注册表中，代币 ID为key，所有者 ID为value。 最后并发令牌 ID 递增。</p>
 <pre><code>public func mintNFT(to: Owner, name: Text, description: Text, tokenURI: Text) : async TokenIndex {
 
    let tokenId = _nextTokenId;
@@ -174,9 +174,9 @@ public type Metadata = {
    return tokenId;
 };
 </code></pre>
-<p>The token ID will be returned on success.</p>
+<p>成功时将返回代币 ID。</p>
 <h2 is-upgraded>Test Minting</h2>
-<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<p>使用 <code>dfx deploy</code> （本地）部署项目并使用 dfx canister 调用来测试功能:</p>
 <pre><code>dfx canister call ic_simple_nft mintNFT &#39;(principal &#34;xxxxx-...-xxx&#34;, &#34;My NFT&#34;, &#34;My first NFT&#34;, &#34;http://link-to-nft.com/img.gif&#34;)&#39;
 </code></pre>
 
@@ -184,7 +184,7 @@ public type Metadata = {
       </google-codelab-step>
     
       <google-codelab-step label="Transfer NFT" duration="8">
-        <p>Once created, the NFT&#39;s ownership can be transferred to a new owner. The <code>transfer()</code> function takes the three parameters <code>from</code>, <code>to</code> and <code>tokenId</code> and will register the <code>to</code> owner as the new owner of the NFT.</p>
+        <p>一旦创建，NFT 的所有权就可以转移给新的所有者。 <code>transfer()</code> 函数接受三个参数 <code>from</code>、<code>to</code> 和 <code>tokenId</code> 并将 <code>to 注册到 </code> owner 作为 NFT 的新所有者。</p>
 <pre><code>public func transfer(from: Owner, to: Owner, tokenId: TokenIndex) : async TransferResponse {
 
    switch (_registry.get(tokenId)) {
@@ -202,9 +202,9 @@ public type Metadata = {
    };
 }; 
 </code></pre>
-<p>First the function checks if the NFT&#39;s token ID exists in the registry. If it does, and if <code>from</code> and <code>to</code> are not the same, the registry is updated, and the NFT has transferred the NFT to a different owner.</p>
+<p>首先，该函数检查注册表中是否存在 NFT 的代币ID。 如果是这样，并且如果 <code>from</code> 和 <code>to</code> 不相同，则更新注册表，并且 NFT 已将 NFT 转移给不同的所有者。</p>
 <h2 is-upgraded>Test Transfer</h2>
-<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<p>使用 <code>dfx deploy</code> （本地）部署项目并使用 dfx canister 调用来测试功能：</p>
 <pre><code>dfx canister call ic_simple_nft transfer &#39;(principal &#34;xxxxx-...-xxx&#34;, principal &#34;yyyyy-...-yyy&#34;, 20)&#39;
 </code></pre>
 
@@ -212,7 +212,7 @@ public type Metadata = {
       </google-codelab-step>
     
       <google-codelab-step label="Owner of NFT" duration="5">
-        <p>The function <code>ownerOf</code> simply looks up the owner of a given NFT. This can be useful in many ways and in this small sample project the function can be used to verify a transfer was successfully.</p>
+        <p><code>ownerOf</code> 函数只是查找给定 NFT 的所有者。 这在很多方面都很有用，在这个小型示例项目中，该函数可用于验证传输是否成功。</p>
 <pre><code>public func ownerOf(tokenId : TokenIndex) : async ?Owner {   
 
    let owner = _registry.get(tokenId);
@@ -221,7 +221,7 @@ public type Metadata = {
 }; 
 </code></pre>
 <h2 is-upgraded>Test Transfer</h2>
-<p>Deploy the project with <code>dfx deploy</code> (locally) and use dfx canister call to test the function:</p>
+<p>使用 <code>dfx deploy</code> （本地）部署项目并使用 dfx canister 调用来测试功能：</p>
 <pre><code>dfx canister call ic_simple_nft ownerOf 20
 </code></pre>
 

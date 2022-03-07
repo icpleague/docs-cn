@@ -1,19 +1,19 @@
-= Languages and API reference
+= 语言和 API 参考
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The Languages and API reference information is intended for advanced programmers or system architects who want more details about the lower level structures, libraries, and modules that support the higher-level developer tools.
+语言和 API 参考信息适用于需要有关支持高级开发人员工具的低级结构、库和模块的更多详细信息的高级程序员或系统架构师。
 
 == {proglang}
 
-* link:../language-guide/motoko{outfilesuffix}[Motoko Language Guide]
-* link:../base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
-* link:../language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
+* 链接:../language-guide/motoko{outfilesuffix}[Motoko Language Guide]
+* 链接:../base-libraries/stdlib-intro{outfilesuffix}[Motoko Base Library]
+* 链接:../language-guide/language-manual{outfilesuffix}[Motoko Language Quick Reference]
 
 == Candid
 
-* link:../candid-guide/candid-intro{outfilesuffix}[Candid Guide]
-* link:https://github.com/dfinity/candid/tree/master/spec[Candid specification]
-* link:https://docs.rs/candid[Candid crate]
+* 链接:../candid-guide/candid-intro{outfilesuffix}[Candid Guide]
+* 链接:https://github.com/dfinity/candid/tree/master/spec[Candid specification]
+* 链接:https://docs.rs/candid[Candid crate]
 
 ////
 == JavaScript
@@ -23,11 +23,11 @@ The Languages and API reference information is intended for advanced programmers
 
 == Rust
 
-* link:../rust-guide/rust-intro{outfilesuffix}[Introduction to working with Rust]
-* link:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)]
-* link:https://crates.io/crates/ic-agent[{IC} Agent Library (ic-agent)]
-* link:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
-* link:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]
+* 链接:../rust-guide/rust-intro{outfilesuffix}[Introduction to working with Rust]
+* 链接:https://crates.io/crates/ic-types[{IC} Type Library (ic-types)]
+* 链接:https://crates.io/crates/ic-agent[{IC} Agent Library (ic-agent)]
+* 链接:https://crates.io/crates/ic-cdk[{IC} Canister Development Kit (ic-cdk)]
+* 链接:https://github.com/dfinity/cdk-rs/tree/master/examples[Rust Canister Development Kit (CDK) examples]
 
 ////
 == AssemblyScript

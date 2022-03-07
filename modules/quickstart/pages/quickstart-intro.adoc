@@ -1,46 +1,46 @@
-= Quick start
-:description: Download the DFINITY Canister SDK and learn how to deploy your first application.
-:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
+= 快速入门
+:描述: 下载DFINITY Canister SDK，了解如何部署您的第一个应用程序。
+:关键词: 互联网计算机,区块链,加密货币,ICP代币,智能合约,燃料费,钱包,软件容器,开发人员入职
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-This {sdk-long-name} provides tools, sample code, and documentation to help you create canister smart contract dapps and deploy them on the {IC} blockchain mainnet.
-The _Quick Start_ tutorial assumes that you are installing the {sdk-short-name} for the first time and illustrates how to create, build, and deploy your first dapp. 
+T此 {sdk-long-name} 提供工具、示例代码和文档，以帮助您创建罐式智能合约 dapp 并将它们部署在 {IC} 区块链主网上。
+_快速入门_ 教程假设您是第一次安装 {sdk-short-name}，并说明如何创建、构建和部署您的第一个 dapp。
 
-To keep the instructions simple and focused on the task at hand, the _Quick start_ is split into two scenarios:
+为了使说明简单并专注于手头的任务，_快速入门_分为两个场景：
 
-* In the link:local-quickstart{outfilesuffix}[Local development] scenario, you create and deploy the sample dapp with processes that run in a _local canister execution environment_.
+* 在链接:local-quickstart{outfilesuffix}[本地开发] 场景中，您创建和部署示例 dapp，其进程在_本地容器执行环境_中运行。
 
-* In the link:network-quickstart{outfilesuffix}[On-chain deployment] scenario, you create the sample dapp locally but _connect to the {platform}_ running on node machines in independent data centers and deploy the dapp there.
+* 在链接:network-quickstart{outfilesuffix}[链上部署] 场景中，您在本地创建示例 dapp，但_连接到在独立数据中心的节点机器上运行的 {platform}_ 并在那里部署 dapp。
 
-If you need some help setting up your development environment—for example, if you aren’t sure how to open a new terminal, install packages, or create folders and navigate between directories—you might want to start with the link:newcomers{outfilesuffix}[Preliminary steps for newcomers].
+如果您在设置开发环境时需要一些帮助（例如，如果您不确定如何打开新终端、安装软件包或创建文件夹以及在目录之间导航），您可能希望从链接开始：newcomers{outfilesuffix }[新手的初步步骤]。
 
 [[default-app]]
-== Default dapp
+== 默认 dapp
 
-Both scenarios build and deploy a simple Hello canister smart contract that has just one function—called `+greet+`. The `+greet+` function accepts one text argument and returns the result with a greeting similar to **Hello,{nbsp}everyone!** in a terminal if you run the canister using the command-line or in an alert pop-up window if you access the dapp in a browser.
+这两种场景都构建和部署了一个简单的 Hello canister 智能合约，它只有一个功能——称为 `+greet+`。 `+greet+` 函数接受一个文本参数并在终端中返回类似于 **Hello,{nbsp}everyone!** 的问候语（如果您使用命令行或在警报弹出窗口中运行容器） 如果您在浏览器中访问 dapp，则窗口。
 
-The default dapp consists of back-end code written in  {proglang}, a programming language specifically designed for interacting with the {IC}, and a simple webpack-based front-end.
+默认的 dapp 包含用 {proglang} 编写的后端代码，这是一种专门为与 {IC} 交互而设计的编程语言，以及一个简单的基于 webpack 的前端。
 
-== Getting ICP tokens and cycles
+== 获取 ICP 代币和燃料费
 
-As discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles], *cycles* are required to power canister smart contract operations for dapps running on the {platform}. 
-As a developer, you have a few different options for acquiring and managing cycles for your dapps:
+如链接中所讨论的：../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and Cycles]，*cycles* 需要为在 {platform} 上运行的 dapps 提供智能合约操作。
+作为开发人员，您有几个不同的选项来获取和管理 dapp 的周期：
 
-* Purchase or claim ICP tokens through an exchange that lists ICP tokens available for trade, then convert your tokens to cycles using the link:network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} command-line interface] or the link:https://nns.ic0.app/#/auth[Network Nervous System application].
-* Register for cycles by signing up for an account or link:../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] through a provider offering those services.
-* Coordinate with other developers to link:../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] and link:../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive] cycles directly to and from canisters through a cycles wallet or another canister.
+* 通过列出可交易 ICP 代币的交易所购买或领取 ICP 代币，然后使用链接将您的代币转换为燃料费：network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} 命令行界面]或链接：https://nns.ic0.app/#/auth[网络神经系统应用]。
+* 通过注册帐户或链接来注册燃料费：../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] 通过提供这些服务的提供商。
+* 与其他开发者协调链接：../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] 和链接：../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive ] 通过燃料费钱包或另一个容器直接往返于容器。
 
-Because only canisters require and consume cycles—to perform operations and to pay for the resources they use—cycles are always transferred between canisters and not to users or developers. You can manage the distribution of cycles, however, through a cycles wallet created for you or using a similar dapp. 
+B因为只有容器需要和消耗燃料费——执行操作并为其使用的资源付费——周期总是在容器之间传输，而不是传递给用户或开发人员。 但是，您可以通过为您创建的燃料费钱包或使用类似的 dapp 来管理燃料费的分配。
 
-== Want to learn more?
+== 想了解更多？
 
-If you are looking for more information before getting started or want to view a demonstration of how to deploy before you try it for yourself, check out the following related resources:
+如果您在开始之前正在寻找更多信息，或者想在自己尝试之前查看如何部署的演示，请查看以下相关资源：
 
-* link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[How you can use ICP tokens (overview)]
-* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
-* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
-* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]
+* 链接:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[How you can use ICP tokens (overview)]
+* 链接:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
+* 链接:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
+* 链接:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]

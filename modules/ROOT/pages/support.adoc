@@ -1,6 +1,6 @@
-= Get support
+= 获得支持
 
-== Search the Knowledge Base
+== 搜索知识库
 
 ++++
 <div class="container" role="search">
@@ -13,8 +13,8 @@
 </div>
 ++++
 
-== Featured articles
+== 精选文章
 
-== Popular topics
+== 热门话题
 
-== Submit a request for help
+== 提交帮助请求

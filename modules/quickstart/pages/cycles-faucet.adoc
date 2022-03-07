@@ -1,50 +1,50 @@
-Cycles Faucet Quickstart
+Cycles Faucet 快速入门
 ========================
 
-Ready to deploy your first smart contract on the Internet Computer blockchain? You can use our Cycles Faucet to get set up with $20 in free cycles in just a few minutes.
+准备好在互联网计算机区块链上部署您的第一个智能合约了吗？ 您可以使用我们的 Cycles Faucet 在几分钟内设置 20 美元的免费燃料费。
 
-Before you begin, make sure you have the {sdk-short-name} (DFX) installed by running
+在开始之前，请确保您通过运行安装了 {sdk-short-name} (DFX)
 [source,sh]
 ----
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
-or following the instructions at link:https://smartcontracts.org[].
+或按照链接中的说明进行操作:https://smartcontracts.org[].
 
-== Claim your Cycles Wallet
+== 领取您的燃料费钱包
 
-=== Step 1: Authenticate
+=== 第 1 步：验证
 
-First, you will need to navigate to link:https://faucet.dfinity.org[]. You will need to connect an active GitHub account to continue. If your account is not eligible, please follow the xref:quickstart:network-quickstart.html[Network Deployment] guide.
+首先，您需要导航到链接:https://faucet.dfinity.org[]。 您需要连接一个活跃的 GitHub 帐户才能继续。 如果您的帐户不符合条件，请遵循 xref:quickstart:network-quickstart.html[网络部署] 指南。
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
-=== Step 2: Principal ID
+=== 第 2 步：主体 ID
 
-Once you have logged in, open up a terminal window and run the command +dfx identity get-principal+. Paste the output into the text input on the Step 2 screen. This Principal will uniquely identify your computer, and will be used to give you access to your Cycles Wallet and any canister smart contracts you deploy with it. Your Principal will look like a long series of numbers and letters separated by hyphens.
+登录后，打开终端窗口并运行命令 +dfx identity get-principal+。 将输出粘贴到第 2 步屏幕上的文本输入中。 该主体将唯一标识您的计算机，并将用于让您访问您的燃料费钱包以及您使用它部署的任何容器智能合约。 您的主体看起来像一长串由连字符分隔的数字和字母。
 
 image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
 
-=== Step 3: Deposit method
+===步骤3：存款方式
 
-On the third screen, you have a choice to use an existing Cycles Wallet, or to Generate a New Cycles Wallet. If you already have created one, you can select the first option and the faucet will send your existing canister $20 worth of cycles. 
+在第三个屏幕上，您可以选择使用现有的燃料费钱包或生成新的燃料费钱包。 如果您已经创建了一个，您可以选择第一个选项，Faucet将为您现有的容器发送价值 20 美元的燃料费。
 
-For any first time user, select *Generate New Cycles Wallet* and then press *Continue​​*.
+对于任何第一次使用的用户，请选择 *Generate New Cycles Wallet*，然后按 *Continue *。
 
 image:cycles-faucet/faucet_step_4.png[Generate New Cycles Wallet]
 
-== Configure your wallet in DFX
+== 在 DFX 中配置您的钱包
 
-Now that you have claimed your wallet, you should see a screen like the one below:
+现在您已经认领了您的钱包，您应该会看到如下所示的屏幕：
 
 image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
 
-Your Cycles Wallet is created and ready to use. Now all you need to do is copy the +set-wallet+ command from the final screen and run it in your terminal. It will configure DFX to automatically use the wallet and your free cycles to deploy your first few dapps or websites to the {platform}!
+您的燃料费钱包已创建并可以使用。 现在您需要做的就是从最终屏幕复制 +set-wallet+ 命令并在终端中运行它。 它将配置 DFX 以自动使用钱包和您的免费燃料费将您的前几个 dapp 或网站部署到 {platform}！
 
-Now you are ready to host a website on the IC or follow one of our dapp tutorials.
+现在您已准备好在 IC 上存储网站或遵循我们的 dapp 教程之一。
 
-=== Next, people often look at these guides:
+=== 接下来，人们经常看这些指南：
 
-* link:./host-a-website.html[Host a Static Website]
-* link:./local-quickstart.html[Local Development]
-* link:./network-quickstart.html[Network Deployment]
+* 链接:./host-a-website.html[Host a Static Website]
+* 链接:./local-quickstart.html[Local Development]
+* 链接:./network-quickstart.html[Network Deployment]

@@ -1,4 +1,4 @@
-= Developer Center | DFINITY
+= 开发者中心 DFINITY
 :idprefix:
 :idseparator: -
 :!example-caption:
@@ -8,7 +8,7 @@
 ++++
 <script>
 // Simulate HTTP Redirect to marketing /developers site
-// window.location.replace("https://dfinity.org/developers");
+window.location.replace("https://dfinity.org/developers");
 </script>
 ++++
 

@@ -1,26 +1,26 @@
-= Hackathon Projects
-:description: Quick links to example code for common use-cases for your dapp
-:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding,dapp,example,code,rust,Motoko
-:proglang: Motoko
-:IC: Internet Computer
+= 黑客松项目
+:描述: dapp 常见用例示例代码的快速链接
+:关键词: 互联网计算机,区块链,加密货币,ICP代币,智能合约,燃气费,钱包,软件容器,开发者入职,dapp,例子,代码,rust,Motoko
+:编程语言: Motoko
+:IC: 互联网计算机
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-Developers from around the world are participating in hackathons, building dapps, tools and other types of projects on the IC. Get inspired, and see the source code of some of the winning projects.
+来自世界各地的开发者正在参加黑客松，在IC上构建dapp、工具和其他类型的项目。获取灵感，并查看一些获奖项目的源代码。
 
 [[dfinihack]]
 == DFINIHack
 
-Hackathons are a great way to learn, and that's why we, in addition to external hackathons, run internal hackathons at DFINITY. Everyone from all departments can participate, with or without coding experience. The objective is to explore new use cases, assess the documentation and tools we provide developer, and to promote a builder's culture internally. 
+黑客松是一种很好的学习方式，这就是为什么除了外部黑客松之外，我们还在 DFINITY 举办内部黑客松。 来自所有部门的每个人都可以参与，无论是否有编码经验。 目标是探索新的用例，评估我们为开发人员提供的文档和工具，并在内部推广建设者的文化。 
 
 === Sidekick
-Sidekick is a dapp running on the Internet Computer that can build canister smart contracts from a few lines of code.
+Sidekick 是一个运行在互联网计算机上的 dapp，它可以从几行代码构建容器智能合约。
 
 - https://github.com/blynn/sidekick[See code on GitHub]
 - https://ffgig-jyaaa-aaaae-aaaoa-cai.raw.ic0.app[Live Canister]
 
 === IC Vault
-IC Vault ensures the secure synchronization of data between devices via the Internet Computer via end-to-end encryption (i.e., the Internet Computer cannot see any cleartext).
+IC Vault 通过端到端加密确保通过互联网计算机在设备之间安全同步数据（即，互联网计算机看不到任何明文）。
 
 - https://github.com/timohanke/hack13[See code on GitHub]
 - https://xggrc-cyaaa-aaaaj-aaasq-cai.raw.ic0.app[Live Canister]
@@ -32,19 +32,19 @@ PrivIC (pronounced “privacy”) provides identity management on the Internet C
 - https://github.com/open-ic/priv-ic[See code on GitHub]
 
 === DeFind
-DeFind is a staking-based search engine. With the internet today, search engines use web crawlers to feed data into secret algorithms. For advertisers, this creates the wrong incentives — they may be incentivized to trick the web crawler with invisible text, for example, or generate fake traffic through bots.
+DeFind 是一个基于质押的搜索引擎。 在今天的互联网上，搜索引擎使用网络爬虫将数据输入秘密算法。 对于广告商来说，这会产生错误的激励——例如，他们可能会被激励用不可见的文本来欺骗网络爬虫，或者通过机器人产生虚假流量。
 
 - https://github.com/IC-Search/ic-search[See code on GitHub]
 - https://jbioa-siaaa-aaaai-qanfq-cai.ic0.app[Live Canister]
 
 === IC Notary
-IC Notary is a timestamped notarization service that allows users to prove that they held a document (or an arbitrary file) at a certain point in time. The user can upload the file to IC Notary, and also search and download previously uploaded files.
+IC Notary 是一种带有时间戳的公证服务，允许用户证明他们在某个时间点持有文档（或任意文件）。 用户可以上传文件到IC Notary，也可以搜索和下载之前上传的文件。
 
 - https://github.com/jplevyak/dfnhack7[See code on GitHub]
 - https://jbxh5-eqaaa-aaaae-qaaoq-cai.ic0.app[Live Canister]
 
 === IC Netboot
-IC Netboot allows developers to boot a virtual machine (VM) directly from a canister, making the boot infrastructure decentralized and unstoppable. Furthermore, it can be a failover for VM data for applications like zookeeper. Lastly, this is a proof of concept for talking to the Internet computer over legal protocols like TFTP/DHCP/iPXE.
+IC Netboot 允许开发人员直接从容器引导虚拟机 (VM)，从而使引导基础设施分散且不可阻挡。 此外，它还可以作为 zookeeper 等应用程序的 VM 数据故障转移。 最后，这是通过 TFTP/DHCP/iPXE 等合法协议与互联网计算机通信的概念证明。
 
 - https://github.com/farazshaikh/team14[See code on GitHub]
 

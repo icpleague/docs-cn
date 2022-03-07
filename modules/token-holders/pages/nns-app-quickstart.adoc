@@ -1,7 +1,7 @@
-= Network nervous system dapp quick start
-:description: How to create and manage staked ICP utility tokens.
-:keywords: Internet Computer,neurons,blockchain,governance,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software,smart contract,canister,developer onboarding
-:experimental:
+=网络神经系统dapp快速入门
+:描述: 如何创建和管理质押的 ICP 实用代币。
+:k关键词: 互联网计算机,神经元,区块链,治理,加密货币,ICP代币,智能合约,燃料费,钱包,软件,智能合约,容器,开发者入职
+:实验性:
 // Define unicode for Apple Command key.
 :commandkey: &#8984;
 :proglang: Motoko
@@ -9,194 +9,194 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-All changes to the configuration and behavior of the Internet Computer are controlled by an algorithmic governance system called the Network Nervous System (NNS). 
-The NNS controls all aspects of the {IC} blockchain configuration and is responsible for performing many network management operations. For example, the Network Nervous System (NNS) is responsible for:
+互联网计算机的配置和行为的所有更改都由称为网络神经系统 (NNS) 的算法治理系统控制。
+NNS 控制 {IC} 区块链配置的所有方面，并负责执行许多网络管理操作。例如，网络神经系统 (NNS) 负责：
 
-* Upgrading the protocol and guest operating system software used by the nodes that provide computing capacity to the network.
-* Inducting new node operators and machines into the network.
-* Creating new subnets to increase network capacity.
-* Splitting subnets to balance network load.
-* Configuring parameters that control how much must be paid by users for compute capacity.
-* Monitoring canister activity and node performance for
-malicious behavior and statistical deviations.
-* De-activating malicious software or under-performing nodes to protect the network.
+* 升级为网络提供计算能力的节点使用的协议和客户操作系统软件。
+* 将新的节点操作员和机器引入网络。
+* 创建新子网以增加网络容量。
+*拆分子网以平衡网络负载。
+* 配置控制用户必须为计算容量支付多少费用的参数。
+* 监控容器活动和节点性能
+恶意行为和统计偏差。
+* 停用恶意软件或性能不佳的节点以保护网络。
 
-The requests for changes and updates to the network are submitted to the NNS in the form of **proposals**.
-The NNS decides to adopt or reject proposals based on voting activity by neuron holders.
+对网络的更改和更新请求以**提案**的形式提交给 NNS。
+NNS 根据神经元持有者的投票活动决定采纳或拒绝提案。
 
-== What are neurons?
+== 什么是神经元？
 
-For network participants to be able to vote on proposals, they need to lock up a stake of ICP utility tokens for a given period of time to create a representative called a **neuron**.
+为了使网络参与者能够对提案进行投票，他们需要在给定的时间段内锁定 ICP 实用代币的质押，以创建一个称为**神经元**的代表。
 
-Because neurons represent a stake of ICP utility tokens, they also represent an identity with a **ledger canister account** and a principal that controls the ledger account.
+因为神经元代表 ICP 实用代币的质押，所以它们也代表具有**帐本容器帐户**和控制帐本帐户的主体的身份。
 
-Neurons provide the stability required for responsible governance of the {IC} by ensuring that the ICP utility tokens they represent cannot be exchanged for a specific period of time referred to as the **lock-up** period.
+神经元通过确保它们所代表的 ICP 实用程序代币不能在称为**锁定**期的特定时间段内交换，提供了 {IC} 负责任治理所需的稳定性。
 
-The following diagram provides a simplified view of the workflow for creating a neuron and the relationship between the neuron and ledger canisters.
+下图提供了创建神经元的工作流程的简化视图以及神经元和帐本容器之间的关系。
 
 image:create-dissolve-neuron-api.svg[]
 
-=== Governance and voting rewards
+=== 治理和投票奖励
 
-When a person or organization has ICP utility tokens locked up in a neuron, the neuron holder can propose and vote on governance issues.
-To encourage participation, neuron holders are also rewarded for voting in proportion to the number of ICP utility tokens they have locked up and the length of the lock-up period up to a maximum of eight years.
+当个人或组织将 ICP 实用代币锁定在神经元中时，神经元持有者可以就治理问题提出建议和投票。
+为了鼓励参与，神经元持有者还根据他们锁定的 ICP 实用代币的数量以及最长 8 年的锁定期长度按比例获得奖励。
 
-=== Unlocking the stake held by a neuron
+=== 解锁神经元持有的股份
 
-After network participants create a neuron, the locked balance of ICP utility tokens can only be unlocked by fully **dissolving** the neuron.
-In its **locked** state, the neuron has a fixed non-zero **dissolve delay** equivalent to the lock-up period.
-For example, assume you have a stake of 100 ICP utility tokens locked up for a period of five years. 
-After successfully created the neuron with these settings, your dissolve delay is five years.
+网络参与者创建神经元后，ICP 实用代币的锁定余额只能通过完全**解散**神经元来解锁。
+在其**锁定**状态下，神经元有一个固定的非零**溶解延迟**，相当于锁定期。
+例如，假设您持有 100 个 ICP 实用程序代币的股份，锁定期为 5 年。
+使用这些设置成功创建神经元后，您的溶解延迟为五年。
 
-Based on the dissolve delay that decreases as time progresses, a **dissolve timer** determines how long it will take to completely dissolve a neuron.
+根据随着时间的推移减少的溶解延迟，**溶解计时器**确定完全溶解神经元需要多长时间。
 
-When the dissolve timer reaches zero, the neuron owner—the ICP utility token holder who created the neuron, or an authenticated custodian, can dissolve the neuron and unlock the balance of ICP utility tokens.
+当溶解计时器达到零时，神经元所有者（创建神经元的 ICP 实用代币持有者或经过身份验证的保管人）可以溶解神经元并解锁 ICP 实用代币的余额。
 
-The dissolved neuron ceases to exist and the stake of ICP utility tokens that the neuron represented is released to the appropriate ledger canister account.
+溶解的神经元不复存在，神经元所代表的 ICP 实用代币的股份被释放到适当的分类帐罐帐户。
 
-== Connect to the {IC}
+== 连接到 {IC}
 
-To connect to the {IC} using the Network Nervous System (NNS) dapp:
+要使用网络神经系统 (NNS) dapp 连接到 {IC}：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click *Login* to connect to link:https://identity.ic0.app[Internet Identity].
+.打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+.点击 *Login* 连接link:https://identity.ic0.app[Internet Identity]。
 +
-If you haven't previously registered, you can click **Register with Internet Identity** to register.
+如果您之前没有注册过，您可以点击 **Register with Internet Identity** 进行注册。
 +
 
-NOTE: We strongly recommend you add multiple devices and authentication methods to your Internet Identity. For example, register multiple physical devices like your computer and phone with a security key and using the authentication options that those devices—and browsers running on them—support.
+注意：我们强烈建议您将多个设备和身份验证方法添加到您的 Internet 身份。例如，使用安全密钥注册多个物理设备（例如计算机和手机），并使用这些设备（以及在其上运行的浏览器）支持的身份验证选项。
 +
-For more information about creating an Internet Identity, see link:../ic-identity-guide/auth-how-to{outfilesuffix}[How to use Internet Identity].
+有关创建 Internet 身份的更多信息，请参阅link:../ic-identity-guide/auth-how-to{outfilesuffix}[如何使用 Internet 身份]。
 +
-After you have registered, you can click **Login** to authenticate using your anchor and the authentication method—for example, a security key or fingerprint—you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp.
+注册后，您可以点击 **Login** 使用您的锚点和您注册的身份验证方法（例如安全密钥或指纹）进行身份验证。
+.单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
 
-== Add an account
+== 添加帐户
 
-Logging on using an Internet Identity creates a Main account for you in the {IC} ledger.
-If your ICP utility tokens are associated with your developer identity; that is, the identity created by the {sdk-short-name} `+dfx+` command-line interface. Your Main account displays 0.00 for your ICP utility token balance.
-For example:
+使用互联网身份登录会在 {IC} 分类帐中为您创建一个主帐户。
+如果您的 ICP 实用程序代币与您的开发者身份相关联； 即 {sdk-short-name} `+dfx+` 命令行界面创建的身份。 您的主账户显示 0.00 表示您的 ICP 实用程序代币余额。
+例如：
 
 image:nns-app-main.png[]
 
-Before transferring any tokens, you can create one or more linked subaccounts or attach a hardware wallet to your account.
+在转移任何代币之前，您可以创建一个或多个关联子账户或将硬件钱包附加到您的账户。
 
-To add an account for managing ICP utility tokens:
+添加用于管理 ICP 实用程序代币的帐户：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp.
-. On the default ICP tab, click **Add Account**.
-. Select the type of account to add.
+. 打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+. 单击 **Login** 以使用您的 Internet 身份进行连接。
+. 验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+. 单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+. 在默认 ICP 选项卡上，单击 **Add Account**。
+. 选择要添加的帐户类型。
 +
 --
-* **New Linked Account** creates a new subaccount linked to your Main account address in the ledger.
-* **Attach Hardware Wallet** adds a hardware wallet to your main account address in the ledger.
+* **New Linked Account** 创建一个新的子账户，链接到您在分类帐中的主账户地址。
+* **附加硬件钱包**将硬件钱包添加到分类帐中的主帐户地址。
 --
-. Click **New Linked Account**, type an Account Name, then click **Create**.
+. 点击 **New Linked Account**，输入账户名称，然后点击 **Create**。
 +
 
 image:new-linked-account.png[]
 
-== Transfer ICP utility tokens between accounts
+== 在账户之间转移 ICP 实用代币
 
-If you have selected self-custody for holding your ICP utility tokens and the tokens are associated with your developer identity instead of your registered Internet Identity, you need to transfer ICP utility tokens to your accounts if you want to manage them using the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
+如果您选择自托管持有您的 ICP 实用代币，并且这些代币与您的开发者身份相关联，而不是您注册的互联网身份，您需要使用以下链接将 ICP 实用代币转移到您的帐户：https ://nns.ic0.app[网络神经系统（NNS）] dapp。
 
-To transfer ICP utility tokens controlled by your developer identity:
+要转移由您的开发者身份控制的 ICP 实用程序代币：
 
-. Open a terminal shell on your local computer.
-. Check that you are using an identity with control over the ledger account by running the following command:
+. 在本地计算机上打开终端 shell。
+. 通过运行以下命令，检查您是否使用了可以控制分类帐帐户的身份：
 +
 [source,bash]
 ----
 dfx identity whoami
 ----
-In most cases, you should see that you are currently using your `+default+` developer identity.
-For example:
+在大多数情况下，您应该看到您当前正在使用您的 `+default+` 开发人员身份。
+例如：
 +
-....
-default
-....
-. View the textual representation of the principal for your current identity by running the following command:
+……
+默认
+……
+. 通过运行以下命令查看当前身份的主体的文本表示：
 +
 [source,bash]
 ----
 dfx identity get-principal
 ----
 +
-This command displays output similar to the following:
+此命令显示类似于以下内容的输出：
 +
 ....
 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ....
 +
-. Check the current balance in the ledger account associated with your identity by running the following command:
+. 通过运行以下命令检查与您的身份关联的分类帐帐户中的当前余额：
 +
 [source,bash]
 ----
 dfx ledger --network ic balance
 ----
-. Transfer ICP utility tokens to your Main account or a linked subaccount you create by running a command similar to the following:
+. 通过运行类似于以下的命令将 ICP 实用程序代币转移到您的主账户或您创建的链接子账户：
 +
 [source,bash]
 ----
 dfx ledger --network ic transfer <destination-account-id> --icp <ICP-amount> --memo <numeric-memo>
 ----
 +
-For example, assume you have the following accounts:
+例如，假设您有以下帐户：
 +
 
 image:accounts.png[]
 +
-If you want to transfer one ICP utility token to the `+Main+` account, you can run the following command:
+如果您想将一个 ICP 实用程序代币转移到`+Main+`帐户，可以运行以下命令：
 +
 ....
 dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
 ....
 +
-If you also want to transfer one ICP utility token to the `+pubs+` account, you can run the following command:
+如果您还想将一个 ICP 实用程序代币转移到 `+pubs+` 帐户，可以运行以下命令：
 +
 ....
 dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f63fda515e9d77a96dc --icp 1 --memo 12346
 ....
 +
-This example illustrates how to transfer ICP utility tokens to using a whole number with the `+--icp+` command-line option.
+此示例说明如何将 ICP 实用程序代币转换为使用带有 `+--icp+` 命令行选项的整数。
 +
 --
 
-* You can also specify fractional units of ICP utility tokens—called **e8s**—using the `+--e8s+` option, either on its own or in conjunction with the `+--icp+` option.
+* 您还可以使用 `+--e8s+` 选项单独或与 `+--icp+` 选项一起指定 ICP 实用程序代币的小数单位 - 称为 **e8s**。
 
-* Alternatively, you can use the `+--amount+` to  specify the number of ICP utility tokens to transfer with fractional units up to 8 decimal places, for example, as `+5.00000025+`.
+* 或者，您可以使用 `+--amount+` 指定要转移的 ICP 实用代币的数量，小数点后最多 8 位，例如，`+5.00000025+`。
 --
 
 +
-The destination address can be an address in the ledger canister running on the {IC} network, an account you have added using the link:https://nns.ic0.app[Network Nervous System dapp], or the address for a wallet you have on an exchange.
+目标地址可以是在 {IC} 网络上运行的账本容器中的地址，您使用链接添加的帐户：https://nns.ic0.app[Network Nervous System dapp]，或钱包地址 你有一个交换。
 +
-If you transfer the ICP utility tokens to an account in the link:https://nns.ic0.app[Network Nervous System dapp], you might need to refresh the browser to see the transaction reflected.
+如果您将 ICP 实用程序代币转移到链接中的帐户：https://nns.ic0.app[Network Nervous System dapp]，您可能需要刷新浏览器才能看到交易反映。
 +
-For more information about using the `+dfx ledger+` command-line options, see link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger].
+有关使用 `+dfx ledger+` 命令行选项的更多信息，请参阅link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger]。
 
 [[stake-icp]]
-== Stake ICP utility tokens in a neuron
+== 将 ICP 实用代币存入神经元
 
-After you transfer ICP utility tokens to the Network Nervous System dapp, you can use the Network Nervous System dapp to create and manage neurons, vote on proposals, and create canisters on the {IC}.
+将 ICP 实用代币转移到 Network Nervous System dapp 后，您可以使用 Network Nervous System dapp 创建和管理神经元，对提案进行投票，并在 {IC} 上创建容器。
 
-Neurons are required to participate in governance and earn rewards.
-To create a neuron, you must lock up some number of ICP utility tokens for a period of time. The minimum stake required to create a neuron is one ICP utility token. 
-You can configure the period of time the stake is locked from six months up to a maximum of eight years.
+神经元需要参与治理并获得奖励。
+要创建神经元，您必须锁定一定数量的 ICP 实用程序代币一段时间。创建一个神经元所需的最低股份是一个 ICP 实用代币。
+您可以配置质押的锁定时间，从六个月到最长八年。
 
-To stake ICP utility tokens:
+质押 ICP 实用代币：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Neurons**, then click **Stake Neuron**.
-. Type the number of ICP utility tokens to stake, then click **Create**.
-. Set the dissolve delay for the neuron to control the length of time the stake is locked, then click **Update Delay**.
+.打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+.单击 **Login** 以使用您的 Internet 身份进行连接。
+.验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+.单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+.单击 **Neurons**，然后单击 **Stake Neuron**。
+.输入要质押的 ICP 实用代币的数量，然后单击**创建**。
+.设置神经元的溶解延迟以控制锁定的时间长度，然后单击**更新延迟**。
 +
-For example:
+例如：
 +
 
 image:dissolve-delay.png[]
@@ -207,227 +207,228 @@ image:neuron-properties.png[]
 
 === What you can do after creating a neuron
 
-After you have locked the stake and created a neuron, you can:
+锁定赌注并创建神经元后，您可以：
 
-* Start the dissolve delay timer by clicking **Start Unlock**.
-* Increase the dissolve delay period by clicking **Increase Dissolve Delay**.
-* Stop the dissolve delay after starting the unlock countdown by clicking **Lockup**.
-* Increase the number of ICP utility tokens you have staked.
+*通过单击**开始解锁**启动溶解延迟计时器。
+* 通过单击 **Increase Dissolve Delay** 增加溶解延迟时间。
+* 通过点击**Lockup**开始解锁倒计时后停止溶解延迟。
+* 增加您质押的 ICP 实用代币数量。
 
-=== Starting and stopping the dissolve delay
+=== 开始和停止溶解延迟
 
-Creating a new neuron does not automatically start the dissolve delay timer. 
-You must explicitly start the timer countdown by clicking **Start Unlock**.
+创建新神经元不会自动启动溶解延迟计时器。
+您必须通过单击**开始解锁**明确启动计时器倒计时。
 
-For example, if you set a dissolve delay of one year and want to immediately begin the countdown, you should click **Start Unlock** as part of the process of creating the neuron.
-If you change your mind and want to stop a current countdown in progress, you can click **Lockup**, 
-After you click **Lockup** to stop the dissolve delay, you can click **Start Unlock** to resume the countdown without changing the existing dissolve delay period.
-If you want to continue a countdown already in progress but extend the lock up period, you can click **Increase Dissolve Delay** then select a longer dissolve delay. 
+例如，如果您将溶解延迟设置为一年并希望立即开始倒计时，则应在创建神经元的过程中单击 **Start Unlock**。
+如果您改变主意并想停止当前正在进行的倒计时，您可以点击 **Lockup**，
+单击**Lockup** 停止溶解延迟后，您可以单击**Start Unlock** 恢复倒计时，而无需更改现有的溶解延迟时间。
+如果您想继续正在进行的倒计时但延长锁定期，您可以单击 **Increase Dissolve Delay** 然后选择更长的溶解延迟。
 
-=== Adding ICP utility tokens to an existing neuron
+=== 将 ICP 实用程序代币添加到现有神经元
 
-After you create a neuron, you can increase the number of ICP utility tokens you have staked in that neuron to increase your voting power and rewards.
-For example, if you initially stake a small number of ICP utility tokens, then decide to purchase additional tokens, you have the option to create a new neuron or "top-up" your existing neuron.
+创建神经元后，您可以增加您在该神经元中质押的 ICP 实用代币的数量，以增加您的投票权和奖励。
+例如，如果您最初持有少量 ICP 实用代币，然后决定购买额外的代币，您可以选择创建新的神经元或“充值”现有的神经元。
 
-To increase the stake in an existing neuron:
+要增加现有神经元的权益：
 
-. Follow the steps in <<stake-icp,Stake ICP utility tokens in a neuron>> to stake the original neuron using the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Look up the transaction in the {IC} Association link:https://dashboard.internetcomputer.org/transactions[transaction dashboard] to get the neuron address.
-+ 
-You can use the account identifier for your main ICP ledger account to search for your transactions.
-. Return to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp, then click **New Transaction**. 
-. Paste the neuron address from the transaction dashboard into the **Destination** address field, then click **Continue**.
-. Type the amount of ICP utility tokens you want to add to the specified neuron, then click **Continue**.
-. Verify the transaction details, then click **Confirm and Send**.
+. 按照<<stake-icp,Stake ICP utility tokens in a neuron>>中的步骤使用link:https://nns.ic0.app[Network Nervous System (NNS)] dapp 质押原始神经元。
+. 在 {IC} 关联链接中查找交易：https://dashboard.internetcomputer.org/transactions[transaction dashboard] 获取神经元地址。
++
+您可以使用您的主要 ICP 分类帐帐户的帐户标识符来搜索您的交易。
+. 返回link:https://nns.ic0.app[Network Nervous System (NNS)] dapp，然后点击**New Transaction**。
+. 将交易仪表板中的神经元地址粘贴到 **Destination** 地址字段中，然后单击 **Continue**。
+. 键入要添加到指定神经元的 ICP 实用程序代币的数量，然后单击 **Continue**。
+. 验证交易详情，然后点击 **Confirm and Send**。
 +
 
 image:confirm-top-up.png[]
-. Verify the completed transaction, then click **Close**.
-. Click the **Neurons** tab to see the increased stake.
+.验证完成的交易，然后点击**关闭**。
+.单击 **Neurons** 选项卡以查看增加的股份。
 
-== Configure following rules
+== 配置以下规则
 
-Active participation in governance is an important factor in the long-term health of the {IC}.
-Voting on proposals is also an important factor in calculating the rewards you receive in return for locking up ICP utility tokens in neurons.
+积极参与治理是{IC}长期健康的重要因素。
+对提案进行投票也是计算您将 ICP 实用程序代币锁定在神经元中而获得的奖励的一个重要因素。
 
-However, voting directly on every proposal submitted to the NNS presents several challenges. 
-For example, proposals might be submitted and require a vote when you are unavailable or propose changes that you lack the expertise to evaluate. 
-To address these challenges, you can configure neurons to vote automatically to adopt or reject proposals by following the votes of a group of neurons.
+然而，直接对提交给 NNS 的每个提案进行投票会带来一些挑战。
+例如，当您不在时，可能会提交提案并要求投票，或者提出您缺乏评估专业知识的更改。
+为了应对这些挑战，您可以将神经元配置为通过跟随一组神经元的投票来自动投票以采纳或拒绝提案。
 
-To maximize your rewards, you should vote on as many proposals as possible by following the active neuron holders who have interests aligned with your own. For example, you might follow the Internet Computer Association (ICA) on some topics such **SubnetManagement** and other neuron holders on topics such as **Governance**.
+为了最大化您的奖励，您应该通过关注与您的利益一致的活跃神经元持有者，对尽可能多的提案进行投票。例如，您可能会在某些主题上关注互联网计算机协会 (ICA)，例如 **SubnetManagement** 和其他神经元持有者的主题上，例如**Governance**。
 
-To configure how you follow other neuron holders:
+要配置您跟随其他神经元持有者的方式：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Neurons**, then click the link for a specific neuron identifier to display its properties.
-. Click **Edit Followees**.
-. Choose a proposal topic.
+. 打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+. 单击 **Login** 以使用您的 Internet 身份进行连接。
+. 验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+. 单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+. 单击 **Neurons**，然后单击特定神经元标识符的链接以显示其属性。
+. 单击**编辑关注者**。
+. 选择一个提案主题。
 +
-For example, expand the Governance topic, then click **Enter Followee**.
-. Select a neuron holder to follow, then click **Follow**.
+例如，展开 Governance 主题，然后单击 **Enter Followee**。
+. 选择要关注的神经元持有者，然后单击**关注**。
 +
-For example, click **Follow** for the Internet Computer Association.
+例如，单击 Internet 计算机协会的 **Follow**。
 +
 
 image:follow-ica.png[]
 +
-The neuron holder is added to you Currently Following list.
-. Repeat for each topic where you want your neuron's votes to automatically follow the votes of one or more other neuron holders.
+神经元持有者已添加到您当前关注的列表中。
+. 对您希望神经元的投票自动跟随一个或多个其他神经元持有者的投票的每个主题重复此操作。
 
-== Disburse dissolved neurons into an account
+== 将溶解的神经元分配到一个帐户中
 
-When the dissolve delay timer for a neuron reaches zero, you can disburse the neuron’s stake and transfer its locked ICP utility token balance to the ledger account you specify.
-After you take this step, the neuron identifier and its ledger history are permanently removed from the governance canister.
+当神经元的溶解延迟计时器达到零时，您可以支付神经元的股份并将其锁定的 ICP 实用程序代币余额转移到您指定的分类帐帐户。
+执行此步骤后，神经元标识符及其分类账历史将从治理容器中永久删除。
 
-To disburse a neuron and return its ICP utility tokens:
+要分配一个神经元并返回其 ICP 实用程序代币：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Neurons**, then click Unlocked neuron that has reach the ended of its dissolve delay period.
+. 打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+. 单击 **Login** 以使用您的 Internet 身份进行连接。
+. 验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+. 单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+. 单击 **Neurons**，然后单击已达到其溶解延迟期结束的解锁神经元。
 +
-For example:
+例如：
 +
 
 image:unlocked-neuron.png[]
-. Click **Disburse**.
+. 点击**支付**。
 +
-For example:
+例如：
 +
 
 image:disburse.png[]
-. Type an address or select an account to receive the ICP utility tokens.
+. 输入地址或选择帐户以接收 ICP 实用程序代币。
 +
-For example, you might select the `+dev-projects+` linked account:
+例如，您可以选择 `+dev-projects+` 关联帐户：
++
 +
 
 image:select-account.png[]
-. Verify the transaction information, then click **Confirm and Send**.
+. 验证交易信息，然后点击**确认并发送**。
 +
-For example, check that the Destination address matches the intended address of the `+dev-projects+` linked account:
+例如，检查目标地址是否与 `+dev-projects+` 链接帐户的预期地址匹配：
 +
 
 image:confirm-send.png[]
-. Verify the completed transaction, then click **Close**.
+. 验证完成的交易，然后点击**关闭**。
 +
-For example:
+例如：
 +
 
 image:confirmation.png[]
 +
-If you transferred the ICP utility tokens to one of your accounts in the {IC} ledger canister, you can click the ICP tab and see your new balance reflected.
-For example:
+如果您将 ICP 实用程序代币转移到 {IC} 分类帐容器中的一个帐户，您可以单击 ICP 选项卡并查看反映的新余额。
+例如：
 +
 
 image:updated-icp.png[]
 
-== Spawn new neurons
+== 产生新的神经元
 
-As you vote on proposals—either directly or by following the votes of other neurons—the maturity associated with your neuron increases, which in turn increases the rewards you earn for participating in governance. 
-When the maturity for a locked stake reaches a minimum threshold of one ICP, you can spawn a new neuron. 
-The spawn operation creates a new neuron that locks a new balance of ICP on the ledger. 
+当你对提案进行投票时——无论是直接投票还是跟随其他神经元的投票——与你的神经元相关的成熟度都会增加，这反过来会增加你参与治理所获得的回报。
+当锁定权益的成熟度达到一个 ICP 的最小阈值时，您可以生成一个新的神经元。
+spawn 操作创建了一个新的神经元，该神经元将新的 ICP 余额锁定在账本上。
 
-For example, if you have a neuron that contains 100 ICP utility tokens and it has a maturity of 10 percent, you can spawn a new neuron that contains approximately 10 new ICP tokens. For the neuron with 100 ICP tokens to reach the minimum threshold for spawning, its maturity would need to be greater than one percent.
+例如，如果您有一个包含 100 个 ICP 实用程序代币的神经元，并且它的成熟度为 10%，您可以生成一个包含大约 10 个新 ICP 代币的新神经元。 对于具有 100 个 ICP 代币的神经元要达到生成的最低阈值，其成熟度需要大于 1%。
 
-After you spawn a new neuron from an existing neuron, the maturity for the existing neuron falls to zero.
+从现有神经元生成新神经元后，现有神经元的成熟度降至零。
 
-To spawn new neurons from an existing neuron:
+从现有神经元生成新神经元：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Neurons**, then click the neuron that has reached the minimum maturity required to spawn a new neuron.
-. Click **Spawn Neuron**.
+. 打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+. 单击 **Login** 以使用您的 Internet 身份进行连接。
+. 验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+. 单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+. 单击 **Neurons**，然后单击已达到生成新神经元所需的最低成熟度的神经元。
+. 单击**生成神经元**。
 +
-Keep in mind that the dissolve delay for a newly-spawned neurons is one day, giving you the option to collect value from the ICP utility tokens by unlocking them or to increase the dissolve delay to collect additional rewards.
+请记住，新生成的神经元的溶解延迟为一天，您可以选择通过解锁 ICP 实用代币来收集价值，或者增加溶解延迟以收集额外奖励。
 +
 
-For more information about maturity and spawning new neurons, see the following articles:
+有关成熟和产生新神经元的更多信息，请参阅以下文章：
 
-* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+* 链接:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
 
-* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+* 链接:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
 
-* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+* 链接:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
-== Vote on proposals
+== 对提案进行投票
 
-You can choose the proposal types and proposal topics that you see and vote on—either directly or by following other neuron stakeholders—using filters in the Network Nervous System dapp.
-For example, if you want to review and vote on all proposals that involve network participants such as data center identities and node operators, but aren't interested in viewing proposals related to the current market value of ICP, as measured by an International Monetary Fund (IMF) Special Drawing Right (SDR), you can select the **ParticipantManagement** topic filter and deselect the *ExchangeRate* topic filter.
+你可以选择你看到和投票的提案类型和提案主题--直接或通过关注其他神经元利益相关者--使用网络神经系统dapp中的过滤器。
+例如，如果你想审查和投票所有涉及网络参与者的提案，如数据中心身份和节点运营商，但对查看与ICP当前市场价值有关的提案不感兴趣，如国际货币基金组织（IMF）特别提款权（SDR），你可以选择**参与者管理**主题过滤器，取消选择*ExchangeRate*主题过滤器。
 
-To manually vote on proposals:
+要对提案进行手动投票。
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Voting**.
+. 打开浏览器并导航到link:https://nns.ic0.app[网络神经系统（NNS）]dapp。
+. 点击**登录**，使用您的互联网身份进行连接。
+. 验证您的身份号码，然后点击**登录**，使用您注册的设备和认证方法进行认证。
+. 点击**程序**，进入网络神经系统（NNS）应用程序。
+. 点击**投票**。
 +
-You can click any of the proposals listed to view information about the proposal, including a brief description of the proposal, a link for viewing additional information about the proposal, the number of votes that were cast to adopt or reject the proposal, and the votes cast by your neurons.
-. Use the Topics, Reward Status, and Proposal Status filters to control the list of proposals displayed.
+您可以单击列出的任何提案以查看有关提案的信息，包括提案的简要说明、用于查看有关提案的其他信息的链接、通过或拒绝提案的投票数以及投票数 由你的神经元投射。
+. 使用主题、奖励状态和提案状态过滤器来控制显示的提案列表。
 +
-For example, open the Topics list to see if there are any proposal topics that you want to include in the proposal list that are not currently displayed and open the Proposal Status to verify that you are viewing all open proposals.
-. Click any Open proposal to see its details and the voting power for the neurons associated with your identity.
-. Select the neuron identifiers with voting power that you want to use to cast your vote.
-. Click **Adopt** or **Reject** to cast your vote.
+例如，打开“主题”列表以查看是否有任何要包括在提案列表中但当前未显示的提案主题，然后打开“提案状态”以验证您正在查看所有打开的提案。
+. 单击任何 Open 提案以查看其详细信息以及与您的身份相关的神经元的投票权。
+. 选择您要用于投票的具有投票权的神经元标识符。
+. 点击 **Adopt** 或 **Reject** 进行投票。
 +
-For more information about voting and voting rewards, see the following articles:
+有关投票和投票奖励的更多信息，请参阅以下文章：
 
-* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+* 链接:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
 
-* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+* 链接:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
 
-* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+* 链接:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
-== Submit a proposal
+== 提交提案
 
-Currently, you can only submit proposals to the network nervous system by using the {sdk-short-name} command-line interface (`+dfx+`) using calls to the `+governance+` canister.
+目前，您只能使用 {sdk-short-name} 命令行界面 (`+dfx+`) 通过调用`+governance+` 容器向网络神经系统提交提案。
 
-A separate command-line tool (`+icx-nns+`) for working with the `+governance+` canister is in development and this functionality will also be available in the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp soon.
+用于处理 `+governance+` 容器的单独命令行工具 (`+icx-nns+`) 正在开发中，此功能也将在链接中提供：https://nns.ic0.app[Network Nervous System (NNS)] dapp 很快。
 
-If you want to start submitting proposals right away, however, you can access a preliminary version of the `+icx-nns+` command-line tool by downloading a release from the link:https://github.com/dfinity/icx-nns/releases[icx-nns] repository. 
+但是，如果您想立即开始提交提案，您可以通过从以下链接下载版本来访问 `+icx-nns+` 命令行工具的初步版本：https://github.com/dfinity/icx- nns/releases[icx-nns] 存储库。
 
-== Deploy a canister with cycles
+== 部署一个带有燃料费的容器
 
-You must have *cycles* available to create and manage link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters], which are similar to smart contracts.
-The link:https://nns.ic0.app[Network Nervous System (NNS)] dapp provides a convenient way for you to create and manage canisters by enabling you to convert ICP utility tokens into cycles and attach cycles to specific canister identifiers. 
+您必须拥有 *cycles* 才能创建和管理link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters]，类似于智能合约。
+link:https://nns.ic0.app[Network Nervous System (NNS)] dapp 通过使您能够将 ICP 实用程序代币转换为循环并将循环附加到特定的容器标识符，为您提供了一种创建和管理容器的便捷方式。
 
-To create a new canister:
+要创建新容器：
 
-. Open a browser and navigate to the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Click **Login** to connect using your Internet Identity.
-. Verify your identification number, then click **Login** to authenticate using the device and authentication method you have registered.
-. Click **Proceed** to access to the Network Nervous System (NNS) dapp. 
-. Click **Canisters**, then click **Create or Link Canister**.
-. Click **Create New Canister** to create a new cycles wallet canister.
+.打开浏览器并导航到link:https://nns.ic0.app[Network Nervous System (NNS)] dapp。
+.单击 **Login** 以使用您的 Internet 身份进行连接。
+.验证您的身份证号，然后点击 **Login** 以使用您注册的设备和身份验证方法进行身份验证。
+.单击 **Proceed** 以访问网络神经系统 (NNS) dapp。
+.单击**容器**，然后单击**创建或链接容器**。
+.单击 **Create New Canister** 以创建新的 Cycles 钱包容器。
 +
-If you already have a cycles wallet canister, you can click **Link Canister to Account** to link an existing canister identifier to your account in the link:https://nns.ic0.app[Network Nervous System (NNS)] dapp.
-. Select one of your accounts that holds ICP utility tokens as the source account.
+如果你已经有一个cycles wallet canister，你可以点击**Link Canister to Account**在链接中将一个现有的canister标识符链接到你的账户：https://nns.ic0.app[Network Nervous System (NNS)]应用程序。
+.选择您持有 ICP 实用代币的账户之一作为源账户。
 +
-For example, if you have both a **Main** account and a **Dev-Projects** account, you might select **Dev-Projects** account if that account holds the ICP utility tokens that you want converted into cycles.
-. Click **Amount** and type the number of ICP utility tokens or e8s that you want to convert into cycles, then click **Review Cycles Purchase**.
+例如，如果您同时拥有一个 **Main** 帐户和一个 **Dev-Projects** 帐户，则您可以选择 **Dev-Projects** 帐户，前提是该帐户持有您希望转换为周期的 ICP 实用程序代币.
+.单击 **Amount** 并键入要转换为周期的 ICP 实用代币或 e8 的数量，然后单击 **Review Cycles Purchase**。
 +
-The amount you specify must convert to a value greater than the 2T (two trillion) cycles minimum required to create a new canister identifier.
-For example:
+您指定的数量必须转换为大于创建新容器标识符所需的最小 2T（两万亿）周期的值。
+例如：
 +
 image:convert-to-cycles.png[]
-. Review the ICP utility tokens to cycles details, then click **Confirm** to continue.
+. 查看 ICP 实用程序代币以了解周期详细信息，然后单击 **Confirm** 继续。
 +
-After you click Confirm, you can review:
-- the new canister identifier
-- the number of cycles available for the canister to use
-- the controlling principal that currently has full management rights for the new canister
+点击确认后，您可以查看：
+- 新的容器标识符
+- 容器可使用的燃料费次数
+- 当前对新容器具有完全管理权限的控制主体
 +
-To change the principal used as the controller of the canister, click **Change Controllers**.
+要更改用作容器控制器的主体，请单击 **Change Controllers**。
 +
-To add cycles to the canister, click **Add Cycles**.
-. Return to the **Canisters** tab to see the canisters you have created.
+要向容器添加燃料费，请单击 **Add Cycles**。
+. 返回到 **Canisters** 选项卡以查看您创建的容器。
 +
-For example:
+例如：
 +
 image:canister-list.png[]

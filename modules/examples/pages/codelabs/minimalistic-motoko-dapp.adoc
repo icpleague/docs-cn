@@ -1,4 +1,4 @@
-:page-layout: empty
+:页面布局: empty
 ++++
 <!doctype html>
 
@@ -48,70 +48,70 @@
                   feedback-link="https://github.com/dfinity">
     
       <google-codelab-step label="Introduction" duration="1">
-        <p>This CodeLab shows how to build a minimalistic dapp based on the default dapp template installed by DFX when creating a new project. The dapp is a simple website with a counter. Every time a button is pressed, a counter is incremented.</p>
-<p>This CodeLab covers:</p>
+        <p>本CodeLab展示了如何在创建新项目时，根据DFX安装的默认dapp模板建立一个简约的dapp。这个dapp是一个带有计数器的简单网站。每当一个按钮被按下，一个计数器就会递增。</p>
+<p>本 CodeLab 涵盖:</p>
 <ul>
-<li>Create new canister smart contract using the SDK (DFX)</li>
-<li>Use the default project as a template as the starting point for the new project</li>
-<li>Add backend functions for a counter (count, get count and reset count)</li>
-<li>Implement backend functions in the frontend</li>
-<li>Deploy the canister smart contract locally</li>
-<li>Test backend with Candid UI and command line using DFX, and test frontend in browser</li>
+<li>使用 SDK (DFX) 创建新的容器智能合约</li>
+<li>使用默认项目作为模板作为新项目的起点</li>
+<li>为计数器添加后端功能（计数、获取计数和重置计数）</li>
+<li>在前端实现后端功能</li>
+<li>在本地部署容器智能合约</li>
+<li>使用 Candid UI 和命令行使用 DFX 测试后端，并在浏览器中测试前端</li>
 </ul>
-<p>The frontend will look like this:</p>
+<p>前端看起来像这样:</p>
 <p class="image-container"><img alt="Dapp frontend" src="../_images/d71d39c63ca9f522.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Create New Project" duration="3">
-        <p>Run this command to create project:</p>
+        <p>运行此命令以创建项目:</p>
 <pre><code language="language-bash" class="language-bash">$ dfx new minimal_dapp
 </code></pre>
-<p>DFX will create a new directory called <em>minimal_dapp</em>, and in this directory you will find all the files, both frontend, backend, configurations etc. for the default project. The default project can be deployed without any changes as it is.</p>
+<p>DFX 将创建一个名为 <em>minimal_dapp</em> 的新目录，在此目录中您将找到默认项目的所有文件，包括前端、后端、配置等。 默认项目无需任何更改即可部署。</p>
 <p class="image-container"><img alt="Default project" src="../_images/3bd3a2a8bbbc3902.png"></p>
-<p>The <code>src</code> directory will contain the default frontend and backend code.</p>
-<p>The <code>dfx.json</code> file contains the canister configuration. It defines the canister(s), where the source code for the canister(s) is located, the type of canister(s) and which version of DFX the project was created with.</p>
+<p><code>src</code> 目录将包含默认的前端和后端代码。</p>
+<p><code>dfx.json</code> 文件包含容器配置。 它定义了容器、容器的源代码所在的位置、容器的类型以及创建项目时使用的 DFX 版本。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Modify the Backend" duration="5">
-        <p>As the first step, add a few backend functions. The backend functions are located in the <code>src/minimal_dapp/main.mo</code> Motoko file.</p>
-<p>The existing code from the default project is not needed, so the greet() function is deleted.</p>
+        <p>第一步，添加一些后端功能。 后端函数位于 <code>src/minimal_dapp/main.mo</code> Motoko 文件中。</p>
+<p>不需要默认项目中的现有代码，因此删除了 greet() 函数。</p>
 <pre><code language="language-javascript" class="language-javascript">actor {
 
 }
 </code></pre>
 <h2 is-upgraded>Counter variable</h2>
-<p>Three functions are created to make the counter work: count(), getCount() and reset(). The current counter value is stored as a number in the actor.</p>
+<p>为了使计数器工作，我们创建了三个函数：count()、getCount()和reset()。当前的计数器值以数字的形式存储在actor中。</p>
 <pre><code language="language-javascript" class="language-javascript">actor {
     var counter : Nat = 0;
 }
 </code></pre>
 <h2 is-upgraded>count()</h2>
-<p>The <code>count()</code> function increments the counter variable. This function is envoked when the user is clicking the button on the frontend, or when the function is called through the Candid interface.</p>
+<p><code>count()</code> 函数递增计数器变量。 当用户点击前端的按钮，或者通过 Candid 接口调用该函数时，会调用该函数。</p>
 <pre><code language="language-javascript" class="language-javascript">public func count() : async Nat {
     counter += 1;
     return counter;
 };
 </code></pre>
-<p>The function is returning the incremented counter variable.</p>
+<p>该函数返回递增的计数器变量。</p>
 <h2 is-upgraded>getCount()</h2>
-<p>The <code>getCount()</code> function returns the current counter value.</p>
+<p><code>getCount()</code> 函数返回当前计数器值。</p>
 <pre><code language="language-javascript" class="language-javascript">public query func getCount() : async Nat {
     return counter;
 };
 </code></pre>
 <h2 is-upgraded>reset()</h2>
-<p>The <code>reset()</code> function resets the counter value to 0 and returns the value.</p>
+<p><code>reset()</code> 函数将计数器值重置为 0 并返回该值。</p>
 <pre><code language="language-javascript" class="language-javascript">public func reset() : async Nat {
     counter := 0;
     return counter;
 };
 </code></pre>
-<h2 is-upgraded>The completed backend file</h2>
-<p>The <code>main.mo</code> file looks like this when it&#39;s all put together:</p>
+<h2 is-upgraded>完成的后端文件</h2>
+<p><code>main.mo</code> 文件放在一起后看起来像这样:</p>
 <pre><code language="language-javascript" class="language-javascript">actor {
     
     var counter : Nat = 0;
@@ -136,17 +136,17 @@
       </google-codelab-step>
     
       <google-codelab-step label="Test the Backend" duration="7">
-        <p>At this point the backend can be deployed and its functionality can be tested. The backend can be tested in different ways, and in this step the backend is tested by making requests through DFX calls and by using the web interface created by Candid.</p>
+        <p>此时可以部署后端并测试其功能。 可以通过不同的方式测试后端，在此步骤中，通过 DFX 调用和使用 Candid 创建的 Web 界面发出请求来测试后端。</p>
 <h2 is-upgraded>Deploy canisters</h2>
-<p>First the dapp has to be deployed, which is done locally for this CodeLab. The local network is started by running this command:</p>
+<p>首先必须部署 dapp，这是在本 CodeLab 本地完成的。 通过运行此命令启动本地网络:</p>
 <pre><code language="language-bash" class="language-bash">$ dfx start --background
 </code></pre>
-<p>When the local network is up and running, run this command to deploy the canisters:</p>
+<p>当本地网络启动并运行时，运行此命令以部署容器:</p>
 <pre><code language="language-bash" class="language-bash">$ dfx deploy
 </code></pre>
 <h2 is-upgraded>DFX</h2>
-<p>DFX has a subset of commands for canister operations, and one of them enables calling the public functions added to the <code>main.mo</code> file in the previous step. In the following examples the initial value is 0. <code>count</code> will increment value and return 1, <code>getCount</code> will return the current value and <code>reset</code> will set the value to 0.</p>
-<p>Command usage: <code>dfx canister call &#60project&#62  &#60function&#62</code></p>
+<p>DFX 有一个用于容器操作的命令子集，其中一个可以调用在上一步中添加到 <code>main.mo</code> 文件中的公共函数。 在以下示例中，初始值为 0。<code>count</code> 将增加值并返回 1，<code>getCount</code> 将返回当前值，<code>reset</code> 将设置 值为 0。</p>
+<p>Command usage: <code>dfx canister call project function&#62</code></p>
 <pre><code language="language-bash" class="language-bash">$ dfx canister call minimal_dapp count
 (1 : Nat)
 </code></pre>
@@ -157,8 +157,8 @@
 (0 : Nat)
 </code></pre>
 <h2 is-upgraded>Candid UI</h2>
-<p>The Candid UI provides an easy, user friendly interface for testing the backend. The UI is automatically generated, and the canister ID can be found in the <code>canister_ids.json</code> file.</p>
-<p>The localhost version of the <code>canister_ids.json</code> file can be found in <code>.dfx/local/canister_ids.json</code> and the URL is:</p>
+<p>Candid UI 为测试后端提供了一个简单、用户友好的界面。 UI 是自动生成的，容器 ID 可以在 <code>canister_ids.json</code> 文件中找到。</p>
+<p><code>canister_ids.json</code> 文件的 localhost 版本可以在 <code>.dfx/local/canister_ids.json</code> 中找到，URL 是:</p>
 <p><strong>http://&lt;candid_canister_id&gt;.localhost:8000/?id=&lt;backend_canister_id&gt;</strong></p>
 <p class="image-container"><img alt="Candid UI" src="../_images/82c8493b03d8157d.png"></p>
 
@@ -166,9 +166,9 @@
       </google-codelab-step>
     
       <google-codelab-step label="Modify the Frontend" duration="5">
-        <p>The default project has an <code>index.html</code> file with page HTML and an <code>index.js</code> file with an implementation of the backend functions.</p>
+        <p>默认项目有一个带有页面 HTML 的 <code>index.html</code> 文件和一个带有后端功能实现的 <code>index.js</code> 文件。</p>
 <h2 is-upgraded>HTML</h2>
-<p>For this CodeLab the changes to the <code>index.html</code> file is minor. The button is kept and so is the section showing the result, just simplified.</p>
+<p>对于此 CodeLab，对 <code>index.html</code> 文件的更改很小。 该按钮被保留，显示结果的部分也是如此，只是简化了。</p>
 <pre><code language="language-html" class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&#34;en&#34;&gt;
     &lt;head&gt;
@@ -189,7 +189,7 @@
 &lt;/html&gt;
 </code></pre>
 <h2 is-upgraded>Javascript</h2>
-<p>The existing event listener for button click is modified to call the <code>count()</code> function, and an event listener for page load is added to get the initial value of the counter with <code>getCount()</code>. The backend functions are still imported through the Candid interface.</p>
+<p>现有的按钮点击事件监听器被修改为调用 <code>count()</code> 函数， 并添加了一个页面加载事件侦听器，以使用 <code>getCount()</code> 获取计数器的初始值。 后端功能仍然通过 Candid 接口导入。</p>
 <pre><code language="language-javascript" class="language-javascript">import { minimaldapp } from &#34;../../declarations/minimal_dapp&#34;;
 
 document.addEventListener(&#39;DOMContentLoaded&#39;, async function () {
@@ -207,10 +207,10 @@ document.getElementById(&#34;clickMeBtn&#34;).addEventListener(&#34;click&#34;, 
       </google-codelab-step>
     
       <google-codelab-step label="Test the Frontend" duration="3">
-        <p>The canisters must be re-deployed since the frontend has changed since the deployment of the backend changes in step . Assuming the local network is still running, re-deploy with this command:</p>
+        <p>必须重新部署容器，因为前端已更改，因为后端的部署在步骤中发生了更改。 假设本地网络仍在运行，请使用以下命令重新部署：</p>
 <pre><code language="language-bash" class="language-bash">$ dfx deploy
 </code></pre>
-<p>The URL for the frontend is depending on the canister ID. As described step 4, get the canister ID, the UI canister in this case, from the canister_IDs.json file. The URL will look like this:</p>
+<p>前端的 URL 取决于容器 ID。 如步骤 4 所述，从 canister_IDs.json 文件中获取容器 ID，在本例中为 UI 容器。 URL 将如下所示:</p>
 <p><strong>https://&lt;ui_canister_id&gt;.localhost:8000</strong></p>
 <p class="image-container"><img alt="Dapp frontend" src="../_images/d71d39c63ca9f522.png"></p>
 
@@ -218,8 +218,8 @@ document.getElementById(&#34;clickMeBtn&#34;).addEventListener(&#34;click&#34;, 
       </google-codelab-step>
     
       <google-codelab-step label="Summary" duration="1">
-        <p>This CodeLab walks through the very basic steps of creating and deploying a dapp locally, using Motoko and HTML/Javascript.</p>
-<p>For information about deploying the dapp to the Internet Computer, see the documentation <a href="https://smartcontracts.org/docs/quickstart/network-quickstart.html" target="_blank">here</a>.</p>
+        <p>本 CodeLab 将介绍使用 Motoko 和 HTML/Javascript 在本地创建和部署 dapp 的基本步骤。</p>
+<p>有关将DAPP部署到Internet计算机的信息，请参阅文档<a href="https://smartcontracts.org/docs/quickstart/network-quickstart.html" target="_blank">here</a>.</p>
 
 
       </google-codelab-step>

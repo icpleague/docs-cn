@@ -1,64 +1,64 @@
-= Introducing the Internet Computer
-:description: Start coding on the Internet Computer. Find documentation, walk-throughs, and tutorials to start building decentralized apps, DeFi and novel blockchain-based services
-:keywords: Internet Computer,blockchain,cryptocurrency,ICP tokens,smart contracts,cycles,wallet,software canister,developer onboarding
-:proglang: Motoko
-:IC: Internet Computer
-:company-id: DFINITY
+= 介绍互联网计算机
+:描述: 在互联网计算机上开始编程。找到文档、演练和教程，开始构建去中心化的应用程序、DeFi和基于区块链的新颖服务
+:关键词: 互联网计算机,区块链,加密货币,ICP代币,智能合约,燃料费,钱包,软件容器,开发人员入职
+:编程语言: Motoko
+:IC: 互联网计算机
+:公司-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-Hello there!
+大家好!
 
-If you’ve landed here, you’re interested in learning more about the Internet Computer. You’re in the right place — take a look below for where to get started!
+如果你登陆到这里，有兴趣了解更多关于互联网计算机的信息。那么你来对了地方--看看下面的内容，看看从哪里开始吧！
 
-NOTE: Qualified developers can access $20 worth of free cycles to begin deploying canister smart contracts to the Internet Computer blockchain. https://faucet.dfinity.org/auth[Claim your free cycles]
+注释: 合格的开发者可以获得价值20美元的免费燃料费，开始向互联网计算机区块链部署容器智能合约。https://faucet.dfinity.org/auth[申请你的免费燃料费]
 
-[[for-first-timers]]
-== For: First-Timers
-The Internet Computer is a blockchain that runs at web speed with unbounded capacity. 
+[[针对菜鸟]]
+== 针对: 菜鸟
+互联网计算机是一个以网络速度运行的区块链，容量不受限制。
 
-As a crash course in blockchain history, Bitcoin created digital gold. Then, in the next step of the evolution, Ethereum developed smart contracts and pioneered DeFi and NFT use cases. 
+作为区块链历史的速成课程，比特币创造了数字黄金。然后，在下一步的演变中，以太坊开发了智能合约并开创了DeFi和NFT用例。
 
-The Internet Computer is the third major blockchain innovation — a blockchain that scales smart contract computation, runs them at web speed, processes and stores data efficiently, and provides powerful software frameworks to developers. By making this possible, the Internet Computer enables the complete reimagination of how systems and apps operate.
+互联网计算机是第三大区块链创新--区块链可以扩展智能合约的计算，以网络速度运行它们，有效地处理和存储数据，并为开发者提供强大的软件框架。通过使之成为可能，互联网计算机使系统和应用程序的运行方式得到了完全的重新想象。
 
-Interested in learning more? Check out the following resources:
+有兴趣了解更多吗？请查看以下资源：
 
-* link:https://www.youtube.com/watch?v=YWHTNr8RZHg&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=17&ab_channel=DFINITY[Primer to the Internet Computer], a high-level overview of the Internet Computer in under 10 minutes
-* link:https://medium.com/dfinity[The Internet Computer Review], our blog covering updates for the Internet Computer 
-* link:https://thereboot.com/[The Reboot], our tech publication exploring issues with the current internet
+* 链接:https://www.youtube.com/watch?v=YWHTNr8RZHg&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=17&ab_channel=DFINITY[互联网计算机入门]， 10分钟的互联网计算机高级概述
+* 链接:https://medium.com/dfinity[互联网计算机评测]， 我们的博客涵盖了互联网计算机的更新
+* 链接:https://thereboot.com/[重新启动]], 我们的探讨当前互联网的问题的技术性出版物
 
-Follow us on the official link:https://twitter.com/dfinity[DFINITY Twitter] for the latest updates.
-
-
-[[for-developers]]
-== For: Developers
-The Internet Computer hosts special smart contracts, called link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. A canister smart contract is a bundle of link:https://webassembly.org/[WebAssembly] bytecode logic and memory pages. Dapps on the Internet Computer are created from one or more canisters. 
-
-Canister smart contracts can serve web content directly to end-users, e.g., in their browsers, and users can interact with blockchain services without holding tokens. 
-
-The Internet Computer blockchain can eventually host any number of canister smart contracts (i.e., code & state). Moreover, it can run them concurrently with unbounded on-chain capacity. This means you can create dapps that scale. 
-
-Canister smart contracts are unstoppable and tamperproof. Imagine building without having to worry about databases, caches, firewalls, CDNs, cloud providers, VPNs, DNS, and even usernames & passwords — all because the Internet Computer abstracts these needs away. 
-
-Excited to take the leap? Check out our xref:quickstart:quickstart-intro.adoc[Quick Start] to get started with a simple hello world dapp.
-
-Interested in getting plugged into our developer community? Check out the following:
-
-* link:https://discord.gg/cA7y6ezyE2[Developer Discord], our official Discord for the developer community
-* link:https://forum.dfinity.org/[Developer Forum], a welcoming space for technical discussions about building on the Internet Computer
-
-You can follow us on the link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] for the latest developer-specific updates.
+在官方链接上关注我们获取最新的更新信息https://twitter.com/dfinity[DFINITY Twitter]。
 
 
-[[for-protocol-enthusiasts]]
-== For: Protocol Enthusiasts
+[[针对开发者]]
+== 针对: 开发者
+互联网计算机承载着特殊的智能合约，称为 链接:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. 容器智能合约是一些 链接:https://webassembly.org/[WebAssembly]字节码逻辑和内存页。互联网计算机上的Dapps是由一个或多个容器创建的。
 
-The Internet Computer is created by the Internet Computer Protocol (“ICP”), which has formed the world’s first web-speed, web-serving public blockchain. The Internet Computer is self-governing and can grow its capacity as required. It combines special node machines run en masse by independent data centers all around the world. Like all blockchains, it is unstoppable, and the code it hosts is tamperproof. 
+容器智能合约可以直接向终端用户提供网络内容，例如在他们的浏览器中，用户可以与区块链服务互动，而无需持有代币。
 
-Get started by checking out our “Concepts” section to the left, starting with xref:developers-guide:concepts/what-is-IC.adoc[What is the Internet Computer?]
+互联网计算机区块链最终可以承载任何数量的容器智能合约（即代码和状态）。此外，它可以以无限制的链上容量并发运行它们。这意味着你可以创建可以扩展的dapp。
 
-To learn more about the Internet Computer Protocol, check out the following resources:
+容器智能合约是不可阻挡和不可篡改的。想象一下，建设时不必担心数据库、缓存、防火墙、CDN、云供应商、VPN、DNS，甚至用户名和密码--所有这些都是因为互联网计算机将这些需求抽象出来了。
 
-* link:https://dfinity.org/technicals/[Technical Library], for in-depth videos by our world-class R&D team explaining components of the Internet Computer Protocol. Worth noting in particular:
-** link:https://dfinity.org/technicals/chain-key-technology[Chain Key Cryptography], one of the fundamental breakthroughs enabling the Internet Computer to scale to millions of nodes. The most notable innovation of Chain Key cryptography is that the Internet Computer has a single public key, which enables any device to verify the authenticity of artifacts generated by the Internet Computer, even smart watches and mobile phones.
-* xref:interface-spec:index.adoc[Interface Specification], for a deeply technical document that provides an overview of the lower-level external interfaces of the Internet Computer
-* link:https://dashboard.internetcomputer.org/[Internet Computer Dashboard], to monitor real-time metrics around the Internet Computer blockchain
+跃跃欲试了吗？看看我们的 xref:quickstart:quickstart-intro.adoc[快速入门]，开始使用一个简单的hello world dapp。
+
+对融入我们的开发者社区感兴趣吗？请查看以下内容：
+
+* 链接:https://discord.gg/cA7y6ezyE2[Developer Discord]， 我们为开发者社区提供的官方 Discord
+* 链接:https://forum.dfinity.org/[开发者论坛]， 一个关于在互联网上建立计算机的技术讨论的温馨空间。
+
+您可以通过链接:https://twitter.com/dfinitydev[DFINITY Developer Twitter] 关注我们，了解最新的开发者专用更新。
+
+
+[[针对协议爱好者]]
+== 针对: 协议爱好者
+
+互联网计算机是由互联网计算机协议（"ICP"）创建的，它已经形成了世界上第一个网络速度、网络服务的公共区块链。互联网计算机是自我管理的，可以根据需要增长其容量。它结合了由世界各地的独立数据中心集体运行的特殊节点机器。像所有区块链一样，它是不可阻挡的，它所存储的代码是不可篡改的。
+
+从我们左边的 "概念 "部分开始，从 xref:developers-guide:concepts/what-is-IC.adoc[什么是互联网计算机]
+
+要了解更多关于互联网计算机协议的信息，请查看以下资源：
+
+* 链接:https://dfinity.org/technicals/[技术库], 了解我们世界级研发团队解释互联网计算机协议组成部分的深入视频。特别值得注意的是:
+** link:https://dfinity.org/technicals/chain-key-technology[链式密钥加密法], 是使互联网计算机能够扩展到数百万节点的基本突破之一。链式钥匙加密法最显著的创新是，互联网计算机有一个单一的公钥，这使得任何设备都可以验证互联网计算机产生的人工制品的真实性，甚至是智能手表和手机。
+* xref:interface-spec:index.adoc[接口规范], 是一份深入的技术文件，提供了互联网计算机的低级外部接口的概述
+* 链接:https://dashboard.internetcomputer.org/[互联网计算机仪表盘], 以监测围绕互联网计算机区块链的实时指标。
