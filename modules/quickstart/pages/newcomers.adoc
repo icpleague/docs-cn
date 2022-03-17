@@ -1,5 +1,4 @@
 = 新手的初步步骤
-：实验性：
 :commandkey: &#8984;
 
 如果这是您第一次在计算机上安装开发人员工具，您可能需要采取一些额外的步骤来准备您的环境。
@@ -22,7 +21,7 @@
 [[open-terminal]]
 == 打开终端
 
-您需要知道如何打开终端并导航到目录以安装 {sdk-short-name} 并在尝试任何链接时启动和停止在本地运行的 {IC}：../developers-guide/tutorials- 介绍{outfilesuffix}[教程]。
+您需要知道如何打开终端并导航到目录以安装 {sdk-short-name} 并在尝试任何启动和停止在本地运行的 {IC}link：../developers-guide/tutorials- 介绍{outfilesuffix}[教程]。
 
 在 macOS 上打开终端应用程序：
 
@@ -84,7 +83,7 @@ node --version
 +
 [source,bash]
 ----
-brew install node
+brew install node@16
 ----
 
 [[working-folder]]
@@ -94,7 +93,7 @@ brew install node
 为了让您的工作空间保持整洁，您可以为您的 {IC} 项目创建一个单独的文件夹。
 
 为 {IC} 项目创建工作文件夹是可选的，但可以更轻松地在项目之间查找和导航。
-如果您计划尝试使用以下任何链接：../developers-guide/tutorials-intro{outfilesuffix}[tutorials]，则单独的文件夹特别有用：quickstart-intro{outfilesuffix}[快速开始]。
+如果您计划尝试使用以下任何link:../developers-guide/tutorials-intro{outfilesuffix}[tutorials]，则单独的文件夹特别有用：quickstart-intro{outfilesuffix}[快速开始]。
 
 要创建一个新的工作文件夹：
 
@@ -146,4 +145,4 @@ which dfx
 export PATH="<path-to-directory-for-dfx>:$PATH"
 ....
 
-现在您已准备好链接：local-quickstart{outfilesuffix}#download-and-install[install] {sdk-short-name} 并开始编程！
+现在您已准备好link:local-quickstart{outfilesuffix}#download-and-install[install] {sdk-short-name} 并开始编程！

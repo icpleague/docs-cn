@@ -35,24 +35,24 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 
 . 将 `DFX_VERSION` 环境变量设置为要安装的 {sdk-short-name} 包的版本，作为 `+curl+` 命令的前缀。
 +
-例如，要安装 0.8.4 版，您将运行以下命令：
+例如，要安装 0.9.2 版，您将运行以下命令：
 +
 [source,bash]
 ----
-DFX_VERSION=0.8.4 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.9.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
-注释：如果您使用 DFX_VERSION 环境变量安装尚未公开的 {sdk-short-name} 版本，请参阅此链接：http-middleware{outfilesuffix}[article] 了解更改的概述。
+注释：如果您使用 DFX_VERSION 环境变量安装尚未公开的 {sdk-short-name} 版本，请参阅此link:http-middleware{outfilesuffix}[article] 了解更改的概述。
 
 // end::install[]   
 
 == 下一步
 
-有关后续步骤的信息，请参阅链接：developers-guide/tutorials-intro{outfilesuffix}[Tutorials] 中的链接：developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_]。
+有关后续步骤的信息，请参阅link:developers-guide/tutorials-intro{outfilesuffix}[Tutorials] 中的link:developers-guide/sdk-guide{outfilesuffix}[_SDK Developer Tools_]。
 
-要在开始试验代码之前了解有关为 {IC} 编写程序的更多信息，请参阅链接：developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts]。
+要在开始试验代码之前了解有关为 {IC} 编写程序的更多信息，请参阅link:developers-guide/concepts/concepts-intro{outfilesuffix}[Concepts]。
 
-有关使用 {proglang} 为 {IC} 编写程序的信息，请参阅链接：language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_]。
+有关使用 {proglang} 为 {IC} 编写程序的信息，请参阅link:language-guide/motoko{outfilesuffix}[_Motoko Programming Language Guide_]。
 
 ////
 == 下载打包版本

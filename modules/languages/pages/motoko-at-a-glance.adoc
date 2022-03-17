@@ -51,7 +51,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 == 语言特点
 
 接下来的部分以简化的形式重点介绍 {proglang} 编程语言功能。
-有关使用这些和其他功能的更多信息，请参阅链接：../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko编程语言指南_]。
+有关使用这些和其他功能的更多信息，请参阅link:../language-guide/language-manual{outfilesuffix}[Language quick reference] in the ink:../language-guide/motoko{outfilesuffix}[_Motoko编程语言指南_]。
 
 === 表达式
 
@@ -532,7 +532,7 @@ try … catch …
 throw …
 ```
 
-////
+
 == Language comparison cheat sheet
 
 === Literals
@@ -1534,10 +1534,10 @@ a|
 String.get s 0 or s.[0]
 ----
 |===
-////
+
 
 == Class declaration example
-
+以下表格用以对比在类宣告在proglang，JavaScript/TypeScript中的区别
 The following table compares class declarations in {proglang} with class declarations in JavaScript and TypeScript.
 
 [width="100%",options="header"]

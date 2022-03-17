@@ -26,7 +26,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 * 如果你想在你的项目中包含用于前端开发的默认模板文件，你已经安装了 `+node.js+`。
 
 本教程假设您知道如何在您的计算机上执行常见任务，例如打开终端和运行命令。
-如果您不确定如何在本地计算机上打开新的终端 shell 或如何安装 `node.js`，请参阅链接：newcomers{outfilesuffix}[新手的初步步骤]。
+如果您不确定如何在本地计算机上打开新的终端 shell 或如何安装 `node.js`，请参阅link:newcomers{outfilesuffix}[新手的初步步骤]。
 如果您愿意在没有说明的情况下满足先决条件，请继续<<下载并安装>>。
 
 [[download-and-install]]
@@ -71,7 +71,7 @@ dfx --version
 该命令显示 `+dfx+` 命令行可执行文件的版本信息，类似于以下内容：
 +
 ....
-dfx 0.8.4
+dfx 0.9.2
 ....
 . 通过运行以下命令预览其他`+dfx+`命令行子命令的使用信息。
 +
@@ -91,7 +91,7 @@ dfx --help
 您可以使用 `+dfx+` 父命令及其子命令创建项目。
 
 对于本教程，我们将从默认示例 dapp 开始，以说明使用项目中的启动文件创建 dapp。
-当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们在链接中介绍了构成项目目录的模板文件:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
+当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们介绍了构成项目目录的模板文件link:../developers-guide/tutorials/explore-templates{outfilesuffix}[Explore the default project] tutorial.
 
 为您的第一个应用程序创建一个新项目:
 
@@ -155,7 +155,7 @@ dfx start
 npm install
 ----
 +
-有关此步骤的更多信息，请参阅链接：../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]。
+有关此步骤的更多信息，请参阅link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]。
 . 通过运行以下命令注册、构建和部署您的第一个 dapp：
 +
 [source,bash]
@@ -200,7 +200,7 @@ dfx deploy
 但是，如果您创建了一个不同名称的项目，您的容器名称将匹配您的项目名称，而不是 `+hello+` 和 `+hello_assets+`。
 +
 您还应该注意*第一次部署*，`+dfx+` 创建一个 `+default+` 身份和一个由您的 `+default+` 身份控制的本地燃料费钱包。
-燃料费钱包是一种特殊类型的容器，可让您将链接：../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] 转移到其他容器。
+燃料费钱包是一种特殊类型的容器，可让您将link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[cycles] 转移到其他容器。
 +
 *要在本地部署此示例 dapp*，您无需了解有关您的默认开发人员身份、使用燃料费钱包或管理燃料费的任何信息。 我们稍后会介绍这些主题，但现在，请注意这些主题是自动为您创建的。
 . 通过运行以下命令调用 `+hello+` 容器和预定义的 `+greet+` 函数：
@@ -275,12 +275,12 @@ dfx stop
 
 以下是关于下一步去哪里的一些建议：
 
-* 链接：../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] 探索使用本地容器执行环境构建简单的 dapp。
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials] 探索使用本地容器执行环境构建简单的 dapp。
 
-* l链接：network-quickstart{outfilesuffix}#convert-icp[将 ICP 代币转换为燃料费] 如果您有 ICP 代币想要转换为燃料费以使您能够将 dapp 部署到 {IC} 区块链。
+* link:network-quickstart{outfilesuffix}#convert-icp[将 ICP 代币转换为燃料费] 如果您有 ICP 代币想要转换为燃料费以使您能够将 dapp 部署到 {IC} 区块链。
 
 * link:network-quickstart{outfilesuffix}[链上部署] 如果你有燃料费并准备将应用程序部署到 {IC} 区块链主网。
 
-* 链接：../candid-guide/candid-concepts{outfilesuffix}[什么是 Candid？] 了解 Candid 接口描述语言如何实现服务互操作性和可组合性。
+* link:../candid-guide/candid-concepts{outfilesuffix}[什么是 Candid？] 了解 Candid 接口描述语言如何实现服务互操作性和可组合性。
 
-* 链接：../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] 了解使用 {proglang} 的特性和语法。
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] 了解使用 {proglang} 的特性和语法。

@@ -10,37 +10,22 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 T此 {sdk-long-name} 提供工具、示例代码和文档，以帮助您创建罐式智能合约 dapp 并将它们部署在 {IC} 区块链主网上。
 _快速入门_ 教程假设您是第一次安装 {sdk-short-name}，并说明如何创建、构建和部署您的第一个 dapp。
 
-为了使说明简单并专注于手头的任务，_快速入门_分为两个场景：
 
-* 在链接:local-quickstart{outfilesuffix}[本地开发] 场景中，您创建和部署示例 dapp，其进程在_本地容器执行环境_中运行。
 
-* 在链接:network-quickstart{outfilesuffix}[链上部署] 场景中，您在本地创建示例 dapp，但_连接到在独立数据中心的节点机器上运行的 {platform}_ 并在那里部署 dapp。
+== Getting Started
+To keep the instructions simple and focused on the task at hand, the _Quick start_ is deliberately hyper-focused in helping you deploy your first smart contract or dapp in 20 minutes or less.
 
-如果您在设置开发环境时需要一些帮助（例如，如果您不确定如何打开新终端、安装软件包或创建文件夹以及在目录之间导航），您可能希望从链接开始：newcomers{outfilesuffix }[新手的初步步骤]。
+See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 20 minutes].
 
-[[default-app]]
-== 默认 dapp
+== More Sample Code
 
-这两种场景都构建和部署了一个简单的 Hello canister 智能合约，它只有一个功能——称为 `+greet+`。 `+greet+` 函数接受一个文本参数并在终端中返回类似于 **Hello,{nbsp}everyone!** 的问候语（如果您使用命令行或在警报弹出窗口中运行容器） 如果您在浏览器中访问 dapp，则窗口。
-
-默认的 dapp 包含用 {proglang} 编写的后端代码，这是一种专门为与 {IC} 交互而设计的编程语言，以及一个简单的基于 webpack 的前端。
-
-== 获取 ICP 代币和燃料费
-
-如链接中所讨论的：../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and Cycles]，*cycles* 需要为在 {platform} 上运行的 dapps 提供智能合约操作。
-作为开发人员，您有几个不同的选项来获取和管理 dapp 的周期：
-
-* 通过列出可交易 ICP 代币的交易所购买或领取 ICP 代币，然后使用链接将您的代币转换为燃料费：network-quickstart{outfilesuffix}#convert-tokens[{sdk-short-name} 命令行界面]或链接：https://nns.ic0.app/#/auth[网络神经系统应用]。
-* 通过注册帐户或链接来注册燃料费：../developers-guide/default-wallet{outfilesuffix}#wallet-create-wallets[cycles wallet] 通过提供这些服务的提供商。
-* 与其他开发者协调链接：../developers-guide/default-wallet{outfilesuffix}#wallet-send[send] 和链接：../developers-guide/default-wallet{outfilesuffix}#wallet-receive[receive ] 通过燃料费钱包或另一个容器直接往返于容器。
-
-B因为只有容器需要和消耗燃料费——执行操作并为其使用的资源付费——周期总是在容器之间传输，而不是传递给用户或开发人员。 但是，您可以通过为您创建的燃料费钱包或使用类似的 dapp 来管理燃料费的分配。
+Once you finish your first dap, you can see more robust examples (e.g. DAOs, NFTs, etc...) in link:../examples/index{outfilesuffix}[Sample code and dapps].
 
 == 想了解更多？
 
 如果您在开始之前正在寻找更多信息，或者想在自己尝试之前查看如何部署的演示，请查看以下相关资源：
 
-* 链接:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[How you can use ICP tokens (overview)]
-* 链接:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
-* 链接:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
-* 链接:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]
+* link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#using-tokens[How you can use ICP tokens (overview)]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the Internet Computer: Fundamentals (video)]
+* link:https://www.youtube.com/watch?v=60uHQfoA8Dk[What is the DFINITY Canister SDK (video)]
+* link:https://www.youtube.com/watch?v=yqIoiyuGYNA[Deploying your first dapp (video)]

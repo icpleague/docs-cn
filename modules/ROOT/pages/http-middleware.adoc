@@ -16,7 +16,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 在我们描述新架构之前，了解一些关于我们正在替换的旧方法以及代码在这一点上的工作方式的背景信息是很有用的。
 以前，在互联网计算机上开发前端涉及添加具有“retrieve()”函数的前端资产容器。
 `retrieve()` 函数将采用路径并返回一个 blob。 `retrieve()` 函数返回的 blob 将有一个 `index.js` 文件，其中包含一些称为 `bootstrap` 代码的 JavaScript 和静态 HTML。
-在互联网计算机上将应用程序部署为智能合约（称为链接：developers-guide/glossary{outfilesuffix}#g-canister[canister]）后，使用执行的`<CANISTER_ID>.ic0.app` URL 访问容器 `bootstrap` 代码依次执行以下步骤：
+在互联网计算机上将应用程序部署为智能合约（称为link:developers-guide/glossary{outfilesuffix}#g-canister[canister]）后，使用执行的`<CANISTER_ID>.ic0.app` URL 访问容器 `bootstrap` 代码依次执行以下步骤：
 
 * 创建了一个安全的工作人员来包含您的私钥。
 * Polyfill `window.ic` 为正在运行的应用程序提供一些机制，以便它可以与互联网计算机通信。
@@ -115,4 +115,4 @@ const example = Actor.createActor(example_idl, { agent, canisterId: example_id }
 
 当前的所有教程都说明了服务于未经认证的前端资产的应用程序。
 学习如何构建一个使用经过认证的前端资产查询结果的应用程序是一个高级开发主题。
-有关如何返回认证数据以响应查询的信息，请参阅链接：interface-spec/index{outfilesuffix}[接口规范]并通过链接与其他开发人员联系：https://forum.dfinity.org/[DFINITY开发者论坛]。
+有关如何返回认证数据以响应查询的信息，请参阅link:interface-spec/index{outfilesuffix}[接口规范]与其他开发人员联系link：https://forum.dfinity.org/[DFINITY开发者论坛]。

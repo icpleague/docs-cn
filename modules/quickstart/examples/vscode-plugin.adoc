@@ -5,11 +5,11 @@
 
 安装插件:
 
-. 下载并安装链接:https://code.visualstudio.com/download[Visual Studio Code], 如果它尚未安装在您的本地计算机上。
+. 下载并安装link:https://code.visualstudio.com/download[Visual Studio Code], 如果它尚未安装在您的本地计算机上。
 . 单击查看，然后选择**扩展程序**。
 . 在搜索字段中输入“motoko”。
 . 选择 DFINITY Foundation 发布的**Motoko language support**，然后点击**Install**。
 
 如果您的程序有依赖项，您可能还需要为 {proglang} 安装 Vessel 包管理器。
-有关说明，请参阅链接:https://github.com/kritzcreek/vessel[ReadMe].
-要下载最新版本，请转到链接:https://github.com/kritzcreek/vessel/releases[vessel] GitHub 存储库。
+有关说明，请参阅link:https://github.com/kritzcreek/vessel[ReadMe].
+要下载最新版本，请转到link:https://github.com/kritzcreek/vessel/releases[vessel] GitHub 存储库。

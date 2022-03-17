@@ -1,21 +1,22 @@
-Cycles Faucet 快速入门
-========================
+= Cycles Faucet 快速入门
+
 
 准备好在互联网计算机区块链上部署您的第一个智能合约了吗？ 您可以使用我们的 Cycles Faucet 在几分钟内设置 20 美元的免费燃料费。
 
-在开始之前，请确保您通过运行安装了 {sdk-short-name} (DFX)
+在开始之前，请确保您安装运行了 {sdk-short-name} (DFX)
 [source,sh]
 ----
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
-或按照链接中的说明进行操作:https://smartcontracts.org[].
+或按照链接中的说明进行操作link:https://smartcontracts.org.
 
 == 领取您的燃料费钱包
 
 === 第 1 步：验证
 
-首先，您需要导航到链接:https://faucet.dfinity.org[]。 您需要连接一个活跃的 GitHub 帐户才能继续。 如果您的帐户不符合条件，请遵循 xref:quickstart:network-quickstart.html[网络部署] 指南。
+首先，您需要导航到:https://faucet.dfinity.org[]。 
+// 您需要连接一个活跃的 GitHub 帐户才能继续。 如果您的帐户不符合条件，请遵循 xref:quickstart:network-quickstart.html[网络部署] 指南。
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
@@ -45,6 +46,6 @@ image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
 
 === 接下来，人们经常看这些指南：
 
-* 链接:./host-a-website.html[Host a Static Website]
-* 链接:./local-quickstart.html[Local Development]
-* 链接:./network-quickstart.html[Network Deployment]
+* link:./host-a-website.html[Host a Static Website]
+* link:./local-quickstart.html[Local Development]
+* link:./network-quickstart.html[Network Deployment]

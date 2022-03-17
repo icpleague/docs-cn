@@ -1,4 +1,4 @@
-=网络神经系统dapp快速入门
+= 网络神经系统dapp快速入门
 :描述: 如何创建和管理质押的 ICP 实用代币。
 :k关键词: 互联网计算机,神经元,区块链,治理,加密货币,ICP代币,智能合约,燃料费,钱包,软件,智能合约,容器,开发者入职
 :实验性:
@@ -39,7 +39,7 @@ image:create-dissolve-neuron-api.svg[]
 === 治理和投票奖励
 
 当个人或组织将 ICP 实用代币锁定在神经元中时，神经元持有者可以就治理问题提出建议和投票。
-为了鼓励参与，神经元持有者还根据他们锁定的 ICP 实用代币的数量以及最长 8 年的锁定期长度按比例获得奖励。
+为了鼓励参与，神经元持有者还能根据他们锁定的 ICP 实用代币的数量以及锁定期长度（最长8年）按比例获得奖励。
 
 === 解锁神经元持有的股份
 
@@ -101,7 +101,7 @@ image:new-linked-account.png[]
 
 == 在账户之间转移 ICP 实用代币
 
-如果您选择自托管持有您的 ICP 实用代币，并且这些代币与您的开发者身份相关联，而不是您注册的互联网身份，您需要使用以下链接将 ICP 实用代币转移到您的帐户：https ://nns.ic0.app[网络神经系统（NNS）] dapp。
+如果您选择自托管持有您的 ICP 实用代币，并且这些代币与您的开发者身份相关联，而不是您注册的互联网身份，您需要将 ICP 实用代币转移到您的帐户link：https ://nns.ic0.app[网络神经系统（NNS）] dapp。
 
 要转移由您的开发者身份控制的 ICP 实用程序代币：
 
@@ -171,9 +171,9 @@ dfx ledger --network ic transfer 183a04888eb20e73766f082bae01587830bd3cd912544f6
 --
 
 +
-目标地址可以是在 {IC} 网络上运行的账本容器中的地址，您使用链接添加的帐户：https://nns.ic0.app[Network Nervous System dapp]，或钱包地址 你有一个交换。
+目标地址可以是在 {IC} 网络上运行的账本容器中的地址，您添加的帐户link：https://nns.ic0.app[Network Nervous System dapp]，或钱包地址 你有一个交换。
 +
-如果您将 ICP 实用程序代币转移到链接中的帐户：https://nns.ic0.app[Network Nervous System dapp]，您可能需要刷新浏览器才能看到交易反映。
+如果您将 ICP 实用程序代币转移到帐户link：https://nns.ic0.app[Network Nervous System dapp]，您可能需要刷新浏览器才能看到交易反映。
 +
 有关使用 `+dfx ledger+` 命令行选项的更多信息，请参阅link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger]。
 
@@ -205,7 +205,7 @@ image:dissolve-delay.png[]
 
 image:neuron-properties.png[]
 
-=== What you can do after creating a neuron
+=== 在创建神经元后你可以做什么
 
 锁定赌注并创建神经元后，您可以：
 
@@ -232,7 +232,7 @@ image:neuron-properties.png[]
 要增加现有神经元的权益：
 
 . 按照<<stake-icp,Stake ICP utility tokens in a neuron>>中的步骤使用link:https://nns.ic0.app[Network Nervous System (NNS)] dapp 质押原始神经元。
-. 在 {IC} 关联链接中查找交易：https://dashboard.internetcomputer.org/transactions[transaction dashboard] 获取神经元地址。
+. 在 {IC} 关联查找交易link：https://dashboard.internetcomputer.org/transactions[transaction dashboard] 获取神经元地址。
 +
 您可以使用您的主要 ICP 分类帐帐户的帐户标识符来搜索您的交易。
 . 返回link:https://nns.ic0.app[Network Nervous System (NNS)] dapp，然后点击**New Transaction**。
@@ -306,7 +306,7 @@ image:disburse.png[]
 +
 +
 
-image:select-account.png[]
+// image:select-account.png[]
 . 验证交易信息，然后点击**确认并发送**。
 +
 例如，检查目标地址是否与 `+dev-projects+` 链接帐户的预期地址匹配：
@@ -350,11 +350,11 @@ spawn 操作创建了一个新的神经元，该神经元将新的 ICP 余额锁
 
 有关成熟和产生新神经元的更多信息，请参阅以下文章：
 
-* 链接:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
 
-* 链接:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
 
-* 链接:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == 对提案进行投票
 
@@ -369,7 +369,7 @@ spawn 操作创建了一个新的神经元，该神经元将新的 ICP 余额锁
 . 点击**程序**，进入网络神经系统（NNS）应用程序。
 . 点击**投票**。
 +
-您可以单击列出的任何提案以查看有关提案的信息，包括提案的简要说明、用于查看有关提案的其他信息的链接、通过或拒绝提案的投票数以及投票数 由你的神经元投射。
+您可以单击列出的任何提案以查看有关提案的信息，包括提案的简要说明、用于查看有关提案的其他信息的link、通过或拒绝提案的投票数以及投票数 由你的神经元投射。
 . 使用主题、奖励状态和提案状态过滤器来控制显示的提案列表。
 +
 例如，打开“主题”列表以查看是否有任何要包括在提案列表中但当前未显示的提案主题，然后打开“提案状态”以验证您正在查看所有打开的提案。
@@ -379,19 +379,19 @@ spawn 操作创建了一个新的神经元，该神经元将新的 ICP 余额锁
 +
 有关投票和投票奖励的更多信息，请参阅以下文章：
 
-* 链接:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
+* link:https://medium.com/dfinity/earn-substantial-voting-rewards-by-staking-in-the-network-nervous-system-7eb5cf988182[Earn Substantial Voting Rewards by Staking in the Network Nervous System]
 
-* 链接:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+* link:https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
 
-* 链接:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
+* link:https://medium.com/dfinity/getting-started-on-the-internet-computers-network-nervous-system-app-wallet-61ecf111ea11[Getting Started on the Internet Computer’s Network Nervous System App & Wallet]
 
 == 提交提案
 
 目前，您只能使用 {sdk-short-name} 命令行界面 (`+dfx+`) 通过调用`+governance+` 容器向网络神经系统提交提案。
 
-用于处理 `+governance+` 容器的单独命令行工具 (`+icx-nns+`) 正在开发中，此功能也将在链接中提供：https://nns.ic0.app[Network Nervous System (NNS)] dapp 很快。
+用于处理 `+governance+` 容器的单独命令行工具 (`+icx-nns+`) 正在开发中，此功能也将提供link：https://nns.ic0.app[Network Nervous System (NNS)] dapp 很快。
 
-但是，如果您想立即开始提交提案，您可以通过从以下链接下载版本来访问 `+icx-nns+` 命令行工具的初步版本：https://github.com/dfinity/icx- nns/releases[icx-nns] 存储库。
+但是，如果您想立即开始提交提案，您可以下载版本来访问 `+icx-nns+` 命令行工具的初步版本link：https://github.com/dfinity/icx- nns/releases[icx-nns] 存储库。
 
 == 部署一个带有燃料费的容器
 
@@ -407,7 +407,7 @@ link:https://nns.ic0.app[Network Nervous System (NNS)] dapp 通过使您能够�
 .单击**容器**，然后单击**创建或链接容器**。
 .单击 **Create New Canister** 以创建新的 Cycles 钱包容器。
 +
-如果你已经有一个cycles wallet canister，你可以点击**Link Canister to Account**在链接中将一个现有的canister标识符链接到你的账户：https://nns.ic0.app[Network Nervous System (NNS)]应用程序。
+如果你已经有一个cycles wallet canister，你可以点击**Link Canister to Account**中将一个现有的canister标识符链接到你的账户link：https://nns.ic0.app[Network Nervous System (NNS)]应用程序。
 .选择您持有 ICP 实用代币的账户之一作为源账户。
 +
 例如，如果您同时拥有一个 **Main** 帐户和一个 **Dev-Projects** 帐户，则您可以选择 **Dev-Projects** 帐户，前提是该帐户持有您希望转换为周期的 ICP 实用程序代币.

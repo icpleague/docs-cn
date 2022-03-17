@@ -8,8 +8,8 @@
 它是无处不在的 _hello world_ 示例的 dapp 等价物。
 
 此示例基于通过运行 `dfx new` 创建的默认项目，如
-链接:../quickstart/local-quickstart{outfilesuffix}[Motoko] 和
-链接:../rust-guide/rust-quickstart{outfilesuffix}[Rust] 快速入门文档。
+link:../quickstart/local-quickstart{outfilesuffix}[Motoko] 和
+link:../rust-guide/rust-quickstart{outfilesuffix}[Rust] 快速入门文档。
 
 该示例可从
 https://github.com/dfinity/examples[examples]

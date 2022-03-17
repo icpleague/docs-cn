@@ -1,7 +1,7 @@
-在互联网计算机上存储一个静态网站
-=================================================
+= 在互联网计算机上存储一个静态网站
 
-在开始之前，请确保您已使用我们的 {sdk-short-name} (DFX) 和燃料费钱包进行设置，可以通过链接：cycles-faucet{outfilesuffix}[Faucet快速入门] 或通过购买 ICP 并点击我们的链接 :network-quickstart{outfilesuffix}[网络部署]指南。
+
+在开始之前，请确保您已使用我们的 {sdk-short-name} (DFX) 和燃料费钱包进行设置，可以通过link:cycles-faucet{outfilesuffix}[Faucet快速入门] 或通过购买 ICP 并点击我们的link :network-quickstart{outfilesuffix}[网络部署]指南。
 
 == 设置你的项目
 
@@ -162,6 +162,6 @@ image:static-website.png[Static Website]
 === 下一步
 
 想要构建一个全栈 dapp？ 查看
-链接:../developers-guide/tutorials/custom-frontend.html[Full-stack React Tutorial]!
+link:../developers-guide/tutorials/custom-frontend.html[Full-stack React Tutorial]!
 
-访问我们的链接:https://forum.dfinity.org[Developer Forum] 寻求 Dfinity 基金会工程师和开发者社区的灵感和支持。
+访问我们的link:https://forum.dfinity.org[Developer Forum] 寻求 Dfinity 基金会工程师和开发者社区的灵感和支持。

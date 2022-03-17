@@ -6,7 +6,7 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-_种子贡献者将其 ICP 实用程序令牌声明为 NNS 神经元的指南。 对于在声明后控制神经元，请参阅此
+_种子贡献者将其 ICP 实用程序代币声明为 NNS 神经元的指南。 对于在声明后控制神经元，请参阅此
 [https://medium.com/dfinity/integrating-ledger-nano-with-the-nns-front-end-dapp-user-manual-9c5600925e16
 tutorial]_
 
@@ -37,7 +37,7 @@ link:https://medium.com/dfinity/integrating-ledger-nano-with-the-nns-front-end-d
 * 命令行工具 ic-hardware-wallet-cli 在
 link:https://github.com/dfinity/nns-dapp/tree/main/ic-hardware-wallet-cli[github]
 
-== 使用 Ledger Nano 设备声明（即将推出）==
+== 使用 Ledger Nano 设备声明（即将推出）
 
 这将与 Ledger Nano 的“ICP”应用程序的下一个更新之一一起提供。 当前版本可以管理神经元，但还不能声明它们。
 
@@ -45,14 +45,14 @@ link:https://github.com/dfinity/nns-dapp/tree/main/ic-hardware-wallet-cli[github
 
 第 2 阶段版本：接下来的第 2 阶段版本包括用于种子轮神经元的 `claim_neurons` 函数。 这是专门针对种子轮的人的更新。
 
-== 使用气隙计算机进行声明 ==
+== 使用气隙计算机进行声明 
 
 声明需要访问您的秘密助记词和从中派生的密钥。 强烈建议您使用气隙计算机进行声明。 如果您对这样的设置或以下任何步骤不满意，那么您必须等待 Ledger Nano 设备的“ICP”应用程序的下一个版本。
 
 作为气隙设备，您可以使用 Windows、Linux 或 MacOS 机器。
 Linux 包括树莓派。
 
-=== 下载工具 ===
+=== 下载工具
 
 要下载工具，您需要第二台联网的计算机。 这些工具被称为“keysmith”和“quill”。 我们在这里描述了如何为您的架构查找和下载二进制文件。 或者，您可以从 github 上提供的源代码中自己编译工具
 link:https://github.com/dfinity/keysmith[keysmith] 和
@@ -183,7 +183,7 @@ account 打印您的帐户标识符。
 ----
 read seed
 ----
-Enter your seed phrase and finish with Return.
+输入您的助记词并按回车
 
 如果您不想在键入时显示助记词，请改用以下命令：
 [source,bash]

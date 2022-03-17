@@ -4,13 +4,13 @@
 
 === 安全问题
 
-对链接的响应：https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询调用]（与更新调用相反）不是由容器/子网进行阈值签名的。 因此，单个恶意副本或边界节点可能会更改数据，从而违反其真实性。 如果更新调用依赖于对查询调用的响应，这尤其危险。
+对响应link：https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询调用]（与更新调用相反）不是由容器/子网进行阈值签名的。 因此，单个恶意副本或边界节点可能会更改数据，从而违反其真实性。 如果更新调用依赖于对查询调用的响应，这尤其危险。
 
 === 推荐
 
-- 所有需要真实性保证的与安全相关的查询响应数据（这需要针对每个 dApp 进行评估）都应由 IC 使用认证变量进行认证。 考虑使用现有的数据结构，例如链接：https://github.com/dfinity/cdk-rs/tree/main/src/ic-certified-map[certified-map]。 数据认证必须在前端进行验证。
+- 所有需要真实性保证的与安全相关的查询响应数据（这需要针对每个 dApp 进行评估）都应由 IC 使用认证变量进行认证。 考虑使用现有的数据结构，例如link:https://github.com/dfinity/cdk-rs/tree/main/src/ic-certified-map[certified-map]。 数据认证必须在前端进行验证。
 - 或者，这些调用必须由调用者作为更新调用发出（例如在 agent-js 中），但这会影响性能：它需要几秒钟。 请注意，每个查询也可以由调用者作为更新发出。
-- 示例是链接中的资产证明:https://github.com/dfinity/internet-identity/blob/b29a6f68bbe5a49d048e12bc7a3263a9f43d080b/src/internet_identity/src/main.rs#L775-L808[Internet Identity], link:https://github.com/dfinity/nns-dapp/blob/372c3562127d70c2fde059bc9c268e8ae858583e/rs/src/assets.rs#L121-L145[NNS dApp], or the link:https://github.com/dfinity/internet-identity/blob/main/src/internet_identity/src/signature_map.rs[canister signature implementation in Internet Identity].
+- 示例是财产证明link:https://github.com/dfinity/internet-identity/blob/b29a6f68bbe5a49d048e12bc7a3263a9f43d080b/src/internet_identity/src/main.rs#L775-L808[Internet Identity], link:https://github.com/dfinity/nns-dapp/blob/372c3562127d70c2fde059bc9c268e8ae858583e/rs/src/assets.rs#L121-L145[NNS dApp], or the link:https://github.com/dfinity/internet-identity/blob/main/src/internet_identity/src/signature_map.rs[canister signature implementation in Internet Identity].
 
 == 非特定于互联网计算机
 
@@ -20,7 +20,7 @@
 
 ==== 安全问题
 
-使用易受攻击和过时的组件是一个链接:https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/[big security risk].
+使用易受攻击和过时的组件是一个link:https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/[big security risk].
 
 ==== 推荐
 
@@ -40,7 +40,7 @@
 
 ==== 推荐
 
-- 使用可能是开源的并且已经被许多人审查过的知名库。例如，在 JavaScript 中使用 https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API]，使用 crates 如链接：https://crates.io/crates/ Rust 中的 sha256[sha256]
+- 使用可能是开源的并且已经被许多人审查过的知名库。例如，在 JavaScript 中使用 https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API]，使用 crates 如link:https://crates.io/crates/ Rust 中的 sha256[sha256]
 
 === 使用安全加密方案
 
@@ -53,7 +53,7 @@
 
 参考：
 
-- 链接:https://owasp.org/Top10/A02_2021-Cryptographic_Failures/[OWASP Cryptographic Failures]
+- link:https://owasp.org/Top10/A02_2021-Cryptographic_Failures/[OWASP Cryptographic Failures]
 
 === 测试你的代码
 
@@ -65,12 +65,12 @@
 
 为容器实现和前端代码编写测试，尤其是安全相关属性和不变量。
 
-- 在链接：https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]：链接：https://mmapped.blog/posts/01-effective-rust-canisters.html #test-upgrades[测试升级]，链接：https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
-- 另见链接：rust-canister-development-security-best-practices.adoc#test-your-canister-code[即使在系统 API 调用存在的情况下测试您的容器代码]
-- 考虑链接：https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust 测试指南]
-- 对于 wasm 级别的单元测试，考虑使用链接：https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
-- 对于 Motoko 级别的单元测试，请考虑链接：https://kritzcreek.github.io/motoko-matchers/Canister.html[Canister 模块]。还有一些示例测试链接：https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[这里]和链接：https://github.com/dfinity/motoko-base /blob/master/test/textTest.mo[这里]。作为示例，另请参见链接的端到端测试和单元测试：https://github.com/dfinity/invoice-canister[invoice-canister]。
-- 对于长时间运行的测试场景，考虑链接：https://github.com/matthewhammer/motoko-bigtest[Motoko BigTest]
+- 在link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]：link:https://mmapped.blog/posts/01-effective-rust-canisters.html #test-upgrades[测试升级]，link:https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
+- 另见link:rust-canister-development-security-best-practices.adoc#test-your-canister-code[即使在系统 API 调用存在的情况下测试您的容器代码]
+- 考虑link:https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust 测试指南]
+- 对于 wasm 级别的单元测试，考虑使用link:https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
+- 对于 Motoko 级别的单元测试，请考虑link:https://kritzcreek.github.io/motoko-matchers/Canister.html[Canister 模块]。还有一些示例测试link:https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[这里]和link:https://github.com/dfinity/motoko-base /blob/master/test/textTest.mo[这里]。作为示例，另请参见端到端测试和单元测试link：https://github.com/dfinity/invoice-canister[invoice-canister]。
+- 对于长时间运行的测试场景，考虑link:https://github.com/matthewhammer/motoko-bigtest[Motoko BigTest]
 
 === 避免在生产环境中使用测试和开发代码
 
@@ -78,7 +78,7 @@
 
 在仅用于开发或测试设置的生产代码中包含代码路径是有风险的。 如果出现问题（有时确实如此！），这可能会在生产中引入安全漏洞。
 
-例如，我们已经看到验证证书的公钥是从不受信任的来源获取的问题，因为这是在测试网络上完成的。
+例如，我们有遇到“验证证书的公钥”是从不受信任的来源获取的问题，因为这是在测试网络上完成的。
 
 ==== 推荐
 

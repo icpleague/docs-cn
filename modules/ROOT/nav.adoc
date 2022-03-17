@@ -4,24 +4,31 @@
 ** xref:introduction:welcome.adoc#for-protocol-enthusiasts[适合: 协议爱好者]
 
 * xref:quickstart:quickstart-intro.adoc[快速开始]
-** xref:quickstart:newcomers.adoc[对于新人]
+// ** xref:quickstart:newcomers.adoc[对于新人]
+** xref:quickstart:how-to-deploy-hello-world-smart-contract.adoc[20分钟部署第一个DAPP]
 ** xref:quickstart:cycles-faucet.adoc[获取免费的Cycles]
-** xref:quickstart:host-a-website.adoc[托管静态网站]
-** xref:quickstart:local-quickstart.adoc[本地开发]
-** xref:quickstart:network-quickstart.adoc[网络部署]
+// ** xref:quickstart:host-a-website.adoc[托管静态网站]
+// ** xref:quickstart:local-quickstart.adoc[本地开发]
+// ** xref:quickstart:network-quickstart.adoc[网络部署]
 
 * xref:examples:index.adoc[示例代码]
-*** xref:examples:hello.adoc[Hello示例]
-*** link:https://github.com/dfinity/examples[官方示例仓库]
-*** link:https://github.com/dfinity/awesome-dfinity[开源社区项目]
-*** xref:examples:hackathon-projects.adoc[黑客松项目]
-*** xref:examples:codelabs.adoc[Codlabs]
+** xref:examples:hello.adoc[Hello示例]
+** xref:examples:host-a-website.adoc[静态网站]
+** xref:examples:dex.adoc[Basic DEX]
+** xref:examples:nft.adoc[NFT Minting]
+** xref:examples:dao.adoc[Basic DAO]
+** xref:examples:encrypted-notes.adoc[Encrypted Note-taking]
+** xref:examples:tokentransfer.adoc[Token Transfer]
+// ** link:https://github.com/dfinity/awesome-dfinity[开源社区项目]
+// ** xref:samples:hackathon-projects.adoc[黑客松项目]
+// ** xref:samples:codelabs.adoc[Codlabs]
 
 * 开发者文档
 ** 入门
 *** SDK介绍
 **** xref:developers-guide:install-upgrade-remove.adoc[安装、升级或删除软件]
 **** xref:release-notes:sdk-release-notes.adoc[Release notes]
+***** xref:release-notes:0.9.2-rn.adoc[0.9.2]
 ***** xref:release-notes:0.9.0-rn.adoc[0.9.0]
 ***** xref:release-notes:0.8.4-rn.adoc[0.8.4]
 ***** xref:release-notes:0.8.3-rn.adoc[0.8.3]
@@ -105,7 +112,7 @@
 **** xref:candid-guide:candid-intro.adoc[Candid]
 ***** xref:candid-guide:candid-concepts.adoc[什么是Candid?]
 ***** xref:candid-guide:candid-howto.adoc[如何使用]
-***** xref:candid-guide:candid-ref.adoc[参考]
+// ***** xref:candid-guide:candid-types.adoc[参考] commented out because it had error in netlify logs
 ****** xref:candid-guide:candid-types.adoc[支持的类型]
 ****** link:https://github.com/dfinity/candid[Candid规范]
 ****** link:https://docs.rs/candid[Candid的Rust库]
@@ -120,6 +127,11 @@
 **** xref:developers-guide:tutorials/custom-frontend.adoc[自定义前端]
 **** xref:developers-guide:tutorials/my-contacts.adoc[添加CSS样式]
 
+*** Security Best Practices
+**** xref:security-best-practices:introduction.adoc[Introduction]
+**** xref:security-best-practices:general-security-best-practices.adoc[General Security Best Practices]
+**** xref:security-best-practices:web-app-development-security-best-practices.adoc[Web App Development Security Best Practices]
+**** xref:security-best-practices:rust-canister-development-security-best-practices.adoc[Rust Canister Development Security Best Practices]
 * 协议文档
 ** .xref:developers-guide:concepts/concepts-intro.adoc[概念]
 *** xref:developers-guide:concepts/what-is-IC.adoc[什么是IC(互联网计算机)]

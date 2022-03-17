@@ -10,20 +10,20 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 本指南简要介绍了作为您保管策略的一部分的 *冷存储* 的概念以及目前可用的最常见的冷存储类型。
 
-有关冷存储和其他保管选项的更多信息，您应该进行自己的研究，并确保在继续之前彻底了解您的选择的后果。
+有关冷存储和其他保管选项的更多信息，您应该自己研究，并确保在彻底了解各种选项后再做选择。
 
 == 冷存储
 
 冷存储意味着您将私钥离线存储在未连接到互联网的设备中。
-冷存储是一种流行的数字资产自我保管解决方案，因为如果存在软件安全漏洞或冷存储解决方案丢失或被盗，它会使您的密钥更难被泄露。
+冷存储是一种流行的数字资产自我保管解决方案，即使存在软件安全漏洞或冷存储解决方案丢失或被盗，您的密钥也很难被泄露。
 
 有关冷存储方法和保护私钥的最佳实践的更多信息，请参阅以下附加资源：
 
-* 链接：https://www.investopedia.com/terms/c/cold-storage.asp【冷存储】
+* link:https://www.investopedia.com/terms/c/cold-storage.asp[冷存储]
 
-* 链接：https://www.ledger.com/academy/hardwarewallet/best-practices-when-using-a-hardware-wallet#:~:text=%E2%80%93%20Keep%20your%20Recovery%20sheet %20physically,or%20smartphone%20screen%20with%20caution[使用硬件钱包时的最佳实践]
+* link:https://www.ledger.com/academy/hardwarewallet/best-practices-when-using-a-hardware-wallet#:~:text=%E2%80%93%20Keep%20your%20Recovery%20sheet%20physically,or%20smartphone%20screen%20with%20caution[使用硬件钱包时的最佳实践]
 
-* 链接：https://blog.trailofbits.com/2018/11/27/10-rules-for-the-secure-use-of-cryptocurrency-hardware-wallets/【加密货币硬件钱包安全使用10条规则 ]
+* link:https://blog.trailofbits.com/2018/11/27/10-rules-for-the-secure-use-of-cryptocurrency-hardware-wallets/[加密货币硬件钱包安全使用10条规则 ]
 
 == 常见的冷存储选项
 
@@ -44,7 +44,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 . 如果您复制并保护助记词——例如，以 <<Paper wallets,paper wallet>> 的形式存储它——您可以使用助记词初始化新设备并重新获得对您的数字资产的访问权限。
 
 有关详细信息，请参阅
-链接：https://cointelegraph.com/explained/crypto-wallets-explained[加密钱包，解释]。
+link:https://cointelegraph.com/explained/crypto-wallets-explained[加密钱包，解释]。
 
 === 气隙计算机
 
@@ -53,17 +53,17 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 将标准个人计算机或类似设备转换为气隙计算机可能需要您物理移除网卡、禁用某些软件或准备在再次连接到 Internet 之前彻底擦除计算机。
 
 根据您希望气隙计算机的安全程度，一种选择是使用可启动映像，该映像提供最小的操作系统来收集您的数字资产，然后从该过程中删除任何工件，并在完成任何事务后正常重新启动计算机。
-有关更多信息，请参阅链接：https://www.wired.com/story/extreme-security-measures/[Extreme Security Measures for the Extra Paranoid] 和
-链接：https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/[终极防御：什么是气隙计算机？]。
+有关更多信息，请参阅link:https://www.wired.com/story/extreme-security-measures/[Extreme Security Measures for the Extra Paranoid] 和
+link:https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/[终极防御：什么是气隙计算机？]。
 
 === 纸钱包
 
 *纸钱包*是一张打印的纸，其中包含您的重要关键信息（在某些情况下，甚至是二维码），用于促进数字资产交易。
 通常不推荐使用纸钱包，因为它们容易退化，并且可能不安全、容易丢失或被盗。
 
-但是，作为硬件钱包的备份，您可能希望创建一个纸钱包并将其存储在安全的位置，例如保险箱。
+但是，作为硬件钱包的备份，您可能希望准备一个纸钱包并将其存储在安全的位置，例如保险箱。
 
-更多信息见链接：https://blockgeeks.com/guides/paper-wallet-guide/#Paper_wallets[纸钱包]。
+更多信息见link:https://blockgeeks.com/guides/paper-wallet-guide/#Paper_wallets[纸钱包]。
 
 == 保护资产安全
 

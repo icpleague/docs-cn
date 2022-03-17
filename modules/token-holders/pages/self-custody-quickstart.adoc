@@ -13,13 +13,13 @@ ICP 代币在 {IC} 的治理和经济方面都发挥着关键作用。
 
 * 您是新的 ICP 代币持有者。
 * 您想了解您可以使用 ICP 代币做什么。
-* 您想知道如何使用 {sdk-short-name} 命令行界面 DFX 转换、转移或锁定您的 ICP 令牌。
+* 您想知道如何使用 {sdk-short-name} 命令行界面 DFX 转换、转移或锁定您的 ICP 代币。
 
-如果您还不是代币持有者，您需要从交易所购买 ICP 代币或获得代币授权，然后才能进行托管。有关如何获取 ICP 代币和托管选项的概述，请参见link：../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[如何获取 ICP 代币] 和链接：托管选项- intro{outfilesuffix}【选择数字资产自托管】。
+如果您还不是代币持有者，您需要从交易所购买 ICP 代币或获得代币授权，然后才能进行托管。有关如何获取 ICP 代币和托管选项的概述，请参见 link：../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[如何获取 ICP 代币] 和link：托管选项- intro{outfilesuffix}【选择数字资产自托管】。
 
-如果您正在使用其他应用程序（例如链接：https://nns.ic0.app[Network Nervous System (NNS) application] 或硬件钱包提供的用户界面）与您的 ICP 代币进行交互，您应该参考到该应用程序的文档。
+如果您正在使用其他应用程序（例如link：https://nns.ic0.app[Network Nervous System (NNS) application] 或硬件钱包提供的用户界面）与您的 ICP 代币进行交互，您应该参考到该应用程序的文档。
 
-这个 _自托管快速入门_ 只专注于使用 {sdk-short-name} 命令行界面 DFX 与 ICP 令牌进行交互。
+这个 _自托管快速入门_ 只专注于使用 {sdk-short-name} 命令行界面 DFX 与 ICP 代币进行交互。
 
 == 如何使用 ICP 代币
 
@@ -56,9 +56,9 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 例如，如果您使用使用 {sdk-long-name} `+dfx+` 命令行界面创建的默认开发人员身份，
 您应该将`+~/.config/dfx/identity/default/identity.pem+` 文件的备份存储在安全位置。
 
-* 您有一个安全的环境来执行涉及 ICP 令牌的操作。
+* 您有一个安全的环境来执行涉及 ICP 代币的操作。
 +
-作为安全最佳实践，任何涉及 ICP 令牌传输的操作都需要一台具有最少硬件和软件的气隙计算机以及一台连接到网络的计算机。
+作为安全最佳实践，任何涉及 ICP 代币传输的操作都需要一台具有最少硬件和软件的气隙计算机以及一台连接到网络的计算机。
 实际上，这需要在两台计算机之间移动文件并采取其他预防措施以最大程度地降低风险。
 +
 为简单起见，本_{doctitle}_描述了如何使用连接到网络的单台计算机完成关键任务。
@@ -153,7 +153,7 @@ dfx ledger --network ic balance
 
 要将 ICP 代币转换为循环：
 
-. 通过运行类似于以下的命令从您的帐本帐户转移 ICP 令牌，创建一个具有燃料费的新容器：
+. 通过运行类似于以下的命令从您的帐本帐户转移 ICP 代币，创建一个具有燃料费的新容器：
 +
 [source,bash]
 ----
@@ -213,7 +213,7 @@ dfx identity whoami
 dfx ledger --network ic balance
 ----
  
-. 通过运行类似于以下的命令将 ICP 令牌转移到另一个帐户：
+. 通过运行类似于以下的命令将 ICP 代币转移到另一个帐户：
 +
 [source,bash]
 ----
@@ -226,11 +226,11 @@ For example:
 dfx ledger --network ic transfer ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406 --icp 5 --memo 12345
 ....
 +
-此示例说明如何使用带有 `+--icp+` 命令行选项的整数将 ICP 令牌转移到指定帐户。
+此示例说明如何使用带有 `+--icp+` 命令行选项的整数将 ICP 代币转移到指定帐户。
 +
 --
 
-* 您还可以使用 `+--e8s+` 选项单独或与 `+--icp+` 选项一起指定 ICP 令牌的小数单位 - 称为 *e8s*。
+* 您还可以使用 `+--e8s+` 选项单独或与 `+--icp+` 选项一起指定 ICP 代币的小数单位 - 称为 *e8s*。
 
 * 或者，您可以使用 `+--amount+` 指定要传输的 ICP 代币数量，小数点后最多 8 位，例如，`+5.00000025+`。
 --
@@ -279,7 +279,7 @@ ae6e1a76da5725bbbf0c5c035aaf0525b791e0f0f7cce27d8e27826389871406
 ....
 \c1_\8d\22/_\08\db\89\0c0\c6\a7C}\b5\9d=3\b92]1\1fHT\c9t\af\99\ad\fb
 ....
-. 通过运行类似于以下的命令，将 ICP 令牌从分类帐帐户转移到上一步中返回的目标帐户标识符：
+. 通过运行类似于以下的命令，将 ICP 代币从分类帐帐户转移到上一步中返回的目标帐户标识符：
 +
 [source,bash]
 ----

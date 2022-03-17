@@ -7,14 +7,14 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[example-code-intro]]
-除了我们的教程部分，这里还有一些快速的参考资料! 你还可以查看我们的 https://github.com/dfinity/examples[Examples Repo], https://github.com/dfinity/awesome-dfinity[Awesome Dfinity]，一套精心策划的开源项目和来自我们社区的例子，或链接:./hackathon-projects.html[Hackathon Projects]!
+除了我们的教程部分，这里还有一些快速的参考资料! 你还可以查看我们的 https://github.com/dfinity/examples[Examples Repo], https://github.com/dfinity/awesome-dfinity[Awesome Dfinity]，一套精心策划的开源项目和来自我们社区的例子，或link:./hackathon-projects.html[Hackathon Projects]!
 
 [[motoko-rust]]
 == Motoko 和 Rust 示例
 
 我们首先列出 Motoko 和 Rust 中可用的示例：
 
-* 链接:hello{outfilesuffix}[Hello]：dapp 等效于 _hello world_，具有单独的后端和前端容器服务于网页。
+* link:hello{outfilesuffix}[Hello]：dapp 等效于 _hello world_，具有单独的后端和前端容器服务于网页。
 
 [[motoko]]
 == Motoko Examples
@@ -94,7 +94,7 @@ Large examples contributed by the community and not necessarily up-to-date:
 [[rust-videos]]
 === 视频
 
-这些来自我们社区对话系列的视频介绍了在 Rust 中构建 dapps，以及在 Rust 中构建 dapps 的最佳实践。
+这些来自我们社区对话系列的视频包括在 Rust 中构建 dapps的介绍，以及在 Rust 中构建 dapps 的最佳实践。
 
 - https://www.youtube.com/watch?v=6wyIhzsFbKw[社区对话 | 用 Rust 构建 Dapp 概述]
 - https://www.youtube.com/watch?v=36L33S_DYHY&ab_channel=DFINITY[社区对话 | Rust 中容器的最佳实践]
@@ -104,17 +104,17 @@ Large examples contributed by the community and not necessarily up-to-date:
 
 == C
 
-有关使用 C 编程语言为 {IC} 编写的项目示例，请参阅链接:https://github.com/dfinity/examples/tree/master/c[C++ 示例项目].
+使用 C 编程语言为 {IC} 编写的项目示例，请参阅link:https://github.com/dfinity/examples/tree/master/c[C++ 示例项目].
 
 警告：这些示例可能会损坏，可能需要更新，仅供说明之用。
 
-* 链接:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
-* 链接:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
-* 链接:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
+* link:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
+* link:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
+* link:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
 
 == Wat (Wasm 文本格式)
 
 只是为了好玩，我们还有一个用纯 Wasm 文本格式编写的简单示例：
 
-* 链接交易类型:https://github.com/dfinity/examples/tree/master/wasm/counter[counter]
+* 交易类型link:https://github.com/dfinity/examples/tree/master/wasm/counter[counter]
 

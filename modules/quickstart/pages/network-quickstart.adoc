@@ -12,7 +12,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 [[net-quick-start]]
 这个_快速入门_方案假设你是第一次安装{sdk-short-name}，并在{IC}区块链主网上部署默认项目。
 
-如果您只是在本地开发环境中部署项目，请参见链接：local-quickstart{outfilesuffix}[本地开发]场景。
+如果您只是在本地开发环境中部署项目，请参见link:local-quickstart{outfilesuffix}[本地开发]场景。
 
 首先，让我们构建和部署一个简单的 Hello dapp，它只有一个功能——称为 `+greet+`。
 `+greet+` 函数接受一个文本参数，如果您使用命令行运行 dapp，则在终端中返回类似于 **Hello,{nbsp}everyone!** 的问候语，如果您使用的是 HTML 页面，则返回结果 在浏览器中访问 dapp。
@@ -32,12 +32,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 +
 您必须拥有 *燃料费* 才能完成本教程。 要获取燃料费，您必须将 ICP 代币转换为燃料费，或者从其他来源（例如，来自其他开发人员控制的容器或第三方燃料费提供商）提供燃料费。 本教程假设您有一个可用 ICP 代币的帐户，并说明如何将 ICP 代币转换为燃料费并将这些燃料费转移到您控制的 **燃料费钱包**。
 +
-有关如何获取 ICP 代币的信息，请参阅链接:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
-有关使用网络神经系统应用程序管理 ICP 代币的介绍，请参阅链接:../token-holders/nns-app-quickstart{outfilesuffix}[网络神经系统dapp快速入门].
-有关在创建后使用默认燃料费钱包的信息，请参阅链接:../developers-guide/default-wallet{outfilesuffix}[使用默认燃料费钱包].
+有关如何获取 ICP 代币的信息，请参阅link:../developers-guide/concepts/tokens-cycles{outfilesuffix}#get-cycles[How you can get ICP tokens].
+有关使用网络神经系统应用程序管理 ICP 代币的介绍，请参阅link:../token-holders/nns-app-quickstart{outfilesuffix}[网络神经系统dapp快速入门].
+有关在创建后使用默认燃料费钱包的信息，请参阅link:../developers-guide/default-wallet{outfilesuffix}[使用默认燃料费钱包].
 
 本教程假设您知道如何在您的计算机上执行常见任务，例如打开终端和运行命令。
-如果您不确定如何打开新的终端 shell 或如何安装 `node.js` 等软件包，请参阅链接：newcomers{outfilesuffix}[新手的初步步骤]。
+如果您不确定如何打开新的终端 shell 或如何安装 `node.js` 等软件包，请参阅link:newcomers{outfilesuffix}[新手的初步步骤]。
 如果您愿意在没有说明的情况下满足先决条件，请继续<<下载并安装>>。
 
 [[net-download-sdk]]
@@ -81,7 +81,7 @@ dfx --version
 该命令显示 `+dfx+` 命令行可执行文件的版本信息，类似于以下内容：
 +
 ....
-dfx 0.8.4
+dfx 0.9.2
 ....
 . 通过运行以下命令预览其他 `+dfx+` 命令行子命令的使用信息：
 +
@@ -99,7 +99,7 @@ dfx --help
 您可以使用 `+dfx+` 父命令及其子命令创建项目。
 
 对于本教程，我们将从默认示例 dapp 开始，以说明使用项目中的启动文件创建 dapp。
-当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们在链接中介绍了构成项目目录的模板文件：../developers-guide/tutorials/explore-templates{outfilesuffix}[探索默认项目]教程。
+当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们在link中介绍了构成项目目录的模板文件：../developers-guide/tutorials/explore-templates{outfilesuffix}[探索默认项目]教程。
 
 为您的第一个 dapp 创建一个新项目：
 
@@ -149,7 +149,7 @@ dfx ping ic
 [[net-ledger-id]]
 == 确认您的开发者身份和帐本帐户
 
-所有 ICP 代币交易都记录在一个链接中：../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] 运行在互联网计算机区块链上。
+所有 ICP 代币交易都记录在一个link中：../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] 运行在互联网计算机区块链上。
 账本容器由所有 ICP 代币持有者的*帐户标识符*和*余额*组成。
 
 在您可以转移您在帐本帐户中持有的任何 ICP 代币之前，您需要向帐本发送一条安全且经过正确签名的消息，以验证您的身份并授权您的开发人员身份完成交易。
@@ -312,7 +312,7 @@ https://<WALLET-CANISTER-ID>.raw.ic0.app
 .单击 *Authenticate* 以继续使用 Internet 身份服务。
 .如果您之前已注册身份或以新用户的身份注册服务，请输入您的*用户编号*。
 +
-有关 Internet 身份服务以及如何注册多个身份验证设备和方法的更多信息，请参阅链接：../ic-identity-guide/auth-how-to{outfilesuffix}[如何使用 Internet 身份服务]。
+有关 Internet 身份服务以及如何注册多个身份验证设备和方法的更多信息，请参阅link:../ic-identity-guide/auth-how-to{outfilesuffix}[如何使用 Internet 身份服务]。
 .使用您的用户号和您已注册的身份验证方法（例如安全密钥或指纹）进行身份验证。
 .单击 *Proceed* 以访问默认循环钱包应用程序。
 .通过复制 *Register Device* 页面中显示的命令并在终端中运行来注册您用于此会话的设备。
@@ -335,7 +335,7 @@ dfx canister --no-wallet --network ic call "gastn-uqaaa-aaaae-aaafq-cai" authori
 
 image::cycles-wallet.png[]
 +
-有关可用于使用默认燃料费钱包的命令和方法的更多信息，请参阅链接：../developers-guide/default-wallet{outfilesuffix}[使用默认燃料费钱包]。
+有关可用于使用默认燃料费钱包的命令和方法的更多信息，请参阅link:../developers-guide/default-wallet{outfilesuffix}[使用默认燃料费钱包]。
 
 [[net-deploy]]
 == 注册、构建和部署应用程序
@@ -351,7 +351,7 @@ image::cycles-wallet.png[]
 npm install
 ----
 +
-有关此步骤的更多信息，请参阅链接：../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]。
+有关此步骤的更多信息，请参阅link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]。
 . 通过运行以下命令注册、构建和部署您的第一个应用程序：
 +
 [source,bash]
@@ -473,7 +473,7 @@ image:net-front-end-prompt.png[HTML page with prompt]
 
 以下是关于下一步去哪里的一些建议：
 
-* 链接:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials]探索在本地开发环境中构建前端和后端 dapp。
+* link:../developers-guide/tutorials-intro{outfilesuffix}[Tutorials]探索在本地开发环境中构建前端和后端 dapp。
 
-* 链接:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] 了解 Candid 接口描述语言如何实现服务互操作性和可组合性。
-* 链接:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] 了解使用 Motoko 的功能和语法。
+* link:../candid-guide/candid-concepts{outfilesuffix}[What is Candid?] 了解 Candid 接口描述语言如何实现服务互操作性和可组合性。
+* link:../languages/motoko-at-a-glance{outfilesuffix}[{proglang} at-a-glance] 了解使用 Motoko 的功能和语法。
