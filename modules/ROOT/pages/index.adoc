@@ -8,7 +8,7 @@
 ++++
 <script>
 // Simulate HTTP Redirect to marketing /developers site
-window.location.replace("https://dfinity.org/developers");
+// window.location.replace("https://dfinity.org/developers");
 </script>
 ++++
 
@@ -30,7 +30,7 @@ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
         </div>
     </div>
 
-    <div class="home-cards-grid">
+    <div class="home-cards-grid">smartcontracts.org
 
         <a class="home-card" href="developers-guide/concepts/concepts-intro.html">
 
