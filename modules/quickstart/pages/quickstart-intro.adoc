@@ -7,7 +7,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
-T此 {sdk-long-name} 提供工具、示例代码和文档，以帮助您创建罐式智能合约 dapp 并将它们部署在 {IC} 区块链主网上。
+此 {sdk-long-name} 提供工具、示例代码和文档，以帮助您创建罐式智能合约 dapp 并将它们部署在 {IC} 区块链主网上。
 _快速入门_ 教程假设您是第一次安装 {sdk-short-name}，并说明如何创建、构建和部署您的第一个 dapp。
 
 

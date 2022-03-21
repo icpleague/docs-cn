@@ -22,7 +22,7 @@ image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
 === 第 2 步：主体 ID
 
-登录后，打开终端窗口并运行命令 +dfx identity get-principal+。 将输出粘贴到第 2 步屏幕上的文本输入中。 该主体将唯一标识您的计算机，并将用于让您访问您的燃料费钱包以及您使用它部署的任何容器智能合约。 您的主体看起来像一长串由连字符分隔的数字和字母。
+登录后，打开终端窗口并运行命令 + dfx identity get-principal +。 将输出粘贴到第 2 步屏幕上的文本输入中。 该主体将唯一标识您的计算机，并将用于让您访问您的燃料费钱包以及您使用它部署的任何容器智能合约。 您的主体看起来像一长串由连字符分隔的数字和字母。
 
 image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
 
@@ -46,6 +46,6 @@ image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
 
 === 接下来，人们经常看这些指南：
 
-* link:./host-a-website.html[Host a Static Website]
-* link:./local-quickstart.html[Local Development]
-* link:./network-quickstart.html[Network Deployment]
+* link:./host-a-website.html[托管静态网站]
+* link:./local-quickstart.html[本地开发]
+* link:./network-quickstart.html[网络部署]

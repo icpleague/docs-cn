@@ -115,4 +115,4 @@ const example = Actor.createActor(example_idl, { agent, canisterId: example_id }
 
 当前的所有教程都说明了服务于未经认证的前端资产的应用程序。
 学习如何构建一个使用经过认证的前端资产查询结果的应用程序是一个高级开发主题。
-有关如何返回认证数据以响应查询的信息，请参阅link:interface-spec/index{outfilesuffix}[接口规范]与其他开发人员联系link：https://forum.dfinity.org/[DFINITY开发者论坛]。
+有关如何返回认证数据以响应查询的信息，请参阅link:interface-spec/index{outfilesuffix}[接口规范]与其他开发人员联系link:https://forum.dfinity.org/[DFINITY开发者论坛]。
