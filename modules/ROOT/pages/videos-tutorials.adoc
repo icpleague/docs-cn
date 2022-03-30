@@ -65,7 +65,7 @@ video::yqIoiyuGYNA[youtube,width=100%,height=480px]
 
 本视频片段介绍了如何使用在本地运行的 {IC} 部署您的第一个应用程序。
 
-要自己尝试，请按照步骤操作link：quickstart/local-quickstart{outfilesuffix}[快速入门] 教程。
+要自己尝试，请按照步骤操作link:quickstart/local-quickstart{outfilesuffix}[快速入门] 教程。
 
 ++++
 <h1></h1>
@@ -139,7 +139,7 @@ video::GzkRsbqPaA0[youtube,width=100%,height=480px]
 
 此视频片段展示了一个为在 {IC} 上运行而构建的多人黑白棋游戏，并展示了为 {IC} 构建应用程序所涉及的许多关键概念。
 
-详细了解游戏是如何制作的，请参见link:https://ninegua.github.io/reversi/[在互联网计算机上构建多人黑白棋游戏]或查看源代码link：https:// /github.com/ninegua/reversi[Reversi] 存储库。
+详细了解游戏是如何制作的，请参见link:https://ninegua.github.io/reversi/[在互联网计算机上构建多人黑白棋游戏]或查看源代码 link:https://github.com/ninegua/reversi[Reversi] 存储库。
 
 ++++
 <h1></h1>
@@ -154,7 +154,7 @@ video::G6vUrC9lues[youtube,width=100%,height=480px]
 
 该视频片段总结了可用资源以及您如何参与其中。
 
-如需更多灵感，请查看示例应用程序link：https://github.com/dfinity/examples[examples] 或link:https://github.com/dfinity/awesome-dfinity[awesome-dfinity] 存储库。
+如需更多灵感，请查看示例应用程序link:https://github.com/dfinity/examples[examples] 或link:https://github.com/dfinity/awesome-dfinity[awesome-dfinity] 存储库。
 要参与对话，请加入link:https://forum.dfinity.org/[开发者论坛] 或在 Twitter 上关注link:https://twitter.com/dfinitydev[@dfinitydev]。
 
 ++++

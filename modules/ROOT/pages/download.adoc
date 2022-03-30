@@ -2,6 +2,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 目前，您可以直接从本地计算机的终端shell中下载 {sdk-long-name}。

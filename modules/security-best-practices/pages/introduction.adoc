@@ -10,15 +10,15 @@
 
 我们希望向开发人员宣传这些最佳实践，以便在新 dApp 开发过程中尽早解决潜在问题，而不仅仅是在最后（如果有的话）进行安全审查时解决。 理想情况下，这将使安全 dApp 的开发更加高效。
 
-一些优秀的容器最佳实践link：https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters] 和link：https://www.joachim-breitner.de/ blog/788-How_to_audit_an_Internet_Computer_canister[如何审核互联网计算机容器]。 相关部分链接在各个最佳实践中。
+一些优秀的容器最佳实践link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters] 和 link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核互联网计算机容器]。 相关部分链接在各个最佳实践中。
 
 == 最佳实践概述
 
 我们在后续页面中提供以下安全最佳实践：
 
-* link：general-security-best-practices.adoc[一般安全最佳实践]
-* link：web-app-development-security-best-practices.adoc[Web App Specific Security Best Practices],
-* link：rust-canister-development-security-best-practices.adoc[Rust Canister 开发安全最佳实践]
+* link:general-security-best-practices.adoc[一般安全最佳实践]
+* link:web-app-development-security-best-practices.adoc[Web App Specific Security Best Practices],
+* link:rust-canister-development-security-best-practices.adoc[Rust Canister 开发安全最佳实践]
 
 == 目标受众
 

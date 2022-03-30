@@ -4,6 +4,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]
@@ -12,14 +13,14 @@ _快速入门_ 教程假设您是第一次安装 {sdk-short-name}，并说明如
 
 
 
-== Getting Started
-To keep the instructions simple and focused on the task at hand, the _Quick start_ is deliberately hyper-focused in helping you deploy your first smart contract or dapp in 20 minutes or less.
+== 开始
+使说明简单以便让您专注于重要的事情，_快速入门_ 特意精简以帮助您在 20 分钟或更短的时间内部署第一个智能合约或 DAPP
 
-See link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[How to deploy hello world smart contract in 20 minutes].
+请参阅 link:how-to-deploy-hello-world-smart-contract{outfilesuffix}[如何在 20 分钟内部署 hello world 智能合约]。
 
-== More Sample Code
+== 更多示例代码
+完成第一个 DAPP 后，可以在link:../examples/index{outfilesuffix}[示例代码和 DAPP]中学习更完善的示例 (如 DAO, NFT, 等等...) 。
 
-Once you finish your first dap, you can see more robust examples (e.g. DAOs, NFTs, etc...) in link:../examples/index{outfilesuffix}[Sample code and dapps].
 
 == 想了解更多？
 

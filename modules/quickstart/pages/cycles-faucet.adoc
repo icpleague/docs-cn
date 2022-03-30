@@ -9,20 +9,20 @@
 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)"
 ----
 
-或按照链接中的说明进行操作link:https://smartcontracts.org.
+或按照链接中的说明进行操作 link:https://smartcontracts.org[]
 
 == 领取您的燃料费钱包
 
 === 第 1 步：验证
 
-首先，您需要导航到:https://faucet.dfinity.org[]。 
+首先，您需要到link:https://faucet.dfinity.org[]。 
 // 您需要连接一个活跃的 GitHub 帐户才能继续。 如果您的帐户不符合条件，请遵循 xref:quickstart:network-quickstart.html[网络部署] 指南。
 
 image:cycles-faucet/faucet_step_1.png[Connecting to GitHub]
 
-=== 第 2 步：主体 ID
+=== 第 2 步：身份 ID
 
-登录后，打开终端窗口并运行命令 + dfx identity get-principal +。 将输出粘贴到第 2 步屏幕上的文本输入中。 该主体将唯一标识您的计算机，并将用于让您访问您的燃料费钱包以及您使用它部署的任何容器智能合约。 您的主体看起来像一长串由连字符分隔的数字和字母。
+登录后，打开终端窗口并运行命令 `dfx identity get-principal`。 将输出粘贴到第 2 步屏幕上的文本输入中。 该身份将唯一标识您的计算机，并将用于让您访问您的燃料费钱包以及您使用它部署的任何容器智能合约。 您的身份看起来像一长串由连字符分隔的数字和字母。
 
 image:cycles-faucet/faucet_step_2.png[Enter a Principal ID]
 
@@ -40,9 +40,9 @@ image:cycles-faucet/faucet_step_4.png[Generate New Cycles Wallet]
 
 image:cycles-faucet/faucet_step_6.png[Configure DFX Wallet]
 
-您的燃料费钱包已创建并可以使用。 现在您需要做的就是从最终屏幕复制 +set-wallet+ 命令并在终端中运行它。 它将配置 DFX 以自动使用钱包和您的免费燃料费将您的前几个 dapp 或网站部署到 {platform}！
+您的燃料费钱包已创建并可以使用。 现在您需要做的就是从最终屏幕复制 `set-wallet` 命令并在终端中运行它。 它将配置 DFX 以自动使用钱包， 您的免费燃料费足够支持前几个 dapp 或网站部署到 {platform} ！
 
-现在您已准备好在 IC 上存储网站或遵循我们的 dapp 教程之一。
+现在您已准备好在 IC 上托管网站或继续学习我们的dapp教程。
 
 === 接下来，人们经常看这些指南：
 

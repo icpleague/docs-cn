@@ -7,6 +7,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[quick-start-intro]]

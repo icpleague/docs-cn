@@ -11,9 +11,9 @@
 link:../quickstart/local-quickstart{outfilesuffix}[Motoko] 和
 link:../rust-guide/rust-quickstart{outfilesuffix}[Rust] 快速入门文档。
 
-该示例可从
+示例在
 https://github.com/dfinity/examples[examples]
-Motoko 和 Rust 版本中的存储库：
+的Motoko 和 Rust 版本仓库中：
 
 * https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko]
 * https://github.com/dfinity/examples/tree/master/rust/hello[Rust]

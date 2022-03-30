@@ -1,5 +1,6 @@
 = 新手的初步步骤
 :commandkey: &#8984;
+:sdk-short-name: DFINITY Canister SDK
 
 如果这是您第一次在计算机上安装开发人员工具，您可能需要采取一些额外的步骤来准备您的环境。
 

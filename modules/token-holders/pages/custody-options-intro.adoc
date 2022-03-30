@@ -20,17 +20,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 有关冷存储方法和保护私钥的最佳实践的更多信息，请参阅以下附加资源：
 
 * link:https://www.investopedia.com/terms/c/cold-storage.asp[冷存储]
-
 * link:https://www.ledger.com/academy/hardwarewallet/best-practices-when-using-a-hardware-wallet#:~:text=%E2%80%93%20Keep%20your%20Recovery%20sheet%20physically,or%20smartphone%20screen%20with%20caution[使用硬件钱包时的最佳实践]
-
-* link:https://blog.trailofbits.com/2018/11/27/10-rules-for-the-secure-use-of-cryptocurrency-hardware-wallets/[加密货币硬件钱包安全使用10条规则 ]
+* link:https://blog.trailofbits.com/2018/11/27/10-rules-for-the-secure-use-of-cryptocurrency-hardware-wallets/[安全使用加密货币硬件钱包的10条规则 ]
 
 == 常见的冷存储选项
 
 最常见的冷存储类型包括：
 
 * <<硬件钱包>>
-* <<气隙计算机>>
+* <<物理隔离计算机>>
 * <<纸钱包>>
 
 === 硬件钱包
@@ -46,15 +44,15 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 有关详细信息，请参阅
 link:https://cointelegraph.com/explained/crypto-wallets-explained[加密钱包，解释]。
 
-=== 气隙计算机
+=== 物理隔离计算机
 
-*气隙计算机*与与互联网交互的不安全网络或家中不安全的局域网隔离。
+*物理隔离计算机*与与互联网交互的不安全网络或家中不安全的局域网隔离。
 
-将标准个人计算机或类似设备转换为气隙计算机可能需要您物理移除网卡、禁用某些软件或准备在再次连接到 Internet 之前彻底擦除计算机。
+将标准个人计算机或类似设备转换为物理隔离计算机可能需要您物理移除网卡、禁用某些软件或准备在再次连接到 Internet 之前彻底擦除计算机。
 
-根据您希望气隙计算机的安全程度，一种选择是使用可启动映像，该映像提供最小的操作系统来收集您的数字资产，然后从该过程中删除任何工件，并在完成任何事务后正常重新启动计算机。
+根据您希望物理隔离计算机的安全程度，一种选择是使用可启动映像，该映像提供最小的操作系统来收集您的数字资产，然后从该过程中删除任何工件，并在完成任何事务后正常重新启动计算机。
 有关更多信息，请参阅link:https://www.wired.com/story/extreme-security-measures/[Extreme Security Measures for the Extra Paranoid] 和
-link:https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/[终极防御：什么是气隙计算机？]。
+link:https://www.howtogeek.com/687792the-ultimate-defense-what-is-an-air-gapped-computer/[终极防御：什么是物理隔离计算机？]。
 
 === 纸钱包
 

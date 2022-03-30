@@ -34,7 +34,7 @@
 
 ==== 推荐
 
-- 根据设计，对于每个容器调用，都可以识别调用者。 调用link：https://smartcontracts.org/docs/interface-spec/index.html#principal[principal] 可以使用系统API的方法`ic0.msg_caller_size`和`ic0.msg_caller_copy`访问（见link：https ://docs.dfinity.systems/spec/public/#system-api-imports[这里]）。 如果例如 使用Internet Identity，principal是这个特定来源的用户身份，见link：https://github.com/dfinity/internet-identity/blob/main/docs/internet-identity-spec.adoc#identity-design -和数据模型[这里]。 如果某些操作（例如访问用户帐户数据或帐户特定操作）应限制为一个主体或一组主体，则必须在容器调用中明确检查，例如 Rust 中的如下：
+- 根据设计，对于每个容器调用，都可以识别调用者。 调用link:https://smartcontracts.org/docs/interface-spec/index.html#principal[principal] 可以使用系统API的方法`ic0.msg_caller_size`和`ic0.msg_caller_copy`访问（见link:https://docs.dfinity.systems/spec/public/#system-api-imports[这里]）。 如果例如 使用Internet Identity，principal是这个特定来源的用户身份，见link:https://github.com/dfinity/internet-identity/blob/main/docs/internet-identity-spec.adoc#identity-design -和数据模型[这里]。 如果某些操作（例如访问用户帐户数据或帐户特定操作）应限制为一个主体或一组主体，则必须在容器调用中明确检查，例如 Rust 中的如下：
 
 ```rust
     // Let pk be the public key of a principal that is allowed to perform 
@@ -52,7 +52,7 @@
 
 
 - 在 Rust 中，`ic_cdk` crate 可用于使用 `ic_cdk::api::caller` 对调用者进行身份验证。 确保返回的主体是 `Principal::self_authenticating` 类型，并使用该主体的公钥识别用户帐户，请参见上面的示例代码。
-- 在调用中尽早进行身份验证，以避免在身份验证之前进行未经身份验证的操作和潜在的昂贵操作。 link：rust-canister-development-security-best-practices.adoc#disallow-the-anonymous-principal[拒绝向匿名用户提供服务] 也是一个好主意。
+- 在调用中尽早进行身份验证，以避免在身份验证之前进行未经身份验证的操作和潜在的昂贵操作。 link:rust-canister-development-security-best-practices.adoc#disallow-the-anonymous-principal[拒绝向匿名用户提供服务] 也是一个好主意。
 
 [[disallow-the-anonymous-principal]]
 === 在经过身份验证的调用中禁止匿名主体
@@ -84,14 +84,14 @@ fn caller() -> Result<Principal, String> {
 
 ==== 安全问题
 
-IC 上的 dApp 可以使用link：https://wiki.internetcomputer.org/wiki/HTTP_asset_certification[资产认证] 来确保交付给浏览器的 HTTP 资产是真实的（即由子网进行阈值签名）。 如果一个应用程序不做资产认证，它只能通过不检查资产认证的 `raw.ic0.app` 不安全地提供服务。 这是不安全的，因为单个恶意节点或边界节点可以自由修改传递给浏览器的资产。
+IC 上的 dApp 可以使用link:https://wiki.internetcomputer.org/wiki/HTTP_asset_certification[资产认证] 来确保交付给浏览器的 HTTP 资产是真实的（即由子网进行阈值签名）。 如果一个应用程序不做资产认证，它只能通过不检查资产认证的 `raw.ic0.app` 不安全地提供服务。 这是不安全的，因为单个恶意节点或边界节点可以自由修改传递给浏览器的资产。
 
 如果除 `ic0.app` 之外还通过 `raw.ic0.app` 提供应用程序，则攻击者可能会诱骗用户（网络钓鱼）使用不安全的 raw.ic0.app。
 
 ==== 推荐
 
 - 仅通过服务工作者验证资产认证的 `<canister-id>.ic0.app` 提供资产。 不要通过 `<canister-id>.raw.ic0.app` 提供服务。
-- 使用资产容器（自动创建资产认证）提供资产，或添加包括资产认证的“ic-certificate”标头，例如 完成link：https://github.com/dfinity/nns-dapp[NNS dApp] 或link：https://github.com/dfinity/internet-identity[Internet Identity]。
+- 使用资产容器（自动创建资产认证）提供资产，或添加包括资产认证的“ic-certificate”标头，例如 完成link:https://github.com/dfinity/nns-dapp[NNS dApp] 或link:https://github.com/dfinity/internet-identity[Internet Identity]。
 - 如果请求来自原始，请检查容器的 `http_request` 方法。 如果是这样，则返回错误并且不提供任何资产。
 
 == 容器存储
@@ -135,8 +135,8 @@ IC 上的 dApp 可以使用link：https://wiki.internetcomputer.org/wiki/HTTP_as
 ** link:https://github.com/dfinity/stable-structures/[https://github.com/dfinity/stable-structures/]
 *** HashMap: link:https://github.com/dfinity/stable-structures/pull/1[https://github.com/dfinity/stable-structures/pull/1] (currently not prod ready)
 ** link:https://github.com/seniorjoinu/ic-stable-memory-allocator[https://github.com/seniorjoinu/ic-stable-memory-allocator]
-- 请参阅link：https://wiki.internetcomputer.org/wiki/Current_limitations_of_the_Internet_Computer[Internet 计算机的当前限制]，“长期运行升级”和“需要额外 wasm 内存的 [de]serializer”部分
-- 例如link：https://github.com/dfinity/internet-identity[internet identity] 直接使用稳定内存存储用户数据。
+- 请参阅link:https://wiki.internetcomputer.org/wiki/Current_limitations_of_the_Internet_Computer[Internet 计算机的当前限制]，“长期运行升级”和“需要额外 wasm 内存的 [de]serializer”部分
+- 例如link:https://github.com/dfinity/internet-identity[internet identity] 直接使用稳定内存存储用户数据。
 
 === 考虑加密容器上的敏感数据
 
@@ -235,9 +235,9 @@ IC 上的 dApp 可以使用link：https://wiki.internetcomputer.org/wiki/HTTP_as
 
 - 避免在 `pre_upgrade` 挂钩中出现恐慌/陷阱，除非它确实不可恢复，因此任何无效状态都可以通过升级修复。 pre-upgrade hook 中的 panic 会阻止升级，并且由于 pre-upgrade hook 由旧代码控制，它可以永久阻止升级。
 - 如果状态无效，则在 `post_upgrade` 挂钩中出现恐慌，以便可以重试升级并尝试修复无效状态。 升级后挂钩中的恐慌会中止升级，但可以使用新代码重试。
-- link：https://mmapped.blog/posts/01-effective-rust-canisters.html#test-upgrades[测试升级钩子。]（来自link：https://mmapped.blog/posts/01-effective -rust-canisters.html[有效的rust容器])
-- 另请参阅有关升级的部分link：https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核互联网计算机容器]（尽管侧重于 Motoko）
-- 参见link：https://wiki.internetcomputer.org/wiki/Current_limitations_of_the_Internet_Computer[互联网计算机的当前限制]，“`pre_upgrade` 挂钩中的错误”部分
+- link:https://mmapped.blog/posts/01-effective-rust-canisters.html#test-upgrades[测试升级钩子。]（来自link:https://mmapped.blog/posts/01-effective-rust-canisters.html[有效的rust容器])
+- 另请参阅有关升级的部分link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核互联网计算机容器]（尽管侧重于 Motoko）
+- 参见link:https://wiki.internetcomputer.org/wiki/Current_limitations_of_the_Internet_Computer[互联网计算机的当前限制]，“`pre_upgrade` 挂钩中的错误”部分
 
 == 杂项
 
@@ -350,7 +350,7 @@ link:https://mmapped.blog/posts/01-effective-rust-canisters.html#expose-metrics[
 
 ==== 推荐
 
-请参阅“时间不是严格单调的”部分link：https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]
+请参阅“时间不是严格单调的”部分link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]
 
 [[保护-反对-排水-循环-平衡]]
 === 防止耗尽循环余额
@@ -361,7 +361,7 @@ link:https://mmapped.blog/posts/01-effective-rust-canisters.html#expose-metrics[
 
 ==== 推荐
 
-考虑监控、早期身份验证、容器级别的速率限制以减轻这种情况。另外，请注意，攻击者的目标是消耗大多数燃料费的调用。请参阅“循环平衡消耗攻击部分”link：https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]。
+考虑监控、早期身份验证、容器级别的速率限制以减轻这种情况。另外，请注意，攻击者的目标是消耗大多数燃料费的调用。请参阅“循环平衡消耗攻击部分”link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]。
 
 == 非特定于 Internet 计算机
 
@@ -371,17 +371,17 @@ link:https://mmapped.blog/posts/01-effective-rust-canisters.html#expose-metrics[
 
 ==== 安全问题
 
-发送的数据link：https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询和更新调用]一般是不可信的。消息大小限制为几 MB。这可以例如引导以下问题：
+发送的数据link:https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询和更新调用]一般是不可信的。消息大小限制为几 MB。这可以例如引导以下问题：
 
 - 如果未经验证的数据在 Web UI 中呈现或显示在其他系统中，这可能导致注入攻击（例如 XSS）。
 - 大尺寸的消息可能会被发送并可能存储在容器中，从而消耗过多的存储空间。
-- 大输入（例如大列表或字符串）可能会触发过多的计算，导致 DoS 并消耗许多燃料费。另见link：rust-canister-development-security-best-practices.adoc#protect-against-draining-the-cycles-balance[防止耗尽燃料费余额]
+- 大输入（例如大列表或字符串）可能会触发过多的计算，导致 DoS 并消耗许多燃料费。另见link:rust-canister-development-security-best-practices.adoc#protect-against-draining-the-cycles-balance[防止耗尽燃料费余额]
 
 ==== 推荐
 
-- 执行输入验证，参见例如link：https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html[OWASP备忘单]。
-- “大数据攻击”部分link：https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]（注意坦率的太空炸弹）
-- link：https://owasp.org/www-project-application-security-verification-standard/[ASVS] 5.1.4：验证结构化数据是强类型的，并针对定义的模式进行验证，包括允许的字符、长度和模式（例如信用卡号码或电话，或验证两个相关字段是否合理，例如检查郊区和邮政编码匹配）。
+- 执行输入验证，参见例如link:https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html[OWASP备忘单]。
+- “大数据攻击”部分link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]（注意坦率的太空炸弹）
+- link:https://owasp.org/www-project-application-security-verification-standard/[ASVS] 5.1.4：验证结构化数据是强类型的，并针对定义的模式进行验证，包括允许的字符、长度和模式（例如信用卡号码或电话，或验证两个相关字段是否合理，例如检查郊区和邮政编码匹配）。
 
 === Rust：不要使用不安全的 Rust 代码
 
@@ -392,8 +392,8 @@ link:https://mmapped.blog/posts/01-effective-rust-canisters.html#expose-metrics[
 ==== 推荐
 
 - 尽可能避免不安全的代码。
-- 见link：https://anssi-fr.github.io/rust-guide/04_language.html#unsafe-code[Rust安全指南]
-- 考虑link：https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_avoid_unsafe_code[Dfinity Rust Guidelines]。
+- 见link:https://anssi-fr.github.io/rust-guide/04_language.html#unsafe-code[Rust安全指南]
+- 考虑link:https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_avoid_unsafe_code[Dfinity Rust Guidelines]。
 
 === Rust：避免整数溢出
 
@@ -404,8 +404,8 @@ Rust 中的整数可能会溢出。虽然这样的溢出会导致调试配置出
 ==== 推荐
 
 - 仔细检查您的代码是否存在任何可能环绕的整数运算。
-- 使用这些操作的“饱和”或“已检查”变体，例如“饱和添加”、“饱和订阅”、“检查添加”、“检查订阅”等。参见例如link：https://doc.rust-lang.org/std/primitive.u32.html#method.saturating_add[Rust docs] for `u32`。
-- 另见link：https://anssi-fr.github.io/rust-guide/04_language.html#integer-overflows[Rust security Guidelines on integer overflows]。
+- 使用这些操作的“饱和”或“已检查”变体，例如“饱和添加”、“饱和订阅”、“检查添加”、“检查订阅”等。参见例如link:https://doc.rust-lang.org/std/primitive.u32.html#method.saturating_add[Rust docs] for `u32`。
+- 另见link:https://anssi-fr.github.io/rust-guide/04_language.html#integer-overflows[Rust security Guidelines on integer overflows]。
 
 === 对于昂贵的调用，考虑使用验证码或工作证明
 
@@ -415,4 +415,4 @@ Rust 中的整数可能会溢出。虽然这样的溢出会导致调试配置出
 
 ==== 推荐
 
-如果 dApp 提供此类操作，请考虑使用 bot 预防技术，例如添加验证码或工作量证明。有例如link中的验证码实现：https://github.com/dfinity/internet-identity[internet identity]。
+如果 dApp 提供此类操作，请考虑使用 bot 预防技术，例如添加验证码或工作量证明。有例如link:https://github.com/dfinity/internet-identity[internet identity]中的验证码实现。

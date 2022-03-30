@@ -2,6 +2,7 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 如果您正在安装 {sdk-short-name} 的任何 0.7.0（或更高版本）版本，您可能已经注意到这些版本引入了一些用于处理 HTTP 查询和前端资产的重大改进。

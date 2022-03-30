@@ -27,7 +27,7 @@ tutorial]_
 
 * 使用 Ledger Nano 设备进行声明（即将推出）
 
-* 使用气隙计算机 + 联网计算机/智能手机进行声明
+* 使用物理隔离计算机 + 联网计算机/智能手机进行声明
 
 声明之后，有两种方法可以控制你的神经元：
 
@@ -45,11 +45,11 @@ link:https://github.com/dfinity/nns-dapp/tree/main/ic-hardware-wallet-cli[github
 
 第 2 阶段版本：接下来的第 2 阶段版本包括用于种子轮神经元的 `claim_neurons` 函数。 这是专门针对种子轮的人的更新。
 
-== 使用气隙计算机进行声明 
+== 使用物理隔离计算机进行声明 
 
-声明需要访问您的秘密助记词和从中派生的密钥。 强烈建议您使用气隙计算机进行声明。 如果您对这样的设置或以下任何步骤不满意，那么您必须等待 Ledger Nano 设备的“ICP”应用程序的下一个版本。
+声明需要访问您的秘密助记词和从中派生的密钥。 强烈建议您使用物理隔离计算机进行声明。 如果您对这样的设置或以下任何步骤不满意，那么您必须等待 Ledger Nano 设备的“ICP”应用程序的下一个版本。
 
-作为气隙设备，您可以使用 Windows、Linux 或 MacOS 机器。
+作为物理隔离设备，您可以使用 Windows、Linux 或 MacOS 机器。
 Linux 包括树莓派。
 
 === 下载工具
@@ -58,7 +58,7 @@ Linux 包括树莓派。
 link:https://github.com/dfinity/keysmith[keysmith] 和
 link:https://github.com/dfinity/quill[quill].
 
-二进制文件可用于以下硬件架构。 在这里，架构是指气隙计算机，而不是联网计算机。
+二进制文件可用于以下硬件架构。 在这里，架构是指物理隔离计算机，而不是联网计算机。
 
 [options="header"]
 |=====
@@ -73,19 +73,19 @@ link:https://github.com/dfinity/quill[quill].
 
 ==== 下载keysmith ====
 
-转到link:https://github.com/dfinity/keysmith/releases/[keysmith]，选择最新版本（当前为 v1.6.2）并获取与气隙机器架构匹配的 `.tar.gz` 文件 在上表中。
+转到link:https://github.com/dfinity/keysmith/releases/[keysmith]，选择最新版本（当前为 v1.6.2）并获取与物理隔离机器架构匹配的 `.tar.gz` 文件 在上表中。
 
 ==== 下载quill ====
 
-转到llink:https://github.com/dfinity/quill/releases[quill], 选择最新版本（必须 >= 0.2.12）并获取与上表中的气隙机架构匹配的可执行文件。
+转到llink:https://github.com/dfinity/quill/releases[quill], 选择最新版本（必须 >= 0.2.12）并获取与上表中的物理隔离机架构匹配的可执行文件。
 
-=== 复制到气隙机 ===
+=== 复制到物理隔离机 ===
 
-将 keysmith `.tar.gz` 文件和 quill 可执行文件从联网机器复制到气隙机。 例如，您可以使用 USB 驱动器执行此操作。
+将 keysmith `.tar.gz` 文件和 quill 可执行文件从联网机器复制到物理隔离机。 例如，您可以使用 USB 驱动器执行此操作。
 
 === 验证哈希 ===
 
-在气隙机上，进入终端。将目录改为存放keysmith .tar.gz文件和quill可执行文件的文件夹。
+在物理隔离机上，进入终端。将目录改为存放keysmith .tar.gz文件和quill可执行文件的文件夹。
 用以下命令计算SHA256哈希值
 
 
@@ -151,7 +151,7 @@ sudo install quill /usr/local/bin
 
 === 测试安装 ===
 
-在气隙计算机上运行：
+在物理隔离计算机上运行：
 [source,bash]
 ----
 keysmith
@@ -263,7 +263,7 @@ Todo
 
 === 测试安装 ===
 
-在气隙计算机上运行：
+在物理隔离计算机上运行：
 
 [source,bash]
 ----
@@ -303,7 +303,7 @@ SUBCOMMANDS:
 
 === 签署声明请求 ===
 
-On the air-gapped computer run:
+在物理隔离计算机上运行:
 [source,bash]
 ----
 quill --pem-file identity.pem claim-neurons >msg.json
@@ -320,7 +320,8 @@ quill send msg.json
 ----
 你的神经元现在应该被声明了。
 
-您可以通过以下方式仔细检查您声明是否成功：转到 https://ic.rocks/genesis/2d89d96b10f7a9456a9154b2f5309ee70df5bce1，将 `2d89d96b10f7a9456a9154b2f5309ee70df5bce1` 替换为您自己的 DFN 地址。 在“状态”下，您应该看到“已声明”。
+您可以通过以下方式仔细检查您声明是否成功：转到 https://ic.rocks/genesis/2d89d96b10f7a9456a9154b2f5309ee70df5bce1
+将 `2d89d96b10f7a9456a9154b2f5309ee70df5bce1` 替换为您自己的 DFN 地址。 在“状态”下，您应该看到“已声明”。
 
 ==== 选项 2：使用 QR 扫描应用程序 ====
 
@@ -335,9 +336,9 @@ https://p5deo-6aaaa-aaaab-aaaxq-cai.raw.ic0.app
 
 * 扫描二维码并提交
 
-===清理气隙计算机===
+===清理物理隔离计算机===
 
-如果您的声明成功，请不要忘记删除气隙计算机上的“.pem”文件：
+如果您的声明成功，请不要忘记删除物理隔离计算机上的“.pem”文件：
 
 [source,bash]
 ----

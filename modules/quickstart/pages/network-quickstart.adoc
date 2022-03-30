@@ -7,6 +7,8 @@
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
+:platform: Internet Computer platform
+:sdk-short-name: DFINITY Canister SDK
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[net-quick-start]]
@@ -99,7 +101,7 @@ dfx --help
 您可以使用 `+dfx+` 父命令及其子命令创建项目。
 
 对于本教程，我们将从默认示例 dapp 开始，以说明使用项目中的启动文件创建 dapp。
-当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们在link中介绍了构成项目目录的模板文件：../developers-guide/tutorials/explore-templates{outfilesuffix}[探索默认项目]教程。
+当您创建一个新项目时，`+dfx+` 命令行界面将默认项目目录结构添加到您的工作区。 我们在link:../developers-guide/tutorials/explore-templates{outfilesuffix}[探索默认项目]中介绍了构成项目目录的模板文件教程。
 
 为您的第一个 dapp 创建一个新项目：
 
@@ -149,13 +151,13 @@ dfx ping ic
 [[net-ledger-id]]
 == 确认您的开发者身份和帐本帐户
 
-所有 ICP 代币交易都记录在一个link中：../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] 运行在互联网计算机区块链上。
+所有 ICP 代币交易都记录在一个 link:../developers-guide/glossary{outfilesuffix}#g-ledger[ledger canister] 中运行在互联网计算机区块链上。
 账本容器由所有 ICP 代币持有者的*帐户标识符*和*余额*组成。
 
 在您可以转移您在帐本帐户中持有的任何 ICP 代币之前，您需要向帐本发送一条安全且经过正确签名的消息，以验证您的身份并授权您的开发人员身份完成交易。
 
 根据您设置保管 ICP 代币的方式，连接到账本和完成交易所需的硬件、软件和步骤可能会有所不同。
-例如，您可以连接到账本并从硬件钱包、使用硬件安全模块 (HSM) 设备、通过网络神经系统 (NNS) 前端应用程序或使用 {sdk-short-name `+dfx+` 命令行界面。
+例如，您可以连接到账本并从硬件钱包、使用硬件安全模块 (HSM) 设备、通过网络神经系统 (NNS) 前端应用程序或使用 {sdk-short-name} `+dfx+` 命令行界面。
 每种方法都提供了一个不同的界面，用于签署和向分类帐发送消息并代表您作为帐户持有人的身份。
 
 === 关于您的开发者身份
@@ -171,7 +173,7 @@ dfx ping ic
 
 要在账本中查找您的帐户：
 
-.通过运行以下命令确认您当前使用的开发者身份：
+. 通过运行以下命令确认您当前使用的开发者身份：
 +
 [source,bash]
 ----
@@ -346,12 +348,14 @@ image::cycles-wallet.png[]
 
 . 在您的终端 shell 中，检查您是否仍在项目的根目录中。
 . 确保 `+node+` 模块在您的项目目录中可用，如果需要，通过运行以下命令：
++
 [source,bash]
 ----
 npm install
 ----
 +
-有关此步骤的更多信息，请参阅link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]。
+有关此步骤的更多信息，请参阅link:../developers-guide/webpack-config{outfilesuffix}#troubleshoot-node[确保节点在项目中可用]
+
 . 通过运行以下命令注册、构建和部署您的第一个应用程序：
 +
 [source,bash]
@@ -408,6 +412,7 @@ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
 Transfer sent at BlockHeight: 81520
 Canister was topped up!
 ....
+
 . Call the `+hello+` canister and the predefined `+greet+` function by running the following command:
 +
 [source,bash]

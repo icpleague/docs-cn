@@ -10,26 +10,26 @@
 
 ==== 推荐
 
-- 考虑使用例如 link：https://github.com/dfinity/internet-identity[Internet Identity] 进行身份验证，使用link：https://github.com/dfinity/agent-js[agent-js] 进行容器调用，以及 link：https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client] 用于与您的 dApp 中的互联网身份进行交互。
+- 考虑使用例如 link:https://github.com/dfinity/internet-identity[Internet Identity] 进行身份验证，使用link:https://github.com/dfinity/agent-js[agent-js] 进行容器调用，以及 link:https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client] 用于与您的 dApp 中的互联网身份进行交互。
 - 当然，考虑在 IC 上使用替代认证框架进行认证也是一种选择。
 
 === 设置适当的会话超时
 
 ==== 安全问题
 
-目前，互联网身份向授权发出到期时间。 这个过期时间可以设置link：https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client]。 委托到期后，用户必须重新进行身份验证。 设置一个好的值是安全性和可用性之间的权衡。
+目前，互联网身份向授权发出到期时间。 这个过期时间可以设置link:https://github.com/dfinity/agent-js/tree/main/packages/auth-client[auth-client]。 委托到期后，用户必须重新进行身份验证。 设置一个好的值是安全性和可用性之间的权衡。
 
 ==== 推荐
 
-见link：https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#session-expiration[OWASP Recommendations]。 应为安全敏感的应用程序设置 30 分钟的超时。
+见link:https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#session-expiration[OWASP Recommendations]。 应为安全敏感的应用程序设置 30 分钟的超时。
 
-注意：空闲超时可能很快就会引入，请参见link：https://forum.dfinity.org/t/authclient-update-idle-timeouts/10464[this]。
+注意：空闲超时可能很快就会引入，请参见link:https://forum.dfinity.org/t/authclient-update-idle-timeouts/10464[this]。
 
 === 不要在生产环境中的 agent-js 中使用 fetchRootKey
 
 ==== 安全问题
 
-`agent.fetchRootKey()` 可以使用link：https://github.com/dfinity/agent-js[agent-js] 从测试环境中的状态调用中​​获取根子网阈值公钥。此密钥用于验证通过容器更新调用接收的认证数据的阈值签名。在生产 Web 应用程序中使用此方法使攻击者可以选择提供自己的公钥，从而使更新响应的所有真实性保证无效。
+`agent.fetchRootKey()` 可以使用link:https://github.com/dfinity/agent-js[agent-js] 从测试环境中的状态调用中​​获取根子网阈值公钥。此密钥用于验证通过容器更新调用接收的认证数据的阈值签名。在生产 Web 应用程序中使用此方法使攻击者可以选择提供自己的公钥，从而使更新响应的所有真实性保证无效。
 
 ==== 推荐
 
@@ -48,9 +48,9 @@
 ==== 推荐
 
 - 除了容器中的数据验证之外，已经在前端执行数据验证。数据验证应尽早进行。
-- 见link：https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation[OWASP Input Validation Cheat Sheet]
+- 见link:https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation[OWASP Input Validation Cheat Sheet]
 
-[[不要加载不受信任的内容]]
+[[dont-load-untrusted-content]]
 === 不要从不受信任的域加载 JavaScript（和其他资产）
 
 ==== 安全问题
@@ -59,38 +59,38 @@
 
 如果他们提供恶意 JavaScript，他们可以接管网络应用程序/帐户，例如从 LocalStorage 读取由 agent-js 管理的私钥。
 
-请注意，从不受信任的域中加载其他资产（例如 CSS）也存在安全风险，请参见例如link：https://xsleaks.dev/docs/attacks/css-injection/[这里]。
+请注意，从不受信任的域中加载其他资产（例如 CSS）也存在安全风险，请参见例如link:https://xsleaks.dev/docs/attacks/css-injection/[这里]。
 
 ==== 推荐
 
 - 应避免从其他来源加载 JavaScript 和其他资产。特别是对于安全关键应用程序，我们不能假设其他域是值得信赖的。
 - 确保交付给浏览器的所有内容都由容器使用资产认证提供和认证。这尤其适用于任何 JavaScript，也适用于字体、CSS 等。
-- 使用link：https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] 来防止脚本和其他来源的其他内容被加载。另请参阅link：web-app-development-security-best-practices.adoc#define-security-headers[定义安全标头，包括内容安全策略 (CSP)]。
+- 使用link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] 来防止脚本和其他来源的其他内容被加载。另请参阅link:web-app-development-security-best-practices.adoc#define-security-headers[定义安全标头，包括内容安全策略 (CSP)]。
 
 [[定义安全标头]]
 === 定义安全标头，包括内容安全策略 (CSP)
 
 ==== 安全问题
 
-安全标头可用于涵盖许多安全问题，例如禁止link：https://owasp.org/www-community/attacks/Clickjacking[clickjacking]，link：https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[harden TLS]，确保link：https： //developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src[无法在浏览器中执行来自不受信任域的JavaScript或其他内容]等 不配置这些适当的标头可能会导致具体的安全问题和缺少深度防御。
+安全标头可用于涵盖许多安全问题，例如禁止link:https://owasp.org/www-community/attacks/Clickjacking[clickjacking]，link:https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[harden TLS]，确保link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src[无法在浏览器中执行来自不受信任域的JavaScript或其他内容]等不配置这些适当的标头可能会导致具体的安全问题和缺少深度防御。
 
 ==== 推荐
 
-- 使用检查您的网站link：https://securityheaders.com/[https://securityheaders.com/]
-- 使用link：https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[HSTS]，link：https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[CSP]，link：https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options[X-Frame-Options]，link：https://developer.mozilla.org/en -US/docs/Web/HTTP/Headers/Referrer-Policy[Referrer-Policy]，Permissions-Policy（link：https://www.permissionspolicy.com/[generator]）
-- 这些标头（包括 CSP）已成功集成，例如在link：https://github.com/dfinity/internet-identity[互联网身份]。
-- 根据检查您的 CSP link：https://csp-evaluator.withgoogle.com/[CSP evaluator]
-- 另见link：https://owasp.org/www-project-secure-headers/[OWASP 安全标头项目]
+- 使用检查您的网站link:https://securityheaders.com/[https://securityheaders.com/]
+- 使用link:https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html[HSTS]，link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[CSP]，link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options[X-Frame-Options]，link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy[Referrer-Policy]，Permissions-Policy（link:https://www.permissionspolicy.com/[generator]）
+- 这些标头（包括 CSP）已成功集成，例如在link:https://github.com/dfinity/internet-identity[互联网身份]。
+- 根据检查您的 CSP link:https://csp-evaluator.withgoogle.com/[CSP evaluator]
+- 另见link:https://owasp.org/www-project-secure-headers/[OWASP 安全标头项目]
 
 === Crypto：使用 Web Crypto API 保护密钥材料免受 XSS
 
 ==== 安全问题
 
-在浏览器存储中存储密钥材料（例如link：https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[sessionStorage] 或link：https://developer.mozilla.org/en- US/docs/Web/API/Web_Storage_API[localStorage]) 被认为是不安全的，因为这些密钥可以被 JavaScript 代码访问。这可能通过 XSS 攻击或从其他域加载不受信任的脚本时发生（另请参阅link：web-app-development-security-best-practices.adoc#dont-load-untrusted-content [不要从不受信任的域加载 JavaScript ]。
+在浏览器存储中存储密钥材料（例如link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[sessionStorage] 或link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[localStorage]) 被认为是不安全的，因为这些密钥可以被 JavaScript 代码访问。这可能通过 XSS 攻击或从其他域加载不受信任的脚本时发生（另请参阅    link:web-app-development-security-best-practices.adoc#dont-load-untrusted-content [不要从不受信任的域加载 JavaScript ]。
 
 ==== 推荐
 
-使用link：https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[WebCrypto API] 通过在 `generateKey` 中使用 `extractable=false` 来隐藏 JavaScript 中的密钥材料，请参阅link： https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey[this]。可以在人员聚会项目中找到一个示例，请参见link：https://github.com/dfinity/people-parties/blob/06208183a2679189d02bc5e64dcbd71c5f5dfbed/frontend/src/services/auth.ts#L111-L120[这里] .这使得无法从 JavaScript 访问私钥。
+使用link:https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[WebCrypto API] 通过在 `generateKey` 中使用 `extractable=false` 来隐藏 JavaScript 中的密钥材料，请参阅link:https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey[this]。可以在人员聚会项目中找到一个示例，请参见link:https://github.com/dfinity/people-parties/blob/06208183a2679189d02bc5e64dcbd71c5f5dfbed/frontend/src/services/auth.ts#L111-L120[这里] .这使得无法从 JavaScript 访问私钥。
 
 === 使用安全的网络框架
 
@@ -100,8 +100,8 @@
 
 ==== 推荐
 
-- 使用具有安全模板机制的 Web 框架，例如link：https://github.com/dfinity/nns-dapplink:https://svelte.dev/[Svelte] 以避免 XSS。这用于例如在 [NNS dApp] 项目中。
-- 不要使用框架的不安全功能，例如link：https://svelte.dev/docs#template-syntax-html[@html in Svelte]。
+- 使用具有安全模板机制的 Web 框架，例如link:https://github.com/dfinity/nns-dapplink:https://svelte.dev/[Svelte] 以避免 XSS。这用于例如在 [NNS dApp] 项目中。
+- 不要使用框架的不安全功能，例如link:https://svelte.dev/docs#template-syntax-html[@html in Svelte]。
 
 === 确保注销有效
 
@@ -111,7 +111,7 @@
 
 ==== 推荐
 
-- 清除所有会话数据（特别是link：https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage[sessionStorage] 和link：https://developer.mozilla.org/en- US/docs/Web/API/Window/localStorage[localStorage]），清除link：https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API[IndexedDB]等注销。
+- 清除所有会话数据（特别是link:https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage[sessionStorage] 和link:https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage[localStorage]），清除link:https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API[IndexedDB]等注销。
 - 如果在一个选项卡中触发注销，请确保其他显示相同来源的浏览器选项卡也被注销。这不会在使用 agent-js 时自动发生，因为 agent-js 在初始化后会将私钥保存在内存中。
 
 === 使用提示警告用户任何安全关键操作，让用户明确确认
@@ -123,4 +123,4 @@
 ==== 推荐
 
 - 向用户显示带有安全警告的提示，描述操作的确切后果，并让他们明确确认。
-- 对于安全性要求高的应用程序，考虑使用事务批准，即使用例如一个 WebAuthn 设备，让用户确认某些关键操作或交易。这是推荐的，例如涉及代币或循环（燃料费）转账时。例如，使用硬件钱包link：https://github.com/dfinity/nns-dapp[NNS dApp] 实现了这一点。
+- 对于安全性要求高的应用程序，考虑使用事务批准，即使用例如一个 WebAuthn 设备，让用户确认某些关键操作或交易。这是推荐的，例如涉及代币或循环（燃料费）转账时。例如，使用硬件钱包link:https://github.com/dfinity/nns-dapp[NNS dApp] 实现了这一点。
