@@ -1,18 +1,18 @@
-= Install, upgrade, or remove software
+= 安装、升级或删除软件
 :experimental:
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-As described in the link:../quickstart/quickstart-intro{outfilesuffix}[Quick start], you can download and install the latest version of the DFINITY Canister smart contract SDK package by running a command in a terminal shell.
-The topics in this section provide additional information about installing, upgrading, and removing the {sdk-short-name}.
+如链接中所述link：../quickstart/quickstart-intro{outfilesuffix}[快速启动]，您可以通过在终端 shell 中运行命令来下载并安装最新版本的 DFINITY Canister 智能合约 SDK 包。
+本节中的主题提供有关安装、升级和删除 {sdk-short-name} 的其他信息。
 
 include::ROOT:page$download.adoc[leveloffset=0,tag=install]
 
-== What gets installed
+== 安装了什么
 
-The {sdk-short-name} installation script installs several components in default locations on your local computer.
-The following table describes the development environment components that the installation script installs:
+{sdk-short-name} 安装脚本会在本地计算机的默认位置安装多个组件。
+下表描述了安装脚本安装的开发环境组件：
 
 [cols="20,55,25",options="header"]
 |===
@@ -42,11 +42,11 @@ The following table describes the development environment components that the in
 
 |===
 
-=== Core components in a versioned directory
+=== 版本目录中的核心组件
 
-The `~/.cache/dfinity/versions` directory stores one or more versioned subdirectories of the {sdk-short-name}. 
-Each versioned subdirectory contains the all of the directories and files required for a specific version of the {sdk-short-name}.
-For example, if you list the contents of the `~/.cache/dfinity/versions/0.9.2` directory you would see the following core components:
+`~/.cache/dfinity/versions` 目录存储了 {sdk-short-name} 的一个或多个版本化子目录。
+每个版本化的子目录都包含特定版本的 {sdk-short-name} 所需的所有目录和文件。
+例如，如果您列出 `~/.cache/dfinity/versions/0.9.2` 目录的内容，您会看到以下核心组件：
 
 ....
 total 349192
@@ -69,41 +69,41 @@ drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
 -r-x------   1 pubs  staff  49404128 Dec 31  1969 replica
 ....
 
-=== {proglang} base directory
+=== {proglang} 基本目录
 
-The `+base+` directory in the versioned subdirectory of the {sdk-short-name} contains the {proglang} base library modules that are compatible with that version of the {sdk-short-name}. 
-Because the {proglang} base library is evolving rapidly, you should only use the base modules that are packaged with the version of the {sdk-short-name} that you have installed.
+{sdk-short-name} 的版本化子目录中的 `+base+` 目录包含与该版本 {sdk-short-name} 兼容的 {proglang} 基础库模块。
+因为 {proglang} 基础库发展迅速，您应该只使用与您已安装的 {sdk-short-name} 版本打包的基础模块。
 
-=== Bootstrap directory
+=== 引导目录
 
-The `bootstrap` directory contains web server code that is deprecated. 
-Beginning with version 0.7.0, agents can call an HTTP middleware server instead of the `bootstrap` code. 
-This change enables canisters to respond to HTTP requests directly and operate more like traditional web-based applications.
+`bootstrap` 目录包含已弃用的 Web 服务器代码。
+从 0.7.0 版开始，代理可以调用 HTTP 中间件服务器而不是“引导”代码。
+此更改使容器能够直接响应 HTTP 请求并更像传统的基于 Web 的应用程序一样运行。
 
-== Upgrading to the latest version
+== 升级到最新版本
 
-If a new version of the {sdk-short-name} is available for download after your initial installation, you should install the updated version at your earliest convenience to get the latest fixes and enhancements as soon as possible.
-You can use the `+dfx upgrade+` command to compare the version you have currently installed against the latest version available for download. 
-If a newer version of `+dfx+` is available, the `+dfx upgrade+` command automatically downloads and installs the latest version. 
+如果在初始安装后有新版本的 {sdk-short-name} 可供下载，您应该尽早安装更新版本，以便尽快获得最新的修复和增强功能。
+您可以使用 `+dfx upgrade+` 命令将您当前安装的版本与可供下载的最新版本进行比较。
+如果有更新版本的`+dfx+` 可用，`+dfx upgrade+` 命令会自动下载并安装最新版本。
 
-Note that you don't need to uninstall the software before installing the new version.
-However, if you want to perform a clean installation rather than an upgrade, you can first uninstall the software as described in xref:remove[Removing the software], then re-run the download and installation command.
+请注意，您无需在安装新版本之前卸载软件。
+但是，如果您想执行全新安装而不是升级，您可以先按照外部参照:remove[删除软件]中的说明卸载软件，然后重新运行下载和安装命令。
 
-For information about the features and fixes in the latest release, see the xref:release-notes:sdk-release-notes.adoc[Release notes].
+有关最新版本中的功能和修复的信息，请参阅外部参考：release-notes:sdk-release-notes.adoc[Release notes]。
 
 [[remove]]
-== Removing the software
+== 删除软件
 
-When you install the {sdk-short-name}, the installation script puts the required binary files in a local directory and creates a cache.
-You can remove the SDK binaries and cache from your local computer by running the `+uninstall+` script located in the `.cache` folder.
+安装 {sdk-short-name} 时，安装脚本会将所需的二进制文件放在本地目录中并创建缓存。
+您可以通过运行位于 `.cache` 文件夹中的 `+uninstall+` 脚本从本地计算机中删除 SDK 二进制文件和缓存。
 
-For example:
+例如：
 [source,bash]
 ----
 ~/.cache/dfinity/uninstall.sh
 ----
 
-If you are uninstalling because you want to immediately reinstall a clean version of `dfx`, you can run the following command:
+如果您因为想立即重新安装干净版本的 `dfx` 而卸载，可以运行以下命令：
 
 [source,bash]
 ----

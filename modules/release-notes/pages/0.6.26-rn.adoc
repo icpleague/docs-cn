@@ -1,57 +1,57 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.26
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new feature included in this release is the publication of the link:../interface-spec/index{outfilesuffix}[_{IC} Interface Specification_].
+此版本中包含的最重要的新功能是发布 link:../interface-spec/index{outfilesuffix}[_{IC} 接口规范_]。
 
-The _{IC} Interface Specification_ details many technical properties that describe the lower-level interfaces for interacting with the {IC}. 
-For example, the _{IC} Interface Specification_ describes the HTTPS endpoints that are exposed to handle incoming requests and how low-level bindings enable canisters to interact with system components. 
+_{IC} 接口规范_ 详细描述了许多描述与 {IC} 交互的低级接口的技术属性。
+例如，_{IC} 接口规范_ 描述了为处理传入请求而公开的 HTTPS 端点，以及低级绑定如何使容器能够与系统组件交互。
 
-If you use existing tools—like the DFINITY Canister SDK or Canister Development Kit for Rust—to work with canisters, these tools interact with  the lower-level interfaces described in the _{IC} Interface Specification_ on your behalf. 
-If you want to create your own tooling for working with canisters, however, the _{IC} Interface Specification_ includes the technical details you need to understand how the {IC} external interfaces work.
+如果您使用现有工具（如 DFINITY Canister SDK 或 Canister Development Kit for Rust）来处理容器，这些工具会代表您与_{IC}接口规范_中描述的低级接口交互。
+但是，如果您想创建自己的工具来处理容器，_{IC} 接口规范_ 包含您需要了解 {IC} 外部接口如何工作的技术细节。
 
-If you are interested in expanding the {IC} ecosystem, you'll also find information in the _{IC} Interface Specification_ to help you in developing the following types of projects:
+如果您对扩展 {IC} 生态系统感兴趣，您还可以在_{IC} 接口规范_ 中找到信息，以帮助您开发以下类型的项目：
 
-* Building *front-end agents* for user-facing interaction in any programming language, including popular languages such as Python, Golang, or C.
-* Building *back-end Canister Development Kits* (CDKs) in any language that can compile down to WebAssembly bytecode.
-* Building *local development tools* such as command line interfaces or Internet Computer emulators and debuggers.
-* Implementing *features and enhancements* to improve the developer experience for deploying and managing canisters running remotely on the network.
+* 为任何编程语言（包括 Python、Golang 或 C 等流行语言）构建*前端代理*以进行面向用户的交互。
+* 以任何可以编译为 WebAssembly 字节码的语言构建*后端容器开发工具包*（CDK）。
+* 构建*本地开发工具*，例如命令行界面或 Internet 计算机仿真器和调试器。
+* 实施*功能和增强*以改善开发人员部署和管理在网络上远程运行的容器的体验。
 
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-This release fixes an issue with memory allocation in the default cycles wallet that caused an error after creating and deploying canisters.
-If you encountered this issue, you might have seen an error message similar to the following:
+此版本修复了默认循环钱包中的内存分配问题，该问题在创建和部署容器后导致错误。
+如果您遇到此问题，您可能会看到类似于以下内容的错误消息：
 
-....
-The Replica returned an error: code 5, message: "Canister 6dtaa-vaaaa-aaaab-aaipa-cai exceeded its allowed memory allocation"
-....
+……
+副本返回错误：代码 5，消息：“容器 6dtaa-vaaaa-aaaab-aaipa-cai 超出其允许的内存分配”
+……
 
-This release updates the default cycles wallet to provide better handling of unused memory and how memory is allocated when creating and deploying canisters. 
+此版本更新了默认燃料费钱包，以更好地处理未使用的内存以及在创建和部署容器时如何分配内存。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。
 
-=== Only the default wallet canister principal can perform canister management tasks
+=== 只有默认的钱包容器主体可以执行容器管理任务
 
-The introduction of the cycles wallet canister changes the default principal used to perform key canister management tasks, such as registering a new canister identifier and deploying a new canister on the {IC}.
-This change introduces some inconsistencies in the identity used to perform certain tasks and can result in potential access control issues.
+燃料费钱包容器的引入改变了用于执行关键容器管理任务的默认主体，例如注册新容器标识符和在 {IC} 上部署新容器。
+此更改在用于执行某些任务的身份中引入了一些不一致，并可能导致潜在的访问控制问题。
 
-You should note that none of the tutorials have been updated to reflect this specific change in behavior yet and the current version of the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial is known to be invalid for this release.
-If you want to experiment with access control using the link:../developers-guide/tutorials/access-control{outfilesuffix}[Add access control with identities] tutorial, you should install the {sdk-short-name} version 0.6.23 (or older).
+您应该注意，尚未更新任何教程以反映这种特定的行为变化以及当前版本link:../developers-guide/tutorials/access-control{outfilesuffix}[使用身份添加访问控制] 教程 已知对于此版本无效。
+如果您想尝试访问控制 link:../developers-guide/tutorials/access-control{outfilesuffix}[使用身份添加访问控制] 教程，您应该安装 {sdk-short-name} 版本 0.6.23（或更早版本）。
 
-=== Incompatibility when using the JavaScript agent directly in a project
+=== 在项目中直接使用 JavaScript 代理时不兼容
 
-If you access the `@dfinity/agent` JavaScript agent directly in a project—that is, without going through the bootstrap server—you will not be able to import the `bls` certification scheme with the `agent-js` release. 
+如果您直接在项目中访问 `@dfinity/agent` JavaScript 代理（即不通过引导服务器），您将无法使用 `agent-js` 版本导入 `bls` 认证方案。
 
-If your application uses the JavaScript agent directly, you should use the latest version of the agent.
+如果您的应用程序直接使用 JavaScript 代理，您应该使用最新版本的代理。

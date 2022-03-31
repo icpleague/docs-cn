@@ -1,17 +1,17 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.7.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible.
+{release} 版本包括主要是内部更新和修复，用于改进现有特性和功能，而不是用户可见的。
 
-The most significant changes in this release include the following:
+此版本中最重要的更改包括：
 
-* Support for the latest version of the {IC} specification and replica.
+* 支持最新版本的 {IC} 规范和副本。
 
-* The availability of new application subnets enable you to now deploy projects on the {IC}.
+* 新应用子网的可用性使您现在可以在 {IC} 上部署项目。
 
-* The default cycle balance for new cycles wallet canisters is now set to 3T (three trillion) cycles on application subnets and 4T (four trillion) on verified application subnets.
+* 新燃料费钱包容器的默认周期余额现在在应用程序子网中设置为 3T（三万亿），在经过验证的应用程序子网中设置为 4T（四万亿）。

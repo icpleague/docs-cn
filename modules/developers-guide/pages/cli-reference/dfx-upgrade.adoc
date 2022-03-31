@@ -1,56 +1,54 @@
-= dfx upgrade
+= dfx 升级
 
-Use the `+dfx upgrade+` command to upgrade the {sdk-short-name} components running on your local computer.
-This command checks the version of the {sdk-short-name} that you have currently installed against the latest publicly-available version specified in the `+manifest.json+` file.
-If an older version of the {sdk-short-name} is detected locally, the `+dfx upgrade+` command automatically fetches the latest version from the CDN.
-
-== Basic usage
+使用 `+dfx upgrade+` 命令升级在本地计算机上运行的 {sdk-short-name} 组件。
+此命令会根据 `+manifest.json+` 文件中指定的最新公开可用版本检查您当前安装的 {sdk-short-name} 的版本。
+如果在本地检测到旧版本的 {sdk-short-name}，`+dfx upgrade+` 命令会自动从 CDN 获取最新版本。
 
 [source,bash]
 ----
 dfx upgrade [flag] [option]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx upgrade+` command.
-
-[width="100%",cols="<32%,<68%",options="header",]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Options
-
-You can use the following option with the `+dfx upgrade+` command.
+您可以在 `+dfx upgrade+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header",]
 |===
-|Option |Description
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+--current-version <version>+` |Specifies the version you want to identify as the current version. 
-This option enables you to override the version of the software currently identified as the latest version with the version you pass on the command-line.
+|`+-V+`, `+--version+` |显示版本信息。
+|===
+
+== 选项
+
+您可以在 `+dfx upgrade+` 命令中使用以下选项。
+
+[width="100%",cols="<32%,<68%",options="header",]
+|===
+|选项 |说明
+
+|`+--current-version <version>+` |指定您要标识为当前版本的版本。
+此选项使您能够用您在命令行上传递的版本覆盖当前标识为最新版本的软件版本。
 
 |===
 
-== Examples
+== 例子
 
-You can upgrade the version of the {sdk-short-name} that you have currently installed by running the following command:
+您可以通过运行以下命令来升级您当前安装的 {sdk-short-name} 的版本：
 
 [source,bash]
 ----
 dfx upgrade
 ----
 
-This command checks the version of `+dfx+` you have currently installed and the latest version available published on the {sdk-short-name} website in a manifest file.
-If a newer version of `+dfx+` is available, the command automatically downloads and installs the latest version.
+此命令检查您当前安装的 `+dfx+` 的版本以及在清单文件中发布在 {sdk-short-name} 网站上的最新可用版本。
+如果有更新版本的 `+dfx+` 可用，该命令会自动下载并安装最新版本。
 
 [source,bash]
 ----
-Current version: 0.6.8
-Fetching manifest \https://sdk.dfinity.org/manifest.json
-Already up to date
+当前版本：0.6.8
+获取清单\https://sdk.dfinity.org/manifest.json
+已经是最新的了
 ----

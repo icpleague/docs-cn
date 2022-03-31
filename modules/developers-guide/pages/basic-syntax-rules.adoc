@@ -1,26 +1,26 @@
-= Learning the basics of {proglang}
-December 2019 (Alpha)
+= 学习 {proglang} 的基础知识
+2019 年 12 月（阿尔法）
 :proglang: Motoko
-:platform: Internet Computer platform
-:IC: Internet Computer
+:平台：互联网计算机平台
+:IC: 互联网计算机
 :ext: .mo
 :company-id: DFINITY
 
-One key feature of the {platform} is the {proglang} programming language. 
-The {proglang} programming language is a high-level, general purpose language that is similar to other modern programming languages, but specifically designed to handle asynchronous messaging efficiently.
+{platform} 的一个关键特性是 {proglang} 编程语言。
+{proglang} 编程语言是一种高级通用语言，类似于其他现代编程语言，但专门设计用于有效处理异步消息传递。
 
-Although {proglang} provides an interpreter that can be used interactively and a standalone compiler, you can write programs and compile your code without using either one directly. 
-Instead, in most cases, you interact with the programming language indirectly through an editor of your choice and using the `+dfx+` command-line execution tool.
+尽管 {proglang} 提供了一个可以交互使用的解释器和一个独立的编译器，但您可以编写程序和编译您的代码，而无需直接使用其中任何一个。
+相反，在大多数情况下，您通过您选择的编辑器并使用 `+dfx+` 命令行执行工具间接与编程语言交互。
 
-To help you get started using this new language, this section provides a brief overview of the language and describes a few basic conventions for writing programs using {proglang}. 
-For more complete information about programming in {proglang}, including specific language features and detailed examples, see the _Language Reference Guide_.
+为了帮助您开始使用这种新语言，本节提供了该语言的简要概述，并描述了使用 {proglang} 编写程序的一些基本约定。
+有关在 {proglang} 中编程的更完整信息，包括特定语言功能和详细示例，请参阅_语言参考指南_。
 
-== Actors and asynchronous messaging
+== Actors 和异步消息传递
 
-As you start to explore the {proglang} programming language, you should keep in mind that each application consists of an *actor* that communicates with other actors by passing messages asynchronously.
+当您开始探索 {proglang} 编程语言时，您应该记住，每个应用程序都由一个 *actor* 组成，它通过异步传递消息与其他参与者通信。
 
-An actor is a special kind of object that passes its messages in an isolated state. 
-When you define an actor, its messages are processed in sequence but in isolation from on each other. As an example of using actors, consider the following program:
+Actor 是一种特殊的对象，它以隔离状态传递其消息。
+当您定义一个参与者时，它的消息会按顺序处理，但彼此隔离。 作为使用演员的示例，请考虑以下程序：
 
 [source,bash]
 ----
@@ -29,47 +29,46 @@ let result2 = await service2.computeAnswer(params);
 finalStep(result1, result2)
 ----
 
-In this example, the program makes two requests to two distinct
-services. 
-Each service is implemented internally as an actor (object).
-The program waits using the `+await+` keyword to wait for each result value in sequence. 
-The program then uses the result from each request them in the final step, calling the function `+finalStep+`.
+在此示例中，程序向两个不同的服务发出两个请求。
+每个服务都在内部作为参与者（对象）实现。
+程序使用 `+await+` 关键字按顺序等待每个结果值。
+然后程序在最后一步使用每个请求的结果，调用函数`+finalStep+`。
 
-The actor-based programming model is particularly well-suited for writing programs intended to run on the {platform}.
-However, you can also write programs in {proglang} to run on other platforms and inside of other frameworks. 
-If you are writing programs to run on other platforms, you might not use actor objects or asynchronous messaging at all.
+基于参与者的编程模型特别适合编写旨在在 {platform} 上运行的程序。
+但是，您也可以在 {proglang} 中编写程序以在其他平台和其他框架内运行。
+如果您正在编写在其他平台上运行的程序，您可能根本不使用参与者对象或异步消息传递。
 
-== Interface descriptions and {proglang}
+== 接口描述和{proglang}
 
-To support multiple languages and cross-language communication, the {proglang} compiler automates the production and consumption of interface descriptions. 
-The {proglang} compiler generates the interface descriptions using the type signatures in your {proglang} programs and the structure of imported pre-defined interfaces.
+为了支持多语言和跨语言通信，{proglang} 编译器自动生成和使用接口描述。
+{proglang} 编译器使用 {proglang} 程序中的类型签名和导入的预定义接口的结构生成接口描述。
 
-== Prelude and standard library functions
+== Prelude 和标准库函数
 
-Like other languages, {proglang} includes many common functions in predefined prelude and standard library files that you can import into your programs. 
-By importing the prelude or standard library, you can use common functions like `println` without explicitly defining them in your programs.
+与其他语言一样，{proglang} 在预定义的前奏和标准库文件中包含许多常用函数，您可以将它们导入程序中。
+通过导入 prelude 或标准库，您可以使用诸如 `println` 之类的常用函数，而无需在程序中明确定义它们。
 
-For example, you might include a line similar to the following to import list functions from the standard library: 
+例如，您可能包括类似于以下的行来从标准库中导入列表函数：
 
 [source,bash]
 ----
 import List "../../motoko/base/list";
 ----
 
-== Basic language features
+== 基本语言功能
 
-This section describes the basic language conventions you need to know for programming in {proglang}.
+本节描述了在 {proglang} 中编程需要了解的基本语言约定。
 
-=== Comments
+=== 评论
 
-You can use single-line, multi-line, or nested multi-line comments to include descriptive non-executable text in your code. 
-For example, use comments to add context about a code block as a note to yourself or as information you want to share with anyone reviewing or maintaining your code. 
-Properly-formatted comments are treated as whitespace and ignored by the compiler.
+您可以使用单行、多行或嵌套的多行注释在代码中包含描述性的非可执行文本。
+例如，使用注释来添加有关代码块的上下文，作为给您自己的注释或作为您想要与任何审查或维护您的代码的人共享的信息。
+格式正确的注释被视为空白并被编译器忽略。
 
-==== Single-line comments
+==== 单行注释
 
-Single-line comments begin with two forward-slashes (//) and consist of the characters following `+//+` to the end of the same line. 
-For example, you can have single-line comments above, below, or on the same line as the code to which the comment applies.
+单行注释以两个正斜杠 (//) 开头，由 `+//+` 之后的字符组成，直到同一行的末尾。
+例如，您可以在上面、下面或与注释适用的代码相同的行上添加单行注释。
 
 [source,bash]
 ----
@@ -77,10 +76,10 @@ For example, you can have single-line comments above, below, or on the same line
 import List = "ListLib";
 ----
 
-==== Multi-line and nested comments
+==== 多行和嵌套注释
 
-You can also include single-line, multi-line, and nested multi-line comments by starting with a forward-slash followed by an asterisk (/\*) and ending with an asterisk followed by a forward-slash (*/). 
-For example:
+您还可以包含单行、多行和嵌套的多行注释，方法是以正斜杠开头，后跟星号 (/\*)，以星号结尾，后跟正斜杠 (*/)。
+例如：
 
 [source,bash]
 ----
@@ -90,20 +89,20 @@ multiple lines.
 */
 ----
 
-You can also write nested multi-line comments by starting a multi-line comment block, then starting a second multi-line comment within the first block. 
-For example:
+您还可以通过启动一个多行注释块，然后在第一个块中启动第二个多行注释来编写嵌套的多行注释。
+例如：
 
 [source,bash]
 ----
-/* This is the start of the first multi-line comment block.
-   /* This is the second, nested multi-line comment. */
-This is the end of the first multi-line comment block. */
+/* 这是第一个多行注释块的开始。
+    /* 这是第二个嵌套的多行注释。 */
+这是第一个多行注释块的结尾。 */
 ----
 
-=== Programs, declarations, and expressions
+=== 程序、声明和表达式
 
-Each {proglang} program consists of zero or more declarations, followed by an optional expression. 
-For example, the following snippet consists of two declarations for the variables `+x+` and `+y+` followed by an expression, forming a single program:
+每个 {proglang} 程序由零个或多个声明组成，后跟一个可选表达式。
+例如，下面的代码片段由变量`+x+`和`+y+`的两个声明组成，后跟一个表达式，形成一个程序：
 
 [source,bash]
 ----
@@ -112,22 +111,22 @@ let y = x + 1;
 x * y + x;
 ----
 
-As illustrated in this example, you use a semi-colon (;) to terminate declarations and expressions. For example, to evaluate a simple equation:
+如本例所示，您使用分号 (;) 来终止声明和表达式。 例如，要计算一个简单的方程：
 
 [source,bash]
 ----
 1 + 3; // When executed, the result would be "4 : Nat" value and type
 ----
 
-== Numbers, text and operators
+== 数字、文本和运算符
 
-{proglang} supports the following number types:
+{proglang} 支持以下数字类型：
 
-* Natural numbers (`+Nat+`) are positive whole integers.
-* Integer numbers (`+Int+`) are positive, negative, or zero whole number values.
-* Floating point numbers (`+Float+`) are fractional numeric 32-bit or 64-bit values.
+* 自然数 (`+Nat+`) 是正整数。
+* 整数 (`+Int+`) 是正、负或零整数值。
+* 浮点数 (`+Float+`) 是 32 位或 64 位小数数值。
 
-Basic arithmetic operators work as you would expect. For example:
+基本算术运算符按您的预期工作。 例如：
 
 [source,bash]
 ----
@@ -138,139 +137,139 @@ Basic arithmetic operators work as you would expect. For example:
 35 / 5;     // = 7
 ----
 
-You can use double (") quotes to enclose text. For example:
+您可以使用双 (") 引号将文本括起来。例如：
 
 [source,bash]
 ----
 let name = "Chris"; // let name : Text = "Chris"
 ----
 
-=== Relational operators
+=== 关系运算符
 
-You can use the following relational operators in {proglang} programs.
-
-[cols=",",options="header",]
-|===
-|Use this |To define this relationship
-|`+␣<␣+` |Less than. The operator must be enclosed in whitespace.
-|`+␣>␣+` |Greater than. The operator must be enclosed in whitespace.
-|`+==+` |Equals.
-|`+!=+` |Not equals.
-|`+<=+` |Less than or equal to.
-|`+>=+` |Greater than or equal to.
-|===
-
-=== Numeric binary operators
+您可以在 {proglang} 程序中使用以下关系运算符。
 
 [cols=",",options="header",]
 |===
-|Use this |For this operation
-|`+++` |Addition.
-|`+-+` |Subtraction.
-|`+*+` |Multiplication.
-|`+/+` |Division.
-|`+%+` |Modulo.
-|`+**+` |Exponentiation.
+|使用此 |定义此关系
+|`+␣<␣+` |小于。 运算符必须用空格括起来。
+|`+␣>␣+` |大于。 运算符必须用空格括起来。
+|`+==+` |等于。
+|`+!=+` |不等于。
+|`+<=+` |小于或等于。
+|`+>=+` |大于或等于。
 |===
 
-=== Bitwise binary operators
+=== 数字二元运算符
 
 [cols=",",options="header",]
 |===
-|Use this |For this operation
-|`+&+` |Bitwise AND.
-|`+\|+` |Bitwise OR.
-|`+^+` |Exclusive OR.
-|`+<<+` |Shift left.
-|`+␣>>+` |Shift right. The operator must be preceded by whitespace.
-|`+<<>+` |Rotate left.
-|`+<>>+` |Rotate right.
+|使用此 |用于此操作
+|`+++` |加法。
+|`+-+` |减法。
+|`+*+` |乘法。
+|`+/+` |除法。
+|`+%+` |取模。
+|`++**+` |求幂。
 |===
 
-=== String operators
+=== 位二元运算符
 
 [cols=",",options="header",]
 |===
-|Use this |For this operation
-|`+#+` |Text concatenation.
+|使用此 |用于此操作
+|`+&+` |按位与。
+|`+\|+` |按位或。
+|`+^+` |异或。
+|`+<<+` |左移。
+|`+␣>>+` |右移。 运算符前面必须有空格。
+|`+<<>+` |向左旋转。
+|`+<>>+` |向右旋转。
 |===
 
-=== Assignment operators
+=== 字符串运算符
 
 [cols=",",options="header",]
 |===
-|Use this |For this operation
-|`+:=+` |Assignment using an in-place update.
-|`++=+` |In place addition.
-|`+-=+` |In place subtraction.
-|`+*=+` |In place multiplication.
-|`+/=+` |In place divide.
-|`+%=+` |In place modulo.
-|`+**=+` |In place exponentiation.
-|`+&=+` |In place logical AND.
-|`+\|=+` |In place logical OR.
-|`+^=+` |In place exclusive OR.
-|`+<<=+` |In place shift left.
-|`+>>=+` |In place shift right.
-|`+<<>=+` |In place rotate left.
-|`+<>>=+` |In place rotate right.
-|`+#=+` |In place concatenation.
+|使用此 |用于此操作
+|`+#+` |文本连接。
 |===
 
-=== Variables
+=== 赋值运算符
 
-Variables enable you to relate static names and types with dynamic values that are present only when a program is executed.
+[cols=",",options="header",]
+|===
+|使用此 |用于此操作
+|`+:=+` |使用就地更新的分配。
+|`++=+` |就地添加。
+|`+-=+` |就地减法。
+|`+*=+` |就地乘法。
+|`+/=+` |就地划分。
+|`+%=+` |就地取模。
+|`+**=+` |就地取幂。
+|`+&=+` |就地逻辑与。
+|`+\|=+` |就地逻辑或。
+|`+^=+` |就地异或。
+|`+<<=+` |原地左移。
+|`+>>=+` |原地右移。
+|`+<<>=+` |原地向左旋转。
+|`+<>>=+` |原地向右旋转。
+|`+#=+` |就地串联。
+|===
 
-You can declare variable names, and if necessary the data type, using the `+let+` keyword. For example, you can use the following notation to set the variable `+x+` to the natural number 1:
+=== 变量
+
+变量使您能够将静态名称和类型与仅在执行程序时出现的动态值相关联。
+
+您可以使用 `+let+` 关键字声明变量名和数据类型（如有必要）。 例如，您可以使用以下表示法将变量 `+x+` 设置为自然数 1：
 
 [source,bash]
 ----
 let x : Nat = 1;
 ----
 
-In this example, the compiler can infer that the expression 1 has type `+Nat+`, and that `+x+` has the same type. Therefore, you can use the following annotation without changing the meaning of the program:
+在这个例子中，编译器可以推断出表达式 1 的类型为 `+Nat+`，而 `+x+` 的类型相同。 因此，您可以在不改变程序含义的情况下使用以下注解：
 
 [source,bash]
 ----
 let x = 1
 ----
 
-=== Primitive values
+=== 原始值
 
-{proglang} supports the following primitive types:
+{proglang} 支持以下原始类型：
 
-* Booleans (true, false)
-* Integers (…​,-2, -1, 0, 1, 2, …​)
-* Natural numbers (0, 1, 2, …​)
-* Words (fixed-width numbers)
-* Characters (Unicode code points)
-* Text values (strings of Unicode characters)
+* 布尔值（真，假）
+* 整数 (…​,-2, -1, 0, 1, 2, …​)
+* 自然数 (0, 1, 2, ...​)
+* 单词（固定宽度的数字）
+* 字符（Unicode 代码点）
+* 文本值（Unicode 字符的字符串）
 
-Integers and natural numbers do not silently over- or under-flow. 
-Instead, they use representations that grow to accommodate any finite number. There are also fixed-width integers and natural numbers (in 8-, 16-, 32-, and 64-bit) types that trap on arithmetic over- and under-flow. The fixed-width integers are signed. The fixed-width natural numbers are unsigned.
+整数和自然数不会默默地溢出或溢出。
+相反，他们使用增长来适应任何有限数字的表示。 还有固定宽度的整数和自然数（8 位、16 位、32 位和 64 位）类型会捕获算术溢出和下溢。 固定宽度的整数是有符号的。 固定宽度的自然数是无符号的。
 
-Word values have fixed width. Arithmetic for Word types is performed using modulo 2**N where N is the width of the word type in bits.
+字值具有固定宽度。 字类型的算术使用模 2**N 执行，其中 N 是字类型的位宽。
 
-{proglang} does not allow unchecked, uncaught overflows.
+{proglang} 不允许未检查、未捕获的溢出。
 
-All primitive types are shareable so that they can be sent and received across remote function calls.
+所有原始类型都是可共享的，以便可以跨远程函数调用发送和接收它们。
 
-=== Non-primitive values
+=== 非原始值
 
-Building on the primitive values and types above, the language permits user-defined types, and each of the following non-primitive value forms and associated types:
+基于上面的原始值和类型，该语言允许用户定义类型，以及以下每种非原始值形式和相关类型：
 
-* Tuples, including the unit value (the "`empty tuple`").
-* Arrays, in both immutable and mutable forms.
-* Objects, with named, unordered fields and methods.
-* Variants, with named constructors and optional payload values.
-* Function values, including shareable functions that can be called remotely.
-* Async values, otherwise known as *futures* or *promises*, that can be synchronized with using `+await+`.
-* Optional values, that can either be `+null+` or of the form `+? v+`, for a proper value `+v+`. 
+* 元组，包括单位值（“空元组”）。
+* 不可变和可变形式的数组。
+* 具有命名的、无序的字段和方法的对象。
+* 变体，具有命名构造函数和可选的有效负载值。
+* 函数值，包括可远程调用的可共享函数。
+* 异步值，也称为 *futures* 或 *promises*，可以使用 `+await+` 进行同步。
+* 可选值，可以是 `+null+` 或 `+? v+`，以获得正确的值`+v+`。
 
 
-Note that if your function is returning an optional value of type `+T+`, then the function's return type should be of the form '? T':
-prefixing a type with question mark (?) adds the `null` value. 
-For example, you would use the following syntax to indicate that the return value of the type identified by `+?Phone+` is optional (for example, the return value can be `+null+` as well as a proper phone number):
+请注意，如果您的函数返回类型为 `+T+` 的可选值，则该函数的返回类型应为 '? T'：
+用问号 (?) 为类型添加前缀会添加 `null` 值。
+例如，您将使用以下语法来指示由 `+?Phone+` 标识的类型的返回值是可选的（例如，返回值可以是 `+null+` 以及正确的电话号码）：
 
 [source,motoko,no-repl,subs="quotes"]
 ----
@@ -279,9 +278,9 @@ public query func lookup(name: Name): async *?Phone* {
     };
 ----
 
-=== Functions
+=== 功能
 
-First-class functions support multiple arguments and returns and can be polymorphic.
+一等函数支持多个参数和返回，并且可以是多态的。
 
 * `+T -> U+`
 * `+(T, U) -> (V, W)+`
@@ -291,24 +290,24 @@ First-class functions support multiple arguments and returns and can be polymorp
 Functions can be defined as `+public+` or `+private+`, `+shared+`, or locally-scoped.
 
 
-=== Objects and actors
+=== 对象和演员
 
-Objects are structural record types with fields that can be mutable or immutable. 
-Objects with immutable fields are shareable.
+对象是结构记录类型，其字段可以是可变的或不可变的。
+具有不可变字段的对象是可共享的。
 
 ....
 {var x : Int; color : Color}
 {x : Int; color: Color}
 ....
 
-Actors are restricted objects with the following characteristics:
+Actor 是具有以下特征的受限对象：
 
-* State must be isolated.
-* Public methods are implicitly `+shared+`.
-* All interactions are asynchronous.
+* 状态必须是孤立的。
+* 公共方法是隐含的`+shared+`。
+* 所有交互都是异步的。
 
-Actor objects are marked as `+actor+` with syntax similar to the
-following:
+Actor 对象被标记为 `+actor+`，语法类似于
+下列的：
 
 ....
 actor {
@@ -318,37 +317,37 @@ actor {
 }
 ....
 
-The fields of an actor are functions that return either:
+Actor 的字段是返回以下任一函数的函数：
 
-* An empty unit return type `+()+` which is similar to a `+void+` return value.
-* An `+async+` return type, which is essentially a `+promise+` to return a future value.
+* 空单元返回类型 `+()+`，类似于 `+void+` 返回值。
+* 一个`+async+`返回类型，本质上是一个`+promise+`返回一个未来值。
 
-=== Arrays
+=== 数组
 
-You can define immutable or mutable arrays. 
-The assignment syntax you use is the same for both immutable and mutable arrays, but you cannot change immutable arrays after allocation.
+您可以定义不可变或可变数组。
+不可变数组和可变数组使用的赋值语法相同，但分配后不能更改不可变数组。
 
-The following is an example of a simple, immutable array that holds three natural numbers, and has the type `+[Nat]+`:
+下面是一个简单的、不可变数组的示例，它包含三个自然数，类型为 `+[Nat]+`：
 
 [source,bash]
 ----
 let test_array : [Nat] = [1, 2, 3] ;
 ----
 
-In general, an immutable array uses square brackets around the type of the array’s elements, which must share a single common type.
-Because immutable arrays cannot be modified,immutable arrays are safe to send and share.
+通常，不可变数组在数组元素的类型周围使用方括号，这些元素必须共享一个通用类型。
+因为不可变数组不能被修改，所以不可变数组可以安全地发送和共享。
 
-Unlike immutable arrays, each mutable array in {proglang} introduces a private actor state which can be used locally but cannot be used in cases where immutable arrays are expected. 
-Mutable arrays cannot be shared or sent in messages. 
-For more information about working with arrays, see the _{proglang} Language Reference_.
+与不可变数组不同，{proglang} 中的每个可变数组都引入了一个私有的 Actor 状态，该状态可以在本地使用，但不能在需要不可变数组的情况下使用。
+可变数组不能在消息中共享或发送。
+有关使用数组的更多信息，请参阅_{proglang} 语言参考_。
 
-=== Tuples
+=== 元组
 
-A tuple is a data structure that contains a sequence of elements. 
-The number of element in the sequence is fixed, but the elements can consist of different data types. 
-Tuples are often used when you want to have a data structure for an object with specific properties, but you don't want to create a separate type for it.
+元组是包含一系列元素的数据结构。
+序列中元素的数量是固定的，但元素可以由不同的数据类型组成。
+当您希望为具有特定属性的对象提供数据结构但又不想为其创建单独的类型时，通常会使用元组。
 
-The following example defines a tuple for a three-dimensional point using integers to specify locations to represent the point on the x-axis, y-axis, and z-axis and a color.
+以下示例使用整数为三维点定义一个元组，以指定位置来表示 x 轴、y 轴和 z 轴上的点以及颜色。
 
 [source,bash]
 ----
@@ -364,11 +363,11 @@ The following example defines a tuple for a three-dimensional point using intege
   }
 ----
 
-=== Conditional and switching
+=== 条件和切换
 
-{proglang} supports all the common constructs for expressing conditions and switching between cases.
+{proglang} 支持所有用于表达条件和在案例之间切换的常见结构。
 
-For example, you can write `+if+` and `+if else+` conditions with syntax similar to the following:
+例如，您可以编写 `+if+` 和 `+if else+` 条件，其语法类似于以下：
 
 [source,bash]
 ----
@@ -384,7 +383,7 @@ else <exp>
   ...
 ----
 
-You can also use `+switch+` and `+case+` syntax similar to the following:
+您还可以使用类似于以下的 `+switch` 和 `+case` 语法：
 
 [source,bash]
 ----
@@ -404,105 +403,105 @@ switch <exp> {
 * `+loop ... while (p())+`
 * `+for (x in f()) ...+`
 
-=== Label, break, and continue
+=== 标记、中断和继续
 
-Labels help ensure control flow is structured and can be used with the `+break+` and `+continue+` keywords.
+标签有助于确保控制流是结构化的，并且可以与 `+break+` 和 `+continue+` 关键字一起使用。
 
 * `+label l exp+`
 * `+break l+` (more generally, `+break l exp+`)
 * `+continue l+`
 
-== Identifiers
+== 标识符
 
-Identifiers are alphanumeric. 
-They must start with an uppercase or lowercase letter and can include a combination of uppercase or lowercase letters, numbers, and underscores.
+标识符是字母数字的。
+它们必须以大写或小写字母开头，并且可以包含大写或小写字母、数字和下划线的组合。
 
-== Reserved keywords
+== 保留关键字
 
-The following keywords are reserved for specific purposes and cannot be used as identifiers or for any other purpose in {proglang} code:
+以下关键字保留用于特定目的，不能在 {proglang} 代码中用作标识符或用于任何其他目的：
 
 [width="100%",cols="40%,60%",options="header",]
 |===
-|This keyword |Is reserved for this purpose
-|actor |Declare actor identifiers, actor objects and actor classes.
+|此关键字 |为此目的而保留
+|actor |声明参与者标识符、参与者对象和参与者类。
 
 |and |Boolean conjunction (short-circuiting).
 
-|async |Declare an asynchronous function or create a future.
+|async |声明一个异步函数或创建一个future。
 
-|assert |Assert a Boolean property (trapping when false).
+|assert |断言布尔属性（假时捕获）。
 
-|await |Await the result of an asynchronous computation.
+|await |等待异步计算的结果。
 
-|break |Exit from a labelled expression or loop (possibly with a value).
+|break |从带标签的表达式或循环（可能带有值）中退出。
 
-|case |Case of a preceding `switch` expression, consisting of a pattern and expression.
+|case |前面的 `switch` 表达式的大小写，由模式和表达式组成。
 
-|catch |Failure branch of a preceding `try` expression.
+|catch |前面的 `try` 表达式的失败分支。
 
-|class |Class declaration (actor, object and module classes).
+|class |类声明（参与者、对象和模块类）。
 
-|continue |Continue with the next iteration of `loop` or `while` or `for`.
+|continue |继续“loop”或“while”或“for”的下一次迭代。
 
-|debug |Conditional debug expressions, excluded from `release` code.
+|debug |条件调试表达式，从`release`代码中排除。
 
-|debug_show |Display a debug message.
+|debug_show |显示调试消息。
 
-|else |False branch of a conditional expression.
+|else |条件表达式的假分支。
 
-|false |Boolean literal value *false*.
+|false |布尔文字值 *false*。
 
-|for |Iterate over the items of an iterator.
+|for |迭代迭代器的项目。
 
-|func |Declare a name function or anonymous function value.
+|func |声明一个名称函数或匿名函数值。
 
-|if | Branch on a Boolean value.
+|If |在布尔值上分支。
 
-|ignore |Discard the value of an expression.
+|ignore |丢弃表达式的值。
 
-|import |Import a source file or other resource as a named module.
+|import |将源文件或其他资源作为命名模块导入。
 
-|in | Indicate the domain of `for` loop.
+|in |指示 `for` 循环的域。
 
-|module |Declare a module identifier or module expression.
+|module |声明一个模块标识符或模块表达式。
 
-|not |Negate a Boolean value.
+|not |否定布尔值。
 
-|null |The literal value of type `Null`.
+|null |类型为“Null”的文字值。
 
-|object | Declare an object identifier or object expression.
+|object |声明一个对象标识符或对象表达式。
 
-|or |Boolean disjunction (short-circuiting).
+|or|布尔析取（短路）。
 
-|label |Label an expression for early exit via `break`.
+|label |标记一个表达式以通过 `break` 提前退出。
 
-|let |Bind an identifier (or pattern) to a value.
+|let |将标识符（或模式）绑定到值。
 
-|loop |Enter a loop (possibly with a guarded exit).
+|loop |进入一个循环（可能带有一个受保护的出口）。
 
-|private |Restrict the visibility of a declaration to the enclosing
-actor, object, module or class.
+|private |将声明的可见性限制为封闭
+演员、对象、模块或类。
 
-|public |Publish a declaration as member(s) of the enclosing
-actor, object, module or class.
+|public |作为附件成员发布声明
+演员、对象、模块或类。
 
-|query |A modifier on shared functions that return results without modifying state.
+|query |在不修改状态的情况下返回结果的共享函数的修饰符。
 
-|return |Exit from a function or async block (possibly with a value).
+|return |从函数或异步块中退出（可能带有值）。
 
-|shared |Declare a function that can be called remotely.
+|shared |声明一个可以远程调用的函数。
 
-|switch |Conditional pattern matching, defined by cases.
+|switch |条件模式匹配，由案例定义。
 
-|throw |Exit from an expression with an error.
+|throw |从有错误的表达式中退出。
 
-|true |A Boolean value returned as the result of a comparison.
+|true |作为比较结果返回的布尔值。
 
-|try |Declare a scoped error handler.
+|try |声明一个作用域错误处理程序。
 
-|type |Declare a type abbreviation.
+|type |声明一个类型缩写。
 
-|var |Specify a (mutable) variable, field or array that can be updated.
+|var |指定可更新的（可变）变量、字段或数组。
 
-|while |Enter a guarded loop.
+|while |输入一个保护循环。
 |===

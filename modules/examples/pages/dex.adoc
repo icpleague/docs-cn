@@ -1,90 +1,90 @@
-# DEX Sample
+# DEX 样本
 
-To enable DEFI applications on the IC, canisters need to interact with token canisters and the ledger canister. This sample dapp illustrates how to facilitate these interactions.
+要在 IC 上启用 DEFI 应用程序，容器需要与代币容器和分类帐容器交互。 这个示例 dapp 说明了如何促进这些交互。
 
-The sample exchange is implemented in https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] and https://github.com/dfinity/examples/tree/master/rust/defi[Rust] and can be seen https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[running on the IC].
+示例交换在 https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/defi[Rust ]并且可以看到https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[在IC上运行]。
 
-## Architecture
+＃＃ 体系
 
-The design of the IC allows for more complex on-chain computation. In combination with cheap storage, it is possible to have on-chain order books. This sample code takes advantage of these features and stores user balances and orders inside the exchange canister. The sample exchange functionality can be condensed into the following steps:
+IC 的设计允许更复杂的链上计算。 结合廉价存储，可以拥有链上订单簿。 此示例代码利用这些功能并将用户余额和订单存储在交换容器中。 样本交换功能可以浓缩为以下步骤：
 
-* Exchange takes custody of funds (different mechanism for tokens and ICP, see below).
-* Exchange updates internal balance book.
-* Users trade on exchange causing the exchange to update its internal balance book.
-* Withdrawing funds from the exchange gives custody back to the user.
+* 交易所托管资金（代币和ICP的不同机制，见下文）。
+* 交易所更新内部资产负债表。
+* 用户在交易所进行交易，导致交易所更新其内部资产负债表。
+* 从交易所提取资金会将保管权归还给用户。
 
-### Interface
+＃＃＃ 界面
 
-Request user-specific ledger account identifier from the exchange. This unique account identifier represents a user-specific subaccount in the exchange's ledger account, allowing it to differentiate between user deposits.
+从交易所请求用户特定的分类帐帐户标识符。 这个唯一的账户标识符代表了交易所总账账户中用户特定的子账户，允许它区分用户存款。
 
 ```candid
 getDepositAddress: () -> (blob);
 ```
 
-Initiate user deposit to exchange. If the user wants to deposit ICP, the exchange moves the funds from the user-specific deposit address to its default subaddress and adjusts the user's ICP balance on the DEX. If the user wants to deposit a DIP token, the exchange tries to move the approved funds to its token account and adjusts the user's balance.
+发起用户存款兑换。 如果用户想要存入 ICP，交易所将资金从用户特定的存入地址转移到其默认子地址，并调整用户在 DEX 上的 ICP 余额。 如果用户想要存入 DIP 代币，交易所会尝试将批准的资金转移到其代币账户并调整用户的余额。
 
 ```candid
 deposit: (Token) -> (DepositReceipt);
 ```
 
-Withdraw request to the exchange. The exchange will send funds back to the user if the user has a sufficient balance.
+向交易所撤回请求。 如果用户有足够的余额，交易所会将资金返还给用户。
 
 ```candid
 withdraw: (Token, nat, principal) -> (WithdrawReceipt);
 ```
 
-Place new order to exchange. If the order matches an existing order, it will get executed.
+下新订单以进行交换。 如果订单与现有订单匹配，它将被执行。
 
 ```candid
 placeOrder: (Token, nat, Token, nat) -> (OrderPlacementReceipt);
 ```
 
-Allows the user to cancel submitted orders.
+允许用户取消提交的订单。
 
 ```candid
 cancelOrder: (OrderId) -> (CancelOrderReceipt);
 ```
 
-Request user's balance on exchange for a specific token.
+请求用户在交换特定代笔时的余额。
 
 ```candid
 getBalance: (Token) -> (nat) query;
 ```
 
-### Fee
+＃＃＃ 费用
 
-It is the responsibility of the exchange to subtract fees from the trades. This is important because the exchange must pay fees for withdrawals and internal transfers.
+交易所有责任从交易中扣除费用。这很重要，因为交易所必须为取款和内部转账支付费用。
 
-## Token Exchange Walkthrough
+## 代币兑换演练
 
-This section contains a detailed walkthrough of the core exchange functionalities. Most interactions require multiple steps and are simplified by using the provided frontend. Since the exchange canister functions are public, advanced users can use ``dfx`` to interact with the exchange.
+本节包含核心交换功能的详细演练。大多数交互需要多个步骤，并通过使用提供的前端进行简化。由于交易所容器功能是公开的，高级用户可以使用 dfx 与交易所进行交互。
 
-### Depositing ICP
+### 存入ICP
 
-The ledger canister provides a unique interface so that interactions with ICP need to be resolved separately.
+分类帐容器提供了一个独特的接口，因此需要单独解决与 ICP 的交互。
 
-* The user calls the ``getDepositAddress`` function. The response contains a unique account identifier representing a user-specific subaccount controlled by the exchange. The exchange can identify the user responsible for deposits through this address.
-* User transfers ICP to the fetched deposit address and waits for the transfer to complete.
-* To notify the exchange, the user calls ``deposit`` with the ICP token principal. The exchange will look into the user's subaccount and adjust the user's balance on the exchange. In a second step, the exchange will transfer the funds from the user subaccount to its default subaccount, where the exchange keeps all of its ICP.
+* 用户调用“getDepositAddress”函数。响应包含一个唯一的账户标识符，代表由交易所控制的用户特定子账户。交易所可以通过这个地址识别出负责存款的用户。
+* 用户将 ICP 转入获取的存款地址，等待转账完成。
+* 为了通知交易所，用户使用 ICP 令牌主体调用“存款”。交易所会查看用户的子账户，调整用户在交易所的余额。第二步，交易所将资金从用户子账户转移到其默认子账户，交易所保留其所有 ICP。
 
-### Depositing Tokens
+### 存入代币
 
-Depositing tokens is more straightforward because DIP20 provides a richer interface to interact with.
+存入代币更直接，因为 DIP20 提供了更丰富的交互界面。
 
-* The user calls the ``approve`` function of the token canister. This gives the exchange the ability to transfer funds to itself on behalf of the user.
-* Similar to the ICP depositing, the user calls the ``deposit`` function of the exchange. The exchange then transfers the approved token funds to itself and adjusts the user's exchange balance.
+* 用户调用令牌罐的“批准”函数。这使交易所能够代表用户将资金转移给自己。
+* 与ICP充值类似，用户调用交易所的“充值”功能。交易所然后将批准的代币资金转给自己，并调整用户的交易所余额。
 
-### Placing Orders
+### 下单
 
-After depositing funds to the exchange, the user can place orders. An order consists of two tuples. ``from: (Token1, amount1)`` and ``to: (Token2, amount2)``. These orders get added to the exchange. What happens to these orders is specific to the exchange implementation. This sample provides a simple exchange that only executes exactly matching orders. Be aware this is just a toy exchange, and the exchange functionality is just for completeness. Hint: The exchange can be greedy sometimes ;)
+用户将资金存入交易所后，即可下单。一个订单由两个元组组成。 ``来自：（Token1，amount1）``和``to：（Token2，amount2）``。这些订单被添加到交易所。这些订单会发生什么特定于交易所的实施。此示例提供了一个简单的交易所，它只执行完全匹配的订单。请注意，这只是一个玩具交换，交换功能只是为了完整性。提示：交换有时会很贪心；）
 
-### Withdrawing Funds
+### 提取资金
 
-Compared to depositing funds, withdrawing funds is simpler. Since the exchange has custody of the funds, the exchange will send funds back to the user on ``withdraw`` requests. The internal exchange balances are adjusted accordingly.
+与存入资金相比，提取资金更简单。由于交易所拥有资金的保管权，因此交易所将在“提款”请求时将资金返还给用户。内部汇兑余额作相应调整。
 
 
-## Common mistakes
+## 常见错误
 
-* Concurrent execution: If canister functions have ``await`` statements, it is possible that execution is interleaved. To avoid bugs, it is necessary to carefully consider the placement of data structure updates to prevent double-spend attacks.
-* Floating Points: More advanced exchanges should take care of floating points and make sure to limit decimals.
-* No panics after await: When a panic happens, the state gets rolled back. This can cause issues with the correctness of the exchange.
+* 并发执行：如果容器函数有 ``await`` 语句，则执行可能是交错的。 为了避免错误，有必要仔细考虑数据结构更新的位置，以防止双花攻击。
+* 浮点数：更高级的交易所应注意浮点数并确保限制小数。
+*等待后没有恐慌：当发生恐慌时，状态会回滚。 这可能会导致交换的正确性出现问题。

@@ -1,26 +1,20 @@
-= Basic Dao
+= 基本Dao
 
-This sample project demonstrates a basic DAO 
-(https://en.wikipedia.org/wiki/Decentralized_autonomous_organization[Decentralized Autonomous Organization]) 
-that can be deployed to the https://github.com/dfinity/ic[Internet Computer]. The basic DAO sample code is available in https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] and https://github.com/dfinity/examples/tree/master/rust/basic_dao[Rust].
+这个示例项目演示了一个基本的 DAO
+（https://en.wikipedia.org/wiki/Decentralized_autonomous_organization[去中心化自治组织]）
+可以部署到 https://github.com/dfinity/ic[Internet Computer]。 基本的 DAO 示例代码在 https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/basic_dao [Rust]。
 
-== Overview
+== 概述
 
-A `basic_dao` can be initialized with a set of accounts: mappings from principal IDs to an amount of tokens. 
-Account owners can query their account balance by calling `account_balance` and transfer tokens to other
-accounts by calling `transfer`. Anyone can call `list_accounts` to view all accounts. 
+一个 `basic_dao` 可以用一组账户来初始化：从主体 ID 到一定数量的代币的映射。
+账户所有者可以通过调用`account_balance`查询他们的账户余额，并通过调用`transfer`将代币转移到其他账户。任何人都可以调用 `list_accounts` 来查看所有帐户。
 
-Account owners can submit proposals by calling `submit_proposal`. A proposal specifies a canister, method 
-and arguments for this method. Account owners can cast votes (either `Yes` or `No`) on a proposal by calling `vote`. 
-The amount of votes cast is equal to amount of tokens the account owner has. If enough `Yes` votes are cast, 
-`basic_dao` will execute the proposal by calling the proposal's given method with the given args against the given 
-canister. If enough `No` votes are cast, the proposal is not executed, and is instead marked as `Rejected`.
+帐户所有者可以通过调用 `submit_proposal` 提交提案。提案指定此方法的容器、方法和参数。帐户所有者可以通过调用“投票”对提案进行投票（“是”或“否”）。
+投票的数量等于帐户所有者拥有的代币数量。如果投了足够多的“是”票，“basic_dao”将通过使用给定参数调用提案的给定方法来执行提案。如果投了足够多的“否”票，则该提案不会被执行，而是被标记为“拒绝”。
 
-Certain system parameters, like the number of `Yes` votes needed to pass a proposal, can be queried by calling 
-`get_system_params`. These system params can be modified via the proposal process, i.e. a proposal can be
-made to call `update_system_params` with updated values. The below demo does exactly that.
+某些系统参数，例如通过提案所需的“是”票数，可以通过调用“get_system_params”来查询。这些系统参数可以通过提议过程进行修改，即可以提出提议以使用更新的值调用“update_system_params”。下面的演示正是这样做的。
 
-View the https://github.com/dfinity/examples/blob/master/rust/basic_dao/src/basic_dao/src/basic_dao.did[canister service definition] for more details.
+查看 https://github.com/dfinity/examples/blob/master/rust/basic_dao/src/basic_dao/src/basic_dao.did[canister service definition] 了解更多详情。
 
 // == Prerequisites
 

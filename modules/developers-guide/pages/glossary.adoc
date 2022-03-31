@@ -1,51 +1,51 @@
-= Glossary
+= 词汇表
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
 [[g-actor]]
 actor::
-  An actor is a special kind of object in modern programming languages that processes messages in an isolated state, enabling them to be handled remotely and asynchronously.
+  Actor 是现代编程语言中的一种特殊对象，它以隔离状态处理消息，使它们能够被远程和异步处理。
 
 [[g-canister]]
-Canister smart contract::
-  Canister smart contracts, sometimes also simply called canisters, are an extended form of smart contracts. They are revolutionary because they can be run in parallel deterministically. This is enabled by relying on the actor model and deterministic message passing. A canister smart contract has a universally-unique identifier and an owner that defines the boundaries of a specific dapp.
-  A canister encapsulates all of the programming logic, public entry methods, the interface description for the provided message types, and state information for the dapp it describes.
+容器智能合约::
+  容器智能合约，有时也简称为容器，是智能合约的扩展形式。 它们是革命性的，因为它们可以确定地并行运行。 这是通过依赖actor模型和确定性消息传递来实现的。 容器智能合约具有通用唯一标识符和定义特定 dapp 边界的所有者。
+   容器封装了所有编程逻辑、公共入口方法、所提供消息类型的接口描述以及它所描述的 dapp 的状态信息。
 
 [[g-principal]]
 principal::
-  A principal is an entity that can be authenticated by the {IC} blockchain. Principals that interact with the {IC} blockchain often do so via an identity. For example, the first time you use the {sdk-short-name}, the `+dfx+` command-line tool creates a `+default+` developer identity for you with a public/private key pair in a PEM file. This developer identity determines a **principal**. There is a textual representation of the principal which is often referred to as your **principal identifier**.
-  Note that the developer identity can also be used to derive an **account identifier**—similar to a Bitcoin or Ethereum address—to hold ICP tokens on the identity's behalf in the ledger canister.
+  principal是可以通过 {IC} 区块链进行身份验证的实体。 与 {IC} 区块链交互的principal通常通过身份进行交互。 例如，第一次使用 {sdk-short-name} 时，`+dfx+` 命令行工具会使用 PEM 文件中的公钥/私钥对为您创建一个 `+default+` 开发者身份。 这个开发者身份决定了一个**principal**。 有一个主体的文本表示，通常称为您的**主体标识符**。
+   请注意，开发人员身份还可用于派生**帐户标识符**（类似于比特币或以太坊地址），以代表身份将 ICP 令牌保存在帐本容器中。
 
 [[g-controller]]
-controller::
-  A controller is a principal that has special rights to manage the canister smart contract it controls.
-  For example, only a controlling principal can be used to install, upgrade, or delete the canister under its control.
-  You can specify the controller principal using the textual representation of a principal—often referred to as the principal identifier—associated with a user or with a canister.
+控制器::
+  控制器是具有特殊权限来管理其控制的容器智能合约的主体。
+  例如，只有控制主体可用于安装、升级或删除其控制下的容器。
+  您可以使用与用户或容器相关联的主体（通常称为主体标识符）的文本表示来指定控制器主体。
 
 [[g-ledger]]
-ledger::
-  The {IC} blockchain records all transactions involving ICP tokens in a specialized management canister smart contract, called the **ledger canister**.
-  The ledger canister implements a smart contract that maintains **accounts** and **balances** and keeps a history of the *transactions* that affect accounts and balances. The transactions are recorded to track the following specific events:
+账本::
+  {IC} 区块链将所有涉及 ICP 代币的交易记录在一个专门的管理容器智能合约中，称为 **ledger canister**。
+  账本容器实现了一个智能合约，该合约维护**帐户**和**余额**，并保留影响帐户和余额的*交易*的历史记录。 记录交易以跟踪以下特定事件：
   
-  * **Mint ICP tokens** for accounts.
-  * **Transfer ICP tokens** from one account to another.
-  * **Burn ICP tokens** to eliminate them from existence.
+* **Mint ICP 代币** 用于帐户。
+* **将 ICP 代币**从一个账户转移到另一个账户。
+* **燃烧 ICP 代币**以消除它们的存在。
 
 [[g-wallet]]
 wallet::
-  A wallet is a specialized dapp (implemented as a canister smart contract) that allows to store and manage cycles. Cycles are used to pay for computation and resource consumption on the {IC} blockchain. Cycles can be obtained by conversion from the {IC} blockchain's native utility token ICP.
+  钱包是允许存储和管理燃料费的专用 dapp（实现为容器智能合约）。 燃料费用于支付 {IC} 区块链上的计算和资源消耗。 Cycles可以通过从{IC}区块链的原生实用代币ICP转换获得。
 
 [[g-node]]
-node::
-  A physical or virtual machine that hosts all the hardware, replica software, and configuration settings required to participate in the {IC} blockchain.
+节点::
+  托管参与 {IC} 区块链所需的所有硬件、副本软件和配置设置的物理机或虚拟机。
 
 [[g-replica]]
-replica:: 
-  In the context of the {IC} blockchain, a replica refers to the {IC} protocol processes running on a node.
+副本:: 
+  在 {IC} 区块链的上下文中，副本是指在节点上运行的 {IC} 协议进程。
 
 [[g-wasm]]
 WebAssembly::
-  https://webassembly.org/[WebAssembly] (`+Wasm+`) is a low-level computer instruction format. 
-  Because WebAssembly defines a portable, open-standard, binary format that abstracts cleanly over most modern computer hardware, it is broadly supported for programs that run on the internet.
-  Dapps written in {proglang} are compiled to WebAssembly code for execution on the {IC} blockchain.
+  https://webassembly.org/[WebAssembly] (`+Wasm+`) 是一种低级计算机指令格式。
+   由于 WebAssembly 定义了一种可移植的、开放标准的二进制格式，可以清晰地抽象出大多数现代计算机硬件，因此它广泛支持在 Internet 上运行的程序。
+   用 {proglang} 编写的 Dapp 被编译为 WebAssembly 代码，以便在 {IC} 区块链上执行。

@@ -1,81 +1,81 @@
 = dfx config
 
-Use the `+dfx config+` command to view or configure settings in the configuration file for a current project.
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+使用 `+dfx config+` 命令查看或配置当前项目的配置文件中的设置。
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx config [config_path] [value] [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx config+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Options
-
-You can use the following option with the `+dfx config+` command.
+您可以在 `+dfx config+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Option |Description
-|`+--format+` |Specifies the format of the configuration file output.
-By default, the file is displayed using JSON format.
-The valid values are `+json+` and `+text+`.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Arguments
+== 选项
 
-You can specify the following arguments for the `+dfx config+` command.
+您可以在 `+dfx config+` 命令中使用以下选项。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|选项 |说明
+|`+--format+` |指定配置文件输出的格式。
+默认情况下，文件以 JSON 格式显示。
+有效值为 `+json+` 和 `+text+`。
+|===
+
+== 参数
+
+您可以为 `+dfx config+` 命令指定以下参数。
 
 [width="100%",cols="<34%,<66%",options="header"]
 |===
-|Argument |Description
-|`+config_path+` |Specifies the name of the configuration option that you want to set or read.
-You must specify the configuration file option using its period-delineated path to set or read the specific option you want to change or view.
-If you don't specify the path to a specific configuration option, the command displays the full configuration file.
+|参数 |描述
+|`+config_path+` |指定要设置或读取的配置选项的名称。
+您必须使用其周期描述的路径指定配置文件选项，以设置或读取您要更改或查看的特定选项。
+如果您未指定特定配置选项的路径，该命令将显示完整的配置文件。
 
-|`+value+` |Specifies the new value for the option you are changing.
-If you don’t specify a value, the command returns the current value for the option from the configuration file.
+|`+value+` |为您正在更改的选项指定新值。
+如果您未指定值，该命令将返回配置文件中选项的当前值。
 |===
 
-== Examples
+== 例子
 
-You can use the `+dfx config+` command to change configuration settings such as the location of the default output directory or the name of your main program file.
+您可以使用 `+dfx config+` 命令更改配置设置，例如默认输出目录的位置或主程序文件的名称。
 
-For example, to change the default build output directory from `+canisters+` to `+staging+`, you can run the following command:
+例如，要将默认构建输出目录从 `+canisters+` 更改为 `+staging+`，可以运行以下命令：
 
 [source,bash]
 ----
 dfx config defaults.build.output "staging/"
 ----
 
-To view the current value for a configuration setting, you can specify the path to the setting in the configuration file without specifying a value.
-For example:
+要查看配置设置的当前值，您可以在配置文件中指定设置的路径而不指定值。
+例如：
 
 [source,bash]
 ----
 dfx config defaults.build.output
 ----
 
-The command returns the current value for the configuration option:
+该命令返回配置选项的当前值：
 
 [source,bash]
 ----
 "staging/"
 ----
 
-Similarly, you can change the name of the main source file or the port number for the local canister execution environment by running commands similar to the following:
+同样，您可以通过运行类似于以下的命令来更改主源文件的名称或本地容器执行环境的端口号：
 
 [source,bash]
 ----
@@ -83,4 +83,4 @@ dfx config canisters.hello.main "src/hello_world/hello-main.mo"
 dfx config networks.local.bind 127.0.0.1:5050
 ----
 
-You can also verify your configuration changes by viewing the `+dfx.json+` configuration file after running the `+dfx config+` command.
+您还可以通过在运行 `+dfx config+` 命令后查看 `+dfx.json+` 配置文件来验证您的配置更改。

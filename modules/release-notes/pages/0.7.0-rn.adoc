@@ -1,73 +1,75 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.7.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-The most significant new features and capabilities are updates to the following:
+最重要的新特性和功能是对以下内容的更新：
 
 * <<DFX,DFX>>
 * <<Motoko,Motoko>>
 
-== New features and capabilities
+== 新特性和功能
 
 === DFX
 
-* Addition of ledger subcommands
+* 添加分类帐子命令
 +
-`+dfx+` now supports a dedicated `dfx ledger` subcommand. This allows you to interact with the ledger
-canister installed on the Internet Computer. Example commands include `dfx ledger account-id` which
-prints the Account Identifier associated with your selected identity, `dfx ledger transfer` which
-allows you to transfer ICP from your ledger account to another, and `dfx ledger create-canister` which
-allows you to create a canister from ICP.
-For more information on `+dfx ledger+` subcommands, see link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger].
+`+dfx+` 现在支持专用的 `dfx ledger` 子命令。 这允许您与分类帐交互
+安装在 Internet 计算机上的容器。 示例命令包括 `dfx ledger account-id`
+打印与您选择的身份关联的帐户标识符，`dfx ledger transfer`
+允许您将 ICP 从您的分类帐帐户转移到另一个帐户，以及 `dfx ledger create-canister`
+允许您从 ICP 创建一个容器。
+有关 `+dfx ledger+` 子命令的更多信息，请参阅link：../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger]。
 
-* Addition of wallet subcommands
+* 添加钱包子命令
 +
-`+dfx+` now supports a dedicated `dfx wallet` subcommand. This allows you to interact with the cycles wallet associated with your selected identity. 
+`+dfx+` 现在支持专用的 `dfx wallet` 子命令。 这允许您与与您选择的身份相关联的燃料费钱包进行交互。
 +
-The following are just some of the available commands:
+以下只是一些可用的命令：
 +
-** `+dfx wallet balance+` returns the selected identity's cycles wallet balance.
+** `+dfx 钱包余额+` 返回所选身份的燃料费钱包余额。
 +
-** `+dfx wallet list-addresses+` displays the assigned controllers & custodians of the cycles wallet.
+** `+dfx wallet list-addresses+` 显示燃料费钱包的分配控制人和保管人。
 + 
-You can use `dfx wallet send <destination> <amount>`
-to send cycles to another wallet.
+你可以使用`dfx wallet send <destination> <amount>`
+将周期发送到另一个钱包。
 +
-For more information on `+dfx wallet+` see link:../developers-guide/cli-reference/dfx-wallet{outfilesuffix}[dfx wallet].
+有关 `+dfx wallet+` 的更多信息，请参阅link：../developers-guide/cli-reference/dfx-wallet{outfilesuffix}[dfx wallet]。
 
-* Add an output type to the `+request-status+` subcommand.
+* 在 `+request-status+` 子命令中添加输出类型。
 +
-This change allows you to specify the format for the return result for `+dfx canister request-status+`. Formatting options include `+idl+`, `+raw+`, and `+pp+`. 
+此更改允许您为 `+dfx canister request-status+` 指定返回结果的格式。 格式化选项包括`+idl+`、`+raw+`和`+pp+`。
 
-* The default network for projects is now `ic`.
+* 项目的默认网络现在是 `ic`。
 +
-The default network is now the mainnet `+ic+` unless otherwise specified.  Additionally, `+--network ic+` now points to the mainnet {IC} (Sodium has been deprecated.)
+除非另有说明，默认网络现在是主网`+ic+`。 此外，`+--network ic+` 现在指向主网 {IC}（Sodium 已被弃用。）
 
-* Automatic creation of a candid UI canister
+* 自动创建一个坦率的 UI 容器
 +
-A dedicated candid UI canister is installed on a local network when using `+dfx canister install+` or `+dfx deploy+`.
+使用 `+dfx canister install+` 或 `+dfx deploy+` 时，会在本地网络上安装专用的坦率 UI 容器。
 
-* Compress some content types
+* 压缩一些内容类型
 +
-You can now store `+gzip+` content encodings of assets with media types if the encoding is smaller than the source contents. Supported file types are `+text/*+`, `+*/javascript+`, and `+*/html+`.
+如果编码小于源内容，您现在可以存储具有媒体类型的资产的 `+gzip+` 内容编码。 支持的文件类型为 `+text/*+`、`+*/javascript+` 和 `+*/html+`。
 
-* Add the encoding size when listing assets
+* 列出资产时添加编码大小
 +
-Now when assets are listed, a new `+length+` field returns the size of encodings. 
+458 / 5,000
+翻译结果
+现在，当资产被列出时，一个新的 `+length+` 字段会返回编码的大小。
 
-* Add new command `+dfx canister info+`
+* 添加新命令`+dfx canister info+`
 +
-This allows you to retrieve certified canister information. Access to this information is limited to the controller of the canister and the SHA256 hash of its WASM module. If there is no WASM module installed, the hash will be `+None+`.
+这允许您检索认证的容器信息。 对该信息的访问仅限于容器的控制器及其 WASM 模块的 SHA256 哈希。 如果没有安装 WASM 模块，则哈希将为 `+None+`。
 
-* New method deletes asset canister assets that no longer exist in a project—*breaking change*
+* 新方法删除项目中不再存在的资产容器资产——*重大更改* 
 +
-The `+keys()+` method is no longer supported. Use the `+list()+` method to delete missing project assets. For example:
+不再支持 `+keys()+` 方法。 使用 `+list()+` 方法删除缺失的项目资产。 例如：
 +
 [source,bash]
 ----
@@ -75,79 +77,79 @@ assert_command dfx canister call --query e2e_project_assets get '(record{key="/w
 assert_command dfx canister call --query e2e_project_assets list  '(record{})'
 assert_match '"/will-delete-this.txt"'
 ----
-* Run an emulator instead of the replica
+* 运行模拟器而不是副本
 +
-To run a `+dfx+` project using an emulator instead of the replica, you can now run `+dfx start --emulator+`. 
-* Rely on npmjs.org to get the version of agent-js to install
+要使用模拟器而不是副本运行 `+dfx+` 项目，您现在可以运行 `+dfx start --emulator+`。
+* 依赖npmjs.org获取agent-js版本安装
 +
-This decouples the version of `+dfx+` from the release version of `+agent-js+`. Additionally, it allows for debug builds to install properly (as `+dfx+` has a non-release version).
-* You can now install the DFINITY Canister SDK on for M1 Macs running Darwin. 
-* Allow upload of assets of any size to the asset canister.
+这将`+dfx+`的版本与`+agent-js+`的发布版本分离。 此外，它允许调试版本正确安装（因为 `+dfx+` 有一个非发布版本）。
+* 您现在可以为运行 Darwin 的 M1 Mac 安装 DFINITY Canister SDK。
+* 允许将任何大小的资产上传到资产容器。
 +
-The following asset canister call methods are added:
+添加了以下资产容器调用方法：
 ** create_batch()
 ** create_chunk()
 ** commit_batch()
 ** get()
 ** get_chunk()
 +
-Reworks the asset installer in `+dfx+` to use these methods. It can therefore upload assets that exceed the message ingress size.
-* Add `+--no-wallet+` flag and `+--wallet+` option
+重做 `+dfx+` 中的资产安装程序以使用这些方法。 因此，它可以上传超过消息入口大小的资产。
+* 添加 `+--no-wallet+` 标志和 `+--wallet+` 选项
 +
-`+--no-wallet+` allows users to bypass specifying a wallet ID.  
+`+--no-wallet+` 允许用户绕过指定钱包 ID。
 +
-`+--wallet+` allows users to specify a particular wallet to use for calls. 
-* Implement the HTTP request proposal in `+dfx+` bootstrap webserver
+`+--wallet+` 允许用户指定用于调用的特定钱包。
+* 在 `+dfx+` bootstrap webserver 中实现 HTTP 请求提案
 +
-Adds support for http requests in the base storage canister (with a default to `+/index.html+`).
+在基本存储容器中添加对 http 请求的支持（默认为 `+/index.html+`）。
 
-This does not support encodings other than `+identity+`, and doesn't return any headers. 
+这不支持 `+identity+` 以外的编码，并且不返回任何标头。
 
-This also upgrades `+tokio+` and `+reqwest+` in order to work correctly. There are some performance issues to note (this is slower than the icx-http-server).
+这也会升级 `+tokio+` 和 `+reqwest+` 以便正常工作。 有一些性能问题需要注意（这比 icx-http-server 慢）。
 
 === Motoko
 
-* Reformat to style guidelines.
+* 重新格式化为样式指南。
 
-* Add type bindings 
+* 添加类型绑定
 +
-Add `+Nat.Nat+`, `+Nat8.Nat8+`, etc. to libraries for primitive types.
+将 `+Nat.Nat+`、`+Nat8.Nat8+` 等添加到原始类型的库中。
 
 
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
 === DFX
 
-* Deleting a canister on a network removes entries for other networks
+* 删除网络上的容器会删除其他网络的条目
 +
-This change fixes a bug where deleting a canister on a network removed all other entries for the canister in the `+canister_ids.json+` file.
+此更改修复了删除网络上的容器会删除 `+canister_ids.json+` 文件中容器的所有其他条目的错误。
 
-* Error message: already in use (os error 48) when issuing dfx start.
+* 错误消息：发出 dfx start 时已在使用中（操作系统错误 48）。
 +
-This fixes an error which occurred when starting a replica soon after stopping it.
+这修复了在停止副本后立即启动副本时发生的错误。
 
-* The `+dfx new+` command should not require `+node+`
+* `+dfx new+` 命令不应该需要 `+node+`
 +
-This fixes the inability to use the `+dfx new+` command to create projects on machines that do not have `+node.js+` installed. 
+这修复了无法使用 `+dfx new+` 命令在未安装 `+node.js+` 的机器上创建项目的问题。
 
-* Missing webpack.config plugin
+* 缺少 webpack.config 插件
 +
-This adds the missing ProvidePlugin to webpack.config for new projects. 
+这会将缺少的 ProvidePlugin 添加到新项目的 webpack.config 中。
 
-* Allow new projects assets to contain non-utf8 files
+* 允许新项目资产包含非 UTF-8 文件
 +
-Previously assets were forced to be valid UTF-8 strings. After this change if a string cannot be converted, in-place variable replacements are ignored.
+以前资产被强制为有效的 UTF-8 字符串。 在此更改之后，如果无法转换字符串，则会忽略就地变量替换。
 
 === Motoko
 
-* No longer confused by distinct, but eponymous, type definitions.
+* 不再被不同但同名的类型定义所迷惑。
 
-* Numbers of eponymous types and specializations from 1 (not 2)
+* 同名类型和专业的数量从 1（不是 2）开始
 
-* Avoids long chains of type equalities by normalizing before translation
+* 通过在翻译前进行规范化来避免类型等式的长链
 
-//== Known issues and limitations
+//== 已知问题和限制
 
-//This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+//本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。

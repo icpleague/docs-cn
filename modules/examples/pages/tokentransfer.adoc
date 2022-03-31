@@ -1,8 +1,8 @@
-= Token Transfer Sample Code
+= 代币转移示例代码
 
-Tokens Transfer is a canister that can transfer token from its account to other accounts. It is an example of a canister that uses the Ledger canister. Sample code is available in https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] and https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust].
+Tokens Transfer 是一个容器，可以将令牌从其账户转移到其他账户。 这是使用 Ledger 容器的容器示例。 示例代码在 https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust]。
 
-The sample code revolves around one core transfer function which takes as input the amount of tokens to transfer, the account (and optionally the subaccount) to which to transfer the tokens and returns either success or an error in case e.g. the tokens transfer canister doesn't have enough tokens to do the transfer. In case of success, a unique identifier of the transaction is returned. This identifier will be stored in the memo of the transaction in the Ledger.
+示例代码围绕一个核心转移函数展开，该函数将要转移的代币数量、将代币转移到的账户（以及可选的子账户）作为输入，并返回成功或错误以防万一。 代币转移容器没有足够的令牌来进行转移。 如果成功，则返回交易的唯一标识符。 该标识符将存储在分类帐中的交易备忘录中。
 
 // This example demonstrates an application that transfer ICPs to its most active users.
 

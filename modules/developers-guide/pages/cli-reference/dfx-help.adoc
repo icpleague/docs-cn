@@ -1,34 +1,34 @@
-= dfx help
+= dfx 帮助
 
-Use this command to view usage information for the `+dfx+` parent command or for any specified subcommand.
+使用此命令可查看 `+dfx+` 父命令或任何指定子命令的使用信息。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx help [subcommand]
 ----
 
-== Arguments
+== 参数
 
-You can specify any `+dfx+` subcommand as an argument to view usage information for that subcommand using the `+dfx help+` command.
+您可以指定任何 `+dfx+` 子命令作为参数，以使用 `+dfx help+` 命令查看该子命令的使用信息。
 
 [width="100%",cols="<34%,<66%",options="header"]
 |===
-|Argument |Description
-|`+subcommand+` |Specifies the subcommand usage information you want to display.
+|参数 |描述
+|`+subcommand+` |指定要显示的子命令使用信息。
 |===
 
-== Examples
+== 例子
 
-To display the usage information for `+dfx+`, run the following command:
+要显示 `+dfx+` 的使用信息，请运行以下命令：
 
 [source,bash]
 ----
 dfx help
 ----
 
-To display the usage information for `+dfx new+`, run the following command:
+要显示 `+dfx new+` 的使用信息，请运行以下命令：
 
 [source,bash]
 ----

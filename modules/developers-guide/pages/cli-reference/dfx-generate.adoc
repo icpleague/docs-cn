@@ -1,66 +1,66 @@
-= dfx generate
+= dfx 生成
 
-Use the `+dfx generate+` command to generate canister type declarations for supported programming languages.
-Currently, `+dfx generate+` supports four languages: Motoko, Candid, JavaScript, and TypeScript.
+使用 `+dfx generate+` 命令为支持的编程语言生成容器类型声明。
+目前，`+dfx generate+` 支持四种语言：Motoko、Candid、JavaScript 和 TypeScript。
 
-You can use this command to generate type declarations for all canisters
-that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.
+Y您可以使用此命令为所有容器生成类型声明
+在项目的 `+dfx.json+` 配置文件或特定容器中为项目定义的。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-The `+dfx generate+` command looks for the configuration under the `+declarations+` section of a canister in the `+dfx.json+` configuration file.
+`+dfx generate+` 命令在 `+dfx.json+` 配置文件中的容器的 `+declarations+` 部分下查找配置。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx generate [canister_name]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx generate+` command.
+您可以在 `+dfx generate+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
+|标志 |说明
 
 |`+-h+`, `+--help+` |Displays usage information.
 
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-== Arguments
+== 参数
 
-You can specify the following arguments for the `+dfx generate+` command.
+您可以为 `+dfx generate+` 命令指定以下参数。
 
 [width="100%",cols="<36%,<64%",options="header"]
 |===
 
-|Argument |Description
+|参数 |描述
 
-|`+canister_name+` |Specifies the name of the canister for which to generate type declarations.
-The canister name must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
-If you don't specify this argument, `+dfx generate+` will generate type declarations for all canisters declared in `+dfx.json+`.
+|`+canister_name+` |指定要为其生成类型声明的容器的名称。
+容器名称必须与您在项目的 `+dfx.json+` 配置文件的 `+canisters+` 部分中配置的至少一个名称匹配。
+如果您不指定此参数，`+dfx generate+` 将为在 `+dfx.json+` 中声明的所有容器生成类型声明。
 
 |===
 
-== Configuration
+== 配置
 
-The behavior of `+dfx generate+` is controlled by the `+dfx.json+` configuration file.
-Under `+dfx.json+` → `+canisters+` → `+<canister_name>+`, you can add a `+declarations+` section.
-In this section, you can specify the following fields:
+`+dfx generate+` 的行为由 `+dfx.json+` 配置文件控制。
+在 `+dfx.json+` → `+canisters+` → `+<canister_name>+` 下，您可以添加 `+declarations+` 部分。
+在本节中，您可以指定以下字段：
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Field |Description
+|字段 |描述
 
-|`+output+` |Directory to place declarations for the canister. Default is `+src/declarations/<canister_name>+`.
+|`+output+` |放置容器声明的目录。 默认为 `+src/declarations/<canister_name>+`。
 
-|`+bindings+` |List of languages to generate type declarations. Options are `+"js", "ts", "did", "mo"+`. Default is `+["js", "ts", "did"]+`.
+|`+bindings+` |生成类型声明的语言列表。 选项是`+"js"、"ts"、"did"、"mo"+`。 默认为 `+["js", "ts", "did"]+`。
 
-|`+env_override+` |String that will replace `+process.env.{canister_name_uppercase}_CANISTER_ID+` in the `+src/dfx/assets/language_bindings/canister.js+` template.
+|`+env_override+` |将替换`+src/dfx/assets/language_bindings/canister.js+`模板中的`+process.env.{canister_name_uppercase}_CANISTER_ID+`的字符串。
 
 |===
 
@@ -68,7 +68,7 @@ Outputs from `+dfx generate+`:
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Language |File
+|语言 |文件
 
 |`+JavaScript(js)+` |`+index.js+` and `+<canister_name>.did.js+`
 
@@ -79,23 +79,23 @@ Outputs from `+dfx generate+`:
 |`+Motoko(mo)+` |`+<canister_name>.mo+`
 |===
 
-== Examples
+== 例子
 
 [source,json]
 ----
-include::example$sample-generate-dfx.json[]
+包含::example$sample-generate-dfx.json[]
 ----
 
-Note that the file name and path to the programs on your file system must match the information specified in the `+dfx.json+` configuration file.
+请注意，文件系统上程序的文件名和路径必须与 `+dfx.json+` 配置文件中指定的信息匹配。
 
-In this example, the `+hello_world+` canister itself is written in Motoko. The `+declarations+` section specifies that type declarations for all four languages will be generated and stored at `+src/declarations/+`.
+在这个例子中，`+hello_world+` 容器本身是用 Motoko 编写的。 `+declarations+` 部分指定将生成所有四种语言的类型声明并将其存储在 `+src/declarations/+` 中。
 
 [source,bash]
 ----
 dfx generate hello_world
 ----
 
-Since there is only one canister in `+dfx.json+`, calling `+dfx generate+` without an argument will have the same effect as the above command.  If there were multiple canisters defined in `+dfx.json+`, this would generate type declarations for all defined canisters.
+由于 `+dfx.json+` 中只有一个容器，因此在不带参数的情况下调用 `+dfx generate+` 将与上述命令具有相同的效果。 如果在 `+dfx.json+` 中定义了多个容器，这将为所有定义的容器生成类型声明。
 
 [source,bash]
 ----

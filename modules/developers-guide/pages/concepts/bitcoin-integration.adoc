@@ -1,51 +1,32 @@
-= Bitcoin integration
+= 比特币整合
 
-The Internet Computer��s distributed ECDSA suite of protocols allows canisters to obtain ECDSA public keys and to securely sign messages under that public key using chain key cryptography.
-Thus canisters can have a Bitcoin public key, i.e., a Bitcoin address, and sign Bitcoin transactions.
+互联网计算机的分布式 ECDSA 协议套件允许容器获取 ECDSA 公钥并使用链密钥加密技术在该公钥下安全地签署消息。
+因此，容器可以拥有比特币公钥，即比特币地址，并签署比特币交易。
 
-To make this easy, https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration] gives canisters direct access to the UTXO set of Bitcoin and also allows canisters to send transactions to the Bitcoin network.
-This is achieved by a subnet��s replicas pulling the latest blocks from various Bitcoin miners (and reaching consensus on the current UTXO set) and by replicas sending transactions signed by a canister to the Bitcoin network.
-Notice that this direct integration with the Bitcoin blockchain does not relying on any intermediate parties such as a bridge and hence does not require any extra trust assumption.
+为了简化这一点，https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration] 允许容器直接访问比特币的 UTXO 集，并允许容器向比特币网络发送交易。
+这是通过子网的副本从各种比特币矿工那里提取最新块（并就当前的 UTXO 集达成共识）以及通过副本将由罐签名的交易发送到比特币网络来实现的。
+请注意，这种与比特币区块链的直接集成不依赖于任何中间方，例如桥梁，因此不需要任何额外的信任假设。
 
-Developers can already start developing smart contracts using the IC Bitcoin API with the developer preview, which includes https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[sample projects] in both Rust and Motoko. The developer preview can be run locally to explore the Bitcoin API. In the developer preview, the Bitcoin network is replaced with a single, locally-running https://bitcoin.org/en/full-node[bitcoin] node that can be fully controlled by the user for smart contract testing purposes.
+开发人员已经可以使用 IC 比特币 API 和开发人员预览版开始开发智能合约，其中包括 Rust 和 Motoko 中的 https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[示例项目]。 开发者预览版可以在本地运行以探索比特币 API。 在开发者预览版中，比特币网络被替换为单个本地运行的 https://bitcoin.org/en/full-node[bitcoin] 节点，用户可以完全控制该节点以进行智能合约测试。
 
 ////
-The goal of the
-https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration]
-is to bridge the gap between the Internet Computer and the Bitcoin blockchain,
-enabling powerful Bitcoin smart contracts to run on the Internet Computer.
+https://dfinity.org/howitworks/direct-integration-with-bitcoin[比特币整合]的目标
+是在互联网计算机和比特币区块链之间架起一座桥梁，让强大的比特币智能合约能够在互联网计算机上运行。
 
-With this integration, canisters on the Internet Computer will be able to receive,
-hold, and transfer Bitcoin on the Bitcoin network.
-The integration between the two blockchain networks will operate in a _trustless manner_, i.e.,
-without any additional parties being involved or additional trust assumptions being made.
-It is the most secure means of integrating two blockchain networks, and builds on advanced
-cryptography and engineering.
+通过这种集成，互联网计算机上的容器将能够在比特币网络上接收、持有和转移比特币。两个区块链网络之间的集成将以“无信任方式”运行，即不涉及任何其他方或做出额外的信任假设。
+它是集成两个区块链网络的最安全方式，并建立在先进的密码学和工程之上。
 
-Developers can already start the development of smart contracts against the Bitcoin API using
-the  _developer preview_, which includes
-https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[sample projects]
-in both Rust and Motoko.
-The developer preview can be run locally to explore the Bitcoin API.
-In the developer preview, the Bitcoin network is replaced with a single, locally-running
-https://bitcoin.org/en/full-node[bitcoind]
-node that can be fully controlled by the user for smart contract testing purposes.
+开发人员已经可以使用_开发人员预览_开始针对比特币 API 开发智能合约，其中包括
+Rust 和 Motoko 中的 https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[示例项目]。
+开发者预览版可以在本地运行以探索比特币 API。
+在开发者预览版中，比特币网络被替换为单个本地运行的 https://bitcoin.org/en/full-node[bitcoind] 节点，用户可以完全控制该节点以进行智能合约测试。
 ////
 
-NOTE: The developer preview does not support any interaction with the Bitcoin mainnet or testnet.
+注意：开发者预览版不支持与比特币主网或测试网的任何交互。
 
-The main component of the integration is the *Bitcoin canister*.
-The source code plus documentation of its API can be found in this
-https://github.com/dfinity/bitcoin-developer-preview[GitHub repository].
+集成的主要组件是*比特币容器*。 可以在此 https://github.com/dfinity/bitcoin-developer-preview[GitHub 存储库] 中找到其 API 的源代码和文档。
 
-NOTE: The Bitcoin functionality will be offered on the Internet Computer in the
-form of _virtual canisters_, similar to the
-https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[management canister],
-once the feature is generally available on the IC mainnet.
-The API may change slightly but is expected to remain essentially the same between
-the developer preview and mainnet release, so minor code adaptations in canister code may be required
-when switching to the mainnet release later.
+注意：比特币功能将以_virtual canisters_的形式在互联网计算机上提供，类似于https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[管理容器]， 一旦该功能在 IC 主网上普遍可用。
+API 可能会略有变化，但预计在开发人员预览版和主网版本之间基本保持不变，因此稍后切换到主网版本时可能需要对容器代码进行少量代码调整。
 
-More information about the inner workings of the integration can be found
-on the
-https://wiki.internetcomputer.org/wiki/Bitcoin_integration[Bitcoin integration wiki page].
+有关集成内部工作的更多信息，请参见 https://wiki.internetcomputer.org/wiki/Bitcoin_integration[比特币集成 wiki 页面]。

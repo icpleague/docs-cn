@@ -1,79 +1,79 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.9.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-An overview of the {release} release:
+{release} 版本概述：
 
-This release removes the `--no-wallet` parameter by making use of the fact that canisters can now have multiple controllers.
-
+此版本通过利用容器现在可以有多个控制器的事实删除了 `--no-wallet` 参数。
 Please see below for required upgrade steps.
 
-== Changes to DFX
+== 对 DFX 的更改
 
-=== New feature (breaking change): Remove the wallet proxy and the --no-wallet flag
+=== 新功能（重大更改）：删除钱包代理和 --no-wallet 标志
 
-Breaking change: Canister commands, except for `dfx canister create`, will make the call directly, rather than via the user's wallet. The `--no-wallet` flag is thus removed from `dfx canister` as its behavior is the default.
+重大变化：除了“dfx canister create”之外，容器命令将直接调用，而不是通过用户的钱包。 `--no-wallet` 标志因此从 `dfx canister` 中删除，因为它的行为是默认的。
 
-When working with existing canisters, use the `--wallet` flag in conjunction with `dfx identity get-wallet` in order to restore the old behavior.
+使用现有容器时，将 `--wallet` 标志与 `dfx identity get-wallet` 结合使用，以恢复旧行为。
 
-You will need to upgrade your wallet and each of your existing canisters to work with the new system.  To do so, execute the following in each of your dfx projects:
+您将需要升级您的钱包和现有的每个容器以使用新系统。 为此，请在每个 dfx 项目中执行以下操作：
 [source, bash]
 ----
 dfx wallet upgrade
 dfx canister --wallet "$(dfx identity get-wallet)" update-settings --all --add-controller "$(dfx identity get-principal)"
 ----
-To upgrade projects that you have deployed to the IC mainnet, execute the following:
+要升级您已部署到 IC 主网的项目，请执行以下操作：
 [source, bash]
 ----
 dfx wallet --network ic upgrade
 dfx canister --network ic --wallet "$(dfx identity --network ic get-wallet)" update-settings --all --add-controller "$(dfx identity get-principal)"
 ----
 
-=== New feature: Add --add-controller and --remove-controller flags for "canister update-settings"
+=== 新功能：为“canister update-settings”添加 --add-controller 和 --remove-controller 标志
 
-`dfx canister update-settings` previously only let you overwrite the entire controller list; `--add-controller` and `--remove-controller` instead add or remove from the list.
+`dfx canister update-settings`以前只允许你覆盖整个控制器列表； `--add-controller` 和 `--remove-controller` 改为从列表中添加或删除。
 
-=== New feature: Add --no-withdrawal flag for "canister delete" for when the canister is out of cycles
+=== 新功能：为“canister delete”添加 --no-withdrawal 标志，用于当容器超出燃料费时
 
-`dfx canister delete --no-withdrawal <canister>` can be used to delete a canister without attempting to withdraw cycles.
+`dfx canister delete --no-withdrawal <canister>` 可用于在不尝试撤燃料费的情况下删除容器。
 
-=== Fixed: set RUST_MIN_STACK to 8MB for ic-starter (and therefore replica)
+=== 已修复：将 ic-starter（以及副本）的 RUST_MIN_STACK 设置为 8MB
 
-This matches the value used in production and is meant to exceed the configured 5 MB wasmtime stack.
+这与生产中使用的值相匹配，并且旨在超过配置的 5 MB wasmtime 堆栈。
 
-=== Fixed: asset uploads will retry failed requests as expected
+=== 固定：资产上传将按预期重试失败的请求
 
-Fixed a defect in asset synchronization where no retries would be attempted after the first 30 seconds overall.
+修复了资产同步中的一个缺陷，即在整体前 30 秒后不会尝试重试。
 
 == Motoko
 
-Updated Motoko from 0.6.11 to 0.6.20.
+将 Motoko 从 0.6.11 更新到 0.6.20。
 
-* Implement type union/intersection
-* Transform for-loops on arrays into while-loops
-* Tighten typing rules for type annotations in patterns
-* Candid decoding: skip vec any fast
-* Bump up MAX_HP_FOR_GC from 1GB to 3GB
-* Candid decoder: Trap if a principal value is too large
-* Eliminate bignum calls from for-iteration on arrays
-* Improve scheduling
-* Improve performance of bignum equality
-* Stable signatures: frontend, metadata, command-line args
-* Added heartbeat support
+* 实现类型联合/交集
+* 将数组上的 for 循环转换为 while 循环
+* 收紧模式中类型注释的类型规则
+*Candid 解码：快速跳过vec
+* 将 MAX_HP_FOR_GC 从 1GB 提高到 3GB
+*Candid 解码：如果主值太大，则Trap
+* 消除对数组进行 for-iteration 的 bignum 调用
+* 改进调度
+* 提高 bignum 相等的性能
+* 稳定签名：前端、元数据、命令行参数
+* 添加心跳支持
 
-== Cycles wallet
+== 燃料费钱包
 
-Module hash: 53ec1b030f1891bf8fd3877773b15e66ca040da539412cc763ff4ebcaf4507c5
+模块哈希: 53ec1b030f1891bf8fd3877773b15e66ca040da539412cc763ff4ebcaf4507c5
 https://github.com/dfinity/cycles-wallet/commit/57e53fcb679d1ea33cc713d2c0c24fc5848a9759
 
 == Replica
 
-Updated replica to blessed commit 75138bbf11e201aac47266f07bee289dc18a082b.
-This incorporates the following executed proposals:
+将副本更新为
+75138bbf11e201aac47266f07bee289dc18a082b.
+这包括以下已执行的提案：
 
 * https://dashboard.internetcomputer.org/proposal/33828[33828]
 * https://dashboard.internetcomputer.org/proposal/31275[31275]
@@ -87,13 +87,13 @@ This incorporates the following executed proposals:
 * https://dashboard.internetcomputer.org/proposal/25343[25343]
 * https://dashboard.internetcomputer.org/proposal/23633[23633]
 
-=== Repeated warning about missing max_block_payload_size registry setting
+=== 关于缺少 max_block_payload_size 注册表设置的重复警告
 
-The replica logs will display a warning about a missing registry setting approximately every five minutes.
-The replica will use the required minimum value.  You can ignore this warning.
+副本日志将大约每五分钟显示一次有关缺少注册表设置的警告。
+副本将使用所需的最小值。 您可以忽略此警告。
 
-The warnings look like this:
+警告如下所示：
 
 ----
-Jan 19 19:03:42.719 WARN s:crz25-qujie-7jqyj-d5ldq-p3psu-y2hmg-c32rf-pnfda-xskfm-dtnmc-iqe/n:fw7p7-4ynfm-s6e5c-axkum-76532-d2k4j-aowre-7twtq-gabts-hfs2e-cae/ic_consensus/payload_builder max_block_payload_size too small. current value: 0, required minimum: 3670016! max_block_payload_size must be larger than max_ingress_bytes_per_message and MAX_XNET_PAYLOAD_IN_BYTES. Update registry!
+1 月 19 日 19:03:42.719 警告 s:crz25-qujie-7jqyj-d5ldq-p3psu-y2hmg-c32rf-pnfda-xskfm-dtnmc-iqe/n:fw7p7-4ynfm-s6e5c-axkum-76532-d2k4j-aowre-7twtq- gabts-hfs2e-cae/ic_consensus/payload_builder max_block_payload_size 太小。 当前值：0，所需最小值：3670016！ max_block_payload_size 必须大于 max_ingress_bytes_per_message 和 MAX_XNET_PAYLOAD_IN_BYTES。 更新注册表！
 ----

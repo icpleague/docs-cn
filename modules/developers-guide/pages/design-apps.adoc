@@ -1,49 +1,49 @@
-= Design dapps
+= 设计 dapp
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-As you come up with ideas for dapps, you are going to make many design decisions about how to structure and organize your project.
-On the {IC}, there are a few design decisions that you should pay particular attention to as you plan the implementation for your app.
+当您提出 dapp 的想法时，您将就如何构建和组织您的项目做出许多设计决策。
+在 {IC} 上，您在规划应用实施时应特别注意一些设计决策。
 
-CAUTION: This section is work-in-progress and incomplete. As best practices and design patterns evolve for building dapps that run on the {IC}, the information included here will also evolve and change accordingly.
+注意：本节正在进行中且不完整。随着构建在 {IC} 上运行的 dapp 的最佳实践和设计模式不断发展，此处包含的信息也将相应地发展和变化。
 
-== Single or multiple canister architecture
+== 单容器或多容器架构
 
-One of the first decisions you might want to consider when designing your dapp is whether it should be encapsulated in a single canister smart contract or consist of multiple canister smart contracts.
+在设计 dapp 时，您可能要考虑的首要决定之一是它应该封装在单个容器智能合约中还是由多个容器智能合约组成。
 
-For example, if you are writing a simple service with no front-end, you might want to use a single canister to simplify project management and maintenance and focus on adding features. 
-If your dapp has both front-end assets and back-end business logic, your project is likely to consist of at least two canisters, with one canister for managing user interface components and another canister for the backend services the application provides.
+例如，如果您正在编写一个没有前端的简单服务，您可能希望使用单个容器来简化项目管理和维护，并专注于添加功能。
+如果你的 dapp 同时拥有前端资产和后端业务逻辑，那么你的项目可能至少包含两个容器，一个容器用于管理用户界面组件，另一个容器用于应用程序提供的后端服务。
 
-In planning, you might also consider placing some common reusable services in their own canister so that they can be imported and called from other more-specialized canisters or made available for other developers to use.
-The link:https://github.com/dfinity/linkedup[LinkedUp] sample dapp illustrates this approach by splitting the professional service dapp into two canisters.
-In the LinkedUp example, the functions that establish social connections are defined in the `connectd` canister and separate from the functions used to set up professional profiles that are defined in the `linkedup` canister.
-It is easy to imagine extending the dapp with a third canister, for example to schedule events based on profile attributes or shared connections.
+在规划中，您还可以考虑将一些常见的可重用服务放在它们自己的容器中，以便可以从其他更专业的容器中导入和调用它们，或者供其他开发人员使用。
+link：https://github.com/dfinity/linkedup[LinkedUp] 示例 dapp 通过将专业服务 dapp 拆分为两个容器来说明这种方法。
+在 LinkedUp 示例中，建立社交关系的函数在“connectd”容器中定义，与用于设置在“linkedup”容器中定义的专业资料的函数分开。
+很容易想象用第三个容器扩展 dapp，例如根据配置文件属性或共享连接安排事件。
 
-== Segregating actors from types and utilities
+== 将参与者从类型和实用程序中分离出来
 
-In planning the architecture for your project, one common practice is to place the code for the main actor in one file with separate additional files for defining the types you program uses and utility functions that don't require an actor.
+在为您的项目规划架构时，一种常见的做法是将主要参与者的代码放在一个文件中，并带有单独的附加文件，用于定义您的程序使用的类型和不需要参与者的实用程序功能。
 
-For example, you might set up the back-end logic for your dapp to consist of the following files:
+例如，您可以为 dapp 设置后端逻辑，使其包含以下文件：
 
-* `+Main.mo+` or `+main.rs+` with the functions that require an actor to send query and update calls.
-* `+Util.mo+` or `+util.rs+` with helper functions that can be imported for the actor to use.
-* `+Types.mo+` or `+types.rs+` with all of the data type definitions for your dapp.
+* `+Main.mo+` 或 `+main.rs+` 具有需要参与者发送查询和更新调用的功能。
+* `+Util.mo+` 或 `+util.rs+` 带有可以导入的辅助函数供演员使用。
+* `+Types.mo+` 或 `+types.rs+` 包含 dapp 的所有数据类型定义。
 
-== Using query calls
+== 使用查询调用
 
-As discussed in link:../developers-guide/concepts/canisters-code{outfilesuffix}#query-update[Query and update methods], queries return results faster than update calls. Therefore,explicitly marking a function as a `+query+` is an effective strategy for improving application performance. 
-In the planning and design phase, you should consider how best to use query calls instead of functions that can perform queries or updates. 
+如链接中所述link：../developers-guide/concepts/canisters-code{outfilesuffix}#query-update[查询和更新方法]，查询比更新调用更快地返回结果。因此，将函数显式标记为`+query+`是提高应用程序性能的有效策略。
+在规划和设计阶段，您应该考虑如何最好地使用查询调用而不是可以执行查询或更新的函数。
 
-That is a good general rule to follow and can be applied broadly to most categories of dapps.
-However, you should also consider the security and performance trade-off that queries don’t go through consensus and do not appear on the blockchain.
-For some dapps, that trade-off might be appropriate. For example, if you are developing a blogging platform, queries that retrieve articles matching a tag probably don’t warrant going through consensus to ensure that a majority of nodes agree on the results.
-However, if your dapp is retrieving sensitive information—like financial data—you might want more assurance about your results than a basic query provides.
+这是一个很好的通用规则，可以广泛应用于大多数类别的 dapp。
+但是，您还应该考虑查询不经过共识并且不会出现在区块链上的安全性和性能权衡。
+对于某些 dapp，这种权衡可能是合适的。例如，如果您正在开发一个博客平台，检索与标签匹配的文章的查询可能不需要通过共识来确保大多数节点同意结果。
+但是，如果您的 dapp 正在检索敏感信息（如财务数据），您可能需要比基本查询提供的更多保证。
 
-As an alternative to basic queries, the {IC} also supports *certified queries*. Certified queries enable you to receive *authenticated responses* that end users can trust. Using certified queries is an advanced technique that is not covered in the tutorials or other developer-focused documentation, but you can learn about how the authentication works and what you need to do to configure your program to return certified data in response to queries in the link:../interface-spec/index{outfilesuffix}[Interface specification].
+作为基本查询的替代方案，{IC} 还支持*认证查询*。经过认证的查询使您能够接收最终用户可以信任的*经过身份验证的响应*。使用认证查询是教程或其他以开发人员为中心的文档中未涵盖的高级技术，但您可以了解认证的工作原理以及配置程序以返回认证数据以响应link：../interface-spec/index{outfilesuffix}[接口规范]。
 
-== Data storage and retrieval
+== 数据存储和检索
 
-The {IC} enables you to use *stable memory* to handle long-term data storage—often referred to as orthogonal persistence—and to use *query calls* to retrieve your data.
-Efficiently retrieving data using one or more keys can typically be achieved by using data structures like hash tables.
-It is also possible to implement a more traditional database inside a canister.
+{IC} 使您能够使用 *stable memory* 来处理长期数据存储（通常称为正交持久性）并使用 *query calls* 来检索您的数据。
+使用一个或多个键有效地检索数据通常可以通过使用像哈希表这样的数据结构来实现。
+也可以在容器内实现更传统的数据库。

@@ -1,16 +1,16 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.24
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new features and capabilities include updates in the following functional areas:
+最重要的新特性和功能包括以下功能领域的更新：
 
 * <<DFX,DFX>>
 * <<Candid,Candid>>
@@ -18,73 +18,73 @@ The most significant new features and capabilities include updates in the follow
 
 === DFX
 
-* With this release, you must have a **wallet canister** with **cycles** to deploy or manage applications on the {IC}.
+* 在此版本中，您必须拥有一个带有 **cycles** 的 **wallet canister** 才能在 {IC} 上部署或管理应用程序。
 +
-For local development, `+dfx+` automatically creates a wallet for you when you run `+dfx canister create+` or `+dfx deploy+` commands within each project.
+对于本地开发，当您在每个项目中运行 `+dfx canister create+` 或 `+dfx deploy+` 命令时，`+dfx+` 会自动为您创建一个钱包。
 +
-Wallets are also created automatically if you deploy to the {IC} using the `+ic+` network alias before the network is upgraded to require a cycle balance.
+如果您在网络升级为需要燃料费余额之前使用“+ic+”网络别名部署到 {IC}，也会自动创建钱包。
 +
-To deploy and manage applications on the main {IC} network, you must provide the {company-id} Foundation with a principal associated with your user identity and receive a **wallet canister identifier** in return.
+要在主 {IC} 网络上部署和管理应用程序，您必须向 {company-id} Foundation 提供与您的用户身份相关联的主体，并收到一个**钱包容器标识符**作为回报。
 +
-To deploy applications on the {IC} network:
+在 {IC} 网络上部署应用程序：
 +
 --
-. Download and install the {sdk-short-name}.
-.  Run the `dfx identity get-principal` command to create your default identity and principal:
+. 下载并安装 {sdk-short-name}。
+. 运行 `dfx identity get-principal` 命令以创建您的默认身份和主体：
 +
 [source,bash]
 ----
 dfx identity get-principal
 ----
 +
-Running the command displays output similar to the following:
+运行该命令会显示类似于以下内容的输出：
 +
 ....
-Creating the "default" identity.
+创建“默认”身份。
   - generating new key at /Users/pubs/.config/dfx/identity/default/identity.pem
-Created the "default" identity.
+创建“默认”身份。
 wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 ....
-. Run the `+dfx identity set-wallet+` command to associate your wallet canister identifier with your default identity.
+. 运行 `+dfx identity set-wallet+` 命令将您的钱包容器标识符与您的默认身份相关联。
 +
 [source,bash]
 ----
 dfx identity set-wallet <wallet-canister-identifier>
 ----
-. Open the wallet application in a web browser by navigating to the canister with a URL similar to the following:
+. 通过使用类似于以下的 URL 导航到容器，在 Web 浏览器中打开钱包应用程序：
 +
 ....
 https://<WALLET-CANISTER-ID>.ic0.app
 ....
 --
 
-* A new command-line option enables you to specify the number of initial cycles to transfer to a newly-created canister.
+* 新的命令行选项使您能够指定初始周期数以传输到新创建的容器。
 +
-The `+dfx canister create+` and `+dfx deploy+` commands now support a new `+--with-cycles <number-of-cycles>+` option.
-This option allows you to specify the initial cycle balance of a canister created by your wallet.
+`+dfx canister create+` 和 `+dfx deploy+` 命令现在支持新的 `+--with-cycles <number-of-cycles>+` 选项。
+此选项允许您指定钱包创建的容器的初始燃料费余额。
 +
-You can use this option when running the {IC} network locally or connected to the current `+ic+` network (Sodium) for testing purposes. However, because wallets and cycle balances are not currently used for canisters you create while connected to the current `+ic+` network (Sodium), the `+--with-cycles+` option does not affect any canister operations.
+您可以在本地运行 {IC} 网络或连接到当前的 `+ic+` 网络 (Sodium) 以进行测试时使用此选项。 但是，由于钱包和燃料费余额当前不用于您在连接到当前 `+ic+` 网络 (Sodium) 时创建的容器，因此 `+--with-cycles+` 选项不会影响任何容器操作。
 +
-For example, you might run the following `+dfx canister create+` command to initialize `+8000000000+` cycles for all of the canisters in a project:
+例如，您可以运行以下 `+dfx canister create+` 命令为项目中的所有容器初始化 `+8000000000+` 燃料费：
 +
 ....
 dfx canister create --with-cycles 8000000000 --all
 ....
 +
-If using `+dfx deploy+`, you might run the following command to initialize `+8000000000+` cycles for the `+backend+` canister in a project:
+如果使用 `+dfx deploy+`，您可以运行以下命令来为项目中的 `+backend+` 容器初始化 `+8000000000+` 燃料费：
 +
 ....
 dfx deploy --with-cycles 8000000000 backend
 ....
 +
 
-NOTE: You must have a wallet canister with a cycles balance on the network where you want to create or deploy additional canisters.
+注意：您必须在要在其中创建或部署其他容器的网络上有一个带有燃料费余额的钱包容器。
 
-* You can now use the new `+dfx toolchain+` command to manage the version of the `+dfx+` command-line interface you are using for your projects.
+* 您现在可以使用新的`+dfx toolchain+` 命令来管理用于项目的`+dfx+` 命令行界面的版本。
 +
-The `+dfx toolchain+` command enables you to install, uninstall, and set the default version of `dfx` that you want to use. 
-You can specify the version by the complete version number, the major and minor version number, or a tag name.
-For example:
+`+dfx toolchain+` 命令使您能够安装、卸载和设置您想要使用的 `dfx` 的默认版本。
+您可以通过完整版本号、主要和次要版本号或标记名称来指定版本。
+例如：
 +
 ....
 dfx toolchain install 0.6.24 # complete version
@@ -92,56 +92,55 @@ dfx toolchain install 0.6    # major minor version
 dfx toolchain install latest # tag name
 ....
 
-* A new `+deploy-wallet+` subcommand enables you to specify the canister identifier for your cycles wallet WebAssembly module (WASM).
+* 一个新的 `+deploy-wallet+` 子命令使您能够为您的燃料费钱包 WebAssembly 模块 (WASM) 指定容器标识符。
 +
-For example, if you have an account with a third party exchange provider and receive a wallet canister identifier, you can run a command similar to the following to deploy the wallet and uses its cycles for development:
+例如，如果您拥有第三方交换提供商的帐户并收到钱包容器标识符，则可以运行类似于以下的命令来部署钱包并使用其燃料费进行开发：
 +
 ....
 dfx identity deploy-wallet <canister-identifier>
 ....
 +
-NOTE: The `+deploy-wallet+` feature is intended for a future use case. The command is only applicable if you received the wallet canister identifier as part of a transfer operation that converted ICP tokens to cycles.
-In addition, the `+deploy-wallet+` subcommand is **not intended for use** with the current version of {IC} running locally or on the remote network.
+注意：`+deploy-wallet+` 功能旨在用于未来的用例。 该命令仅在您收到钱包容器标识符作为将 ICP 令牌转换为燃料费的转移操作的一部分时才适用。
+此外，`+deploy-wallet+` 子命令**不适用于**当前版本的 {IC} 在本地或远程网络上运行。
 
 === Candid
 
-* New link:../candid-guide/candid-intro{outfilesuffix}[Candid documentation] for developers provides type mapping information for Rust and JavaScript.
+* New link:../candid-guide/candid-intro{outfilesuffix}[Candid documentation] 为开发人员提供 Rust 和 JavaScript 的类型映射信息。
 
-* Candid now supports additional native Rust types and Typescript.
+* Candid 现在支持其他原生 Rust 类型和 Typescript。
 
-* For additional information, see the link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
+* 更多信息见 link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
 
 === Motoko
 
-* The Motoko compiler (`+moc+`) now accepts the `+-Werror+` flag to turn warnings into errors.
+* Motoko 编译器 (`+moc+`) 现在接受 `+-Werror+` 标志以将警告转换为错误。
 
-* The language server now returns documentation comments alongside
-  completions and hover notifications.
+* 语言服务器现在会同时返回文档注释
+   完成和悬停通知。
 
-* Motoko supports wrapping arithmetic and bit-wise operations on `NatN` and `IntN`.
+* Motoko 支持对 `NatN` 和 `IntN` 进行包装算术和按位运算。
 +
-The conventional arithmetic operators on `NatN` and `IntN` trap on overflow.
-If wrap-around semantics is desired, the operators `+%`, `-%`, `*%` and `**%` can be used. The corresponding assignment operators (`+%=` etc.) are also available.
+`NatN` 和 `IntN` 上的传统算术运算符会在溢出时陷入陷阱。
+如果需要环绕语义，可以使用运算符 `+%`、`-%`、`*%` 和 `**%`。 相应的赋值运算符（`+%=` 等）也可用。
 + 
-Likewise, the bit fiddling operators (`&`, `|`, `^`, `<<`, `>>`, `<<>`,`<>>` etc.) are now also available on `NatN` and `IntN`. The right shift operator (`>>`) is an unsigned right shift on `NatN` and a signed right shift on `IntN`; the `+>>` operator is _not_ available on these types.
+同样，位运算符（`&`、`|`、`^`、`<<`、`>>`、`<<>`、`<>>` 等）现在也可用于`NatN `和`IntN`。 右移运算符 (`>>`) 是 `NatN` 上的无符号右移和 `IntN` 上的有符号右移； `+>>` 运算符在这些类型上_不_可用。
 +
-The motivation for this change is to eventually deprecate and remove the
-`WordN` types.
-Therefore, the wrapping arithmetic operations on `WordN` are deprecated and their use will print a warning. 
-For information about replacing Word types, see link:../language-guide/language-manual{outfilesuffix}#word-types[Word types].
+此更改的动机是最终弃用并删除`WordN` 类型。
+因此，不推荐使用 `WordN` 上的包装算术运算，并且它们的使用将打印警告。
+有关替换 Word 类型的信息，请参阅link：../language-guide/language-manual{outfilesuffix}#word-types[Word types]。
 
-* For values `x` of type `Blob`, an iterator over the elements of the blob `x.vals()` is introduced. 
-It works like `x.bytes()`, but returns the elements as type `Nat8`.
+* 对于 `Blob` 类型的值 `x`，引入了对 blob `x.vals()` 元素的迭代器。
+它的工作方式类似于 `x.bytes()`，但将元素返回为 `Nat8` 类型。
 
-* The base library documentation tool `+mo-doc+` now generates cross-references for types in signatures. 
-With this enhancement, when you view a signature like `fromIter : I.Iter<Nat> -> List.List<Nat>`, you can click `I.Iter` or `List.List` to navigate to the appropriate definition.
+* 基础库文档工具`+mo-doc+` 现在为签名中的类型生成交叉引用。
+使用此增强功能，当您查看类似 `fromIter : I.Iter<Nat> -> List.List<Nat>` 的签名时，您可以单击 `I.Iter` 或 `List.List` 导航到适当的定义。
 
-* Improvements to the type checker and compiler provide better handling for object literals.
+* 对类型检查器和编译器的改进为对象文字提供了更好的处理。
 
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。

@@ -1,16 +1,16 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.22
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new features and capabilities include updates in the following functional areas:
+最重要的新特性和功能包括以下功能领域的更新：
 
 * <<DFX,DFX>>
 * <<Apps,Sample applications>>
@@ -19,27 +19,27 @@ The most significant new features and capabilities include updates in the follow
 
 === DFX
 
-* The `+dfx canister call+` command can now pass a randomly-generated value to a canister method when an argument is required but not provided.
+* 当需要但未提供参数时，`+dfx canister call+` 命令现在可以将随机生成的值传递给容器方法。
 
-* The `+dfx canister call+` command can take canister identifiers for local canisters even if the canister is installed on a remote network.
+* `+dfx canister call+` 命令可以获取本地容器的容器标识符，即使容器安装在远程网络上也是如此。
 
-* The `+dfx replica+` command has been fixed so that it does not attempt to write the replica `+pid+` to a nonexistent directory.
+* `+dfx replica+` 命令已修复，因此它不会尝试将副本 `+pid+` 写入不存在的目录。
 
-* The default `+webpack.config.js+` file used when you create new projects has been modified to comment out the configuration to enable TypeScript. 
+* 创建新项目时使用的默认 `+webpack.config.js+` 文件已被修改为注释掉配置以启用 TypeScript。
 +
-Previously, the `+webpack.config.js+` file configured `+ts-loader+` to process files with the `+.js+` file extension, which could lead to errors. 
-This configuration is now disabled by default and the commented-out configuration only processes `.ts`, `.tsx`, and `.jsx` files through `ts-loader`.
+之前，`+webpack.config.js+` 文件配置 `+ts-loader+` 来处理带有 `+.js+` 文件扩展名的文件，这可能会导致错误。
+现在默认禁用此配置，注释掉的配置仅通过 `ts-loader` 处理 `.ts`、`.tsx` 和 `.jsx` 文件。
 
 [[Apps]]
-=== Sample applications
+=== 示例应用程序
 
-* There have been updates, improvements, and new sample applications added to the link:https://github.com/dfinity/examples/tree/master/motoko[examples] repository. 
+* 已添加了更新、改进和新的示例应用程序 link:https://github.com/dfinity/examples/tree/master/motoko[example] 存储库。
 +
-All of Motoko sample apps in the link:https://github.com/dfinity/examples/tree/master/motoko[examples] repository have been updated to work with the latest release of the {sdk-short-name}.
+所有 Motoko 示例应用程序： link:https://github.com/dfinity/examples/tree/master/motoko[example] 存储库已更新，可与 {sdk-short-name} 的最新版本一起使用。
 +
-There are also new sample apps to illustrate using arrays (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) and building create/read/update/delete (CRUD) operations for a web application link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
+还有新的示例应用程序来说明使用数组 (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) 和构建创建/读取/更新/删除 (CRUD) 操作 一个网页应用 link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
 
-* The link:https://github.com/dfinity/linkedup[LinkedUp] sample application has been updated to work with the latest release of Motoko and the SDK.
+* The link:https://github.com/dfinity/linkedup[LinkedUp] 示例应用程序已更新，可与最新版本的 Motoko 和 SDK 配合使用。
 
 === Candid
 
@@ -47,17 +47,17 @@ There are also new sample apps to illustrate using arrays (link:https://github.c
 
 === Motoko
 
-* The Motoko compiler now reports errors and warnings with an additional error code.
+* Motoko 编译器现在报告带有附加错误代码的错误和警告。
 +
-You can use the error code to look up a more detailed description for a given error by passing the `+--explain+` flag with a code to the compiler. 
+您可以通过将带有代码的 `+--explain+` 标志传递给编译器，使用错误代码来查找给定错误的更详细描述。
 +
-Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.
+请注意，大多数错误代码的详细描述尚不可用，并将在即将发布的版本中逐步添加。
 ////
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。
 ////

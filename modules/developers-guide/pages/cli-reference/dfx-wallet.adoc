@@ -1,161 +1,161 @@
-= dfx wallet
+= dfx 钱包
 
-Use the `+dfx wallet+` command with subcommands and flags to manage the cycles wallets of your identities and to send cycles to the wallets of other account cycles wallet canisters.
+使用带有子命令和标志的 `+dfx wallet+` 命令来管理您身份的燃料费钱包，并将燃料费发送到其他帐户燃料费钱包容器的钱包。
 
-The basic syntax for running the `+dfx wallet+` commands is:
+运行 `+dfx wallet+` 命令的基本语法是：
 
 [source,bash]
 ----
 dfx wallet [option] <subcommand> [flag]
 ----
 
-Depending on the `+dfx wallet+` subcommand you specify, additional arguments, options, and flags might apply or be required.
-To view usage information for a specific `+dfx wallet+` subcommand, specify the subcommand and the `+--help+` flag.
-For example, to see usage information for `+dfx wallet send+`, you can run the following command:
+根据您指定的 `+dfx wallet+` 子命令，可能会应用或需要其他参数、选项和标志。
+要查看特定 `+dfx wallet+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx wallet send+` 的使用信息，可以运行以下命令：
 
 [source,bash]
 ----
 dfx wallet send --help
 ----
 
-For reference information and examples that illustrate using `+dfx wallet+` commands, select an appropriate command.
+有关说明使用 `+dfx wallet+` 命令的参考信息和示例，请选择适当的命令。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Command |Description
+|命令 |描述
 
-|<<dfx wallet add-controller,`+add-controller+`>> | Add a controller using the selected identity's principal. 
+|<<dfx wallet add-controller,`+add-controller+`>> | 使用所选身份的主体添加控制器。 
 
-|<<dfx wallet addresses,`+addresses+`>> |Displays the address book of the cycles wallet.
+|<<dfx wallet addresses,`+addresses+`>> |显示燃料费钱包的地址簿。
 
-|<<dfx wallet authorize,`+authorize+`>> |Authorize a custodian by principal for the selected identity's cycles wallet
+|<<dfx wallet authorize,`+authorize+`>> |委托人为所选身份的燃料费钱包授权托管人
 
-|<<dfx wallet balance,`+balance+`>> |Displays the cycles wallet balance of the selected identity.
+|<<dfx wallet balance,`+balance+`>> |显示所选身份的燃料费钱包余额。
 
-|<<dfx wallet controllers,`+controllers+`>> |Displays a list of the selected identity's cycles wallet controllers. 
+|<<dfx wallet controllers,`+controllers+`>> |显示选定身份的燃料费钱包控制器列表。
 
-|<<dfx wallet custodians,`+custodians+`>> |Displays a list of the selected identity's cycles wallet custodians.
+|<<dfx wallet custodians,`+custodians+`>> |显示选定身份的燃料费钱包保管人列表。
 
-|<<dfx wallet deauthorize,`+deauthorize+`>> | Deauthorize a cycles wallet custodian using the custodian's principal.
+|<<dfx wallet deauthorize,`+deauthorize+`>> | 使用托管人的委托人取消对燃料费钱包托管人的授权。
 
-|`+help+` |Displays a usage message and the help of the given subcommand(s).
+|`+help+` |显示使用消息和给定子命令的帮助。
 
-|<<dfx wallet name,`+name+`>> |Returns the name of the cycles wallet if you've used the `+dfx wallet set-name+` command.
+|<<dfx wallet name,`+name+`>> |如果您使用了 `+dfx wallet set-name+` 命令，则返回燃料费钱包的名称。
 
-|<<dfx wallet remove-controller,`+remove-controller+`>> |Removes a specified controller from the selected identity's cycles wallet. 
+|<<dfx wallet remove-controller,`+remove-controller+`>> |从选定身份的燃料费钱包中删除指定的控制器。 
 
-|<<dfx wallet send,`+send+`>> |Sends a specified amount of cycles from the selected identity's cycles wallet to another cycles wallet using the destination wallet canister ID.
+|<<dfx wallet send,`+send+`>> |使用目标钱包容器 ID 将指定数量的燃料费从选定身份的燃料费钱包发送到另一个燃料费钱包。
 
-|<<dfx wallet set-name,`+set-name+`>> |Specify a name for your cycles wallet. 
+|<<dfx wallet set-name,`+set-name+`>> |为您的燃料费钱包指定一个名称。
 
-|<<dfx wallet upgrade,`+upgrade+`>> |Upgrade the cycles wallet's Wasm module to the current Wasm bundled with DFX.
+|<<dfx wallet upgrade,`+upgrade+`>> |将燃料费钱包的 Wasm 模块升级到与 DFX 捆绑的当前 Wasm。
 |===
 
-== Using your wallet
+== 使用你的钱包
 
-After you have used the `+dfx identity deploy-wallet+` command to create a cycles wallet canister tied to an identity, you can use `+dfx wallet+` commands to modify your cycles wallet settings, send cycles to other cycles wallets, and add or remove controllers and custodians. 
+在您使用 `+dfx identity deploy-wallet+` 命令创建与身份绑定的燃料费钱包容器后，您可以使用 `+dfx wallet+` 命令修改您的燃料费钱包设置，将燃料费发送到其他燃料费钱包，并添加 或删除控制器和保管人。
 
-== dfx wallet add-controller
+== dfx 钱包添加控制器
 
-Use the `+dfx wallet add-controller+` to add a controller to the wallet. An identity assigned the role of Controller has the most privileges and can perform the following actions on the selected identity's cycles wallet:
+使用 `+dfx wallet add-controller+` 将控制器添加到钱包。 分配了控制器角色的身份拥有最多的权限，并且可以在所选身份的燃料费钱包上执行以下操作：
 
-* Rename the cycles wallet.
+* 重命名燃料费钱包。
 
-* Add entries to the address book.
+* 添加条目到通讯录。
 
-* Add and remove controllers.
+* 添加和删除控制器。
 
-* Authorize and deauthorize custodians.
+*授权和取消授权保管人。
 
-A controller is also a custodian and can perform the following actions associated with that role:
+控制器也是保管人，可以执行与该角色相关的以下操作：
 
-* Access wallet information.
+*访问钱包信息。
 
-* Send cycles.
+* 发送燃料费。
 
-* Forward calls.
+*转接电话。
 
-* Create canisters. 
+*创建容器。
 
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx wallet add-controller [option] <controller> [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet add-controller+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Options
-
-You can use the following options with the `+dfx canister call+` command.
+您可以在 `+dfx wallet add-controller+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Option |Description
+|标志 |说明
 
-|`+--network <network>+` |Specifies the environment (e.g., {platform} or testnet) of the controller you want to add.
+|`+-h+`, `+--help+` |显示使用信息。
+
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 选项
 
-You can specify the following arguments for the `+dfx wallet add-controller+` command.
+您可以在 `+dfx canister call+` 命令中使用以下选项。
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|选项 |说明
+
+|`+--network <network>+` |指定要添加的控制器的环境（例如，{platform} 或 testnet）。
+|===
+
+=== 参数
+
+您可以为 `+dfx wallet add-controller+` 命令指定以下参数。
 
 [width="100%",cols="<31%,<69%",options="header",]
 |===
-|Argument |Description
-|`+controller+` |Specifies the principal of the controller to add to the wallet. 
+|参数 |描述
+|`+controller+` |指定要添加到钱包的控制器主体。 
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx wallet add-controller+` command to add a controller to your wallet. If the controller you want to add is on a different environment, specify it using the `+--network+` option. For example:
+您可以使用 `+dfx wallet add-controller+` 命令将控制器添加到您的钱包。 如果您要添加的控制器位于不同的环境中，请使用 `+--network+` 选项指定它。 例如：
 
 [source,bash]
 ----
 dfx wallet --network=https://192.168.74.4 add-controller hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae
 ----
 
-== dfx wallet addresses
+== dfx 钱包地址
 
-Use the `+dfx wallet addresses+` command to display the wallet's address book.The address entries contain the principal and `+role+` (`+Contact+`, `+Custodian+`, or `+Controller+`), and might contain a `+name+`, and `+kind+` (`+Unknown+`, `+User+`, or `+Canister+`) associated with the address.
+使用`+dfx walletaddress+`命令显示钱包的地址簿。地址条目包含principal和`+role+`（`+Contact+`、`+Custodian+`或`+Controller+`），并且可能包含` +name+` 和 `+kind+`（`+Unknown+`、`+User+` 或 `+Canister+`）与地址关联。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx wallet addresses
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet add-controller+` command.
+您可以在 `+dfx wallet add-controller+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Flag |Description
+|标志 |说明
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx wallet addresses+` command to retrieve information on the addresses in your wallet's address book. For example:
+您可以使用`+dfx 钱包地址+` 命令检索钱包地址簿中的地址信息。 例如：
 
 [source,bash]
 ----
@@ -164,69 +164,69 @@ Id: hpff-grjfd-tg7cj-hfeuj-olrjd-vbego-lpcax-ou5ld-oh7kr-kl9kt-yae, Kind: Unknow
 Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unknown, Role: Custodian, Name: alice_auth.
 ----
 
-== dfx wallet authorize
+== dfx 钱包授权
 
-Use the `+dfx wallet authorize+` command to authorize a custodian for the wallet. An identity assigned the role of custodian can perform the following actions on the cycles wallet:
+使用 `+dfx wallet authorize+` 命令为钱包授权托管人。 分配了保管人角色的身份可以在燃料费钱包上执行以下操作：
 
-* Access wallet information.
+* 访问钱包信息。
 
-* Send cycles.
+* 发送燃料费。
 
-* Forward calls.
+* 转接电话。
 
-* Create canisters. 
+* 创建容器。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet authorize <custodian> [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet authorize+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-Use the following necessary argument with the `+dfx wallet authorize+` command.
+您可以在 `+dfx wallet authorize+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+<custodian>+` | Specify the principal of the identity you would like to add as a custodian to the selected identity's cycles wallet.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
+=== 参数
 
-For example, to add alice_auth as a custodian, specify her principal in the following command:
+在 `+dfx wallet authorize+` 命令中使用以下必要参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+|`+<保管人>+` | 指定您要作为保管人添加到所选身份的燃料费钱包的身份的委托人。
+|===
+
+=== 示例
+
+例如，要将 alice_auth 添加为保管人，请在以下命令中指定她的委托人：
 
 [source,bash]
 ----
 dfx wallet authorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
 ----
 
-== dfx wallet balance
+== dfx 钱包余额
 
-Use the `+dfx wallet balance+` command to display the balance of the cycles wallet of the selected identity. 
+使用`+dfx wallet balance+`命令显示所选身份的燃料费钱包的余额。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet balance
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet balance+` command.
+您可以在 `+dfx wallet balance+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
@@ -235,91 +235,91 @@ You can use the following optional flags with the `+dfx wallet balance+` command
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-=== Examples
+=== 例子
 
-Check the balance of the selected identity's cycles wallet.
+检查所选身份的燃料费钱包的余额。
 
 [source,bash]
 ----
 dfx wallet balance
 ----
 
-This command displays the number of cycles in your cycles wallet. For example: 
+此命令显示您的燃料费钱包中的燃料费数。 例如：
 
 ....
 89000000000000 cycles.
 ....
 
-== dfx wallet controllers
+== dfx 钱包控制器
 
-Use the `+dfx wallet controllers+` command to list the principals of the identities that are controllers of the selected identity's cycles wallet. 
+使用 `+dfx wallet controllers+` 命令列出作为所选身份的燃料费钱包控制器的身份的主体。
 
-=== Basic usage
-
-[source,bash]
-----
-dfx wallet controllers
-----
-
-=== Flags
-
-You can use the following optional flags with the `+dfx wallet controllers+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Examples
-
-List the controllers of your selected identity's cycles wallet. 
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet controllers
 ----
 
-The information returned should look similar to the following if there are two controllers:
+=== 标志
 
-....
-dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
-hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
-....
-
-== dfx wallet custodians
-
-Use the `+dfx wallet custodians+` command to list the principals of the identities that are custodians of the selected identity's cycles wallet. Identities that are added as controllers are also listed as custodians.
-
-=== Basic usage
-
-[source,bash]
-----
-dfx wallet custodians
-----
-
-=== Flags
-
-You can use the following optional flags with the `+dfx wallet custodians+` command.
+您可以在 `+dfx wallet controllers+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 例子
 
-List the custodians of your selected identity's cycles wallet. 
+列出您选择的身份的燃料费钱包的控制器。
+
+[source,bash]
+----
+dfx wallet controllers
+----
+
+如果有两个控制器，返回的信息应该类似于以下内容：
+
+....
+dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
+hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
+....
+
+== dfx 钱包保管人
+
+使用 `+dfx wallet custodians+` 命令列出作为所选身份的燃料费钱包保管人的身份的委托人。 添加为控制者的身份也被列为保管人。
+
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet custodians
 ----
 
-The information returned should look similar to the following if there are two custodians:
+=== 标志
+
+您可以在 `+dfx wallet custodians+` 命令中使用以下可选标志。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
+|===
+
+=== 例子
+
+列出您选择的身份的燃料费钱包的保管人。
+
+[source,bash]
+----
+dfx wallet custodians
+----
+
+如果有两个保管人，则返回的信息应类似于以下内容：
 
 ....
 dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
@@ -327,240 +327,240 @@ hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
 ....
 
 
-== dfx wallet deauthorize
+== dfx 钱包取消授权
 
-Use the `+dfx wallet deauthorize+` command to remove a custodian from the cycles wallet. 
+使用 `+dfx wallet deauthorize+` 命令从燃料费钱包中删除保管人。
 
-NOTE:  that this will also remove the role of controller if the custodian is also a controller.
+注意：如果保管人也是控制器，这也将删除控制器的角色。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet deauthorize <custodian> [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet deauthorize+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-Use the following necessary argument with the `+dfx wallet deauthorize+` command.
+您可以在 `+dfx wallet deauthorize+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+<custodian>+` | Specify the principal of the custodian you want to remove.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
+=== 参数
 
-For example, to remove "alice_auth" as a custodian, specify her principal in the following command:
+在 `+dfx wallet deauthorize+` 命令中使用以下必要参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+|`+<保管人>+` | 指定要删除的保管人的委托人。
+|===
+
+=== 示例
+
+例如，要删除“alice_auth”作为保管人，请在以下命令中指定她的委托人：
 
 [source,bash]
 ----
 dfx wallet deauthorize dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
 ----
 
-== dfx wallet name
+== dfx 钱包名称
 
-Use the `+dfx wallet name+` command to display the name of the selected identity's cycles wallet if it has been set using the `+dfx wallet set-name+` command. 
+如果已使用 `+dfx wallet set-name+` 命令设置，则使用 `+dfx wallet name+` 命令显示所选身份的燃料费钱包的名称。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet name [flag] 
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet name+` command.
+您可以在 `+dfx wallet name+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
+=== 示例
 
-If you have named your cycles wallet "Terrances_wallet", then the command would return the following:
+如果您已将您的燃料费钱包命名为“Terrances_wallet”，则该命令将返回以下内容：
 
 ....
 Terrances_wallet
 ....
 
-== dfx wallet remove-controller
+== dfx 钱包删除控制器
 
-Use the `+dfx wallet remove-controller+` command to remove a controller of your selected identity's cycles wallet.
+使用 `+dfx wallet remove-controller+` 命令删除所选身份的周期钱包的控制器。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet remove-controller <controller> [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet remove-controller+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-Use the following necessary argument with the `+dfx wallet remove-controller+` command.
+您可以在 `+dfx wallet remove-controller+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+<controller>+` | Specify the principal of the controller you want to remove.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
+=== 参数
 
-For example, to remove alice_auth as a controller, specify her principal in the following command:
+在 `+dfx wallet remove-controller+` 命令中使用以下必要参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+|`+<controller>+` |指定要删除的控制器的主体。
+|===
+
+=== 示例
+
+例如，要删除 alice_auth 作为控制器，请在以下命令中指定她的主体：
 
 [source,bash]
 ----
 dfx wallet remove-controller dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
 ----
 
-== dfx wallet send
+== dfx 钱包发送
 
-Use the `+dfx wallet send+` command to send cycles from the selected identity's cycles wallet to another cycles wallet using the destination cycle wallet's Canister ID. 
+使用 `+dfx wallet send+` 命令将燃料费从所选身份的燃料费钱包发送到使用目标燃料费钱包的罐 ID 的另一个燃料费钱包。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx wallet [network] send [flag] <destination> <amount> 
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet send+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Options
-
-You can use the following option with the `+dfx wallet send+` command.
+您可以在 `+dfx wallet send+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Option |Description
-|`+--network+` |Override the environment to connect to. By default, the local canister execution environment is used. A valid URL (starting with `http:` or `https:`) can be specified here. E.g. "http://localhost:12345/" is a valid network name.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 选项
 
-You must specify the following arguments for the `+dfx wallet send+` command.
+您可以在 `+dfx wallet send+` 命令中使用以下选项。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-
-|`+<destination>+` |Specify the destination cycle wallet using its Canister ID.
-|`+<amount>+` |Specify the number of cycles to send.
+|选项 |说明
+|`+--network+` |覆盖要连接的环境。 默认情况下，使用本地容器执行环境。 可以在此处指定有效的 URL（以 `http:` 或 `https:` 开头）。 例如。 “http://localhost:12345/”是一个有效的网络名称。
 |===
 
-=== Examples
+=== 参数
 
-Send cycles from the selected identity's cycles wallet to another cycles wallet.
+您必须为 `+dfx wallet send+` 命令指定以下参数。
 
-For example, to send 2,000,000,000 cycles from the cycles wallet of the selected identity, `+<ic_admin>+`, to the cycles wallet of the destination identity, `+<buffy_standard>+` with a wallet address `+r7inp-6aaaa-aaaaa-aaabq-cai+`, run the following command:
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+
+|`+<destination>+` |使用容器 ID 指定目标循环钱包。
+|`+<amount>+` |指定要发送的周期数。
+|===
+
+=== 例子
+
+将周期从所选身份的燃料费钱包发送到另一个燃料费钱包。
+
+例如，要将 2,000,000,000 个周期从所选身份的燃料费钱包`+<ic_admin>+`发送到目标身份的燃料费钱包`+<buffy_standard>+`，钱包地址为`+r7inp-6aaaa- aaaaa-aaabq-cai+`，运行以下命令：
 
 [source,bash]
 ----
 dfx wallet send r7inp-6aaaa-aaaaa-aaabq-cai 2000000000
 ----
 
-== dfx wallet set-name
+== dfx 钱包设置名称
 
-Use the `+dfx wallet set-name+` command to assign a name to the selected identity's cycles wallet.
+使用 `+dfx wallet set-name+` 命令为所选身份的燃料费钱包分配名称。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
     dfx wallet set-name [flag] <name> 
 ----
 
-=== Arguments
+=== 参数
 
-You must specify the following arguments for the `+dfx wallet set-name+` command.
+您必须为 `+dfx wallet set-name+` 命令指定以下参数。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
+|参数 |描述
 |`+<name>+` |Specify a name for the cycles wallet.
 |===
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet set-name+` command.
+您可以在 `+dfx wallet set-name+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
+=== 示例
 
-If you want to set the name of the current identity's cycles wallet to "Terrances_wallet" you can run the following command:
+如果要将当前身份的燃料费钱包的名称设置为“Terrances_wallet”，可以运行以下命令：
 
 [source,bash]
 ----
 dfx wallet set-name Terrances_wallet
 ----
 
-== dfx wallet upgrade
+== dfx 钱包升级
 
-Use the `+dfx wallet upgrade+` command to upgrade the cycle wallet's Wasm module to the current Wasm bundled with DFX.
+使用 `+dfx wallet upgrade+` 命令将燃料费钱包的 Wasm 模块升级为当前与 DFX 捆绑的 Wasm。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
     dfx wallet upgrade [flag] 
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx wallet upgrade+` command.
+您可以在 `+dfx wallet upgrade+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Example
-To upgrade the Wasm module to the latest version, run the following command:
+=== 示例
+要将 Wasm 模块升级到最新版本，请运行以下命令：
 
 [source,bash]
 ----

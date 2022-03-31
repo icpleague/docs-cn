@@ -1,55 +1,55 @@
-= dfx replica
+= dfx 副本
 
-Use the `+dfx replica+` command to start a local canister execution environment (without a web server).
-This command enables you to deploy canisters locally and to test your dapps during development.
+使用 `+dfx replica+` 命令启动本地容器执行环境（没有 Web 服务器）。
+此命令使您能够在本地部署容器并在开发期间测试您的 dapp。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx replica [option] [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx replica+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Options
-
-You can use the following option with the `+dfx replica+` command.
+您可以在 `+dfx replica+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Option |Description
-|`+--port port+` |Specifies the port the local canister execution environment should listen to.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+
+|`+-V+`, `+--version+` |显示版本信息。
+|===
+
+== 选项
+
+您可以在 `+dfx replica+` 命令中使用以下选项。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|选项 |说明
+|`+--port port+` |指定本地容器执行环境应该监听的端口。
 |===
 
 ////
-|`+--message-gas-limit maximum-gas-limit+` |Specifies the maximum resources that a single message can consume. Computational resources such as CPU, memory, and storage are measured in tokens that are converted in "gas" available to be consumed by applications.
-|`+--round-gas-limit round-gas-limit+` |Specifies the maximum resources that a single round of messages can consume in the "gas" available to be consumed by applications.
+|`+--message-gas-limit maximum-gas-limit+` |指定单个消息可以消耗的最大资源。 CPU、内存和存储等计算资源以代币来衡量，这些代币转换为可供应用程序使用的“gas”。
+|`+--round-gas-limit round-gas-limit+` |指定单轮消息在可供应用程序消耗的“gas”中可以消耗的最大资源。
 ////
 
-== Examples
+== 例子
 
-You can start the local canister execution environment by running the following command:
+您可以通过运行以下命令来启动本地容器执行环境：
 
 [source,bash]
 ----
 dfx replica
 ----
 ////
-If you want to set an upper limit on the resources a single message can consume, you might run a command similar to the following:
+如果要设置单个消息可以消耗的资源的上限，可以运行类似于以下的命令：
 
 [source,bash]
 ----

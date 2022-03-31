@@ -1,36 +1,34 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.8.3
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-An overview of the {release} release:
+{release} 版本概述：
 
-Breaking change: Removed `--no-artificial-delay` option from `dfx start` and `dfx replica`
+重大更改：从 `dfx start` 和 `dfx replica` 中删除了 `--no-artificial-delay` 选项
 
-== Changes to DFX
+== 对 DFX 的更改
 
-=== Breaking change: Replaced `--no-artificial-delay` option with a sensible default
+=== 重大变化：用合理的默认值替换了 `--no-artificial-delay` 选项
 
-The `--no-artificial-delay` option not being the default has been causing a lot of confusion.
-Now that we have measured in production and already applied a default of 600ms
-to most subnets deployed, we set the same default for dfx and removed this option.
+`--no-artificial-delay` 选项不是默认选项引起了很多混乱。
+现在我们已经在生产环境中进行了测量，并且已经对大多数部署的子网应用了 600 毫秒的默认值，我们为 dfx 设置了相同的默认值并删除了这个选项。
 
-== Changes to Replica
+== 对副本的更改
 
-=== Fixed: ic-ref linux binary no longer references /nix/store
+=== 修正：ic-ref linux 二进制文件不再引用 /nix/store
 
-This means `dfx start --emulator` has a chance of working on linux if nix is not installed.
-This has always been broken, even before dfx 0.7.0.
+这意味着如果没有安装 nix，`dfx start --emulator` 有机会在 linux 上工作。 即使在 dfx 0.7.0 之前，这一直被打破。
 
-=== Fixed: replica and ic-starter linux binaries no longer reference /nix/store
+=== 已修复：replica 和 ic-starter linux 二进制文件不再引用 /nix/store
 
-This means `dfx start` will work again on linux.  This bug was introduced in dfx 0.8.2.
+这意味着 `dfx start` 将在 linux 上再次运行。 此错误是在 dfx 0.8.2 中引入的。
 
-== Changes to Motoko
+== 对Motoko使用 `+dfx ledger transfer+` 命令将您的一些 ICP 余额发送到另一个已知目的地，使用以下命令：的改动
 
-Updated Motoko from 0.6.10 to 0.6.11
+将 Motoko 从 0.6.10 更新到 0.6.11
 
-* Assertion error messages are now reproducible (#2821)
+* 断言错误消息现在可以重现 (#2821)

@@ -1,51 +1,51 @@
 = dfx ping
 
-Use the `+dfx ping+` command to check connectivity to the {platform} or a testnet.
-This command enables you to verify that you can connect to the environment where you want to deploy to. 
+使用 `+dfx ping+` 命令检查与 {platform} 或测试网的连接。
+此命令使您能够验证是否可以连接到要部署到的环境。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx ping [provider] [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx ping+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Arguments
-
-You can specify the following argument for the `+dfx ping+` command.
+您可以在 `+dfx ping+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
 
-|provider |Specifies the {platform} or testnet URL that you want to use.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Examples
+== 参数
 
-You can use the `+dfx ping+` command to check whether the {IC} is currently available at a specific network address by running a command similar to the following:
+您可以为 `+dfx ping+` 命令指定以下参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+
+|provider |指定您要使用的 {platform} 或 testnet URL。
+|===
+
+== 例子
+
+您可以使用 `+dfx ping+` 命令检查 {IC} 当前在特定网络地址是否可用，方法是运行类似于以下的命令：
 
 [source,bash]
 ----
 dfx ping https://testgw.dfinity.network
 ----
 
-If the {IC} is running on the specified network provider address, the command returns output similar to the following:
+如果 {IC} 在指定的网络提供商地址上运行，该命令将返回类似于以下内容的输出：
 
 ....
 {

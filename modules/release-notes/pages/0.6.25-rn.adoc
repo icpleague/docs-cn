@@ -1,46 +1,46 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.25
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new features and capabilities include the following updates:
+最重要的新特性和功能包括以下更新：
 
-* This release introduces environment variables for specifying canister identifiers.
+* 此版本引入了用于指定容器标识符的环境变量。
 +
-You can now use the `CANISTER_ID_{canister.name}` and `CANISTER_CANDID_PATH_{canister.name}`
-environment variables to reference canister identifiers and the path to the canister Candid description (`.did` file) during the build process.
-These environment variables enable you to construct the JavaScript for front-end assets using the correct canister identifiers.
+您现在可以使用 `CANISTER_ID_{canister.name}` 和 `CANISTER_CANDID_PATH_{canister.name}`
+在构建过程中引用容器标识符和容器 Candid 描述（`.did` 文件）的路径的环境变量。
+这些环境变量使您能够使用正确的容器标识符为前端资产构造 JavaScript。
 +
-The environment variables are intended to replace the `+import+` syntax for dependent canisters described in link:../developers-guide/webpack-config{outfilesuffix}[Entry and output configuration] which is being deprecated and will be removed in a future release.
+环境变量旨在替换链接中描述的依赖容器的 `+import+` 语法：../developers-guide/webpack-config{outfilesuffix}[Entry and output configuration] 已被弃用并将在未来删除 发布。
 
-* A new `+dfx identity import+` subcommand enables you to import a security certificate to create an identity.
+* 新的`+dfx identity import+` 子命令使您能够导入安全证书以创建身份。
 +
-For example, if you use a hardware wallet or a key generation utility to generate a PEM file for authenticating your identity, you can now import that PEM file into `+dfx+` to create a new identity.
-After importing the PEM file, you can run the `dfx identity use` command to set that identity as your default context.
+例如，如果您使用硬件钱包或密钥生成实用程序生成 PEM 文件来验证您的身份，您现在可以将该 PEM 文件导入到`+dfx+` 以创建新身份。
+导入 PEM 文件后，您可以运行“dfx identity use”命令将该身份设置为默认上下文。
 +
-For example, to import the `my-external-id.pem` and create an identity named `alice`, you would run the following command:
+例如，要导入 `my-external-id.pem` 并创建一个名为 `alice` 的身份，您将运行以下命令：
 +
 ....
 dfx identity import alice my-external-id.pem
 ....
 +
-After running this command, you would run the following command to begin using the new identity:
+运行此命令后，您将运行以下命令以开始使用新身份：
 +
 ....
 dfx identity use alice
 ....
 
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。

@@ -1,9 +1,9 @@
-= dfx deploy
+= dfx 部署
 
-Use the `+dfx deploy+` command to register, build, and deploy a dapp on the local canister execution environment, on the {platform} or on a specified testnet.
-By default, all canisters defined in the project `+dfx.json+` configuration file are deployed.
+使用 `+dfx deploy+` 命令在本地容器执行环境、{platform} 或指定的测试网上注册、构建和部署 dapp。
+默认情况下，会部署项目`+dfx.json+`配置文件中定义的所有容器。
 
-This command simplifies the developer workflow by enabling you to run one command instead of running the following commands as separate steps:
+此命令使您能够运行一个命令而不是将以下命令作为单独的步骤运行，从而简化了开发人员的工作流程：
 
 ....
 dfx canister create --all
@@ -11,80 +11,79 @@ dfx build
 dfx canister install --all
 ....
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx deploy [flag] [option] [canister_name]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx deploy+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Options
-
-You can use the following options with the `+dfx deploy+` command.
+您可以在 `+dfx deploy+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Option |Description
-
-|`+--network <network>+` |Overrides the environment to connect to.
-By default, the local canister execution environment is used.
-
-|`+--argument <argument>+` |Specifies an argument using Candid syntax to pass to the canister during deployment.
-Note that this option requires you to define an actor class in the {proglang} program.
-
-|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles for a canister in a project. 
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+== 选项
 
-You can specify the following arguments for the `+dfx deploy+` command.
+您可以在 `+dfx deploy+` 命令中使用以下选项。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|选项 |说明
+
+|`+--network <network>+` |覆盖要连接的环境。
+默认情况下，使用本地容器执行环境。
+
+|`+--argument <argument>+` |使用 Candid 语法指定参数以在部署期间传递给容器。
+请注意，此选项要求您在 {proglang} 程序中定义一个参与者类。
+
+|`+--with-cycles <number-of-cycles>+` |使您能够指定项目中容器的初始循环数。
+|===
+
+=== 参数
+
+您可以为 `+dfx deploy+` 命令指定以下参数。
 
 [width="100%",cols="<36%,<64%",options="header"]
 |===
 
-|Argument |Description
+|参数 |描述
 
-|`+canister_name+` |Specifies the name of the canister you want to register, build, and deploy.
-Note that the canister name you specify must match at least one name in the `+canisters+` section of the `+dfx.json+` configuration file for the project.
-If you don't specify a canister name, `dfx deploy` will deploy all canisters defined in the `+dfx.json+` file.
+|`+canister_name+` |指定要注册、构建和部署的容器的名称。
+请注意，您指定的容器名称必须与项目的 `+dfx.json+` 配置文件的 `+canisters+` 部分中的至少一个名称匹配。
+如果您不指定容器名称，`dfx deploy` 将部署在 `+dfx.json+` 文件中定义的所有容器。
 |===
 
-== Examples
+== 例子
 
-You can use the `+dfx deploy+` command to deploy all or specific canisters on the local canister execution environment, on the {platform} or on a specified testnet.
+您可以使用 `+dfx deploy+` 命令在本地容器执行环境、{platform} 或指定测试网上部署所有或特定容器。
 
-For example, to deploy the `+hello+` project on the hypothetical `+ic-pubs+` testnet configured in the `+dfx.json+` configuration file, you can run the following command:
+例如，要在 `+dfx.json+` 配置文件中配置的假设 `+ic-pubs+` 测试网上部署 `+hello+` 项目，可以运行以下命令：
 
 [source,bash]
 ----
 dfx deploy hello --network ic-pubs
 ----
 
-To deploy a project on the local canister execution environment and pass a single argument to the installation step, you can run a command similar to the following:
+要在本地容器执行环境上部署项目并将单个参数传递给安装步骤，您可以运行类似于以下内容的命令：
 
 [source,bash]
 ----
 dfx deploy hello_actor_class --argument '("from DFINITY")'
 ----
 
-Note that currently you must use an actor class in your {proglang} dapp.
-In this example, the `+dfx deploy+` command specifies an argument to pass to the `+hello_actor_class+` canister.
-The main program for the `+hello_actor_class+` canister looks like this:
-
+请注意，目前您必须在 {proglang} dapp 中使用演员类。
+在此示例中，`+dfx deploy+` 命令指定要传递给`+hello_actor_class+` 容器的参数。
+`+hello_actor_class+` 容器的主程序如下所示：
 ....
 actor class Greet(name: Text) {
     public query func greet() : async Text {
@@ -93,7 +92,7 @@ actor class Greet(name: Text) {
 };
 ....
 
-You can use the `+dfx deploy+` command with the `+--with-cycles+` option to specify the initial balance of a canister created by your wallet. If you don't specify a canister, the number of cycles you specify will be added to all canisters by default. To avoid this, specify a specific canister by name. For example, to add an initial balance of 8000000000000 cycles to a canister called "hello-assets", run the following command:    
+您可以使用带有 `+--with-cycles+` 选项的 `+dfx deploy+` 命令来指定钱包创建的容器的初始余额。 如果您未指定容器，则默认情况下您指定的循环数将添加到所有容器。 为避免这种情况，请按名称指定特定容器。 例如，要将 8000000000000 个周期的初始余额添加到名为“hello-assets”的容器中，请运行以下命令：
 
 [source,bash]
 ----

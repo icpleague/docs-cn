@@ -1,10 +1,10 @@
-= Environment variables
+= 环境变量
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-You can configure certain properties for your {sdk-short-name} execution environment using environment variables.
+您可以使用环境变量为您的 {sdk-short-name} 执行环境配置某些属性。
 
-This section lists the environment variables that are currently supported with examples of how to use them.
-In most cases, you can set environment variables for a session by executing an   command in the terminal or by adding a line similar to the following to your `.profile` file:
+本节列出了当前支持的环境变量以及如何使用它们的示例。
+在大多数情况下，您可以通过在终端中执行命令或在 `.profile` 文件中添加类似于以下内容的行来设置会话的环境变量：
 
 ....
 export DFX_NETWORK=ic
@@ -12,9 +12,9 @@ export DFX_NETWORK=ic
 
 == CANISTER_CANDID_PATH_{canister.name}
 
-Use environment variables with the `CANISTER_CANDID_PATH` prefix to reference the path to the Candid description file for the canisters that are listed as dependencies in the `dfx.json` file for your project.
+使用带有“CANISTER_CANDID_PATH”前缀的环境变量来引用在项目的“dfx.json”文件中列为依赖项的容器的 Candid 描述文件的路径。
 
-For example, if you have a `whoami_assets` canister that lists `whoami` under the `dependencies` key, you could use the `CANISTER_CANDID_PATH_whoami_assets` environment variable to refer to the location of the `whoami.did` file, which for local development might be:
+例如，如果您有一个在 `dependencies` 键下列出 `whoami` 的 `whoami_assets` 容器，则可以使用 `CANISTER_CANDID_PATH_whoami_assets` 环境变量来引用 `whoami.did` 文件的位置，该文件用于本地开发 可能：
 
 ....
 $PROJECT_ROOT/.dfx/local/canisters/whoami/whoami.did
@@ -22,17 +22,17 @@ $PROJECT_ROOT/.dfx/local/canisters/whoami/whoami.did
 
 == CANISTER_ID_{canister.name}
 
-Use environment variables with the `CANISTER_ID` prefix to reference the canister identifier for each canister in the `dfx.json` file for your project.
+使用带有“CANISTER_ID”前缀的环境变量来引用项目的“dfx.json”文件中每个容器的容器标识符。
 
-For example, if you have a `linkedup` project that consists of the `linkedup` and `connectd` canisters, you could use the `CANISTER_ID_linkedup` and `CANISTER_ID_connectd` environment variables to refer to the canister identifiers—for example `ryjl3-tyaaa-aaaaa-aaaba-cai` and `rrkah-fqaaa-aaaaa-aaaaq-cai`—created for your project.
+例如，如果您有一个由“linkedup”和“connectd”容器组成的“linkedup”项目，则可以使用“CANISTER_ID_linkedup”和“CANISTER_ID_connectd”环境变量来引用容器标识符，例如“ryjl3-tyaaa” -aaaaa-aaaba-cai` 和 `rrkah-fqaaa-aaaaa-aaaaq-cai` — 为您的项目创建。
 
 == DFX_CONFIG_ROOT
 
-Use the `+DFX_CONFIG_ROOT+` environment variable to specify a different location for storing the `+.cache+` and `+.config+` subdirectories for `+dfx+`.
+使用 `+DFX_CONFIG_ROOT+` 环境变量指定不同的位置来存储 `+dfx+` 的 `+.cache+` 和 `+.config+` 子目录。
 
-By default, the `+.cache+` and `+.config+` directories are located in the home directory for your development environment. 
-For example, on macOS the default location is in the `+/Users/<YOUR-USER-NAME>+` directory.
-Use the `+DFX_CONFIG_ROOT+` environment variable to specify a different location for these directories.
+默认情况下，`+.cache+` 和 `+.config+` 目录位于开发环境的主目录中。
+例如，在 macOS 上，默认位置在 `+/Users/<YOUR-USER-NAME>+` 目录中。
+使用 `+DFX_CONFIG_ROOT+` 环境变量为这些目录指定不同的位置。
 
 ....
 DFX_CONFIG_ROOT=~/ic-root
@@ -40,13 +40,13 @@ DFX_CONFIG_ROOT=~/ic-root
 
 == DFX_INSTALLATION_ROOT
 
-Use the `+DFX_INSTALLATION_ROOT+` environment variable to specify a different location for the `+dfx+` binary if you are not using the default location for your operating system.
+如果您不使用操作系统的默认位置，请使用 `+DFX_INSTALLATION_ROOT+` 环境变量为 `+dfx+` 二进制文件指定不同的位置。
 
-The `+.cache/dfinity/uninstall.sh+` script uses this environment variable to identify the root directory for your {sdk-short-name} installation. 
+`+.cache/dfinity/uninstall.sh+` 脚本使用这个环境变量来识别你的 {sdk-short-name} 安装的根目录。
 
 == DFX_VERSION
 
-Use the `+DFX_VERSION+` environment variable to identify a specific version of the {sdk-short-name} that you want to install.
+使用 `+DFX_VERSION+` 环境变量来标识您要安装的 {sdk-short-name} 的特定版本。
 
 ....
 DFX_VERSION=0.9.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"

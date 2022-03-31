@@ -1,70 +1,70 @@
-= dfx start
+= dfx 开始
 
-Use the `+dfx start+` command to start a local canister execution environment and web server processes for the current project.
-This command enables you to deploy canisters to the local canister execution environment to test your dapps during development.
+使用 `+dfx start+` 命令为当前项目启动本地容器执行环境和 Web 服务器进程。
+此命令使您能够将容器部署到本地容器执行环境，以在开发期间测试您的 dapp。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx start [option] [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx start+` command.
+您可以在 `+dfx start+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+--background+` |Starts the local canister execution environment and web server processes in the background and waits for a reply before returning to the shell.
+|标志 |说明
+|`+--background+` |在后台启动本地容器执行环境和web服务器进程，等待回复后返回shell。
 
-|`+--clean+` |Starts the local canister execution environment and web server processes in a clean state by removing checkpoints from your project cache.
-You can use this flag to set your project cache to a new state when troubleshooting or debugging.
+|`+--clean+` |通过从项目缓存中删除检查点，以干净状态启动本地容器执行环境和 Web 服务器进程。
+在进行故障排除或调试时，您可以使用此标志将项目缓存设置为新状态。
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Options
+== 选项
 
-You can use the following option with the `+dfx start+` command.
+您可以在 `+dfx start+` 命令中使用以下选项。
 
 [width="100%",cols="<32%,<68%",options="header",]
 |===
-|Option |Description
-|`+--host host+` |Specifies the host interface IP address and port number to bind the frontend to. The default is `127.0.0.1:8000`.
+|选项 |说明
+|`+--host host+` |指定要绑定前端的主机接口IP地址和端口号。 默认值为“127.0.0.1:8000”。
 |===
 
-== Examples
+== 例子
 
-You can start the local canister execution environment and web server processes in the current shell by running the following command:
+您可以通过运行以下命令在当前 shell 中启动本地容器执行环境和 Web 服务器进程：
 
 [source,bash]
 ----
 dfx start
 ----
 
-If you start the local canister execution environment in the current shell, you need to open a new terminal shell to run additional commands.
-Alternatively, you can start the local canister execution environment in the background by running the following command:
+如果在当前 shell 中启动本地容器执行环境，则需要打开一个新的终端 shell 来运行其他命令。
+或者，您可以通过运行以下命令在后台启动本地容器执行环境：
 
 [source,bash]
 ----
 dfx start --background
 ----
 
-If you run the local canister execution environment in the background, however, be sure to stop the local canister execution environment before uninstalling or reinstalling the `+dfx+` execution environment by running the following command:
+但是，如果您在后台运行本地容器执行环境，请务必在卸载或重新安装 `+dfx+` 执行环境之前停止本地容器执行环境，方法是运行以下命令：
 
 [source,bash]
 ----
 dfx stop
 ----
 
-You can view the current process identifier (`+pid+`) for  the local canister execution environment process started by `+dfx+`  by running the following command:
+您可以通过运行以下命令查看由 `+dfx+` 启动的本地容器执行环境进程的当前进程标识符（`+pid+`）：
 
 [source,bash]
 ----

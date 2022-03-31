@@ -1,16 +1,16 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.21
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release primarily consists of changes to support new features that are not yet complete, including fixes and updates to DFX commands, {proglang}, the {proglang} base library, and Candid.
+{release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new features and capabilities include updates in the following functional areas:
+最重要的新特性和功能包括以下功能领域的更新：
 
 * <<DFX,DFX>>
 * <<Candid,Candid>>
@@ -18,9 +18,9 @@ The most significant new features and capabilities include updates in the follow
 
 === DFX
 
-* Two new subcommands—`+get-wallet+` and `+set-wallet+`—have been added to the `+dfx identity+` command to support working with wallet canisters.
+* 两个新的子命令——`+get-wallet+` 和 `+set-wallet+`——已添加到`+dfx identity+` 命令以支持使用钱包容器。
 +
-In a future release, you will be able to use these commands locally for testing purposes. However, the commands are not currently supported on any version of the {IC} network available for you to run locally or on the public {IC} network.
+在未来的版本中，您将能够在本地使用这些命令进行测试。 但是，您可以在本地或公共 {IC} 网络上运行的任何 {IC} 网络版本目前都不支持这些命令。
 
 === Candid
 
@@ -28,17 +28,17 @@ In a future release, you will be able to use these commands locally for testing 
 
 === Motoko
 
-* The Motoko compiler now reports errors and warnings with an additional error code.
+* Motoko 编译器现在报告带有附加错误代码的错误和警告。
 +
-You can use the error code to look up a more detailed description for a given error by passing the `+--explain+` flag with a code to the compiler. 
+您可以通过将带有代码的 `+--explain+` 标志传递给编译器，使用错误代码来查找给定错误的更详细描述。
 +
-Note that detailed descriptions are not yet available for most error codes and will be added incrementally in upcoming releases.
+请注意，大多数错误代码的详细描述尚不可用，并将在即将发布的版本中逐步添加。
 
 
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。

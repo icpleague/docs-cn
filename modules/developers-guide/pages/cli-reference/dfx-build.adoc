@@ -1,87 +1,87 @@
 = dfx build
 
-Use the `+dfx build+` command to compile your program into a WebAssembly module that can be deployed on the {IC}.
-You can use this command to compile all of the programs that are defined for a project in the project's `+dfx.json+` configuration file or a specific canister.
+使用 `+dfx build+` 命令将您的程序编译成可以部署在 {IC} 上的 WebAssembly 模块。
+您可以使用此命令编译在项目的`+dfx.json+` 配置文件或特定容器中为项目定义的所有程序。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-The `+dfx build+` command looks for the source code to compile using the information you have configured under the `+canisters+` section in the `+dfx.json+` configuration file.
+`+dfx build+` 命令使用您在 `+dfx.json+` 配置文件的 `+canisters+` 部分下配置的信息查找要编译的源代码。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx build [flag] [option] [--all | canister_name]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx build+` command.
+您可以在 `+dfx build+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
+|标志 |说明
 
-|`+--check+` |Builds canisters using a temporary, hard-coded, locally-defined canister identifier for testing that your program compiles without connecting to the {platform}.
+|`+--check+` |使用临时的、硬编码的、本地定义的容器标识符构建容器，以测试您的程序在不连接到 {platform} 的情况下编译。
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Options
+== 选项
 
-You can specify the following option for the `+dfx build+` command.
+您可以为 `+dfx build+` 命令指定以下选项。
 
 [width="100%",cols="<36%,<64%",options="header"]
 |===
 
-|Option |Description
+|选项 |说明
 
-|`+--network <network>+` |Specifies the network alias or URL you want to connect to. You can use this option to override the network specified in the `+dfx.json+` configuration file.
+|`+--network <network>+` |指定要连接的网络别名或 URL。 您可以使用此选项覆盖在 `+dfx.json+` 配置文件中指定的网络。
 
 |===
 
-== Arguments
+== 参数
 
-You can specify the following arguments for the `+dfx build+` command.
+您可以为 `+dfx build+` 命令指定以下参数。
 
 [width="100%",cols="<36%,<64%",options="header"]
 |===
 
-|Argument |Description
+|参数 |描述
 
-|`+--all+` |Builds all of the canisters configured in the project's `+dfx.json+` file.
+|`+--all+` |构建项目的`+dfx.json+`文件中配置的所有容器。
 
-|`+canister_name+` |Specifies the name of the canister you want to build.
-If you are not using the `+--all+` option, you can continue to use `+dfx build+` or provide a canister name as an argument (the canister name must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.)
+|`+canister_name+` |指定要构建的容器的名称。
+如果您没有使用 `+--all+` 选项，您可以继续使用 `+dfx build+` 或提供容器名称作为参数（容器名称必须与您在 `+ 您项目的 `+dfx.json+` 配置文件的 canisters+` 部分。）
 
 |===
 
-== Examples
+== 例子
 
-You can use the `+dfx build+` command to build one or more WebAssembly modules from the programs specified in the `+dfx.json+` configuration file under the `+canisters+` key.
-For example, if your `+dfx.json+` configuration file defines one `+hello_world+` canister and one `+hello_world_assets+` canister, then running `+dfx build+` compiles two WebAssembly modules:
+您可以使用 `+dfx build+` 命令从 `+canisters+` 键下的 `+dfx.json+` 配置文件中指定的程序构建一个或多个 WebAssembly 模块。
+例如，如果你的 `+dfx.json+` 配置文件定义了一个 `+hello_world+` 容器和一个 `+hello_world_assets+` 容器，那么运行 `+dfx build+` 会编译两个 WebAssembly 模块：
 
 [source,json]
 ----
 include::example$sample-dfx.json[]
 ----
 
-Note that the file name and path to the programs on your file system must match the information specified in the `+dfx.json+` configuration file.
+请注意，文件系统上程序的文件名和路径必须与 `+dfx.json+` 配置文件中指定的信息匹配。
 
-In this example, the `+hello_world+` canister contains the main program code and the `+hello_world_assets+` canister store front-end code and assets.
-If you want to keep the `+hello_world_assets+` canister defined in the `+dfx.json+` file, but only build the back-end program, you could run the following command:
+在此示例中，`+hello_world+` 容器包含主程序代码，`+hello_world_assets+` 容器存储前端代码和资产。
+如果要保留 `+dfx.json+` 文件中定义的 `+hello_world_assets+` 容器，但只构建后端程序，可以运行以下命令：
 
 [source,bash]
 ----
 dfx build hello_world
 ----
 
-Building a specific canister is useful when you have multiple canisters defined in the dfx.json file, but want to test and debug operations for canisters independently.
+当您在 dfx.json 文件中定义了多个容器，但想要独立测试和调试容器的操作时，构建特定容器非常有用。
 
-To test whether a canister compiles without connecting to the {platform} or the local canister execution environment, you would run the following command:
+要测试容器是否在不连接到 {platform} 或本地容器执行环境的情况下编译，您将运行以下命令：
 
 [source,bash]
 ----

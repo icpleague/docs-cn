@@ -1,67 +1,66 @@
-# Encrypted Notes Dapp
+# 加密笔记 Dapp
 
-link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes] is an experimental dapp for authoring and storing confidential information in the form of short pieces of text. The user can access their notes via any number of automatically synchronized devices authenticated via link:https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]. Thanks to the end-to-end encryption performed by the dapp’s frontend, the user does not need to trust the dapp’s backend. 
+link：https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes]是一个实验性的dapp，用于以短文本的形式创作和存储机密信息。 用户可以通过通过链接验证的任意数量的自动同步设备访问他们的笔记：https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]。 由于 dapp 前端执行的端到端加密，用户不需要信任 dapp 的后端。
 
-You can play around with the link:https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp deployed on the IC].
+你可以试一下链接link：https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp部署在IC上]。
 
-## Idea
+＃＃ 主意
 
-We wanted to build an example of a simple (but not too simple) dapp running purely on the IC. This example relies upon the _web-serving_ and _storage capabilities_ of the IC. We focused on the following two key features for our example dapp: (1) client-side, _end-to-end encryption_ and (2) _multi-user_ and _multi-device_ support. 
+我们想构建一个纯粹在 IC 上运行的简单（但不是太简单）dapp 的示例。 此示例依赖于 IC 的_web-serving_ 和_storage capabilities_。 我们专注于示例 dapp 的以下两个关键特性：(1) 客户端，_端到端加密_和 (2) _多用户_和_多设备_支持。
 
-To demonstrate the potential of the IC as a platform for developing such dapps, we implemented this example using two distinct Canister Development Kits (CDKs). The Motoko CDK allows developers to implement actor-based dapps using the link:https://smartcontracts.org/docs/language-guide/motoko.html[Motoko] language. The Rust CDK allows implementing dapps in link:https://smartcontracts.org/docs/rust-guide/rust-intro.html[Rust]. In both cases, canisters are compiled into WebAssembly files that are then deployed onto the IC. 
+为了展示 IC 作为开发此类 dapp 的平台的潜力，我们使用两个不同的罐式开发套件 (CDK) 实现了这个示例。 Motoko CDK 允许开发人员使用以下链接实现基于参与者的 dapp：https://smartcontracts.org/docs/language-guide/motoko.html[Motoko] 语言。 Rust CDK 允许在链接中实现 dapp：https://smartcontracts.org/docs/rust-guide/rust-intro.html[Rust]。 在这两种情况下，容器都被编译成 WebAssembly 文件，然后部署到 IC 上。
 
-## Approach
+＃＃ 方法
 
-The basic functionality of Encrypted Notes consists of two main components. 
+Encrypted Notes 的基本功能包括两个主要组件。
 
-First, we re-used the code of a (non-encrypted) dapp called link:https://github.com/pattad/ic_notes[IC-Notes]. In particular IC-Notes relies on the link:https://smartcontracts.org/docs/ic-identity-guide/auth-how-to.html[Internet Identity] (II) canister for user authentication, an approach that is also inherited by Encrypted Notes. For development purposes, we deploy a local instance of the II canister (along with a local instance of Encrypted Notes); when deploying Encrypted Notes onto the mainnet, the real-world instance of II is used for authentication. 
+首先，我们重用了一个（非加密）dapp的代码，叫做link：https://github.com/pattad/ic_notes[IC-Notes]。 特别是 IC-Notes 依赖link：https://smartcontracts.org/docs/ic-identity-guide/auth-how-to.html[Internet Identity] (II) canister 进行用户身份验证，这种方法也是 由加密笔记继承。 出于开发目的，我们部署了 II 容器的本地实例（以及加密笔记的本地实例）； 在将 Encrypted Notes 部署到主网上时，II 的真实实例用于身份验证。
 
-Second, we enabled client-side, end-to-end encryption for the note contents, borrowing the solution from another existing dapp called link:https://github.com/timohanke/icvault[IC-Vault]. Our Encrypted Notes dapp follows the approach of IC-Vault to support managing multiple devices. 
+其次，我们为笔记内容启用了客户端端到端加密，从另一个名为链接的现有 dapp 中借用了解决方案：https://github.com/timohanke/icvault[IC-Vault]。我们的加密笔记 dapp 遵循 IC-Vault 的方法来支持管理多个设备。
 
-In the context of the canisters discussed in this document, a device is not necessarily a separate physical device but a logical instance device, e.g., a web browser, with its own local data storage. For example, we consider two web browsers running on the same laptop as two independent devices; these browsers generate their own encryption keys. In contrast, the II canister relies on hardware-generated encryption keys, distinguishing only hardware devices.
+在本文档中讨论的容器的上下文中，设备不一定是单独的物理设备，而是逻辑实例设备，例如 Web 浏览器，具有自己的本地数据存储。例如，我们将在同一台笔记本电脑上运行的两个 Web 浏览器视为两个独立的设备；这些浏览器会生成自己的加密密钥。相比之下，II 容器依赖于硬件生成的加密密钥，仅区分硬件设备。
 
-To support multiple devices per user, IC-Vault employs a device manager, a canister that securely synchronizes device-specific keys across all the devices that are associated with a user. The remainder of this document focuses on the Encrypted Notes canister that implements a device manager in a similar way but as part of its main canister.
+为了支持每个用户使用多个设备，IC-Vault 采用了设备管理器，这是一个可以在与用户关联的所有设备之间安全地同步设备特定密钥的容器。本文档的其余部分重点介绍以类似方式实现设备管理器但作为其主容器的一部分的 Encrypted Notes 容器。
 
-For further details and user stories, please refer to the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md[README file].
+更多细节和用户故事，请参考link：https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md[README file]。
 
 image:encrypted-notes-arch.png[High-level architecture overview diagram of the Encrypted Notes dapp]
 
-## Note management
+##笔记管理
 
-* Users are linked to II in the frontend, getting the user a principal that can be used for calling API queries and updates. 
-* Internally, we store the map of the form `Principal → [Notes]`
-and a `counter`.
-* `counter` stores the number of notes the canister has created (across all principals).
-* Method `create` adds a note to its principal’s entry (if it exists), 
-or adds the principal to the map with the `note_id == counter`, 
-and then increments `counter`.
-* Method `update` pulls a note, for the caller’s Principal and for the provided `note_id` and replaces it with the provided `text` (this `text` is assumed to be encrypted by the frontend). 
-* Method `delete` finds the note with the given `note_id` in the map and removes it. To ensure that note IDs are always globally unique, we do not decrease `counter`.
+* 用户在前端链接到II，为用户提供了一个可用于调用API查询和更新的主体。
+* 在内部，我们存储 `Principal → [Notes]` 形式的映射
+和一个“计数器”。
+* `counter` 存储容器创建的笔记数（跨所有主体）。
+* 方法 `create` 向其主体的条目添加注释（如果存在），
+或使用 `note_id == counter` 将主体添加到映射中，然后递增 `counter`。
+* 方法 `update` 为调用者的 Principal 和提供的 `note_id` 提取一个便笺，并用提供的 `text` 替换它（此 `text` 假定由前端加密）。
+* 方法 `delete` 在地图中找到具有给定 `note_id` 的笔记并将其删除。 为了确保笔记 ID 始终是全局唯一的，我们不会减少 `counter`。
 
-## Cryptography
+## 密码学
 
-* Encryption of notes is entirely client-side. However, our example dapp is still not protected against potentially data-revealing attacks by a possibly malicious node provider. For example, the attacker can infer how many notes a particular user has, user activity statistics, etc. Therefore, please carefully read the link:https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes-dapp/README.md#disclaimer-please-read-carefully[disclaimer] before using any of the code or patterns from this dapp. 
-* Recall that, in our definition, a device is not necessarily a separate physical device but simply a web browser instance with an independent local storage. 
-* The dapp uses three different kinds of keys:
-** Symmetric AES-GCM _secret key_: used to encrypt the notes of a given principal. The notes of a principal are stored in the Encrypted Notes canister encrypted with this secret key. Thus the frontend of the dapp needs to know this secret key to decrypt notes from this user and to send encrypted notes to be stored in the Encrypted Notes canister.
-** Device RSA-OAEP _public key_: used to encrypt the symmetric AES _secret key_ of the principal. The encrypted secret key is stored in the canister for each device registered to the principal. The same key is used for different principals using that device. 
-** Device RSA-OAEP _private key_: used to decrypt the symmetric AES _secret key_ stored in the Encrypted Notes canister for a given principal. Once the frontend  decrypts the secret key, it can use this key for decrypting the notes stored in the Encrypted Notes canister.
-* We store a map of the form: 
+*笔记的加密完全是客户端的。但是，我们的示例 dapp 仍然无法抵御可能是恶意节点提供商的潜在数据泄露攻击。例如，攻击者可以推断出特定用户有多少笔记，用户活动统计等。因此，请仔细阅读link：https://github.com/dfinity/examples/blob/master/motoko/encrypted-notes -dapp/README.md#disclaimer-please-read-carefully[disclaimer] 在使用此 dapp 中的任何代码或模式之前。
+* 回想一下，在我们的定义中，设备不一定是单独的物理设备，而只是具有独立本地存储的 Web 浏览器实例。
+* dapp 使用三种不同的密钥：
+** 对称 AES-GCM _secret key_：用于加密给定主体的注释。主体的注释存储在使用此密钥加密的 Encrypted Notes 容器中。因此，dapp 的前端需要知道这个密钥才能解密来自该用户的笔记，并发送加密的笔记以存储在 Encrypted Notes 容器中。
+** 设备 RSA-OAEP_public key_：用于加密主体的对称 AES_secret key_。加密的密钥存储在容器中，用于注册到主体的每个设备。相同的密钥用于使用该设备的不同主体。
+** 设备 RSA-OAEP _private key_：用于解密存储在 Encrypted Notes 容器中给定主体的对称 AES _secret key_。一旦前端解密了密钥，它就可以使用这个密钥来解密存储在加密笔记容器中的笔记。
+* 我们存储一张地图的形式：
 
     Principal → (DeviceAlias → PublicKey,
                  DeviceAlias → CipherText)
 
-* This map is used for managing user devices, as explained next.
-* To register a device, the frontend generates a device alias, a public key, and a private key (held in its local storage).
-* Adding a device:
-** *Device registration:* If this identity is already known, a new device will remain unsynced at first; at this time, only the `alias` and `publickey` of this device will be added to the Encrypted Notes canister. 
-** *Device synchronization:* Once an unsynced device obtains the list of all unsynced devices for this II, it will encrypt the symmetric AES _secret key_ under each unsynced device's public key. Afterwards, the unsynced device obtains the encrypted symmetric AES _secret key_, decrypts it, and then uses it to decrypt the existing notes stored in the Encrypted Notes canister.
-* Once authenticated with II: 
-** If this identity is not known, then the frontend generates a symmetric AES _secret key_ and encrypts it with its own public key. Then the frontend calls `seed(publickey, ciphertext)`, adding that ciphertext and its associated `publickey` to the map.
-** If a user wants to register a subsequent device, the frontend calls `register_device`, passing in the `alias` and `publickey` of that device. The frontend then calls `submit_ciphertexts([publickey, ciphertext])` for all the devices it needs to register. This allows the registered devices to pull and decrypt the AES key to encrypt and decrypt the user notes. 
+* 此地图用于管理用户设备，如下所述。
+* 要注册设备，前端会生成设备别名、公钥和私钥（保存在本地存储中）。
+* 添加设备：
+** *设备注册：*如果这个身份是已知的，一个新的设备将首先保持不同步；此时，只有此设备的 `alias` 和 `publickey` 将添加到 Encrypted Notes 容器中。
+** *设备同步：* 未同步设备获得本II所有未同步设备列表后，将在每个未同步设备的公钥下加密对称AES_secret key_。之后，未同步设备获得加密的对称 AES _secret key_，对其进行解密，然后使用它来解密存储在 Encrypted Notes 容器中的现有笔记。
+* 一旦通过 II 认证：
+** 如果此身份未知，则前端会生成一个对称的 AES _secret key_ 并使用自己的公钥对其进行加密。然后前端调用“seed(publickey, ciphertext)”，将该密文及其关联的“publickey”添加到地图中。
+** 如果用户想注册后续设备，前端调用`register_device`，传入该设备的`alias`和`publickey`。然后前端为它需要注册的所有设备调用`submit_ciphertexts([publickey, ciphertext])`。这允许注册设备提取和解密 AES 密钥以加密和解密用户笔记。
 
-## Sequence Diagrams
+## 序列图
 
-### Adding New Device
+### 添加新设备
 
 image:encrypted-notes-seq.png[UML sequence diagram showing device registration and synchronization]

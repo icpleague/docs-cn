@@ -1,25 +1,25 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.8.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release includes updates and fixes that are primarily internal to improve existing features and functions rather than user-visible, as well as potentially breaking changes to some frontend projects.
+{release} 版本包括主要是内部更新和修复，用于改进现有特性和功能，而不是用户可见的，以及对某些前端项目的潜在破坏性更改。
 
 . improvements to codegen from 0.7.7
 . set-wallet command no longer requires `--force` flag
 
-## Instructions on migrating to dfx 0.8.0
+## 迁移到 dfx 0.8.0 的说明
 
-If your project does not have a frontend that relies on the JavaScript files that have been generated under `.dfx/local`, you should not expect to have any issues with dfx 0.8.0.
+如果您的项目没有依赖于在 `.dfx/local` 下生成的 JavaScript 文件的前端，则不应期望 dfx 0.8.0 有任何问题。
 
-If you have an existing project that depends on dfx-generated frontend files, you may need to make some adjustments when upgrading to 0.8.0. Depending on your situation you may want to choose to set up environment variables or to make a minimum set of changes. We will document both cases here.
+如果您有一个依赖 dfx 生成的前端文件的现有项目，则在升级到 0.8.0 时可能需要进行一些调整。 根据您的情况，您可能希望选择设置环境变量或进行最少的更改。 我们将在这里记录这两种情况。
 
-### Environment variables
+＃＃＃ 环境变量
 
-With webpack, we are providing environment variables by using an EnvironmentPlugin. At the top of `webpack.config.js`, we read from the root `canister_ids.json` and the one inside `.dfx/local` to map the canister IDs into environment variables, and then replace the `process.env` values in the code during development or at build time.
+在 webpack 中，我们使用 EnvironmentPlugin 提供环境变量。 在 `webpack.config.js` 的顶部，我们从根目录 `canister_ids.json` 和 `.dfx/local` 中读取，将容器 ID 映射到环境变量中，然后替换 `process.env` 在开发期间或构建时代码中的值。
 
 ```js
 // webpack.config.js
@@ -52,19 +52,15 @@ function initCanisterIds() {
 initCanisterIds();
 ```
 
-With your bundler, whether it is Webpack or another bundler of your choice, you will need to account for the following:
+对于您的bundler，无论是 Webpack 还是您选择的其他bundler，您都需要考虑以下事项：
 
-1. Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. Other bundlers that allow for custom scripting should be able to re-use the webpack config logic.
-2. Determining `NODE_ENV`. During development, the app should call `agent.fetchRootKey()`, but it should not fetch the root key in production.
-3. Copying the codegen, as we do in the `dfx new` template, is optional. You still have access to the `.did.js` and `.did.d.ts` files in `.dfx`, so you can choose to ignore the new `index.js` format if it is inconvenient, and continue providing your own Actor.createActor pattern as before. 
-4. Return types - if you do not want to use the dfx-provided files, consider using the JSDoc comments that we have come up with. If the code knows that your actor has a type of `ActorSubclass<_SERVICE>`, for your particular service, the development process is significantly enhanced in compatible editors.
+1. 识别容器 ID。 输出不再将容器 ID 硬编码为 JavaScript，因此您需要使用自己的策略提供该代码。 其他允许自定义脚本的打包器应该能够重用 webpack 配置逻辑。
+2. 确定“NODE_ENV”。 在开发过程中，应用程序应该调用 `agent.fetchRootKey()`，但它不应该在生产环境中获取根密钥。
+3. 复制代码生成，就像我们在 `dfx new` 模板中所做的那样，是可选的。 您仍然可以访问 .dfx 中的 .did.js 和 .did.d.ts 文件，因此如果不方便，您可以选择忽略新的 `index.js` 格式，并继续提供 你自己的 Actor.createActor 模式和以前一样。
+4. 返回类型 - 如果您不想使用 dfx 提供的文件，请考虑使用我们提供的 JSDoc 注释。 如果代码知道您的 actor 具有 `ActorSubclass<_SERVICE>` 的类型，那么对于您的特定服务，开发过程在兼容的编辑器中得到显着增强。
 
 
-### Minimal Update
-
-If you are looking to minimally modify your project, here is all you need to do, assuming you are starting from the 0.7.2 starter:
-
-You can continue using a query parameter in your URL, you can access it via 
+您可以继续在 URL 中使用查询参数，您可以通过以下方式访问它
 
 ```js
 // src/example_assets/src/index.js
@@ -78,7 +74,7 @@ agent.fetchRootKey();
 const example = Actor.createActor(example_idl, { agent, canisterId: example_id });
 ```
 
-And you can modify the `aliases` reducer to point to the path, rather than hardcoding the old `<canister-name>.js` file
+您可以修改 `aliases` 减速器以指向路径，而不是硬编码旧的 `<canister-name>.js` 文件
 
 ```js
 // webpack.config.js
@@ -89,4 +85,4 @@ And you can modify the `aliases` reducer to point to the path, rather than hardc
 ["dfx-generated/" + name]: path.join(outputRoot),
 ```
 
-Then, you can `dfx deploy` like normal and visit your working site with http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai.
+然后，您可以像往常一样执行“dfx deploy”并访问您的工作站点 http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai.

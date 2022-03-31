@@ -1,172 +1,172 @@
-= dfx canister
+= dfx 容器
 
-Use the `+dfx canister+` command with flags and subcommands to manage canister operations and interaction with the {platform} or the local canister execution environment.
-In most cases, you use `+dfx canister+` subcommands after you compile a program to manage the canister lifecycle and to perform key tasks such as calling program functions.
+使用带有标志和子命令的 `+dfx canister+` 命令来管理容器操作以及与 {platform} 或本地容器执行环境的交互。
+在大多数情况下，您在编译程序后使用 `+dfx canister+` 子命令来管理容器生命周期并执行关键任务，例如调用程序函数。
 
-The basic syntax for running `+dfx canister+` commands is:
+运行 `+dfx canister+` 命令的基本语法是：
 
 [source,bash]
 ----
 dfx canister [subcommand] [flag]
 ----
 
-Depending on the `+dfx canister+` subcommand you specify, additional arguments, options, and flags might apply or be required.
-To view usage information for a specific `+dfx canister+` subcommand, specify the subcommand and the `+--help+` flag.
-For example, to see usage information for `+dfx canister call+`, you can run the following command:
+根据您指定的 `+dfx canister+` 子命令，可能会应用或需要其他参数、选项和标志。
+要查看特定 `+dfx canister+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx canister call+` 的使用信息，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister call --help
 ----
 
-For reference information and examples that illustrate using `+dfx canister+` commands, select an appropriate command.
+有关说明使用 `+dfx canister+` 命令的参考信息和示例，请选择适当的命令。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Command |Description
-|<<dfx canister call,`+call+`>> |Calls a specified method on a deployed canister.
+|命令 |描述
+|<<dfx canister call,`+call+`>> |调用已部署容器上的指定方法。
 
-|<<dfx canister create,`+create+`>> |Creates a new "empty" canister by registering a canister identifier on the {platform} or the local canister execution environment.
+|<<dfx canister create,`+create+`>> |通过在 {platform} 或本地容器执行环境上注册容器标识符来创建新的“空”容器。
 
-|<<dfx canister delete,`+delete+`>> |Deletes a currently stopped canister.
+|<<dfx canister delete,`+delete+`>> |删除当前停止的容器。
 
-|`+help+` |Displays usage information message for a specified subcommand.
+|`+help+` |显示指定子命令的使用信息消息。
 
-|<<dfx canister id,`+id+`>> |Displays the identifier for a canister.
+|<<dfx canister id,`+id+`>> |显示容器的标识符。
 
-|<<dfx canister install,`+install+`>> |Installs compiled code as a canister on the {platform} or the local canister execution environment.
+|<<dfx canister install,`+install+`>> |将编译后的代码作为容器安装在 {platform} 或本地容器执行环境中。
 
-|<<dfx canister request-status,`+request-status+`>> |Requests the status of a call to a canister.
+|<<dfx canister request-status,`+request-status+`>> |请求容器的调用状态。
 
-|<<dfx canister set-controller,`+set-controller+`>> |Specifies the identity name or principal to use as the new controller for a specified canister on the {platform}.
+|<<dfx canister set-controller,`+set-controller+`>> |指定要用作 {platform} 上指定容器的新控制器的身份名称或主体。
 
-|<<dfx canister send,`+send+`>> |Send a previously-signed `+message.json+` to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
+|<<dfx canister send,`+send+`>> |将先前签名的 `+message.json+` 发送到指定的容器标识符。 例如，如果您想发送一条调用网络神经系统 (NNS) 治理容器来管理神经元的消息，出于安全原因，您可能希望将消息签名与消息传递分开。
 
-|<<dfx canister send,`+sign+`>> |Create a signed `+message.json+` file before making a call to a specified canister identifier. For example, if you want to send a message that calls the network nervous system (NNS) governance canister to manage neurons, you might want to separate message signing from message delivery for security reasons.
+|<<dfx canister send,`+sign+`>> |在调用指定的容器标识符之前创建一个签名的 `+message.json+` 文件。 例如，如果您想发送一条调用网络神经系统 (NNS) 治理容器来管理神经元的消息，出于安全原因，您可能希望将消息签名与消息传递分开。
 
-|<<dfx canister start,`+start+`>> |Restarts a stopped canister.
+|<<dfx canister start,`+start+`>> |重新启动停止的容器。
 
-|<<dfx canister status,`+status+`>> |Requests the running status of a canister.
+|<<dfx canister status,`+status+`>> |请求容器的运行状态。
 
-|<<dfx canister stop,`+stop+`>> |Stops a currently running canister.
+|<<dfx canister stop,`+stop+`>> |停止当前正在运行的容器。
 
 |===
 
-== Overriding the default deployment environment
+== 覆盖默认部署环境
 
-By default, `+dfx canister+` commands run on the local canister execution environment specified in the `+dfx.json+` file.
-If you want to send a `+dfx canister+` subcommand to the {platform} or a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the URL to connect to using the `+--network+` option.
+默认情况下，`+dfx canister+` 命令在 `+dfx.json+` 文件中指定的本地容器执行环境中运行。
+如果您想在不更改 `+dfx.json+` 配置文件中的设置的情况下向 {platform} 或测试网发送 `+dfx canister+` 子命令，则可以使用 `+-- 显式指定要连接的 URL 网络+`选项。
 
-For example, to register unique canister identifiers for a project on the local canister execution environment, you can run the following command:
+例如，要在本地容器执行环境中为项目注册唯一容器标识符，您可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister create --all
 ----
 
-If you want to register unique canister identifiers for the same project on the {platform}, you can run the following command:
+如果要在 {platform} 上为同一项目注册唯一容器标识符，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister --network ic create --all
 ----
 
-The {sdk-short-name} comes with an alias of `+ic+`, which is configured to point to the {platform}. You can also pass a URL as a network option, or you can configure additional aliases in `+dfx.json+` under the `+networks+` configuration.
+{sdk-short-name} 带有一个别名 `+ic+`，它被配置为指向 {platform}。 您还可以将 URL 作为网络选项传递，或者您可以在 `+networks+` 配置下的 `+dfx.json+` 中配置其他别名。
 
-To illustrate, you can call a canister and function running on a testnet using a command similar to the following:
+为了说明，您可以使用类似于以下的命令调用在测试网上运行的容器和函数：
 
 [source,bash]
 ----
 dfx canister --network \http://192.168.3.1:5678 call counter get
 ----
 
-Note that you must specify the `+--network+` parameter before the canister operation (`+create+` or `+call+`) and any additional arguments such as the canister name (`+counter+`), and function (`+get+`).
+请注意，您必须在容器操作（`+create+` 或 `+call+`）之前指定 `+--network+` 参数以及任何其他参数，例如容器名称（`+counter+`）和函数（`+get+ `）。
 
-== dfx canister call
+== dfx 容器调用
 
-Use the `+dfx canister call+` command to call a specified method on a deployed canister.
+使用 `+dfx canister call+` 命令调用已部署容器上的指定方法。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister call [option] _canister_name_ _method_name_ [argument] [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister call+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-|`+--async+` |Enables you to continue without waiting for the result of the call to be returned by polling the local canister execution environment or the {platform}.
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+--query+` |Enables you to send a query request to a deployed canister.
-For best performance, you should use this flag when you explicitly want to use the query method to retrieve information.
-For information about the difference between query and update calls, see link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
-
-|`+--update+` |Enables you to send an update request to a deployed canister.
-By default, canister calls use the update method.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Options
-
-You can use the following options with the `+dfx canister call+` command.
+您可以在 `+dfx canister call+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Option |Description
+|标志 |说明
+|`+--async+` |通过轮询本地容器执行环境或{platform}，使您无需等待返回调用结果即可继续。
 
-|`+--output <output>+` |Specifies the output format to use when displaying a method's return result.
-The valid values are `+idl+` and `+raw+`.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+--type <type>+` |Specifies the data format for the argument when making the call using an argument.
-The valid values are `+idl+` and `+raw+`.
+|`+--query+` |使您能够向已部署的容器发送查询请求。
+为了获得最佳性能，当您明确想要使用查询方法检索信息时，您应该使用此标志。
+有关查询和更新调用之间差异的信息，请参阅link：../concepts/canisters-code{outfilesuffix}#canister-state[容器包括程序和状态]。
+
+|`+--update+` |使您能够向已部署的容器发送更新请求。
+默认情况下，容器调用使用更新方法。
+
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 选项
 
-You can specify the following arguments for the `+dfx canister call+` command.
+您可以在 `+dfx canister call+` 命令中使用以下选项。
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|选项 |说明
+
+|`+--output <output>+` |指定显示方法返回结果时使用的输出格式。
+有效值为 `+idl+` 和 `+raw+`。
+
+|`+--type <type>+` |使用参数进行调用时指定参数的数据格式。
+有效值为 `+idl+` 和 `+raw+`。
+|===
+
+=== 参数
+
+您可以为 `+dfx canister call+` 命令指定以下参数。
 
 [width="100%",cols="<31%,<69%",options="header",]
 |===
-|Argument |Description
-|`+canister_name+` |Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+|`+canister_name+` |指定要调用的容器的名称。 容器名称是必需的参数，并且应该与您在 `+dfx.json+` 配置文件的 `+canisters+` 部分中为项目配置的名称匹配。
 
-|`+method_name+` |Specifies the method name to call on the canister.
-The canister method is a required argument.
 
-|`+argument+` |Specifies the argument to pass to the method.
-Depending on your program logic, the argument can be a required or optional argument.
-You can specify a data format type using the `+--type+` option if you pass an argument to the canister.
-By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values. 
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types].
-You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
+|`+method_name+` |指定要在容器上调用的方法名称。
+canister 方法是必需的参数。
+
+|`+argument+` |指定要传递给方法的参数。
+根据您的程序逻辑，参数可以是必需参数或可选参数。
+如果将参数传递给容器，则可以使用 `+--type+` 选项指定数据格式类型。
+默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅链接link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+如果要将原始字节传递给容器，可以使用 `+raw+` 作为参数类型。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx canister call+` command to invoke specific methods—with or without arguments—after you have deployed the canister using the `+dfx canister install+` command.
-For example, to invoke the `+get+` method for a canister with a `+canister_name+` of `+counter+`, you can run the following command:
+在使用 `+dfx canister install+` 命令部署容器后，可以使用 `+dfx canister call+` 命令调用特定方法（带或不带参数）。
+例如，要为 `+canister_name+` 为 `+counter+` 的容器调用 `+get+` 方法，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister call counter get --async
 ----
 
-In this example, the command includes the `+--async+` option to indicate that you want to make a separate `+request-status+` call rather than waiting to poll the local canister execution environment or the {platform} for the result.
-The `+--async+` option is useful when processing an operation might take some time to complete.
-The option enables you to continue performing other operations then check for the result using a separate `+dfx canister request-status+` command.
-The returned result will be displayed as the IDL textual format.
+在此示例中，该命令包含 `+--async+` 选项以指示您要进行单独的 `+request-status+` 调用，而不是等待轮询本地容器执行环境或 {platform} 以获取结果。
+当处理操作可能需要一些时间才能完成时，`+--async+` 选项很有用。
+该选项使您能够继续执行其他操作，然后使用单独的 `+dfx canister request-status+` 命令检查结果。
+返回的结果将显示为 IDL 文本格式。
 
-==== Using the IDL syntax
+==== 使用 IDL 语法
 
-You can explicitly specify that you are passing arguments using the IDL syntax by running commands similar to the following for a Text data type:
+您可以通过对 Text 数据类型运行类似于以下的命令来显式指定使用 IDL 语法传递参数：
 
 [source,bash]
 ----
@@ -177,7 +177,7 @@ dfx canister call hello greet '("Lisa")' --type idl
 ("Hello, Lisa!")
 ----
 
-You can also implicitly use the IDL by running a command similar to the following:
+您还可以通过运行类似于以下的命令来隐式使用 IDL：
 
 [source,bash]
 ----
@@ -185,8 +185,8 @@ dfx canister call hello greet '("Lisa")'
 ("Hello, Lisa!")
 ----
 
-To specify multiple arguments using the IDL syntax, use commas between the arguments.
-For example:
+要使用 IDL 语法指定多个参数，请在参数之间使用逗号。
+例如：
 
 [source,bash]
 ----
@@ -195,140 +195,131 @@ dfx canister call contacts insert '("Amy Lu","01 916-335-2042")'
 dfx canister call hotel guestroom '("Deluxe Suite",42,true)'
 ----
 
-You can pass raw data in bytes by running a command similar to the following:
+您可以通过运行类似于以下内容的命令以字节为单位传递原始数据：
 
 [source,bash]
 ----
 dfx canister call hello greet --type raw '4449444c00017103e29883'
 ----
 
-This example uses the raw data type to pass a hexadecimal to the `+greet+` function of the `+hello+` canister.
+此示例使用原始数据类型将十六进制传递给 `+hello+` 容器的 `+greet+` 函数。
 
-== dfx canister create
+== dfx 容器创建
 
-Use the `+dfx canister create+` command to register one or more canister identifiers without compiled code.
-You must be connected to the local canister execution environment or the {platform} to run this command.
+使用 `+dfx canister create+` 命令注册一个或多个容器标识符，无需编译代码。
+您必须连接到本地容器执行环境或 {platform} 才能运行此命令。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-The first time you run the `+dfx canister create+` command to register an identifier, your public/private key pair credentials are used to create a `+default+` user identity.
-The credentials for the `+default+` user are migrated from `+$HOME/.dfinity/identity/creds.pem+` to `+$HOME/.config/dfx/identity/default/identity.pem+`.
+第一次运行 `+dfx canister create+` 命令注册标识符时，您的公钥/私钥对凭据将用于创建 `+default+` 用户身份。
+`+default+` 用户的凭据从 `+$HOME/.dfinity/identity/creds.pem+` 迁移到 `+$HOME/.config/dfx/identity/default/identity.pem+`。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister create [option] [flag] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister create+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Options
-
-You can use the following options with the `+dfx canister create+` command.
+您可以在 `+dfx canister create+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Option |Description
+|标志 |说明
 
-|`+--with-cycles <number-of-cycles>+` |Enables you to specify the initial number of cycles in a canister when it is created by your wallet. 
+|`+-h+`, `+--help+` |显示使用信息。
+
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 选项
 
-You can use the following argument with the `+dfx canister create+` command.
+您可以在 `+dfx canister create+` 命令中使用以下选项。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
-|`+--all+` |Enables you to create multiple canister identifiers at once if you have a project `+dfx.json+` file that defines multiple canisters.
-Note that you must specify `+--all+` or an individual canister name.
-|`+canister_name+` |Specifies the name of the canister for which you want to register an identifier.
-If you are not using the `+--all+` option, the canister name is a required argument and must match at least one name that you have configured in the `+canisters+` section of the `+dfx.json+` configuration file for your project.
+|`+--with-cycles <number-of-cycles>+` |允许您在钱包创建容器时指定容器中的初始周期数。
 |===
 
-=== Examples
+=== 参数
 
-You can use the `+dfx canister create+` command to register canister identifiers without first compiling any code.
-For example, if you want to create the canister identifier for the project `+my_counter+` before writing the program, you can run the following command:
+您可以在 `+dfx canister create+` 命令中使用以下参数。
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|参数 |描述
+|`+--all+` |如果您有一个定义多个容器的项目“+dfx.json+”文件，则使您能够一次创建多个容器标识符。
+请注意，您必须指定 `+--all+` 或单个容器名称。
+|`+canister_name+` |指定要为其注册标识符的容器的名称。
+如果您不使用 `+--all+` 选项，则容器名称是必需的参数，并且必须与您在 `+dfx.json+` 配置文件的 `+canisters+` 部分中配置的至少一个名称匹配 你的项目。
+|===
+
+=== 例子
+
+您可以使用 `+dfx canister create+` 命令注册容器标识符，而无需先编译任何代码。
+例如，如果要在编写程序之前为项目`+my_counter+`创建容器标识符，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister create my_counter
 ----
 
-You can use the `+dfx canister create+` command with the `+--with-cycles+` option to specify the initial balance upon the creation of one canister or all canisters in a project. For example, to specify an initial balance of 8000000000000 cycles for all canisters, run the following command:    
+您可以使用带有 `+--with-cycles+` 选项的 `+dfx canister create+` 命令来指定在项目中创建一个或所有容器时的初始平衡。 例如，要为所有容器指定 8000000000000 个循环的初始平衡，请运行以下命令：
 
 [source,bash]
 ----
 dfx canister create --with-cycles 8000000000000 --all
 ----
 
-== dfx canister delete
+== dfx 容器删除
 
-Use the `+dfx canister delete+` command to delete a stopped canister from the local canister execution environment or on the {platform}.
+使用 `+dfx canister delete+` 命令从本地容器执行环境或 {platform} 上删除已停止的容器。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister delete [flag] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister delete+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can use the following arguments with the `+dfx canister delete+` command.
+您可以在 `+dfx canister delete+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|Flag |描述
 
-|`+--all+` |Deletes all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+canister_name+` |Specifies the name of the canister you want to delete.
-Note that you must specify either a canister name or the `+--all+` option.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 参数
 
-You can use the `+dfx canister delete+` command to delete a specific canister or all canisters.
+您可以在 `+dfx canister delete+` 命令中使用以下参数。
 
-To delete the `+hello_world+` canister, you can run the following command:
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+请注意，您必须指定容器名称或 `+--all+` 选项。
+|===
+
+=== 例子
+您可以使用 `+dfx canister delete` 命令删除特定容器或所有容器。
+要删除 `+hello_world` 容器，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister delete hello_world
 ----
 
-To delete all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
+要删除您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
 
 [source,bash]
 ----
@@ -337,303 +328,303 @@ dfx canister --network=ic delete --all
 
 == dfx canister id
 
-Use the `+dfx canister id+` command to output the canister identifier for a specific canister name.
+使用 `+dfx canister id+` 命令输出特定容器名称的容器标识符。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister id [flag] _canister_name_
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister id+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can use the following argument with the `+dfx canister id+` command.
+您可以在 `+dfx canister id+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|标志 |说明
 
-|`+canister_name+` |Specifies the name of the canister for which you want to display an identifier.
+|`+-h+`, `+--help+` |显示使用信息。
+
+|`+-V+`, `+--version+` |显示版本信息。
+|===
+
+=== 参数
+
+您可以在 `+dfx canister id+` 命令中使用以下参数。
+
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|参数 |描述
+
+|`+canister_name+` |指定要显示其标识符的容器的名称。
 
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx canister id+` command to display the canister identifier for a specific canister name.
+您可以使用 `+dfx canister id+` 命令显示特定容器名称的容器标识符。
 
-To display the canister identifier for the `+hello_world+` canister, you can run the following command:
+要显示 `+hello_world+` 容器的容器标识符，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister id hello_world
 ----
 
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出：
 
 [source,bash]
 ----
 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
 ----
 
-== dfx canister install
+== dfx 容器安装
 
-Use the `+dfx canister install+` command to install compiled code as a canister on the {platform} or on the local canister execution environment.
+使用 `+dfx canister install+` 命令将编译后的代码作为容器安装在 {platform} 或本地容器执行环境中。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister install [flag] [option] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister install+` command.
+您可以在 `+dfx canister install+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Flag |Description
+|标志 |说明
 
-|`+--async+` |Enables you to continue without waiting for the result of the installation to be returned by polling the {platform} or  the local canister execution environment.
+|`+--async+` |通过轮询 {platform} 或本地容器执行环境，使您无需等待返回安装结果即可继续。
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Options
+=== 选项
 
-You can use the following options with the `+dfx canister install+` command.
+您可以在 `+dfx canister install+` 命令中使用以下选项。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
 |Option |Description
-|`+--argument <argument>+` |Specifies an argument to pass to the canister during installation.
+|`+--argument <argument>+` |指定在安装期间传递给容器的参数。
 
-|`+--argument-type <argument-type>+` |Specifies the data format for the argument when you install using the `+--argument+` option. The valid values are `+idl+` and `+raw+`.
-By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values.
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types]. 
-You can use `+raw+` as the argument type if you want to pass raw bytes to a canister.
+|`+--argument-type <argument-type>+` |使用 `+--argument+` 选项安装时指定参数的数据格式。 有效值为 `+idl+` 和 `+raw+`。
+默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+如果要将原始字节传递给容器，可以使用 `+raw+` 作为参数类型。
 
-|`+-c+`, `+--compute-allocation <compute-allocation>+` |Defines a compute allocation—essentially the equivalent of setting a CPU allocation—for  canister execution.
-You can set this value as a percentage in the range of 0 to 100.
+|`+-c+`, `+--compute-allocation <compute-allocation>+` |为容器执行定义计算分配（本质上相当于设置 CPU 分配）。
+您可以将此值设置为 0 到 100 范围内的百分比。
 
-|`+--memory-allocation <memory-allocation>+` |Specifies how much memory the canister is allowed to use in total.
-You can set this value in the range of 0 to 8MB.
+|`+--memory-allocation <memory-allocation>+` |指定容器总共允许使用多少内存。
+您可以在 0 到 8MB 的范围内设置此值。
 
-|`+-m+`, `+--mode <mode>+` |Specifies whether you want to `+install+`, `+reinstall+`, or `+upgrade+` canisters.
-For more information about installation modes and canister management, see link:../working-with-canisters{outfilesuffix}[Managing canisters].
+|`+-m+`, `+--mode <mode>+` |指定您是要`+install+`、`+reinstall+` 还是`+upgrade+` 容器。
+有关安装模式和容器管理的更多信息，请参阅link：../working-with-canisters{outfilesuffix}[管理容器]。
 
 |===
 
-=== Arguments
+=== 参数
 
-You can use the following arguments with the `+dfx canister install+` command.
+您可以在 `+dfx canister install+` 命令中使用以下参数。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|参数 |描述
 
-|`+--all+` |Enables you to install multiple canisters at once if you have a project `dfx.json` file that includes multiple canisters.
-Note that you must specify `--all` or an individual canister name.
+|`+--all+` |如果您有一个包含多个容器的项目“dfx.json”文件，则允许您一次安装多个容器。
+请注意，您必须指定 `--all` 或单个容器名称。
 
-|`+canister_name+` |Specifies the name of the canister to deploy.
-If you are not using the `+--all+` option, the canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+|`+canister_name+` |指定要部署的容器的名称。
+如果您没有使用 `+--all+` 选项，则容器名称是必需的参数，并且应该与您在 `+dfx.json+` 配置文件的 `+canisters+` 部分中为项目配置的名称相匹配。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx canister install+` command to deploy WebAssembly you have compiled using the `+dfx build+` command as a canister on the {platform} or on the local canister execution environment.
-The most common use case is to install all of the canisters by running the following command:
+您可以使用 `+dfx canister install+` 命令将使用 `+dfx build+` 命令编译的 WebAssembly 部署为 {platform} 或本地容器执行环境上的容器。
+最常见的用例是通过运行以下命令来安装所有容器：
 
 [source,bash]
 ----
 dfx canister install --all
 ----
 
-==== Installing a specific canister
+==== 安装特定的容器
 
-You can also use the `+dfx canister install+` command to deploy a specific canister instead of all of the canisters in your project.
-For example, if you have a project with a `+hello_world+` canister and a `+hello_world_assets+` canister but only want to deploy the `+hello_world+` canister, you can deploy just that the canister by running the following command:
+您还可以使用 `+dfx canister install+` 命令部署特定的容器，而不是项目中的所有容器。
+例如，如果您有一个带有 `+hello_world+` 容器和 `+hello_world_assets+` 容器的项目，但只想部署 `+hello_world+` 容器，则可以通过运行以下命令仅部署该容器：
 
 [source,bash]
 ----
 dfx canister install hello_world
 ----
 
-==== Sending an asynchronous request
+==== 发送异步请求
 
-If you want to submit a request to install the canister and return a request identifier to check on the status of your request later instead of waiting for the command to complete, you can run a command similar to the following:
+如果您想提交安装容器的请求并返回请求标识符以稍后检查您的请求状态，而不是等待命令完成，您可以运行类似于以下的命令：
 [source,bash]
 ----
 dfx canister install hello_world --async
 ----
 
-This command submits a request to install the canister and returns a request identifier similar to the following:
+此命令提交安装容器的请求并返回类似于以下内容的请求标识符：
 [source,bash]
 ----
 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608
 ----
 
-You can then use the request identifier to check the status of the request at a later time, much like a tracking number if you were shipping a package.
+然后，您可以稍后使用请求标识符来检查请求的状态，就像您运送包裹时的跟踪号一样。
 
-==== Overriding the default deployment options
+==== 覆盖默认部署选项
 
-If you want to deploy a canister on a testnet without changing the settings in your `+dfx.json+` configuration file, you can explicitly specify the testnet you want to connect to by using the `+--network` option.
+如果您想在不更改 `+dfx.json+` 配置文件中的设置的情况下在测试网上部署容器，可以使用 `+--network` 选项明确指定要连接的测试网。
 
-For example, you can specify a testnet URL by running a command similar to the following:
+例如，您可以通过运行类似于以下的命令来指定测试网 URL：
 
 [source,bash]
 ----
 dfx canister --network \http://192.168.3.1:5678 install --all
 ----
 
-Note that you must specify the network parameter before the canister operation (`+install+`) and before the canister name or `+--all+` flag.
+请注意，您必须在容器操作 (`+install+`) 和容器名称或 `+--all+` 标志之前指定网络参数。
 
-==== Allocating message processing
+==== 分配消息处理
 
-The `+--compute-allocation+` options allows you to allocate computing resources as a percentage in the range of 0 to 100 to indicate how often your canister should be scheduled for execution.
+`+--compute-allocation+` 选项允许您将计算资源分配为 0 到 100 范围内的百分比，以指示您的容器应该多久安排一次执行。
 
-For example, assume you run the following command:
+例如，假设您运行以下命令：
 
 [source,bash]
 ----
 dfx canister install --all --compute-allocation 50
 ----
 
-With this setting, all of the canisters in the current projects are assigned a 50% allocation. When canisters in the project receive input messages to process, the messages are scheduled for execution.
-Over 100 execution cycles, each canister's messages will be scheduled for processing at least 50 times.
+使用此设置，当前项目中的所有容器都分配有 50%。 当项目中的容器接收到要处理的输入消息时，这些消息将被安排执行。
+超过 100 个执行周期，每个容器的消息将被安排处理至少 50 次。
 
-The default value for this option is 0—indicating that no specific allocation or scheduling is in effect.
-If all of your canisters use the default setting, processing occurs in a round-robin fashion.
+此选项的默认值为 0 — 表示没有特定的分配或调度生效。
+如果您的所有容器都使用默认设置，则以循环方式进行处理。
 
 
-== dfx canister request-status
+== dfx 容器请求状态
 
-Use the `+dfx canister request-status+` command to request the status of a specified call to a canister.
-This command requires you to specify the request identifier you received after invoking a method on the canister.
-The request identifier is an hexadecimal string starting with `+0x+`.
+使用 `+dfx canister request-status+` 命令请求对容器的指定调用的状态。
+此命令要求您指定在容器上调用方法后收到的请求标识符。
+请求标识符是一个以 `+0x+` 开头的十六进制字符串。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister request-status _request_id_
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister request-status+` command.
+您可以在 `+dfx canister request-status+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 参数
 
-You can specify the following argument for the `+dfx canister request-status+` command.
+您可以为 `+dfx canister request-status+` 命令指定以下参数。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+request_id+` |Specifies the hexadecimal string returned in response to a `+dfx canister call+` or `+dfx canister install+` command.
-This identifier is an hexadecimal string starting with 0x.
+|参数 |描述
+|`+request_id+` |指定响应`+dfx canister call+`或`+dfx canister install+`命令返回的十六进制字符串。
+此标识符是一个以 0x 开头的十六进制字符串。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx canister request-status+` command to check on the status of a canister state change or to verify that a call was not rejected by running a command similar to the following:
+您可以使用 `+dfx canister request-status+` 命令检查容器状态更改的状态，或者通过运行类似于以下的命令来验证呼叫未被拒绝：
 
 [source,bash]
 ----
 dfx canister request-status 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608
 ----
 
-This command displays an error message if the request identifier is invalid or refused by the canister.
+如果请求标识符无效或被容器拒绝，此命令将显示错误消息。
 
-== dfx canister set-controller
+== dfx 容器组控制器
 
-Use the `+dfx canister set-controller+` command to specify the identity name or principal to use as the new **controller** for a specified canister on the {platform}.
-A controller identity has special rights to manage the canister it controls.
-For example, only a controlling identity can be used to install, upgrade, or delete the canister under its control.
+使用 `+dfx canister set-controller+` 命令指定身份名称或主体以用作 {platform} 上指定容器的新 **controller**。
+控制器身份具有管理其控制的容器的特殊权限。
+例如，只能使用控制身份来安装、升级或删除其控制下的容器。
 
-Note that you can specify either a user identity or a canister as a controller.
-You can also specify the controller identity by using its name or its principal.
+请注意，您可以将用户身份或容器指定为控制器。
+您还可以通过使用其名称或其主体来指定控制器身份。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister set-controller [flag] _canister_ _new-controller_
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister set-controller+` command.
+您可以在 `+dfx canister set-controller+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Flag |Description
+|标志 |说明
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示使用信息。
 
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-=== Arguments
+=== 参数
 
-You must use the following arguments with the `+dfx canister set-controller+` command.
+您必须在 `+dfx canister set-controller+` 命令中使用以下参数。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|参数 |描述
 
-|`+<canister>+` |Specifies the canister name or canister identifier to be controlled by the identity you specify using the _new_controller_ argument.
+|`+<canister>+` |指定由您使用_new_controller_ 参数指定的身份控制的容器名称或容器标识符。
 
-|`+<new_controller>+` |Specifies the identity name or principal of the controller.
+|`+<new_controller>+` |指定控制器的身份名称或主体。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx canister set-controller+` command to specify a user or canister as the controlling identity for a specific canister.
+您可以使用 `+dfx canister set-controller+` 命令将用户或容器指定为特定容器的控制标识。
 
-For example, you might create a new identity called `+pubsadmin+` then run the `+dfx canister set-controller+` to specify that you want the `+pubsadmin+` identity to be the controller of the `+hello_world+` canister by running the following commands:
+例如，您可以创建一个名为 `+pubsadmin+` 的新身份，然后运行 `+dfx canister set-controller+` 以指定您希望 `+pubsadmin+` 身份成为 `+hello_world+` 容器的控制器，方法是运行 以下命令：
 
 ....
 dfx identity new pubsadmin
 dfx canister set-controller hello_world pubsadmin
 ....
 
-To set the controlling identity using the textual representation of the identity principal, you might run a command similar to the following:
+要使用身份主体的文本表示来设置控制身份，您可以运行类似于以下内容的命令：
 
 ....
 dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 ....
 
-Although specifying a user identity name or principal is one potential use case, a more common scenario is to specify the wallet canister that you want to use to send cycles to the canister.
-The following steps illustrate this scenario when you are doing local development. For this example, assume you have created a project called `open_sf` with two canisters deployed on the local canister execution environment.
+尽管指定用户身份名称或委托人是一个潜在的用例，但更常见的场景是指定要用于向容器发送周期的钱包容器。
+以下步骤说明了您进行本地开发时的这种情况。 对于此示例，假设您创建了一个名为“open_sf”的项目，其中两个容器部署在本地容器执行环境中。
 
-. Create an identity—for example, `sf-controller`—to act as the controller.
+. 创建一个身份——例如，`sf-controller`——作为控制器。
 +
 ....
 dfx identity new sf-controller
@@ -641,335 +632,335 @@ dfx identity new sf-controller
 Creating identity: "sf-controller".
 Created identity: "sf-controller".
 ....
-. Make the new identity the active identity.
+. 使新身份成为活动身份。
 +
 ....
 dfx identity use sf-controller
 
 Using identity: "sf-controller".
 ....
-. Generate a wallet canister identifier for the new identity.
+. 为新身份生成钱包容器标识符。
 +
 ....
 dfx identity get-wallet
 
-Creating a wallet canister on the local canister execution environment.
+在本地容器执行环境中创建钱包容器。
 r7inp-6aaaa-aaaaa-aaabq-cai
-The wallet canister on the  the local canister execution environment for user "sf-controller" is "r7inp-6aaaa-aaaaa-aaabq-cai"
+用户“sf-controller”的本地容器执行环境上的钱包容器是“r7inp-6aaaa-aaaaa-aaabq-cai”
 ....
-. Switch the active identity to the current controller of the canister. For example, if the default identity was used to create the canister, you would run the following command:
+. 将活动标识切换到容器的当前控制器。 例如，如果使用默认身份创建容器，您将运行以下命令：
 +
 ....
 dfx identity use default
 
 Using identity: "default".
 ....
-. Set the controller for a specified canister to use the wallet associated wit the sf-controller identity.
+. 将指定容器的控制器设置为使用与 sf-controller 身份关联的钱包。
 +
 ....
-dfx canister set-controller open_sf_assets r7inp-6aaaa-aaaaa-aaabq-cai
+dfx 容器组控制器 open_sf_assets r7inp-6aaaa-aaaaa-aaabq-cai
 
-Set "r7inp-6aaaa-aaaaa-aaabq-cai" as controller of "open_sf_assets".
+将“r7inp-6aaaa-aaaaa-aaabq-cai”设置为“open_sf_assets”的控制器。
 ....
 +
-You can now use the wallet canister `r7inp-6aaaa-aaaaa-aaabq-cai` to send cycles or add custodians to the `open_sf_assets` canister.
+您现在可以使用钱包容器“r7inp-6aaaa-aaaaa-aaabq-cai”发送燃料费或将保管人添加到“open_sf_assets”容器。
 
-== dfx canister send ==
+== dfx 容器发送 ==
 
-Use the `+dfx canister send+` command after signing a message with the `+dfx canister sign+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
+当您想要分离这些步骤时，在使用 `+dfx canister sign+` 命令签署消息后使用 `+dfx canister send+` 命令，而不是使用单个 `+dfx canister call+` 命令。 使用单独的调用可以增加事务的安全性。
 
-For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message.  
+例如，在创建神经元股权时，您可能希望使用 `+dfx canister sign+` 命令使用气隙计算机创建签名的 `+message.json+` 文件，然后使用 `+dfx canister send+` 命令 传递签名的消息。  
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister send _file_name_
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister request-status+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can specify the following argument for the `+dfx canister send+` command.
+您可以在 `+dfx canister request-status+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+file_name+` |Specifies the file name of the message.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 参数
 
-Use the `+dfx canister send+` command to send a signed message created using the `+dfx canister sign+` command to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
+您可以为 `+dfx canister send+` 命令指定以下参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+|`+file_name+` |指定消息的文件名。
+|===
+
+=== 例子
+
+使用 `+dfx canister send+` 命令将使用 `+dfx canister sign+` 命令创建的签名消息发送到创世代币容器 (GTC)，以通过运行以下命令代表您创建神经元：
 
 `+dfx canister send message.json+`
 
-== dfx canister sign ==
+== dfx 容器标志 ==
 
-Use the `+dfx canister sign+` command before sending a message with the `+dfx canister send+` command when you want to separate these steps, rather than using the single `+dfx canister call+` command. Using separate calls can add security to the transaction. 
-For example, when creating your neuron stake, you might want to use the `+dfx canister sign+` command to create a signed `+message.json+` file using an air-gapped computer, then use the `+dfx canister send+` command to deliver the signed message from a computer connected to the {platform}.
+当您想要分离这些步骤时，在使用 `+dfx canister send+` 命令发送消息之前使用 `+dfx canister sign+` 命令，而不是使用单个 `+dfx canister call+` 命令。 使用单独的调用可以增加事务的安全性。
+例如，在创建神经元股权时，您可能希望使用 `+dfx canister sign+` 命令使用气隙计算机创建签名的 `+message.json+` 文件，然后使用 `+dfx canister send+` 命令 从连接到 {platform} 的计算机传递签名消息。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister sign [flag] [option] _canister-name_ _method-name_ [argument]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister sign+` command.
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+--query+` |Sends a query request to a canister.
-|`+--update+` |Sends an update request to the canister. This is the default method if the `+--query+` method is not used.
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Options
-
-You can specify the following options for the `+dfx canister sign+` command.
+您可以在 `+dfx canister sign+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Option |Description
-|`+--expire-after <expire-after>+` |Specifies how long will  will be valid before it expires and cannot be sent. Specify  in seconds. If not defined, the default is 300s (5m)
-|`+--file <file>+` |Specifies the output file name. The  default is `+message.json+`.
-|`+--random <random>+` |Specifies the configuration for generating random arguments.
-|`+--type <type>+` |Specifies the data type for the argument when making a call using an argument.
-
-By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values.
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types]. 
-You can use `+raw+` as the argument type if you want to pass raw bytes.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+--query+` |向容器发送查询请求。
+|`+--update+` |向容器发送更新请求。 如果不使用 `+--query+` 方法，这是默认方法。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Arguments
+=== 选项
 
-You can specify the following arguments for the `+dfx canister sign+` command.
+您可以为 `+dfx canister sign+` 命令指定以下选项。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|选项 |说明
+|`+--expire-after <expire-after>+` |指定在过期和无法发送之前有效的时间。 以秒为单位指定。 如果不定义，默认为300s（5m）
+|`+--file <file>+` |指定输出文件名。 默认是`+message.json+`。
+|`+--random <random>+` |指定生成随机参数的配置。
+|`+--type <type>+` |使用参数进行调用时指定参数的数据类型。
+
+默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+如果要传递原始字节，可以使用 `+raw+` 作为参数类型。
+|===
+
+=== 参数
+
+您可以为 `+dfx canister sign+` 命令指定以下参数。
 
 [width="100%",cols="<32%,<68%",options="header"]
 
 |===
-|Argument |Description
-|`+canister_name+` |Specifies the name of the canister to call. The canister name is a required argument and should match the name you have configured for a project in the `+canisters+` section of the `+dfx.json+` configuration file.
+|参数 |描述
+|`+canister_name+` |指定要调用的容器的名称。 容器名称是必需的参数，并且应该与您在 `+dfx.json+` 配置文件的 `+canisters+` 部分中为项目配置的名称匹配。
 
-|`+method_name+` |Specifies the method name to call on the canister.
-The canister method is a required argument.
+|`+method_name+` |指定要在容器上调用的方法名称。
+canister 方法是必需的参数。
 
-|`+argument+` |Specifies the argument to pass to the method.
-Depending on your program logic, the argument can be a required or optional argument.
-You can specify a data format type using the `+--type+` option if you pass an argument to the canister.
-By default, you can specify arguments using the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) syntax for data values. 
-For information about using Candid and its supported types, see link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[Interact with a service in a terminal] and link:../../candid-guide/candid-types{outfilesuffix}[Supported types].
-You can use `+raw+` as the argument type if you want to pass raw bytes.
+|`+argument+` |指定要传递给方法的参数。
+根据您的程序逻辑，参数可以是必需参数或可选参数。
+如果将参数传递给容器，则可以使用 `+--type+` 选项指定数据格式类型。
+默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+如果要传递原始字节，可以使用 `+raw+` 作为参数类型。
 |===
 
-=== Examples
+=== 例子
 
-Use the `+dfx canister sign+` command to create a signed `message.json` file using the principal associated with the identity you created using the Privacy Enhanced Mail (PEM) file by running a command similar to the following:
+使用 `+dfx canister sign+` 命令创建一个签名的 `message.json` 文件，该文件使用与您使用隐私增强邮件 (PEM) 文件创建的身份相关联的主体，方法是运行类似于以下内容的命令：
 
 `+dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
 
-This command illustrates how to creates a `+message.json+` file to create neurons on the {platform} specified by the `+ic+` alias, that is signed using your principal identifier as the message sender and with an expiration window that ends in one hour.
+该命令说明了如何创建一个 `+message.json+` 文件以在由 `+ic+` 别名指定的 {platform} 上创建神经元，该别名使用您的主体标识符作为消息发送者进行签名，并且到期窗口结束于一小时。
 
-Note that the time allotted to send a signed message is a fixed 5-minute window. The `+--expire-after+` option enables you to specify the point in time when the 5-minute window for sending the signed message should end. For example, if you set the `+--expire-after+` option to one hour (`+1h+`), you must wait at least 55 minutes before you send the generated message and the signature for the message is only valid during the 5-minute window ending in the 60th minute.
+请注意，分配给发送签名消息的时间是固定的 5 分钟窗口。 `+--expire-after+` 选项使您能够指定发送签名消息的 5 分钟窗口应该结束的时间点。 例如，如果您将 `+--expire-after+` 选项设置为一小时（`+1h+`），则必须等待至少 55 分钟才能发送生成的消息，并且消息的签名仅在 5 分钟窗口在第 60 分钟结束。
 
-In this example, therefore, you would need to send the message after 55 minutes and before 60 minutes for the message to be recognized as valid.
+因此，在此示例中，您需要在 55 分钟之后和 60 分钟之前发送消息，才能将消息识别为有效。
 
-If you don't specify the `+--expire-after+` option, the default expiration is five minutes.
+如果您不指定 `+--expire-after+` 选项，则默认过期时间为 5 分钟。
 
-Send the signed message to the genesis token canister (GTC) to create a neuron on your behalf by running the following command:
+通过运行以下命令将签名的消息发送到创世代币容器 (GTC) 以代表您创建神经元：
 
 `+dfx canister send message.json+`
 
-== dfx canister start
+== dfx 容器启动
 
-Use the `+dfx canister start+` command to restart a stopped canister on the {platform} or the local canister execution environment.
+使用 `+dfx canister start+` 命令在 {platform} 或本地容器执行环境中重新启动已停止的容器。
 
-In most cases, you run this command after you have stopped a canister to properly terminate any pending requests as a prerequisite to upgrading the canister.
+在大多数情况下，您在停止容器后运行此命令以正确终止任何挂起的请求，这是升级容器的先决条件。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister start [flag] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister start+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can use the following arguments with the `+dfx canister start+` command.
+您可以在 `+dfx canister start+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|标志 |说明
 
-|`+--all+` |Starts all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+canister_name+` |Specifies the name of the canister you want to start.
-Note that you must specify either a canister name or the `+--all+` option.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 参数
 
-You can use the `+dfx canister start+` command to start a specific canister or all canisters.
+您可以在 `+dfx canister start+` 命令中使用以下参数。
 
-To start the `+hello_world+` canister, you can run the following command:
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|参数 |描述
+
+|`+--all+` |启动在`+dfx.json+`文件中配置的所有容器。 请注意，您必须指定 `+--all+` 或单个容器名称。
+
+|`+canister_name+` |指定要启动的容器的名称。
+请注意，您必须指定容器名称或 `+--all+` 选项。
+|===
+
+=== 例子
+
+您可以使用 `+dfx canister start+` 命令启动特定容器或所有容器。
+
+要启动 `+hello_world+` 容器，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister start hello_world
 ----
 
-To start all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
+要启动您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister --network=ic start --all
 ----
 
-== dfx canister status
+== dfx 容器状态
 
-Use the `+dfx canister status+` command to check whether a canister is currently running, in the process of stopping, or currently stopped on the {platform} or on the local canister execution environment.
+使用 `+dfx canister status+` 命令检查容器当前是否正在运行、正在停止或当前在 {platform} 或本地容器执行环境中停止。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister status [flag] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister status+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can use the following arguments with the `+dfx canister status+` command.
+您可以在 `+dfx canister status+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|标志 |说明
 
-|`+--all+` |Returns status information for all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+canister_name+` |Specifies the name of the canister you want to return information for.
-Note that you must specify either a canister name or the `+--all+` option.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 参数
 
-You can use the `+dfx canister status+` command to check the status of a specific canister or all canisters.
+您可以在 `+dfx canister status+` 命令中使用以下参数。
 
-To check the status of the `+hello_world+` canister, you can run the following command:
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|参数 |描述
+
+|`+--all+` |返回在`+dfx.json+`文件中配置的所有容器的状态信息。 请注意，您必须指定 `+--all+` 或单个容器名称。
+
+|`+canister_name+` |指定要为其返回信息的容器的名称。
+请注意，您必须指定容器名称或 `+--all+` 选项。
+|===
+
+=== 例子
+
+您可以使用 `+dfx canister status+` 命令检查特定容器或所有容器的状态。
+
+要检查 `+hello_world+` 容器的状态，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister status hello_world
 ----
 
-To check the status for all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
+要检查您在 `+ic+` {platform} 上部署的所有容器的状态，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister --network=ic status --all
 ----
 
-== dfx canister stop
+== dfx 容器停止
 
-Use the `+dfx canister stop+` command to stop a canister that is currently running on the {platform} or on the local canister execution environment.
+使用 `+dfx canister stop+` 命令停止当前在 {platform} 或本地容器执行环境上运行的容器。
 
-In most cases, you run this command to properly terminate any pending requests as a prerequisite to upgrading the canister.
+在大多数情况下，您运行此命令以正确终止任何挂起的请求，这是升级容器的先决条件。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash,subs="quotes"]
 ----
 dfx canister stop [flag] [--all | _canister_name_]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx canister stop+` command.
-
-[width="100%",cols="<31%,<69%",options="header"]
-|===
-|Flag |Description
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-=== Arguments
-
-You can use the following arguments with the `+dfx canister stop+` command.
+您可以在 `+dfx canister stop+` 命令中使用以下可选标志。
 
 [width="100%",cols="<31%,<69%",options="header"]
 |===
-|Argument |Description
+|标志 |说明
 
-|`+--all+` |Stops all of the canisters configured in the `+dfx.json+` file. Note that you must specify `+--all+` or an individual canister name.
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+canister_name+` |Specifies the name of the canister you want to stop.
-Note that you must specify either a canister name or the `+--all+` option.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 参数
 
-You can use the `+dfx canister stop+` command to start a specific canister or all canisters.
+您可以在 `+dfx canister stop+` 命令中使用以下参数。
 
-To stop the `+hello_world+` canister, you can run the following command:
+[width="100%",cols="<31%,<69%",options="header"]
+|===
+|参数 |描述
+
+|`+--all+` |停止在`+dfx.json+`文件中配置的所有容器。 请注意，您必须指定 `+--all+` 或单个容器名称。
+
+|`+canister_name+` |指定要停止的容器的名称。
+请注意，您必须指定容器名称或 `+--all+` 选项。
+|===
+
+=== 例子
+
+您可以使用 `+dfx canister stop+` 命令启动特定容器或所有容器。
+
+要停止 `+hello_world+` 容器，可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister stop hello_world
 ----
 
-To stop all of the canisters you have deployed on the `+ic+` {platform}, you can run the following command:
+要停止您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
 
 [source,bash]
 ----

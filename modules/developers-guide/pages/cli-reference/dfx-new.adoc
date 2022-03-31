@@ -1,59 +1,59 @@
-= dfx new
+= dfx 新
 
-Use the `+dfx new+` command to create a new project for the {platform}.
-This command creates a default project structure with template files that you can modify to suit your dapp.
-You must specify the name of the project to you want to create.
+使用 `+dfx new+` 命令为 {platform} 创建一个新项目。
+此命令使用模板文件创建默认项目结构，您可以对其进行修改以适合您的 dapp。
+您必须指定要创建的项目的名称。
 
-You can use the `+--dry-run+` option to preview the directories and files to be created without adding them to the file system.
+您可以使用 `+--dry-run+` 选项来预览要创建的目录和文件，而无需将它们添加到文件系统中。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx new _project_name_ [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx new+` command:
-
-[width="100%",cols="<32%,<68%",options="header"]
-|===
-|Flag |Description
-|`+--dry-run+` |Generates a preview the directories and files to be created for a new project without adding them to the file system.
-
-| `+--frontend+` |Installs the template frontend code for the default project canister.
-The default value for the flag is `+true+` if `+node.js+` is currently installed on your local computer.
-If `+node.js+` is not currently installed, you can set this flag to `+true+` to attempt to install `+node.js+` and the template file when creating the project or you can set the flag to `+false+` to skip the installation of template frontend code entirely.
-
-|`+-h+`, `+--help+` |Displays usage information.
-
-|`+-V+`, `+--version+` |Displays version information.
-|===
-
-== Arguments
-
-You must specify the following argument for the `+dfx new+` command.
+您可以在 `+dfx new+` 命令中使用以下可选标志：
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Argument |Description
-|`+project_name+` |Specifies the name of the project to create.
-This argument is required. |
+|标志 |说明
+|`+--dry-run+` |为新项目生成目录和文件的预览，而不将它们添加到文件系统中。
+
+| `+--frontend+` |为默认项目容器安装模板前端代码。
+如果本地计算机上当前安装了 `+node.js+`，则标志的默认值为 `+true+`。
+如果 `+node.js+` 当前没有安装，你可以设置这个标志为 `+true+` 来尝试在创建项目时安装 `+node.js+` 和模板文件，或者你可以设置这个标志为 `+false+ ` 完全跳过模板前端代码的安装。
+
+|`+-h+`, `+--help+` |显示使用信息。
+
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Examples
+== 参数
 
-You can use `+dfx new+` to create a new project named `+my_social_network+` by running the following command:
+您必须为 `+dfx new+` 命令指定以下参数。
+
+[width="100%",cols="<32%,<68%",options="header"]
+|===
+|参数 |描述
+|`+project_name+` |指定要创建的项目的名称。
+该参数是必需的。 |
+|===
+
+== 例子
+
+您可以使用 `+dfx new+` 通过运行以下命令来创建一个名为 `+my_social_network+` 的新项目：
 
 [source,bash]
 ----
 dfx new my_social_network
 ----
 
-The command creates a new project, including a default project directory structure under the new project name and a Git repository for your project.
+该命令创建一个新项目，包括新项目名称下的默认项目目录结构和项目的 Git 存储库。
 
-If you want to preview the directories and files to be created without adding them to the file system, you can run the following command:
+如果要预览要创建的目录和文件而不将它们添加到文件系统中，可以运行以下命令：
 
 [source,bash]
 ----

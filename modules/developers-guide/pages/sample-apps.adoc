@@ -1,60 +1,60 @@
-= Sample code, applications, and microservices
-May 2020 (Alpha)
+= 示例代码、应用程序和微服务
+2020 年 5 月（阿尔法）
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-Sample code, applications, and microservices that have been developed by DFINITY or contributed by the community are available from the link:https://github.com/dfinity/examples[DFINITY public repository].
+由 DFINITY 开发或社区贡献的示例代码、应用程序和微服务可从以下链接获得link：https://github.com/dfinity/examples[DFINITY public repository]。
 
-By accessing the public repository, you can directly download, clone, fork, or share sample projects.
-You will also be able to contribute by suggesting updates or reporting issues for the published projects using the standard GitHub work flow.
+通过访问公共存储库，您可以直接下载、克隆、fork 或共享示例项目。
+您还可以通过使用标准 GitHub 工作流程为已发布项目建议更新或报告问题来做出贡献。
 
-Sample projects provide a way for you to experiment and collaborate with other developers.
-The projects and sample code are not, however, intended to be used as commercial applications and do not provide any explicit or implied support or warranty of any kind.
+示例项目为您提供了一种与其他开发人员进行试验和协作的方式。
+但是，这些项目和示例代码不打算用作商业应用程序，也不提供任何明确或暗示的支持或任何形式的保证。
 
-This section provides a preliminary look at some sample code for applications and microservices that you can copy and modify to jump-start your own projects.
+本节初步介绍了一些应用程序和微服务的示例代码，您可以复制和修改这些示例代码以启动您自己的项目。
 
 == C
-For examples of projects written in the C programming language for the {IC}, see link:https://github.com/dfinity/examples/tree/master/c[C++ sample projects].
+对于 {IC} 用 C 编程语言编写的项目示例，请参见link：https://github.com/dfinity/examples/tree/master/c[C++ 示例项目]。
 
-* link:https://github.com/dfinity/examples/tree/master/c/adventure[Adventure game]
-* link:https://github.com/dfinity/examples/tree/master/c/qr[QR code generator]
-* link:https://github.com/dfinity/examples/tree/master/c/reverse[Reverse game]
+* link：https://github.com/dfinity/examples/tree/master/c/adventure【冒险游戏】
+* link：https://github.com/dfinity/examples/tree/master/c/qr[二维码生成器]
+* link：https://github.com/dfinity/examples/tree/master/c/reverse【反向游戏】
 
 == Motoko
 
-For projects that use the {proglang} programming language, see link:https://github.com/dfinity/examples/tree/master/motoko[Motoko sample projects].
+对于使用 {proglang} 编程语言的项目，请参见链接：https://github.com/dfinity/examples/tree/master/motoko[Motoko 示例项目]。
 
-* link:https://github.com/dfinity/examples/tree/master/motoko/calc[Calculator - simple functions]
-* link:https://github.com/dfinity/examples/tree/master/motoko/counter[Counter]
-* link:https://github.com/dfinity/examples/tree/master/motoko/echo[Echo]
-* link:https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
-//* link:https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[Favorite cities]
-* link:https://github.com/dfinity/examples/tree/master/motoko/hello-world[Hello, world]
-* link:https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[Hello, cycles]
-//* link:[Hex encoding and decoding]
-* link:https://github.com/dfinity/examples/tree/master/motoko/life[Game of Life - upgrades]
-* link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[Phone book]
-* link:https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Publish/subscribe]
-* link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]
-* link:https://github.com/dfinity/examples/tree/master/motoko/random_maze[Random maze - cryptographic randomness]
-* link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[To-do checklist]
-* link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes database]
-* link:https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
+* link：https://github.com/dfinity/examples/tree/master/motoko/calc【计算器-简单函数】
+* link：https://github.com/dfinity/examples/tree/master/motoko/counter[计数器]
+* link：https://github.com/dfinity/examples/tree/master/motoko/echo[Echo]
+* link：https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
+//* link：https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[最喜欢的城市]
+* link：https://github.com/dfinity/examples/tree/master/motoko/hello-world[你好，世界]
+* link：https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[你好，燃料费]
+//* 链接：[十六进制编码和解码]
+* link：https://github.com/dfinity/examples/tree/master/motoko/life[生命游戏-升级]
+* link：https://github.com/dfinity/examples/tree/master/motoko/phone-book[电话本]
+* link：https://github.com/dfinity/examples/tree/master/motoko/pub-sub[发布/订阅]
+* link：https://github.com/dfinity/examples/tree/master/motoko/quicksort[快速排序]
+* link：https://github.com/dfinity/examples/tree/master/motoko/random_maze[随机迷宫-密码随机性]
+* link：https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[待办事项清单]
+* link：https://github.com/dfinity/examples/tree/master/motoko/superheroes【超级英雄数据库】
+* link：https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
 
 
-== Additional sample applications
+== 其他示例应用程序
 
-This section includes sample code from projects that are not currently available in the public repository.
+本部分包含来自公共存储库中当前不可用的项目的示例代码。
 
-=== Hex encoding and decoding
+=== 十六进制编码和解码
 
-The `+mo-hex+` project implements hexadecimal encoding and decoding routines for the {proglang} programming language.
+`+mo-hex+` 项目为 {proglang} 编程语言实现了十六进制编码和解码例程。
 
-==== Source code
+==== 源代码
 
-The project includes the following xref:hex[hex.mo] source code.
+该项目包括以下外部参照：hex[hex.mo] 源代码。
 
 [[hex]]
 ===== hex.mo
@@ -63,16 +63,16 @@ The project includes the following xref:hex[hex.mo] source code.
 include::example$hex/hex.mo[]
 ----
 
-=== Polynomial long-division in GF(256)
+=== GF(256) 中的多项式长除法
 
-This program performs polynomial long division for a Galois field GF(256) element.
+该程序对伽罗瓦域 GF(256) 元素执行多项式长除法。
 
-==== Source code
+==== 源代码
 
-In addition to standard libraries, this project uses two main {proglang} source code files.
+除了标准库之外，该项目还使用了两个主要的 {proglang} 源代码文件。
 
-- The xref:galois[Galois.mo] file contains the core programming logic.
-- The xref:nat[Nat.mo] file contains additional functions that are imported for use in the `+Galois.mo+` file.
+- xref:galois[Galois.mo] 文件包含核心编程逻辑。
+- xref:nat[Nat.mo] 文件包含额外的函数，这些函数被导入以在 `+Galois.mo+` 文件中使用。
 
 [[galois]]
 ===== Galois.mo

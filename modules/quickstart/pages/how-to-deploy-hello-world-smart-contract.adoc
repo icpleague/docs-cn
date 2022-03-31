@@ -1,128 +1,128 @@
-How to deploy a "hello world" smart contract/dapp in 20 minutes
+如何在 20 分钟内部署一个“hello world”智能合约/dapp
 ===============================================================
 
-This is a fast and minimalist tutorial for deploying a "hello world" smart contract or dapp to the IC in 20 minutes or less. All that is necessary to run this tutorial is basic knowledge of using a terminal (no editing of code).
+这是一个快速而简约的教程，用于在 20 分钟或更短的时间内将“hello world”智能合约或 dapp 部署到 IC。 运行本教程所需要的只是使用终端的基本知识（无需编辑代码）。
 
-== Introduction
+== 简介
 
-In this tutorial, we will deploy a simple `Hello` dapp that has just one function—called `greet`. The `greet` function accepts one text argument and returns the result with a greeting. For example, if you call the `greet` method with the text argument `Alice`.
+在本教程中，我们将部署一个简单的 `Hello` dapp，它只有一个功能——称为 `greet`。 `greet` 函数接受一个文本参数并返回带有问候语的结果。 例如，如果您使用文本参数 `Alice` 调用 `greet` 方法。
 
-a. If you call it via the command-line, dapp will return `Hello, Alice!` in a terminal
-b. If you access the dapp in a browser, it will alert pop-up window reading `Hello, Alice!`
+a. 如果您通过命令行调用它，dapp 将在终端中返回“Hello，Alice！”。
+b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着“你好，爱丽丝！”
 
-While the code comes ready out of the box for you, this dapp consists of back-end code written in Motoko, a programming language specifically designed for interacting with the Internet Computer (IC), and a simple webpack-based front-end. 
+虽然代码为您准备好开箱即用，但这个 dapp 包含用 Motoko 编写的后端代码，Motoko 是一种专为与互联网计算机 (IC) 交互而设计的编程语言，以及一个简单的基于 webpack 的前端。 
 
-=== Concepts necessary for this tutorial
+=== 本教程所需的概念
 
-* A *canister smart contract/dapp* is a type of smart contract that bundles code and state. A canister can be deployed as a smart contract on the Internet Computer and accessed over the Internet.
+* *canister smart contract/dapp* 是一种捆绑代码和状态的智能合约。 容器可以作为智能合约部署在互联网计算机上并通过 Internet 访问。
 
-* A *cycle* is the unit of measurement for resources consumed in the form of processing, memory, storage, and network bandwidth. For the sake of this tutorial, this is analogous to Ethereum's gas: it is what one needs to run their dapp, but it is much more stable and cheaper for developers to use. Every canister has a cycles account to which resources consumed by the canister are charged. The Internet Computer's utility token (ICP) can be converted to cycles and transferred to a canister. ICP can always be converted to cycles using the current price of ICP measured in link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] using the convention that one trillion cycles correspond to one SDR. **In this tutorial, you will get free cycles from the cycles faucet.**
+* *燃料费*是以处理、内存、存储和网络带宽的形式消耗的资源的计量单位。 就本教程而言，这类似于以太坊的 gas：这是运行 dapp 所需要的，但对于开发人员来说，它更稳定、更便宜。 每个容器都有一个燃料费帐户，对容器消耗的资源进行收费。 互联网计算机的实用程序令牌 (ICP) 可以转换为燃料费并转移到容器中。 ICP 始终可以使用测量的 ICP 当前价格转换为燃料费link: https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] 使用一万亿燃料费对应一个 SDR 的约定。 **在本教程中，您将从cycles faucet获得免费燃料费。**
 
-== Platforms and operating systems supported 
+== 支持的平台和操作系统
 
 * Linux
 * macOS (12.\*.*)
-** Intel
-** M1 (may require link:https://support.apple.com/en-us/HT211861[Apple's Rosetta]) that enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor.
+** 英特尔
+** M1（可能需要link：https://support.apple.com/en-us/HT211861[Apple's Rosetta]）使配备 Apple 芯片的 Mac 能够使用为配备 Intel 处理器的 Mac 构建的应用程序。
 
-== 1. Installing tools
+== 1. 安装工具
 
-To build a dapp, users need to install the following:
+要构建 dapp，用户需要安装以下内容：
 
-=== 1.1 Node.js
+=== 1.1 node.js
 
-This tutorial works best with node.js version higher than `16.*.*`.
+本教程最适合使用高于 `16.*.*` 的 node.js 版本。
 
-There are many ways of installing node.js, including from link:https://nodejs.org/en/download[nodejs.org website].
+安装 node.js 的方法有很多，包括来自链接：https://nodejs.org/en/download[nodejs.org网页]。
 
-Besides installing node.js, users need to also install:
-* Node Package Manager (NPM).
-* Node Version Manager (NVM), see link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM].
+除了安装 node.js，用户还需要安装：
+* 节点包管理器（NPM）。
+* 节点版本管理器（NVM），见link：https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM]。
 
-=== 1.2 The Canister SDK (AKA "dfx") 
+=== 1.2 Canister SDK（又名“dfx”）
 
-The Canister SDK used in this tutorial is called `dfx` and it is maintained by the DFINITY foundation. There are many SDK's so this is just one.
+本教程中使用的 Canister SDK 称为“dfx”，由 DFINITY 基金会维护。 SDK 有很多，这只是其中之一。
 
-To install, one needs to run:
+要安装，需要运行：
 [source,bash]
 ----
 $ sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ----
 
 
-To verify it is properly installed:
+要验证它是否正确安装：
 [source,bash]
 ----
 $ dfx --version
 ----
 
-Terminal should look like this (at least version 0.9.2):
+终端应如下所示（至少版本 0.9.2）：
 
 image:quickstart/dfx-version.png[dfx version]
 
-== 2. Create a default project (1 min)
+== 2. 创建一个默认项目（1 分钟）
 
-=== 2.1 Launch a new project 
-Dapps on the Internet Computer start as projects, which are initiated by using the dfx parent command and its subcommands. You create projects using the `dfx` parent command and its subcommands. This tutorial starts with the default sample dapp to illustrate how to create a dapp using the starter files in a project. When you create a new project, the `dfx` command-line interface adds a default project directory structure to your workspace. 
+=== 2.1 启动一个新项目
+互联网计算机上的 Dapps 作为项目启动，使用 dfx 父命令及其子命令启动。 您可以使用 `dfx` 父命令及其子命令创建项目。 本教程从默认示例 dapp 开始，说明如何使用项目中的启动文件创建 dapp。 当您创建一个新项目时，`dfx` 命令行界面会将默认项目目录结构添加到您的工作区。
 
-To create a new project for your first application:
+为您的第一个应用程序创建一个新项目：
 
-==== 2.1.1 Open a terminal shell on your computer and create a new project named "hello"
+==== 2.1.1 在您的计算机上打开一个终端shell并创建一个名为“hello”的新项目
 
 [source,bash]
 ----
 $ dfx new hello
 ----
 
-The `dfx new hello` command creates a new project directory named `hello`, template files, and a new `hello` Git repository for your project. Your terminal should look like this:
+`dfx new hello` 命令为您的项目创建一个名为 `hello` 的新项目目录、模板文件和一个新的 `hello` Git 存储库。 您的终端应如下所示：
 
 image:quickstart/dfx-new-hello-1.png[dfx new]
 
 image:quickstart/dfx-new-hello-2.png[dfx new]
 
-==== 2.1.2 Move to your project directory
+==== 2.1.2 移动到你的项目目录
 [source,bash]
 ----
 $ cd hello
 ----
 
-Your directory should look like this:
+您的目录应如下所示：
 
 image:quickstart/cd-hello.png[cd new]
 
 
-== 3. Deploying dapp to local machine (3 min)
+== 3. 将 dapp 部署到本地机器（3 分钟）
 
-=== Using two terminal windows/tabs
+=== 使用两个终端窗口/选项卡
 
-Now that the code is there, the next step is to spin up a local version of the IC on local machine. For this, developers should keep two terminals open:
+现在代码已经存在，下一步是在本地机器上启动 IC 的本地版本。 为此，开发人员应保持两个终端打开：
 
-* *Terminal window/tab A:* 
+* *终端窗口/选项卡A：*
 
-** Shows the local version of the IC running
-** Is analogous to how developers often start local servers in web2 projects (e.g. Node.js's Express, Python's Django, Ruby's Rails, etc...)
+** 显示本地版本的 IC 运行
+** 类似于开发人员在 web2 项目中经常启动本地服务器的方式（例如 Node.js 的 Express、Python 的 Django、Ruby 的 Rails 等...）
 
-* *Terminal window/tab B:* 
-** Used to send *messages* to the local version of the IC
-** Is analogous to how developers send HTTP API messages to servers running locally (e.g. Postman, Panic).
+* *终端窗口/选项卡B：*
+** 用于发送 *messages* 到本地版本的 IC
+** 类似于开发人员如何将 HTTP API 消息发送到本地运行的服务器（例如 Postman、Panic）。
 
-For ease, this tutorial will distinguish between both windows by color scheme:
+为方便起见，本教程将通过配色方案区分两个窗口：
 
-=== Terminal A
+=== 终端 A
 
 image:quickstart/dfx-new-hello-2.png[dfx new]
 
 
-=== Terminal B
+=== 终端 B
 
 image:quickstart/terminal-b-ls.png[terminal b ls]
 
 
-=== 3.1 Start the local version of the IC (Terminal A)
+=== 3.1 启动本地版IC（终端A）
 
-Navigate to the root directory for your project, if necessary. In this tutorial, you should be in the folder `hello` because that is the name of the project created in section 2 above.
+如有必要，导航到项目的根目录。 在本教程中，您应该位于 `hello` 文件夹中，因为这是上面第 2 节中创建的项目的名称。
 
-Start the local canister execution environment in Terminal A:
+在终端 A 中启动本地容器执行环境：
 
 [source,bash]
 ----
@@ -132,23 +132,23 @@ $ dfx start
 image:quickstart/terminal-a-dfx-start.png[dfx start]
 
 
-Notes: 
+注释：
 
-*  Depending on your platform and local security settings, you might see a warning displayed. If you are prompted to allow or deny incoming network connections, click "Allow." 
+* 根据您的平台和本地安全设置，您可能会看到显示的警告。 如果系统提示您允许或拒绝传入的网络连接，请单击“允许”。
 
-* Check no other network process is running that would create a port conflict on 8000.
+* 检查没有其他网络进程正在运行，这会在 8000 上产生端口冲突。
 
-*Congratulations - there is now a local version of the IC running on your machine. Leave this window/tab open and running while you continue.* If the window/tab is closed, the local version of the IC will not be running and the rest of the tutorial will fail.
+*恭喜 - 现在您的机器上运行了本地版本的 IC。 继续时保持此窗口/选项卡打开并运行。* 如果窗口/选项卡关闭，IC 的本地版本将不会运行，教程的其余部分将失败。
 
-=== 3.2 Deploy the "hello" dapp to the local version of the IC (Terminal B)
+=== 3.2 将“hello”dapp部署到本地版IC（终端B）
 
-Note: since this is a local version of the IC, this section has fewer steps than deploying to mainnet (which requires cycles).
+注意：由于这是 IC 的本地版本，因此与部署到主网（需要燃料费）相比，本节的步骤更少。
 
-To deploy your first dapp locally:
+要在本地部署您的第一个 dapp：
 
-==== 3.2.1 Check that you are still in the root directory for your project, if needed.
+==== 3.2.1 如果需要，请检查您是否仍在项目的根目录中。
 
-Ensure that node modules are available in your project directory, if needed, by running the following command (it does not hurt to run this many times):
+如果需要，请通过运行以下命令确保您的项目目录中的节点模块可用（运行多次不会有什么坏处）：
 
 [source,bash]
 ----
@@ -157,7 +157,7 @@ $ npm install
 
 image:quickstart/terminal-b-npm-install.png[npm install]
 
-==== 3.2.2 Register, build and deploy dapp:
+==== 3.2.2 注册、构建和部署dapp：
 
 [source,bash]
 ----
@@ -166,66 +166,66 @@ $ dfx deploy
 
 image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
-Your dapp is now composed of two canister smart contracts, as you can see in the copy below (from terminal B):
+您的 dapp 现在由两个容器智能合约组成，如下面的副本（来自终端 B）所示：
 
 [source, bash]
 ----
-Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
-Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+使用 canister_id rrkah-fqaaa-aaaaa-aaaaq-cai 安装容器 hello 的代码
+使用 canister_id ryjl3-tyaaa-aaaaa-aaaba-cai 安装容器 hello_assets 的代码
 ----
 
-a. `hello` canister `rrkah-fqaaa-aaaaa-aaaaq-cai` which contains the backend logic.
+a. `hello` 容器 `rrkah-fqaaa-aaaaa-aaaaq-cai` 包含后端逻辑。
 
-b. `hello_assets` canister `yjl3-tyaaa-aaaaa-aaaba-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
+b. `hello_assets` 容器 `yjl3-tyaaa-aaaaa-aaaba-cai` 包含前端资产（例如 HTML、JS、CSS）。
 
-=== 3.3 Testing the dapp locally via command line (Terminal B)
+=== 3.3 通过命令行（终端B）在本地测试dapp
 
-Now that the canister is deployed to local replica, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
+现在容器已部署到本地副本，您可以向它发送消息。 由于容器有一个名为 `greet` 的方法（它接受一个字符串作为参数），我们将向它发送一条消息。
 
 [source,bash]
 ----
 $ dfx canister call hello greet everyone
 ----
 
-* The `dfx canister call` command requires you to specify a canister name and a method—or function—to call.
-* `hello` specifies the name of the *canister* you want to call.
-* `greet` specifies the name of the *function* you want to call in the `hello` canister.
-* `everyone` is the text data type argument that you want to pass to the `greet` function.
+* `dfx canister call` 命令要求您指定容器名称和调用方法或函数。
+* `hello` 指定您要调用的 *canister* 的名称。
+* `greet` 指定要在 `hello` 容器中调用的 *函数* 的名称。
+* `everyone` 是要传递给 `greet` 函数的文本数据类型参数。
 
-=== 3.4 Testing the dapp locally via the browser
+=== 3.4 通过浏览器本地测试dapp
 
-Now that you have verified that your dapp has been deployed and tested its operation using the command line, let's verify that you can access the front-end using your web browser.
+现在您已经验证了您的 dapp 已经部署并使用命令行测试了它的操作，让我们验证您是否可以使用 Web 浏览器访问前端。
 
-==== 3.4.1 On terminal B, start the development server with:
+==== 3.4.1 在终端 B 上，使用以下命令启动开发服务器：
 
 [source,bash]
 ----
 $ npm start
 ----
 
-==== 3.4.2  Test dapp locally in the browser
+==== 3.4.2 在浏览器本地测试dapp
 
-To see your dapp running locally in the browser on +http://localhost:8080+.
+在 +http://localhost:8080+ 上的浏览器中查看本地运行的 dapp。
 
 image:front-end-prompt.png[Sample HTML page]
 
-. Type a greeting, then click *Click Me* to return the greeting.
+. 键入问候语，然后单击 *Click Me* 以返回问候语。
 +
-For example:
+例如：
 +
 image:front-end-result.png[Hello, everyone! greeting]
 
-=== 3.5 Stop the local canister execution environment
+=== 3.5 停止本地容器执行环境
 
-After testing the application in the browser, you can stop the local canister execution environment so that it does not continue running in the background. We will not need it running to deploy on-chain.
+在浏览器中测试应用程序后，您可以停止本地容器执行环境，使其不再在后台继续运行。 我们不需要它运行来部署链上。
 
-To stop the local deployment:
+停止本地部署：
 
-. In the terminal A, press Control-C to interrupt the local network process.
+. 在终端 A 中，按 Control-C 中断本地网络进程。
 
-. In the terminal B, press Control-C to interrupt the development server process.
+. 在终端 B 中，按 Control-C 中断开发服务器进程。
 
-. Stop the local canister execution environment running on your local computer:
+. 停止在本地计算机上运行的本地容器执行环境：
 +
 [source,bash]
 ----
@@ -233,42 +233,42 @@ $ dfx stop
 ----
 
 
-== 4. Acquiring cycles to deploy on-chain (10-15 min)
+== 4. 获取部署链上的周期（10-15 分钟）
 
-=== 4.1 Cycles: an Introduction
+=== 4.1 燃料费：简介
 
-In order to run on-chain, IC dapps require cycles to pay for compute and storage. This means that the developer needs to acquire cycles and fill their canister with them. Cycles are created from ICP token. 
+为了在链上运行，IC dapp 需要燃料费来支付计算和存储费用。 这意味着开发人员需要获取燃料费并用它们填充他们的容器。 循环是从 ICP 令牌创建的。
 
-This flow may be surprising to people familiar with Web2 software where they can add a credit card to a hosting provider, deploy their apps, and get charged later. In Web3, blockchains require their smart contracts consume *something* (whether it is Ethereum's gas or the IC's cycles). The next steps will likely be familiar to those in crypto or blockchain, but new entrants may be confused as to why first step of deploying a dapp is often "go get tokens." 
+对于熟悉 Web2 软件的人来说，这种流程可能会让他们感到惊讶，他们可以在其中向托管服务提供商添加信用卡，部署他们的应用程序，然后再收取费用。 在 Web3 中，区块链要求他们的智能合约消耗*一些东西*（无论是以太坊的 gas 还是 IC 的燃料费）。 加密货币或区块链领域的人可能会熟悉接下来的步骤，但新进入者可能会对为什么部署 dapp 的第一步通常是“去获取代币”感到困惑。
 
-You may wonder why dapps do not just on ICP tokens. Why create a new construct of cycles? The reason is that ICP tokens afluctuate wildly with the crypto market, but cycles are pedictable and relatively stable token which is pegged to link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]. One trillion cycles will always cost one SDR, regardless of the price of ICP.
+您可能想知道为什么 dapps 不仅仅在 ICP 代币上。 为什么要创建一个新的燃料费结构？ 原因是ICP代币随加密市场波动剧烈，但周期可预测且相对稳定的代币挂钩link：https://en.wikipedia.org/wiki/Special_drawing_rights[SDR]。 不管 ICP 的价格如何，一万亿个燃料费总是要花费一个 SDR。
 
-Practical notes about cycles: 
+关于燃料费的实用说明：
 
-* There is a free link:cycles-faucet{outfilesuffix}[free cycles faucet] that grants new developers 15 trillion cycles 
+* 有一个免费link：cycles-faucet{outfilesuffix}[免费cycles-faucet] 授予新开发者 15 万亿个燃料费
 
-* It takes 100 billion cycles to deploy a canister, but in order to load up the canister with sufficient cycles, `dfx` injects 3 trillion cycles for any canister created (this is a parameter that can be changed).
+* 部署一个容器需要 1000 亿个燃料费，但为了给容器加载足够的燃料费，“dfx”会为创建的任何容器注入 3 万亿个燃料费（这是一个可以更改的参数）。
 
-* You can see a table of compute and storage costs here: link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
+* 您可以在此处查看计算和存储成本表： link:../developers-guide/computation-and-storage-costs{outfilesuffix}[Computation and storage costs].
 
 
-In this tutorial, we present two ways of acquiring cycles: 
+在本教程中，我们介绍了两种获取燃料费的方法：
 
-* **Option 1:** Section **4.3** shows one how to get cycles via the cycles faucet (most common for new developers)
-* **Option 2:** Section **4.4** shows one how to get cycles via ICP token (most common for developers who want more cycles)
+* **选项 1：** **4.3** 节展示了如何通过cycles faucet获取燃料费（最常见于新开发人员）
+* **选项 2：** **4.4** 节展示了如何通过 ICP 代币获得燃料费（最常见于想要更多燃料费的开发人员）
 
-=== 4.2 Check the connection to the Internet Computer blockchain (Terminal B)
+=== 4.2 检查与互联网计算机区块链（终端B）的连接
 
-As sanity check, it is good practice to check if your connection to the IC is stable:
+作为健全性检查，最好检查您与 IC 的连接是否稳定：
 
-Verify the current status of the Internet Computer blockchain and your ability to connect to it:
+验证 Internet Computer 区块链的当前状态以及您连接到它的能力：
 
 [source,bash]
 ----
 $ dfx ping ic
 ----
 
-If successful you will see an output resembling the following:
+如果成功，您将看到类似于以下的输出：
 
 [source,bash]
 ----
@@ -277,77 +277,77 @@ $ {
 }
 ----
 
-=== 4.3 Option 1: Acquiring cycles via free cycles faucet (2 min)
+=== 4.3 选项 1：通过免费cycles faucet获取燃料费（2 分钟）
 
-This is option is best for people who want minimal time investment and have never used cycles faucet (faucet can be used only once).
+对于希望投入最少时间且从未使用过cycles faucet（cycles faucet只能使用一次）的人来说，这是最好的选择。
 
-For the purposes of this tutorial, you can acquire free cycles for your `Hello` dapp from the cycles faucet. Follow the instructions here: link:cycles-faucet{outfilesuffix}[Claim your free cycles].
+出于本教程的目的，您可以从cycles faucet为您的 `Hello` dapp 获取免费燃料费。 请按照此处的说明进行操作：link:cycles-faucet{outfilesuffix}[索取您的免费燃料费]。
 
-==== 4.3.1 Check your cycles balance (Terminal B)
+==== 4.3.1 检查您的燃料费余额（终端B ）
 
-Now that you have used the cycles faucet, you can check your cycles balance: 
+现在您已经使用了cycles faucet，您可以检查燃料费余额：
 
 [source,bash]
 ----
 $ dfx wallet --network ic balance
 ----
 
-You should see around 15 trillion cycles if you run this after using the cycles wallet. If so, skip to section **5. Deploying on-chain**.
+如果你在使用燃料费钱包后运行它，你应该会看到大约 15 万亿个燃料费。 如果是这样，请跳至第 **5 节。 部署链上**。
 
-If you do not see any cycles, deploying on-chain in the rest of the tutorial will not work. You should try **4.4 Option 2: Converting ICP token into cycles**.
+如果您没有看到任何燃料费，则在本教程的其余部分中部署链上将不起作用。 您应该尝试 **4.4 选项 2：将 ICP 代币转换为燃料费**。
 
-=== 4.4 Option 2: Converting ICP token into cycles (5 min)
+=== 4.4 选项 2：将 ICP 令牌转换为燃料费（5 分钟）
 
-This is option is best for people who have already exhausted the cycles wallet or who want to set up their environment to add more cycles in the future.
+对于已经用尽燃料费钱包或想要设置环境以在未来添加更多燃料费的人来说，这是最好的选择。
 
-==== Basic Summary of this section
-To create cycles from ICP, the basic steps (which we will dive deeper in this **4.3**):
+==== 本节的基本总结
+要从 ICP 创建循环，基本步骤（我们将在此 **4.3** 中深入探讨）：
 
-1. Transfer ICP to the `account id` controlled *by your local version of `dfx`*.
-  * Note: Ths typicall requires transferring ICP *from an exchange, wallet, or NNS Frontend dapp* to the `acccount id` controlled by `dfx`.
-2. Use `dfx` to tell Ledger canister to convert your ICP into cycles. 
-  * Note: This only works if the `account id` controlled `dfx` has ICP tokens.
-3. Create a canister which will hold all your cycles and transfer them to your dapps
+1. 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的`account id`。
+   * 注意：这通常需要将 ICP *从交易所、钱包或 NNS 前端 dapp* 转移到由 `dfx` 控制的`account id`。
+2. 使用 `dfx` 告诉 Ledger canister 将你的 ICP 转换为燃料费。
+   * 注意：这仅适用于 `account id` 控制的 `dfx` 具有 ICP 令牌。
+3. 创建一个容器来容纳你所有的燃料费并将它们转移到你的 dapps
 
-==== 4.4.1 Transfer ICP to the `account id` controlled *by your local version of `dfx`* (Terminal B)
+==== 4.4.1 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的`account id`*（终端 B）
 
-When you first installed `dfx`, it created and saved locally "developer identity" composed of:
+当您第一次安装“dfx”时，它会在本地创建并保存“开发者身份”，其中包括：
 
 a. Ledger `account id`
-** this is where ICP controlled by `dfx` are stored. 
-** Example: `03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
+** 这是由 `dfx` 控制的 ICP 的存储位置。
+** 例子：`03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
 
 b. `principal`
-** an identifier for an entity on the IC such as a user, a canister (dapps/smart contracts), or a subnet. In this case, `dfx` has a principal which is how it identifies itself to the IC.
-** Example: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
+** IC 上实体的标识符，例如用户、容器（dapps/智能合约）或子网。 在这种情况下，“dfx”有一个主体，即它如何向 IC 标识自己。
+** 例子：`tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
 
 
-**1. Find your Ledger `account id` controlled by dfx**
+**1. 查找由 dfx 控制的 Ledger `account id`**
 [source,bash]
 ----
 $ dfx ledger account-id
 ----
 
-**2. Transfer ICP to your Ledger `account id`**
+**2. 将 ICP 转移到您的 Ledger `account id`**
 
-You can transfer from any exchange, wallet, or NNS Frontend dapp by sending ICP tokens to the `account id` from Step #1 above. For the sake of this tutorial, sending it 2 ICP tokens would be more than enough to deploy.
+您可以从任何交易所、钱包或 NNS 前端 dapp 转移 ICP 代币到上面第 1 步中的“account id”。 就本教程而言，向其发送 2 个 ICP代币就足以部署。
 
-**3. Confirm there is ICP in the account**
+**3. 确认账户有ICP**
 
 [source,bash]
 ----
 $ dfx ledger --network ic balance
 ----
 
-If there is no ICP in the account, the rest of the tutorial will not work.
+如果帐户中没有 ICP，则教程的其余部分将无法使用。
 
-==== 4.4.2 Use `dfx` to tell Ledger canister to convert your ICP into cycles (Terminal B)
+==== 4.4.2 使用 `dfx` 告诉 Ledger canister 将你的 ICP 转换为燃料费（终端 B）
 
-Now that your `account id` has ICP tokens, we need to tell the Ledger Canister to convert it into cycles for us. The Ledger canister needs to know WHICH PRINCIPAL will control the cycles created, so we will send it the `principal` created locally by `dfx` as part of the developer identity.
+现在您的“帐户 ID”有 ICP 代币，我们需要告诉 Ledger Canister 将其转换为我们的燃料费。 Ledger canister 需要知道哪个 PRINCIPAL 将控制创建的燃料费，因此我们会将 dfx 在本地创建的principal 作为开发者身份的一部分发送给它。
 
-Note: Savvy readers may wonder why Ledger Canister needs to know the `principal` at all since the `principal` controls `account id`. The answer is that `dfx` can actually set a *different* principal in case it wants another entity to controls the cycles created in this step.
+注意：精明的读者可能想知道为什么 Ledger Canister 需要知道 `principal`，因为 `principal` 控制着 `account id`。 答案是“dfx”实际上可以设置一个*不同的*主体，以防它希望另一个实体控制在此步骤中创建的燃料费。
 
-**1. Find the `principal` used by your dfx**
+**1. 查找您的 dfx 使用的 `principal`**
 
 [source,bash]
 ----
@@ -359,15 +359,15 @@ Example output:
 $ tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ----
 
-This is the `principal` you will use in following sections.
+这是您将在以下部分中使用的“主体”。
 
-**2. Tell Ledger Canister to convert your ICP to cycles (and give the `principal` control of the cycles)**
+**2. 告诉 Ledger Canister 将您的 ICP 转换为燃料费（并给予周期的“主要”控制权）**
 
-We will use this structure:
+我们将使用这个结构：
 
 [source,bash]
 ----
-// This is just the structure, this will not run
+// 这只是结构体，不会运行
 $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 ----
 
@@ -378,95 +378,95 @@ $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 
 [source,bash]
 ----
-// This is just the structure, this will only work with YOUR principal
+// 这只是结构，这仅适用于您的主体
 $ dfx ledger --network ic create-canister $PRINCIPAL --amount $ICP_TOKEN_AMOUNT
 ----
 
-Filling it in with our example `principal` and amount (**do not copy/paste this or your will lose your cycles**).
+填写我们的示例“principal”和金额（**请勿复制/粘贴此内容，否则您将失去燃料费**）。
 [source,bash]
 ----
-// This is just an example, this will only work with YOUR principal
+// 这只是一个示例，这仅适用于您的principal
 $ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 0.5
 ----
 
-If the transaction is successful, the ledger records the event and you should see output similar to the following:
+如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出：
 
 [source,bash]
 ----
-Transfer sent at BlockHeight: 20
-Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
+在 BlockHeight 发送的转账：20
+使用 id 创建的容器："gastn-uqaaa-aaaae-aaafq-cai"
 ----
 
-This returned a canister with id `gastn-uqaaa-aaaae-aaafq-cai`. **This is NOT the `Hello` dapp we are creating in this tutorial.** This is a canister created for you and for only one purpose: *hold your cycles and transfer them to your dapps.*
+这返回了一个 ID 为“gastn-uqaaa-aaaae-aaafq-cai”的容器。 **这不是我们在本教程中创建的 `Hello` dapp。** 这是为您创建的容器，仅用于一个目的：*保持您的燃料费并将它们转移到您的 dapps。*
 
-The reason for this new canister is simple: by design, cycles can only be contained within canisters. Since this new "cycle-holding canister" has no other purpose, it is sometimes referred to as the "cycles wallet". 
+这个新容器的原因很简单：根据设计，燃料费只能包含在容器内。 由于这种新的“燃料费容器”没有其他用途，因此有时被称为“燃料费钱包”。
 
-**3. Create a canister which will hold all your cycles and transfer them to your dapps**
+**3. 创建一个可以容纳所有燃料费并将它们转移到你的 dapps 的容器**
 
-However there is only one last step: the canister created above (while it does hold cycles) is a generic canister and it does not have all the features required from a "cycles wallet", so we will use `dfx` to update it with the code containing all the cycles wallet features: 
+但是只有最后一步：上面创建的容器（虽然它确实保存了燃料费）是一个通用容器，它不具备“燃料费钱包”所需的所有功能，所以我们将使用 `dfx` 来更新它 包含所有燃料费钱包功能的代码： 
 
 [source,bash]
 ----
-// This is just an example, this will only work with YOUR CYCLE WALLET principal from above
+// 这只是一个示例，这仅适用于上面的您的 CYCLE WALLET 主体
 $ dfx identity --network ic deploy-wallet $CYCLES_WALLET_CANISTER_ID
 ----
 
-In our example, $CYCLES_WALLET_CANISTER_ID is `gastn-uqaaa-aaaae-aaafq-cai` so the command 
+在我们的示例中，$CYCLES_WALLET_CANISTER_ID 是 `gastn-uqaaa-aaaae-aaafq-cai` 所以命令
 
-Filling it in with our example `$CYCLES_WALLET_CANISTER_ID` (**do not copy/paste this or your will lose your cycles**).
+用我们的例子填充它`$CYCLES_WALLET_CANISTER_ID` (**请勿复制/粘贴此内容，否则您将失去燃料费**).
 [source,bash]
 ----
-// This is just an example, this will only work with YOUR principal
+// 这只是一个示例，这仅适用于您的主体
 $ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
 ----
 
-If the transaction is successful, the ledger records the event and you should see output similar to the following:
+如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出：
 [source,bash]
 ----
-Creating a wallet canister on the ic network.
-The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
+在 ic 网络上创建钱包容器。
+用户“default”在“ic”网络上的钱包容器是“gastn-uqaaa-aaaae-aaafq-cai”
 ----
 
-In the next section, we will deploy the `Hello` dapp. This will require transfering cycles from the recently-created cycles-holding canister (`gastn-uqaaa-aaaae-aaafq-cai` in the example above).
+在下一节中，我们将部署 `Hello` dapp。 这将需要从最近创建的燃料费容器（上例中的“gastn-uqaaa-aaaae-aaafq-cai”）传输燃料费。
 
-==== 4.4.3 Check your cycles are properly configured with your dfx (Terminal B)
+==== 4.4.3 检查您的燃料费是否与您的 dfx（终端 B）正确配置
 
-Check that your cycles wallet canister is properly configured and holds a balance of cycles by running a command similar to the following:
+通过运行类似于以下的命令，检查您的燃料费钱包容器是否已正确配置并保持燃料费平衡：
 
 [source, bash]
 ----
 $ dfx wallet --network ic balance
 ----
 
-The command returns the balance for the your cycles wallet. For example:
+该命令返回您的燃料费钱包的余额。 例如：
 
 [source, bash]
 ----
 15430122328028812 cycles.
 ----
 
-For this tutorial, make sure you have at least 3 trillion cycles (3000000000000).
+对于本教程，请确保您至少有 3 万亿个燃料费 (3000000000000)。
 
-If you didn’t convert enough ICP tokens to cycles to complete the operation, you can add cycles to your cycles wallet by running a command similar to the following:
+如果您没有将足够的 ICP 代币转换为燃料费来完成操作，您可以通过运行类似于以下的命令将燃料费添加到您的燃料费钱包：
 
 [source, bash]
 ----
 $ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
 ----
 
-This command converts an additional 1.005 ICP tokens to cycles for the `gastn-uqaaa-aaaae-aaafq-cai` cycles wallet created in step 2 of 4.3.2. The command returns output similar to the following:
+此命令将额外的 1.005 ICP 代币转换为在 4.3.2 的步骤 2 中创建的“gastn-uqaaa-aaaae-aaafq-cai”燃料费钱包的燃料费。 该命令返回类似于以下内容的输出：
 
 [source, bash]
 ----
-Transfer sent at BlockHeight: 81520
-Canister was topped up!
+在 BlockHeight 发送的转账：81520
+容器被加满了！
 ----
 
-== 5. Deploying on-chain (1 min)
+== 5. 部署链上（1 分钟）
 
-=== 5.1 Deploy the dapp on-chain via dfx (Terminal B)
+=== 5.1 通过dfx（终端B）在链上部署dapp
 
-Now that you have your cycles and your dfx is configured to transfer cycles, you are now ready to deploy your `Hello` dapp on-chain.
+现在你已经有了你的燃料费并且你的 dfx 被配置为传输燃料费，你现在已经准备好在链上部署你的 `Hello` dapp。
 
 [source,bash]
 ----
@@ -478,9 +478,9 @@ $ npm install
 $ dfx deploy --network ic
 ----
 
-The `--network` option specifies the network alias or URL for deploying the dapp. This option is required to install on the Internet Computer blockchain mainnet.
+`--network` 选项指定用于部署 dapp 的网络别名或 URL。 此选项需要安装在互联网计算机区块链主网上。
 
-If succesful, your terminal should look like this: 
+如果成功，您的终端应如下所示：
 
 [source,bash]
 ----
@@ -512,62 +512,62 @@ Uploading assets to asset canister...
 Deployed canisters.
 ----
 
-In the example above, we created a `Hello` dapp that is composed of two canisters: 
+在上面的示例中，我们创建了一个由两个容器组成的 `Hello` dapp：
 
-a. `hello` canister `5o6tz-saaaa-aaaaa-qaacq-cai` which contains the backend logic.
+a.  `hello` 容器 `5o6tz-saaaa-aaaaa-qaacq-cai` 包含后端逻辑。
 
-b. `hello_assets` canister `5h5yf-eiaaa-aaaaa-qaada-cai` which contains the frontend assets (e.g. HTML, JS, CSS).
+b.  `hello_assets` 容器 `5h5yf-eiaaa-aaaaa-qaada-cai` 包含前端资产（例如 HTML、JS、CSS）。
 
-Note: you will notice that the canister ids of for the same project are different between the local (section 3 of this tutorial) and the on-chain environments.
+注意：您会注意到本地（本教程的第 3 部分）和链上环境之间相同项目的容器 id 是不同的。
 
-=== 5.2 Testing the on-chain dapp via command line (Terminal B)
+=== 5.2 通过命令行（终端B）测试链上dapp
 
-Now that the canister is deployed on-chain, you can send it a message. Since the canister has a method called `greet` (which accepts a string as a parameter), we will send it a message.
+现在容器已部署在链上，您可以向它发送消息。 由于容器有一个名为 `greet` 的方法（它接受一个字符串作为参数），我们将向它发送一条消息。
 
 [source,bash]
 ----
 $ dfx canister --network ic call hello greet '("everyone": text)'
 ----
 
-Note the way the message is constructed:
+注意消息的构造方式：
 
-* `dfx canister --network ic call` is setup for calling a canister on the IC
+* `dfx canister --network ic call` 设置为调用 IC 上的容器
 
-* `hello greet` means we are sending a message to a canister named `hello` and evoking its `greet` method
+* `hello greet` 表示我们正在向名为 `hello` 的容器发送消息并调用它的 `greet` 方法
 
-* `'("everyone": text)'` is the parameter we are sending to `greet` (which accepts `Text` as its only input).
+* `'("everyone": text)'` 是我们发送给 `greet` 的参数（它接受 `Text` 作为其唯一输入）。
 
-=== 5.3 See your dapp live on-chain via a browser
+=== 5.3 通过浏览器查看你的 dapp 实时链上
 
-Find your new canister's ID:
+查找新容器的 ID：
 
 [source,bash]
 ----
 $ dfx canister --network ic id hello
 ----
 
-Take that canister id and visit +https://<canister-id>.ic0.app+, inserting the `hello_assets` canister id as the subdomain in the URL. In this tutorial, it is `5h5yf-eiaaa-aaaaa-qaada-cai` so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.
+带上那个容器ID 并访问 +https://<canister-id>.ic0.app+, 在 URL 中插入 `hello_assets` 容器 ID 作为子域。 在本教程中，它是`5h5yf-eiaaa-aaaaa-qaada-cai` so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.
 
-== 6. Conclusion
+== 6. 结论
 
-=== 6.1 Wrap-up: What you have done
-You have done the following in this tutorial:
+=== 6.1 总结：你做了什么
+您在本教程中完成了以下操作：
 
-* Installed the Canister SDK
-* Built and deployed a dap locally
-* Received free cycles for your dapp
-* Created a "cycles wallet" that can transfer cycles to any other dapps you want to power
-* Deployed your dapp on-chain
+* 安装 Canister SDK
+* 在本地构建和部署一个 dap
+* 为您的 dapp 获得免费燃料费
+* 创建了一个“燃料费钱包”，可以将燃料费转移到您想要支持的任何其他 dapp
+* 在链上部署你的 dapp
 
-=== 6.2 Using your free cycles to power other dapps
+=== 6.2 使用您的免费燃料费为其他 dapps 提供动力
 
-You can use the cycles you received earlier for other dapps.
+您可以将之前收到的燃料费用于其他 dapp。
 
-== 7. Troubleshooting
+== 7. 故障排除
 
-=== Resources
+=== 资源
 
-* Developers who hit any blockers are encouraged to search or post in link:https://forum.dfinity.org[IC developer forum].
+* 鼓励遇到任何区块的开发者搜索或发帖link：https://forum.dfinity.org[互联网计算机开发者论坛]。
 
-* link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[Internet Computer wiki].
+*link：https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[互联网计算机维基]。
 

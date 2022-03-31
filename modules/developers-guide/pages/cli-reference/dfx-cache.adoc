@@ -1,33 +1,33 @@
 = dfx cache
 
-Use the `+dfx cache+` command with flags and subcommands to manage the `+dfx+` version cache.
+使用带有标志和子命令的 `+dfx cache+` 命令来管理 `+dfx+` 版本缓存。
 
-The basic syntax for running `+dfx cache+` commands is:
+运行 `+dfx cache+` 命令的基本语法是：
 
 [source,bash]
 ----
 dfx cache [subcommand] [flag]
 ----
 
-Depending on the `+dfx cache+` subcommand you specify, additional arguments, options, and flags might apply.
-For reference information and examples that illustrate using `+dfx cache+` commands, select an appropriate command.
+根据您指定的 `+dfx cache+` 子命令，可能会应用其他参数、选项和标志。
+有关说明使用 `+dfx cache+` 命令的参考信息和示例，请选择适当的命令。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Command |Description
-|<<dfx cache delete,`+delete+`>> |Deletes the specified version of `+dfx+` from the local cache.
+|命令 |描述
+|<<dfx cache delete,`+delete+`>> |从本地缓存中删除指定版本的`+dfx+`。
 
-|`+help+` |Displays usage information message for a specified subcommand.
+|`+help+` |显示指定子命令的使用信息消息。
 
-|<<dfx cache install,`+install+`>> |Installs the specified version of `+dfx+` from the local cache.
+|<<dfx cache install,`+install+`>> |从本地缓存安装指定版本的`+dfx+`。
 
-|<<dfx cache list,`+list+`>> |Lists the versions of `+dfx+` currently installed and used in current projects.
+|<<dfx 缓存列表,`+list+`>> |列出当前项目中当前安装和使用的`+dfx+`的版本。
 
-|<<dfx cache show,`+show+`>> |Show the path of the cache used by this version of the `+dfx+` executable.
+|<<dfx cache show,`+show+`>> |显示此版本的`+dfx+` 可执行文件使用的缓存路径。
 |===
 
-To view usage information for a specific subcommand, specify the subcommand and the `+--help+` flag.
-For example, to see usage information for `+dfx cache delete+`, you can run the following command:
+要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx cache delete+` 的使用信息，可以运行以下命令：
 
 [source,bash]
 ----
@@ -37,9 +37,8 @@ dfx cache delete --help
 [[delete]]
 == dfx cache delete
 
-Use the `+dfx cache delete+` command to delete a specified version of `+dfx+` from the version cache on the local computer.
-
-=== Basic usage
+使用 `+dfx cache delete` 命令从本地计算机的版本缓存中删除特定版本的 `+dfx`。
+=== 基本用法
 
 [source,bash]
 ----
@@ -48,7 +47,7 @@ dfx cache delete [version] [flag]
 
 === Flags
 
-You can use the following optional flags with the `+dfx cache delete+` command.
+您可以在 `+dfx cache delete+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
@@ -57,20 +56,20 @@ You can use the following optional flags with the `+dfx cache delete+` command.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-=== Arguments
+=== 参数
 
-You can specify the following argument for the `+dfx cache delete+` command.
+您可以为 `+dfx cache delete+` 命令指定以下参数。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Command |Description
-|`+version+` |Specifies the version of `+dfx+` you to delete from the local cache.
+|命令 |描述
+|`+version+` |指定要从本地缓存中删除的`+dfx+` 的版本。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx cache delete+` command to permanently delete versions of `+dfx+`  that you no longer want to use.
-For example, you can run the following command to delete `+dfx+` version `+0.6.2+`:
+您可以使用 `+dfx cache delete+` 命令永久删除不想再使用的 `+dfx+` 版本。
+例如，您可以运行以下命令删除`+dfx+`版本`+0.6.2+`：
 
 [source,bash]
 ----
@@ -78,43 +77,43 @@ dfx cache delete 0.6.2
 ----
 
 [[install]]
-== dfx cache install
+== dfx 缓存安装
 
-Use the `+dfx cache install+` command to install `+dfx+` using the version currently found in the `+dfx+` cache.
+使用 `+dfx cache install+` 命令安装 `+dfx+`，使用当前在 `+dfx+` 缓存中找到的版本。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx cache install [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx cache install+` command.
+您可以在 `+dfx cache install+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx cache install+` command to force the installation of `+dfx+` from the version in the cache.
-For example, you can run the following command to install `+dfx+`:
+您可以使用`+dfx cache install+` 命令从缓存中的版本强制安装`+dfx+`。
+例如，您可以运行以下命令来安装 `+dfx+`：
 
 [source,bash]
 ----
 dfx cache install
 ----
 
-== dfx cache list
+== dfx 缓存列表
 
-Use the `+dfx cache list+` command to list the `+dfx+` versions you have currently installed and used in projects.
+使用 `+dfx cache list+` 命令列出您当前在项目中安装和使用的 `+dfx+` 版本。
 
-If you have multiple versions of `+dfx+` installed, the cache list displays an asterisk (*) to indicate the currently active version.
+如果您安装了多个版本的 `+dfx+`，缓存列表会显示一个星号 (*) 以指示当前活动的版本。
 
 === Basic usage
 
@@ -123,9 +122,9 @@ If you have multiple versions of `+dfx+` installed, the cache list displays an a
 dfx cache list [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx cache list+` command.
+您可以在 `+dfx cache list+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
@@ -136,15 +135,15 @@ You can use the following optional flags with the `+dfx cache list+` command.
 
 === Examples
 
-You can use the `+dfx cache list+` command to list the `+dfx+` versions you have currently installed and used in projects.
-For example, you can run the following command to list versions of `+dfx+` found in the cache:
+您可以使用 `+dfx cache list+` 命令列出您当前在项目中安装和使用的 `+dfx+` 版本。
+例如，您可以运行以下命令来列出在缓存中找到的 `+dfx+` 的版本：
 
 [source,bash]
 ----
 dfx cache list
 ----
 
-This command displays the list of `+dfx+` versions found similar to the following:
+此命令显示找到的 `+dfx+` 版本列表，类似于以下内容：
 
 [source,bash]
 ----
@@ -155,18 +154,18 @@ This command displays the list of `+dfx+` versions found similar to the followin
 
 == dfx cache show
 
-Use the `+dfx cache show+` command to display the full path to the cache used by the `+dfx+` version you are currently using.
+使用 `+dfx cache show+` 命令显示您当前使用的 `+dfx+` 版本使用的缓存的完整路径。
 
-=== Basic usage
+=== 基本用法
 
 [source,bash]
 ----
 dfx cache show [flag]
 ----
 
-=== Flags
+=== 标志
 
-You can use the following optional flags with the `+dfx cache show+` command.
+您可以在 `+dfx cache show+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===
@@ -175,16 +174,16 @@ You can use the following optional flags with the `+dfx cache show+` command.
 |`+-V+`, `+--version+` |Displays version information.
 |===
 
-=== Examples
+=== 例子
 
-You can use the `+dfx cache show+` command to display the path to the cache used by the `+dfx+` version you are currently using:
+您可以使用 `+dfx cache show+` 命令显示您当前使用的 `+dfx+` 版本使用的缓存的路径：
 
 [source,bash]
 ----
 dfx cache show
 ----
 
-This command displays the path to the cache used by the `+dfx+` version you are currently using:
+此命令显示您当前使用的 `+dfx+` 版本使用的缓存路径：
 
 [source,bash]
 ----

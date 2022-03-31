@@ -1,46 +1,46 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.9.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-An overview of the {release} release:
+{release} 版本概述：
 
-Be sure to see the link:0.9.0-rn[0.9.0 Release Notes] and follow the instructions due to breaking changes since dfx 0.8.4.
+由于 dfx 0.8.4 以来的重大更改，请务必查看链接：0.9.0-rn[0.9.0 Release Notes] 并按照说明进行操作。
 
-== Changes to DFX
+== 对 DFX 的更改
 
-=== New Feature: Verify Candid and Motoko stable variable type safety of canister upgrades
+=== 新功能：验证 Candid 和 Motoko 稳定变量类型的容器升级安全性
 
-Newly deployed Motoko canisters now embed the Candid interface and Motoko stable signatures in the Wasm module.
-`dfx deploy` and `dfx canister install` will automatically check
+新部署的 Motoko 容器现在在 Wasm 模块中嵌入了 Candid 界面和 Motoko 稳定签名。
+`dfx deploy` 和 `dfx canister install` 会自动检查
 
-	1) the backward compatible of Candid interface in both upgrade and reinstall mode;
-	2) the type safety of Motoko stable variable type in upgrade mode to avoid accidentally lossing data;
+1）Candid接口在升级和重装模式下向后兼容；
+2）升级模式下Motoko稳定变量类型的类型安全，避免意外丢失数据；
 
-See https://smartcontracts.org/docs/language-guide/compatibility.html[Upgrade compatibility] for more details.
+详情参见 https://smartcontracts.org/docs/language-guide/compatibility.html[升级兼容性]。
 
-=== New Feature: Unified environment variables across build commands
+=== 新功能：跨构建命令的统一环境变量
 
-The three canister types that use a custom build tool - `assets`, `rust`, and `custom` - now all support the same set of environment variables during the build task:
+使用自定义构建工具的三种容器类型——“assets”、“rust”和“custom”——现在在构建任务期间都支持相同的环境变量集：
 
-* `DFX_VERSION` - The version of DFX that was used to build the canister.
-* `DFX_NETWORK` - The network name being built for. Usually `ic` or `local`.
-* `CANISTER_ID_{canister}` - The canister principal ID of the canister `{canister}` registered in `dfx.json`.
-* `CANISTER_CANDID_PATH_{canister}` - The path to the Candid interface file for the canister `{canister}` among your canister's dependencies.
-* `CANISTER_CANDID_{canister}` (deprecated) - the same as `CANISTER_CANDID_PATH_{canister}`.  This is provided for backwards compatibility with `rust` and `custom` canisters, and will be removed in dfx 0.10.0.
-* `CANISTER_ID` - Same as `CANISTER_ID_{self}`, where `{self}` is the name of _this_ canister.
-* `CANISTER_CANDID_PATH` - Same as `CANISTER_CANDID_PATH_{self}`, where `{self}` is the name of _this_ canister.
+* `DFX_VERSION` - 用于构建容器的 DFX 版本。
+* `DFX_NETWORK` - 正在构建的网络名称。 通常是`ic`或`local`。
+* `CANISTER_ID_{canister}` - 在 `dfx.json` 中注册的容器 `{canister}` 的容器主体 ID。
+* `CANISTER_CANDID_PATH_{canister}` - 你的容器依赖项中容器`{canister}` 的 Candid 接口文件的路径。
+* `CANISTER_CANDID_{canister}`（已弃用）- 与 `CANISTER_CANDID_PATH_{canister}` 相同。 这是为了向后兼容“rust”和“custom”容器而提供的，将在 dfx 0.10.0 中删除。
+* `CANISTER_ID` - 与`CANISTER_ID_{self}` 相同，其中`{self}` 是_此_ 容器的名称。
+* `CANISTER_CANDID_PATH` - 与`CANISTER_CANDID_PATH_{self}` 相同，其中`{self}` 是_此_容器的名称。
 
 
-=== New Feature: Support for local ledger calls
+=== 新功能：支持本地分类帐调用
 
-If you have an installation of the ICP Ledger (see https://github.com/dfinity/ic/tree/master/rs/rosetta-api/ledger_canister#deploying-locally[Ledger Installation Guide]), `dfx ledger balance` and `dfx ledger transfer` now support
-`--ledger-canister-id` parameter.
+如果您安装了 ICP Ledger（请参阅 https://github.com/dfinity/ic/tree/master/rs/rosetta-api/ledger_canister#deploying-locally[Ledger 安装指南]），`dfx ledger balance` 现在支持“dfx 账本转移”
+`--ledger-canister-id` 参数。
 
-Some examples:
+一些例子：
 [source, base]
 ----
 $ dfx ledger \
@@ -53,13 +53,13 @@ $ dfx ledger \
   --network local \
   transfer --amount 0.1 --memo 0 \
   --ledger-canister-id  rrkah-fqaaa-aaaaa-aaaaq-cai 8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8
-Transfer sent at block height: 1
+以区块高度发送的转移：1
 ----
 
-=== New Feature: `dfx ledger account-id` can now compute canister addresses
+=== 新功能：`dfx ledger account-id` 现在可以计算容器地址
 
-The `dfx ledger account-id` can now compute addresses of principals and canisters.
-The command also supports ledger subaccounts now.
+`dfx ledger account-id` 现在可以计算主体和容器的地址。
+该命令现在还支持分类帐子帐户。
 
 [source, bash]
 ----
@@ -68,26 +68,26 @@ dfx ledger --network small02 account-id --of-canister ledger_demo
 dfx ledger account-id --of-principal 53zcu-tiaaa-aaaaa-qaaba-cai --subaccount 0000000000000000000000000000000000000000000000000000000000000001
 ----
 
-=== New Feature: Print the full error chain in case of a failure
+=== 新功能：在失败的情况下打印完整的错误链
 
-All `dfx` commands will now print the full stack of errors that led to the problem, not just the most recent error.
-Example:
+现在，所有“dfx”命令都将打印导致问题的完整错误堆栈，而不仅仅是最近的错误。
+例子：
 
 [source]
 ----
-Error: Subaccount '00000000000000000000000000000000000000000000000000000000000000000' is not a valid hex string
-Caused by:
-  Odd number of digits
+错误：子帐户“00000000000000000000000000000000000000000000000000000000000000000”不是有效的十六进制字符串
+造成：
+   奇数位数
 ----
 
-=== Fixed: dfx import will now import pem files created by `quill generate`
+=== 修正：dfx import 现在将导入由 `quill generate` 创建的 pem 文件
 
-`quill generate` currently outputs .pem files without an `EC PARAMETERS` section.
-`dfx identity import` will now correctly identify these as EC keys, rather than Ed25519.
+`quill generate` 当前输出没有 `EC PARAMETERS` 部分的 .pem 文件。
+`dfx identity import` 现在将正确地将这些标识为 EC 密钥，而不是 Ed25519。
 
-=== Fixed: retry on failure for ledger create-canister, top-up, transfer
+=== 已修复：分类帐创建容器、充值、转移失败时重试
 
-dfx now calls `transfer` rather than `send_dfx`, and sets the created_at_time field in order to retry the following commands:
+dfx 现在调用 `transfer` 而不是 `send_dfx`，并设置 created_at_time 字段以重试以下命令：
 
 * dfx ledger create-canister
 * dfx ledger top-up
@@ -95,12 +95,13 @@ dfx now calls `transfer` rather than `send_dfx`, and sets the created_at_time fi
 
 == Motoko
 
-Updated Motoko from 0.6.20 to 0.6.21.
+将 Motoko 从 0.6.20 更新到 0.6.21。
 
 == Replica
 
-Updated replica to blessed commit 04fe8b0a1262f07c0cec1fdfa838a37607370a61.
-This incorporates the following executed proposals:
+将副本更新为
+04fe8b0a1262f07c0cec1fdfa838a37607370a61。
+这包括以下已执行的提案：
 
 * https://dashboard.internetcomputer.org/proposal/45091[45091]
 * https://dashboard.internetcomputer.org/proposal/43635[43635]
@@ -115,8 +116,8 @@ This incorporates the following executed proposals:
 
 == ic-ref
 
-Upgraded from a432156f24faa16d387c9d36815f7ddc5d50e09f to ab8e3f5a04f0f061b8157c2889f8f5de05f952bb
+从 a432156f24faa16d387c9d36815f7ddc5d50e09f 升级到 ab8e3f5a04f0f061b8157c2889f8f5de05f952bb
 
-* Support 128-bit system api for cycles
-* Include canister_ranges in the state tree
-* Removed limit on cycles in a canister
+* 支持 128 位系统 api 燃料费
+* 在状态树中包含 canister_ranges
+*删除了容器中燃料费的限制

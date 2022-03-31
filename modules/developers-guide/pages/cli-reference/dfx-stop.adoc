@@ -1,58 +1,58 @@
-= dfx stop
+= dfx 停止
 
-Use the `+dfx stop+` command to stop the local canister execution environment processes that you currently have running on your computer.
-In most cases, you run the canister execution environment locally so that you can deploy canisters and test your dapps during development.
-To simulate the connection to the {platform}, these processes run continuously either in a terminal shell where you started them or the in the background until you stop or kill them.
+使用 `+dfx stop+` 命令停止您当前在计算机上运行的本地容器执行环境进程。
+在大多数情况下，您在本地运行容器执行环境，以便您可以在开发期间部署容器并测试您的 dapp。
+为了模拟与 {platform} 的连接，这些进程在您启动它们的终端 shell 中或在后台连续运行，直到您停止或终止它们。
 
-Note that you can only run this command from within the project directory structure.
-For example, if your project name is `+hello_world+`, your current working directory must be the `+hello_world+` top-level project directory or one of its subdirectories.
+请注意，您只能从项目目录结构中运行此命令。
+例如，如果您的项目名称是 `+hello_world+`，那么您当前的工作目录必须是 `+hello_world+` 顶级项目目录或其子目录之一。
 
-== Basic usage
+== 基本用法
 
 [source,bash]
 ----
 dfx stop [flag]
 ----
 
-== Flags
+== 标志
 
-You can use the following optional flags with the `+dfx stop+` command.
+您可以在 `+dfx stop+` 命令中使用以下可选标志。
 
 [width="100%",cols="<32%,<68%",options="header",]
 |===
-|Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
+|标志 |说明
+|`+-h+`, `+--help+` |显示使用信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
-== Examples
+== 例子
 
-You can stop the local canister execution environment processes that are running in the background by changing to a project directory then running the following command:
+您可以通过切换到项目目录然后运行以下命令来停止在后台运行的本地容器执行环境进程：
 
 [source,bash]
 ----
-dfx stop
+dfx 停止
 ----
 
-If the local canister execution environment is running in a current shell rather than in the background, open a new terminal shell, change to a project directory, then run the `+dfx stop+` command.
+如果本地容器执行环境在当前 shell 中而不是在后台运行，请打开一个新的终端 shell，切换到项目目录，然后运行 `+dfx stop+` 命令。
 
-The current process identifier (`+pid+`) for the canister execution environment process started by `+dfx+` is recorded in the `+.dfx/pid+` file.
-You can view the process identifier before running the `+dfx stop+` command by running the following command:
+`+dfx+` 启动的容器执行环境进程的当前进程标识符（`+pid+`）记录在 `+.dfx/pid+` 文件中。
+您可以在运行 `+dfx stop+` 命令之前查看进程标识符，方法是运行以下命令：
 
 [source,bash]
 ----
 more .dfx/pid
 ----
 
-This command displays a process identifier similar to the following:
+此命令显示类似于以下内容的进程标识符：
 
 [source,bash]
 ----
 1896
 ----
 
-If you are still having trouble with a persistent service running after attempting to stop, you can terminate all running jobs with:
+如果您在尝试停止后仍然无法运行持久服务，您可以终止所有正在运行的作业：
 
 [source,bash]
 ----

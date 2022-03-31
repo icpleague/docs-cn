@@ -1,21 +1,21 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.8.4
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-An overview of the {release} release:
+{release} 版本概述：
 
-* Added first-class support for rust canisters.
-* The included replica now supports canister_heartbeat.
+* 添加了对 Rust容器的一流支持。
+* 包含的副本现在支持 canister_heartbeat。
 
-== Changes to DFX
+== 对 DFX 的更改
 
-=== New feature: Added "rust" canister type
+=== 新功能：添加了“Rust”容器类型
 
-You can now declare "rust" canisters in dfx.json.
+您现在可以在 dfx.json 中声明“Rust”容器。
 [source, json]
 ----
 {
@@ -29,43 +29,40 @@ You can now declare "rust" canisters in dfx.json.
 }
 ----
 
-Don't forget to place a `Cargo.toml` in your project root.
-Then dfx will build the rust canister with your rust toolchain.
-Please also make sure that you have added the WebAssembly compilation target.
+不要忘记在项目根目录中放置一个`Cargo.toml`。
+然后 dfx 将使用您的 rust 工具链构建 rust 容器。 还请确保您已添加 WebAssembly 编译目标。
 
 [source, bash]
 ----
 rustup target add wasm32-unknown-unknown
 ----
 
-You can also create new dfx project with a default rust canister.
+还可以使用默认的 rust 容器创建新的 dfx 项目。
 
 [source, bash]
 ----
 dfx new --type=rust <project-name>
 ----
 
-=== Updated the new project template
+311 / 5,000
+翻译结果
+=== 更新了新的项目模板
 
-Updated dependencies to latest for Webpack, and updated the configuration. Additionally simplified environment variables for canister IDs in config.
+将 Webpack 的依赖项更新为最新的，并更新了配置。 另外简化了配置中容器 ID 的环境变量。
 
-Additionally added some polish to the starter template, including a favicon and using more semantic html in the example app
+此外，还为入门模板添加了一些润色，包括网站图标并在示例应用程序中使用更多语义 html 
 
-=== New feature: environment variable overrides for executable pathnames
+=== 新功能：可执行路径名的环境变量覆盖
 
-You can now override the location of any executable normally called from the cache by specifying
-an environment variable. For example, DFX_ICX_PROXY_PATH will specify the path for `icx-proxy`.
+您现在可以通过指定环境变量来覆盖通常从缓存中调用的任何可执行文件的位置。 例如，DFX_ICX_PROXY_PATH 将指定 `icx-proxy` 的路径。
 
-=== New feature: dfx deploy --mode=reinstall <canister>
+=== 新功能：dfx deploy --mode=reinstall <canister>
 
-`dfx deploy` can now reinstall a single canister, controlled by a new `--mode=reinstall` parameter.
-This is destructive (it resets the state of the canister), so it requires a confirmation
-and can only be performed on a single canister at a time.
+`dfx deploy` 现在可以重新安装单个容器，由新的 `--mode=reinstall` 参数控制。
+这是破坏性的（它会重置容器的状态），因此需要确认并且一次只能在一个容器上执行。
 
-`dfx canister install --mode=reinstall <canister>` also requires the same confirmation,
-and no longer works with `--all`.
+`dfx canister install --mode=reinstall <canister>` 也需要相同的确认，并且不再适用于 `--all`。
 
-== Changes to Replica
+== 对副本的更改
 
-The included replica now supports canister_heartbeat.  This only works with rust canisters for the time being,
-and does not work with the emulator (`dfx start --emulator`).
+包含的副本现在支持 canister_heartbeat。 这暂时只适用于Rust 容器，不适用于模拟器（`dfx start --emulator`）。

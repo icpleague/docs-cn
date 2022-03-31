@@ -1,27 +1,27 @@
 :title:  {IC} SDK - Developer Tools
-= Developer Center
+= 开发者中心
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 :page-layout: home
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {IC} blockchain is poised to help you start a revolution with a new way to design, build, and release dapps.
+{IC} 区块链准备帮助您以一种新的方式来设计、构建和发布 dapps。
 
-== Developing dapps
+== 开发 dapp
 
-The {IC} is a blockchain that runs canister smart contracts, which are code units bundling together WebAssembly bytecode and the memory pages the bytecode runs in. The {IC} is composed of individual subnet blockchains running in parallel and connected together by the use of Chain Key cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain. Moreover, the governance system of the {IC} can dynamically increase the capacity of the {IC} by adding new subnets, allowing dapps to scale out.
+{IC} 是运行容器智能合约的区块链，这些智能合约是将 WebAssembly 字节码和运行字节码的内存页面捆绑在一起的代码单元。{IC} 由并行运行的各个子网区块链组成，并通过使用 链密钥密码学。 这意味着运行在子网上的容器可以无缝调用托管在 {IC} 区块链的任何其他子网中的容器。 此外，{IC} 的治理系统可以通过添加新的子网来动态增加 {IC} 的容量，从而允许 dapp 横向扩展。
 
-Developers can thus build new dapps consisting of multiple canisters running in parallel on different subnets and possibly integrate them with existing canisters already running on the {IC}.
+因此，开发人员可以构建由多个在不同子网上并行运行的容器组成的新 dapp，并可能将它们与已经在 {IC} 上运行的现有容器集成。
 
-== Developer workflow at-a-glance
+== 开发人员工作流程一览
 
-At a high-level, there are two main possible workflows for developing dapps that run on the {IC} blockchain.
+在高层次上，开发在 {IC} 区块链上运行的 dapp 有两种可能的主要工作流程。
 
 image:local-remote-path-workflow.svg[Development paths]
 
-* *Local development:* you start a local canister execution environment simulating the {IC} blockchain on your computer. Then you write, compile, install and iteratively update your canisters in the local execution environment. This gives you the possibility to test your canisters locally without the need to use cycles to power them.
+* *本地开发：*您在计算机上启动模拟 {IC} 区块链的本地容器执行环境。 然后您在本地执行环境中编写、编译、安装和迭代更新您的容器。 这使您可以在本地测试您的罐，而无需使用循环为其供电。
 
-* *On-chain deployment:* once your dapp is ready you can then deploy it to the {IC} blockchain mainnet, making it available for the world to use it. Note that your canisters need to have cycles to be able to run on the {IC} blockchain mainnet, as discussed in link:../developers-guide/concepts/tokens-cycles{outfilesuffix}[Tokens and cycles].
+* *链上部署：* 一旦您的 dapp 准备就绪，您就可以将其部署到 {IC} 区块链主网，供全世界使用。 请注意，您的容器需要有燃料费才能在 {IC} 区块链主网上运行，如链接中所述link：../developers-guide/concepts/tokens-cycles{outfilesuffix}[代币和燃料费]。
 
-Regardless of the development workflow you choose, keep in mind that when you deploy a canister for the first time, either on a local execution environment or on the {IC}, a unique link:../developers-guide/glossary{outfilesuffix}#g-principal[principal identifier] is created for your canister smart contract. For example, if you start developing your canister locally and then deploy it to the {IC}, then your canister will generally have a different identifier on the local execution environment and on the {IC} blockchain mainnet. Note that it is also possible for you to register a principal identifier for your new canister before deploying it or even writing any line of code.
+无论您选择哪种开发工作流程，请记住，当您第一次部署容器时，无论是在本地执行环境还是在 {IC} 上，一个唯一的link：../developers-guide/glossary{outfilesuffix} #g-principal[principal identifier] 是为您的容器智能合约创建的。 例如，如果您开始在本地开发您的容器，然后将其部署到 {IC}，那么您的容器通常在本地执行环境和 {IC} 区块链主网上会有不同的标识符。 请注意，您也可以在部署新容器之前为新容器注册一个主体标识符，甚至在编写任何代码行之前。

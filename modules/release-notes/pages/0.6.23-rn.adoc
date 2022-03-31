@@ -1,25 +1,25 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.23
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-The {release} release consists of changes to support new features and enhancements that are not yet complete.
+{release} 版本包含支持尚未完成的新功能和增强功能的更改。
 
-== New features and capabilities
+== 新特性和功能
 
-The most significant new feature enables you to use a locally-installed `+@dfinity/bootstrap+` server.
+最重要的新功能使您能够使用本地安装的 `+@dfinity/bootstrap+` 服务器。
 
-For information about updates to Candid, see the link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
+有关 Candid 更新的信息，请参阅link:https://github.com/dfinity/candid/blob/master/Changelog.md[Candid changelog].
 
 ////
-== Issues fixed in this release
+== 此版本中修复的问题
 
-This section covers any reported issues that have been fixed in this release.
+本节涵盖了已在此版本中修复的所有报告的问题。
 
-== Known issues and limitations
+== 已知问题和限制
 
-This section covers any known issues or limitations that might affect how you work with the {sdk-short-name} in specific environments or scenarios.
+本节涵盖可能影响您在特定环境或场景中使用 {sdk-short-name} 的任何已知问题或限制。
 ////

@@ -1,117 +1,116 @@
-= Manage canister smart contracts
+= 管理容器智能合约
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-If you have experimented with using the {sdk-long-name} by following the tutorials in the link:tutorials-intro{outfilesuffix}[Tutorials] section or by cloning examples from the link:https://github.com/dfinity/examples[examples] repository, you are already familiar with how to build and deploy programs as **canister smart contracts**.
-This section provides additional information about the canister lifecycle and how to manage canisters.
-
+如果您按照链接中的教程尝试使用 {sdk-long-name}：tutorials-intro{outfilesuffix}[Tutorials] 部分或通过从链接克隆示例link：https://github.com/dfinity/ examples[examples] 存储库，您已经熟悉如何将程序构建和部署为**容器智能合约**。
+本节提供有关容器生命周期以及如何管理容器的附加信息。
 [[create-canister]]
-== Obtaining a canister smart contract identifier
+== 获取容器智能合约标识符
 
-Depending on your preferred development workflow, you can obtain a unique identifier for your canister smart contract, before or after you have a program ready to compile.
-For example, if you want to reserve a unique identifier for your canister smart contract on a subnet before you have written any code, you can do so by running the `+dfx canister create+` command.
-This command essentially creates an empty canister placeholder into which you can later install your code. The resulting canister will obtain a unique identifier.
+根据您首选的开发工作流程，您可以在准备好编译程序之前或之后获取容器智能合约的唯一标识符。
+例如，如果您想在编写任何代码之前在子网上为您的容器智能合约保留一个唯一标识符，您可以通过运行`+dfx canister create+` 命令来实现。
+此命令实质上创建了一个空容器占位符，您以后可以在其中安装代码。 生成的容器将获得一个唯一标识符。
 
-To obtain a unique identifier for a canister:
+要获取容器的唯一标识符：
 
-. Open a new terminal window or tab on your local computer.
-. Create a new project for the canister you plan to create by running a command similar to the following:
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 通过运行类似于以下内容的命令，为您计划创建的容器创建一个新项目：
 +
 [source,bash]
 ----
 dfx new YOUR-PROJECT-NAME
 ----
 +
-Note that the name you use for the project is also used as the canister name by default. 
-. Change to your new project directory.
-. Open the `+dfx.json+` configuration file and set the host and port for the canister execution environment you want to use (e.g. the {IC} blockchain).
+请注意，您用于项目的名称也默认用作容器名称。
+. 切换到您的新项目目录。
+. 打开 `+dfx.json+` 配置文件并为您要使用的容器执行环境（例如 {IC} 区块链）设置主机和端口。
 +
-If you are using a local deployment, you can skip this step.
+如果您使用的是本地部署，则可以跳过此步骤。
 +
-You can also optionally change the names of your canisters or add canister settings to the configuration file if you want to create identifiers for any additional canisters you think you will need before compiling code.
-. Start the local canister execution environment, if necessary, by running the following command:
+如果您想在编译代码之前为您认为需要的任何其他容器创建标识符，您还可以选择更改容器的名称或将容器设置添加到配置文件中。
+. 如有必要，通过运行以下命令启动本地容器执行环境：
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-In most cases, this step is only necessary if you are running the canisters locally.
+在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Register unique identifiers for the canisters defined in the `+dfx.json+` by running the following command:
+如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+. 通过运行以下命令为在 `+dfx.json+` 中定义的容器注册唯一标识符：
 +
 [source,bash]
 ----
 dfx canister create --all
 ----
 +
-The command creates the `+.dfx/local+` directory and adds the `+canister_ids.json+` file to that directory for the project.
+该命令创建 `+.dfx/local+` 目录并将 `+canister is.json` 文件添加到该项目的目录中。
 
 [[local-id]]
-== Build a canister smart contract with a local identifier
+== 使用本地标识符构建容器智能合约
 
-After you have written source code for your project, you need to compile it into a WebAssembly module before deploying it as a canister.
+为项目编写源代码后，需要将其编译为 WebAssembly 模块，然后再将其部署为容器。
 
-If you are only compiling your project for local debugging, you can generate a locally-defined identifier for your project.
+如果您只是为了本地调试而编译您的项目，您可以为您的项目生成一个本地定义的标识符。
 
-To generate a locally-defined identifier:
+要生成本地定义的标识符：
 
-. Create a project with the configuration settings and program logic to suit your needs.
-. Start the local canister execution environment, if necessary.
+. 使用配置设置和程序逻辑创建一个项目以满足您的需求。
+. 如有必要，启动本地容器执行环境。
 +
-If you were compiling canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Generate hard-coded local identifiers for the canisters defined in the `+dfx.json+` by running the following command:
+如果您正在编译容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+. 通过运行以下命令，为在 `+dfx.json+` 中定义的容器生成硬编码的本地标识符：
 +
 [source,bash]
 ----
 dfx build --check
 ----
 +
-Note that you must register unique canister identifiers to replace your locally-defined identifier before you can deploy the project on the {IC} blockchain.
+请注意，您必须先注册唯一容器标识符以替换本地定义的标识符，然后才能在 {IC} 区块链上部署项目。
 
 ////
-=== Register a unique network-wide identifier
+=== 注册唯一的网络范围标识符
 
-In the most common development workflow, you are assigned network-wide canister identifiers as part of the build process rather than before you have code ready to compile. 
+在最常见的开发工作流程中，在构建过程中为您分配网络范围的容器标识符，而不是在您准备好编译代码之前。
 
-Because this scenario is the most common, it is also the simplest. 
+因为这种场景是最常见的，也是最简单的。
 
-To register canister identifiers as part of the build process:
+要将容器标识符注册为构建过程的一部分：
 
-. Start the {IC} network, if necessary.
+. 如有必要，启动 {IC} 网络。
 +
-In most cases, this step is only necessary if you are using the local host as the {IC} network provider and have stopped the network locally.
-. Build the WebAssembly executable by running the following command:
+在大多数情况下，仅当您将本地主机用作 {IC} 网络提供程序并已在本地停止网络时，才需要执行此步骤。
+. 通过运行以下命令构建 WebAssembly 可执行文件：
 +
 [source,bash]
 ----
 dfx build
 ----
 
-== Generate interface bindings for a canister
+== 为容器生成接口绑定
 ////
 
 [[deploy-canister]]
-== Deploy canister smart contracts
+== 部署容器智能合约
 
-After you have compiled a program, you can install the compiled code in a canister smart contract running either on a local canister execution environment or on the {IC} blockchain.
+编译程序后，您可以将编译后的代码安装在容器智能合约中，该合约在本地容器执行环境或 {IC} 区块链上运行。
 
-The canister identifier that was created in advance or during the build process determines where your code is installed during deployment.
+预先或在构建过程中创建的容器标识符决定了您的代码在部署过程中的安装位置。
 
-To deploy the code for the first time:
+首次部署代码：
 
-. Open a new terminal and navigate to your project directory.
-. Start the local canister execution environment, if necessary.
+. 打开一个新终端并导航到您的项目目录。
+. 如有必要，启动本地容器执行环境。
 +
-In most cases, this step is only necessary if you are running the canisters locally.
+在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Verify you have canister identifiers for all of the canisters you want to deploy.
-. Deploy all of the canisters by running the following command:
+如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+. 验证您具有要部署的所有容器的容器标识符。
+. 通过运行以下命令部署所有容器：
 +
 [source,bash]
 ----
@@ -119,44 +118,44 @@ dfx canister install --all
 ----
 
 [[lookup-id]]
-== Look up a canister smart contract identifier
+== 查找容器智能合约标识符
 
-All canisters have unique identifiers.
-You often need to use these identifiers to interact with the canister.
-For example, if you want to access the front-end canister for a dapp or interact with a service using the Candid web interface, you must specify the appropriate canister identifier.
+所有容器都有唯一标识符。
+您经常需要使用这些标识符与容器交互。
+例如，如果您想访问 dapp 的前端容器或使用 Candid Web 界面与服务交互，则必须指定适当的容器标识符。
 
-Because the identifiers are specific to the environment where the canisters are deployed, the files used to store the information are in different directories.
-For example, identifiers for a canister deployed locally are located in the project's `+.dfx/local/canister_ids.json+` file.
+因为标识符特定于容器部署的环境，所以用于存储信息的文件位于不同的目录中。
+例如，本地部署的容器的标识符位于项目的 `+.dfx/local/canister_ids.json+` 文件中。
 
-You can look up the canister identifier for any specific canister by running the `+dfx canister id+` command.
-For example, to look up the the canister identifier for the `+lookup+` canister deployed on the local canister execution environment, you could run the following command:
+您可以通过运行 `+dfx canister id+` 命令来查找任何特定容器的容器标识符。
+例如，要查找部署在本地容器执行环境中的 `+lookup+` 容器的容器标识符，您可以运行以下命令：
 
 ....
 dfx canister id lookup
 ....
 
-To look up the canister identifier for the same canister deployed on the environment specified by the `+ic+` alias, you would run the following command:
+要查找部署在由 `+ic+` 别名指定的环境中的同一容器的容器标识符，您将运行以下命令：
 
 ....
 dfx canister --network=ic id lookup
 ....
 
 [[add-wallet]]
-== Add a wallet for existing canister smart contracts
+== 为现有的容器智能合约添加钱包
 
-When you are doing local development, creating a new project automatically creates a default wallet for you to use with the canisters in that project. If you want to add a wallet for projects with canisters that you have previously created, you can force `dfx` to generate one by taking a couple of manual steps.
+当您进行本地开发时，创建一个新项目会自动创建一个默认钱包，供您与该项目中的容器一起使用。 如果你想为之前创建的容器添加一个钱包，你可以通过几个手动步骤强制“dfx”生成一个。
 
-To add a wallet for use with an existing canister:
+要添加用于现有容器的钱包：
 
-. Open a terminal and navigate to your project directory.
-. Stop the local canister execution environment, if necessary, by running the following command:
+. 打开终端并导航到您的项目目录。
+. 如有必要，通过运行以下命令停止本地容器执行环境：
 +
 [source,bash]
 ----
 dfx stop
 ----
-. Delete the `+.dfx+` directory.
-. Start the local canister execution environment network by running the following command:
+. 删除`+.dfx+`目录。
+. 通过运行以下命令启动本地容器执行环境网络：
 +
 [source,bash]
 ----
@@ -164,74 +163,74 @@ dfx start --clean
 ----
 
 [[reinstall-canister]]
-== Reinstall a canister smart contract
+== 重新安装容器智能合约
 
-During the development cycle, you might want to install, then replace your program as you debug and improve it.
+在开发周期中，您可能希望安装，然后在调试和改进程序时替换您的程序。
 
-In this scenario, you might want to keep the canister identifier you have registered but without preserving any of the canister code or state.
-For example, your canister might only have test data that you don't want to keep or you might have decided to change the program altogether but want to reinstall under a canister identifier you used to install a previous program. 
+在这种情况下，您可能希望保留已注册的容器标识符，但不保留任何容器代码或状态。
+例如，您的容器可能只有您不想保留的测试数据，或者您可能已决定完全更改程序但想要在您用于安装先前程序的容器标识符下重新安装。
 
-To reinstall a canister:
+要重新安装容器：
 
-. Open a new terminal and navigate to your project directory.
-. Start the local canister execution environment, if necessary.
+. 打开一个新终端并导航到您的项目目录。
+. 如有必要，启动本地容器执行环境。
 +
-In most cases, this step is only necessary if you are running the canisters locally.
+在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Verify you have canister identifiers for all of the canisters you want to re-deploy.
-. Re-deploy all of the canisters by running the following command:
+如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+. 验证您具有要重新部署的所有容器的容器标识符。
+. 通过运行以下命令重新部署所有容器：
 +
 [source,bash]
 ----
 dfx canister install --all --mode reinstall
 ----
 
-Note that you can use the `+reinstall+` mode to replace any canister, regardless of whether the canister has code or state associated with it.
+请注意，您可以使用 `+reinstall+` 模式替换任何容器，无论容器是否具有与其关联的代码或状态。
 
 [[set-owner]]
-== Set an identity to own a canister smart contract
+== 设置身份以拥有容器智能合约
 
-In most cases, a `+default+` user identity is created for you automatically the first time you run the `+dfx canister create+` command.
-This default identity consists of the public and private key pair generated for your local user account. 
-Typically, this `+default+` identity is also the default owner of all of the projects you create and all of the canisters you deploy.
-You can, however, proactively create and use identities of your choice to circumvent the `+default+` user identity from being used.
+在大多数情况下，当您第一次运行 `+dfx canister create+` 命令时，会自动为您创建一个 `+default+` 用户身份。
+此默认身份由为您的本地用户帐户生成的公钥和私钥对组成。
+通常，这个 `+default+` 身份也是您创建的所有项目和部署的所有容器的默认所有者。
+但是，您可以主动创建和使用您选择的身份来规避“+default+”用户身份的使用。
 
-As an example, the following scenario illustrates creating a `+registered_owner+` identity that is then used to register, build, deploy, and call the `+pubs+` project.
+例如，以下场景说明了创建“+registered_owner+”身份，然后用于注册、构建、部署和调用“+pubs+”项目。
 
-To set an identity for a project:
+为项目设置标识：
 
-. Create a new project by running the following command:
+. 通过运行以下命令创建一个新项目：
 +
 [source,bash]
 ----
 dfx new pubs
 ----
-. Change to the project directory by running the following command:
+. 通过运行以下命令切换到项目目录：
 +
 [source,bash]
 ----
 cd pubs
 ----
-. Start the local canister execution environment in the background by running the following command:
+. 通过运行以下命令在后台启动本地容器执行环境：
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. Create a new `+registered_owner+` identity by running the following command:
+. 通过运行以下命令创建一个新的 `+registered_owner+` 身份：
 +
 [source,bash]
 ----
 dfx identity new registered_owner
 ----
-. Set the active user context to use the `+registered_owner+` identity by running the following command:
+. 通过运行以下命令将活动用户上下文设置为使用 `+registered_owner+` 身份：
 +
 [source,bash]
 ----
 dfx identity use registered_owner
 ----
-. Register, build, and deploy canisters for the project by running the following commands:
+. 通过运行以下命令为项目注册、构建和部署容器：
 +
 [source,bash]
 ----
@@ -240,8 +239,8 @@ dfx build --all
 dfx canister install --all
 ----
 +
-These commands run using the `+registered_owner+` identity, making that user the owner of the canisters deployed.
-. Call the `+greet+` function to verify a successful deployment by running the following command:
+这些命令使用 `+registered_owner+` 身份运行，使该用户成为部署的容器的所有者。
+. 通过运行以下命令调用 `+greet+` 函数以验证部署是否成功：
 +
 [source,bash]
 ---- 
@@ -249,94 +248,94 @@ dfx canister call pubs greet '("Sam")'
 ----
 
 [[running-state]]
-== Managing the running state of a canister smart contract
+== 管理容器智能合约的运行状态
 
-After you deploy a canister, it can begin receiving and processing requests from users and from other canisters.
-Canisters that are available to send requests and receive replies are considered in be in a **Running** state.
+部署容器后，它可以开始接收和处理来自用户和其他容器的请求。
+可用于发送请求和接收回复的容器被视为处于 **Running** 状态。
 
-Although canisters are normally placed in the Running state by default, there are cases where you might want to temporarily or permanently stop a canister.
-For example, you might want to stop a canister before upgrading it. 
-Stopping a canister helps to ensure proper handling of any messages that are in progress and need to either run to completion or be rolled back. 
-You might also want to stop a canister to clear its message queue cleanly as a prerequisite to deleting the canister.
+尽管默认情况下容器通常处于运行状态，但在某些情况下，您可能希望暂时或永久停止容器。
+例如，您可能希望在升级之前停止容器。
+停止容器有助于确保正确处理任何正在进行的并且需要运行完成或回滚的消息。
+作为删除容器的先决条件，您可能还希望停止容器以彻底清除其消息队列。
 
 // tag::check-status[]
-You can check the current status of all canisters or a specified canister by running the `+dfx canister status+` command.
-For example, to see the status for all canisters running on the local canister execution environment, you would run the following command:
+您可以通过运行 `+dfx canister status+` 命令查看所有容器或指定容器的当前状态。
+例如，要查看在本地容器执行环境中运行的所有容器的状态，您可以运行以下命令：
 
 [source,bash]
 ----
 dfx canister status --all
 ----
 
-This command returns output similar to the following if canisters are currently running:
+如果容器当前正在运行，此命令将返回类似于以下内容的输出：
 
-....
-Canister status_check's status is Running.
-Canister status_check_assets's status is Running.
+……
+容器 status_check 的状态为 Running。
+容器 status_check_assets 的状态为 Running。
 ....
 // end::check-status[]   
 
 // tag::stop-status[]
-You can stop canisters that are currently running by running the `+dfx canister stop+` command.
+您可以通过运行 `+dfx canister stop+` 命令停止当前正在运行的容器。
 
 [source,bash]
 ----
 dfx canister stop --all
 ----
 
-This command displays output similar to the following:
+此命令显示类似于以下内容的输出：
 
-....
-Stopping code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Stopping code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
+……
+容器状态检查的停止代码，容器 ID 为 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaaa-aaaaa-q
+容器 status_check_assets 的停止代码，带有 canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+……
 
-If you were to rerun the `+dfx canister status+` command, you might see a status of `+Stopped+` indicating that there were no pending messages that needed to processed or a status of `+Stopping+` indicating that there were messages in-flight that needed to be addressed.
+如果您要重新运行 `+dfx canister status+` 命令，您可能会看到状态为 `+Stopped+` 表示没有待处理的消息需要处理，或者状态为 `+Stopping+` 表示有消息在- 需要解决的航班。
 // end::stop-status[]
 
 // tag::restart-status[]
-To restart a canister-for example, after a successful canister upgrade—you can run the `+dfx canister start+` command.
-For example, to restart all of the canisters, you would run the following command:
+要重新启动容器（例如，在容器升级成功后），您可以运行 `+dfx canister start+` 命令。
+例如，要重新启动所有容器，您将运行以下命令：
 
 [source,bash]
 ----
 dfx canister start --all
 ----
 
-This command displays output similar to the following:
+此命令显示类似于以下内容的输出：
 
-....
-Starting code for canister status_check, with canister_id 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-Starting code for canister status_check_assets, with canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
-....
+……
+容器状态检查的起始代码，容器 ID 为 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
+容器 status_check_assets 的起始代码，带有 canister_id cxeji-wacaa-aaaaa-aaaaa-aaaaa-aaaaaa-aaaaa-q
+……
 // tag::restart-status[]
 
 [[upgrade-canister]]
-== Upgrade a canister smart contract
+== 升级容器智能合约
 
-Unlike a canister reinstall that preserves the canister identifier but no state, a canister upgrade enables you to preserve the state of a deployed canister, and change the code.
+与保留容器标识符但不保留状态的容器重新安装不同，容器升级使您能够保留已部署容器的状态并更改代码。
  
-For example, assume you have a dapp that manages professional profiles and social connections.
-If you want to add a new feature to the dapp, you need to be able to update the canister code without losing any of the previously-stored data.
-A canister upgrade enables you to update existing canister identifiers with program changes without losing the program state.
+例如，假设您有一个管理专业资料和社交关系的 dapp。
+如果您想向 dapp 添加新功能，您需要能够更新容器代码而不会丢失任何先前存储的数据。
+容器升级使您能够使用程序更改更新现有容器标识符，而不会丢失程序状态。
 
-NOTE: To preserve state when you are upgrading a canister written in {proglang}, be sure to use the `+stable+` keyword to identify the variables you want to preserve. For more information about preserving variable state in {proglang}, see link:../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods].
-If you are upgrading a canister written in Rust, you should use `+pre_upgrade+` and `+post_upgrade+` functions as illustrated in the link:https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage/src/asset_storage_rs/lib.rs[Rust CDK asset storage] example to ensure data is properly preserved after a canister upgrade.
+注意：要在升级用 {proglang} 编写的容器时保留状态，请务必使用 `+stable+` 关键字来标识要保留的变量。有关在 {proglang} 中保留变量状态的更多信息，请参阅link：../language-guide/upgrades{outfilesuffix}[稳定变量和升级方法]。
+如果你正在升级一个用 Rust 编写的容器，你应该使用 `+pre_upgrade+` 和 `+post_upgrade+` 函数，如链接所示link：https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage /src/asset_storage_rs/lib.rs[Rust CDK 资产存储] 示例，以确保在容器升级后正确保留数据。
 
-To upgrade a canister:
+要升级容器：
 
-. Open a new terminal and navigate to your project directory.
-. Start the local canister execution environment, if necessary.
+.打开一个新终端并导航到您的项目目录。
+.如有必要，启动本地容器执行环境。
 +
-In most cases, this step is only necessary if you are running the canisters locally.
+在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
-If you were registering canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Verify you have canister identifiers for all of the canisters you want to upgrade.
+如果您正在注册容器以在远程执行环境中运行，例如{IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+.验证您具有要升级的所有容器的容器标识符。
 +
-Note that your program must identify the variables for which to maintain state by using the `+stable+` keyword in the variable declaration.
+请注意，您的程序必须通过在变量声明中使用 `+stable+` 关键字来标识要为其维护状态的变量。
 +
-For more information about declaring stable variables, see the _{proglang} Programming Language Guide_.
-. Upgrade all of the canisters by running the following command:
+有关声明稳定变量的更多信息，请参阅_{proglang} 编程语言指南_。
+.通过运行以下命令升级所有容器：
 +
 [source,bash]
 ----
@@ -344,34 +343,34 @@ dfx canister install --all --mode upgrade
 ----
 
 [[delete-canister]]
-== Delete a canister smart contract
+== 删除容器智能合约
 
-If you want to permanently delete a specific canister or all canisters for a specific project on a given deployment (either local, or remote), you can do so by running the `+dfx canister delete+` command.
+如果要永久删除给定部署（本地或远程）上特定项目的特定容器或所有容器，可以通过运行`+dfx canister delete+` 命令来实现。
 
-Deleting a canister removes the canister identifier, code, and state.
-Before you can delete a canister, however, you must first stop the canister to clear any pending message requests or replies.
+删除容器会移除容器标识符、代码和状态。
+但是，在您可以删除容器之前，您必须先停止容器以清除任何待处理的消息请求或回复。
 
-To delete all canisters for a project:
+要删除项目的所有容器：
 
-. Open a new terminal and navigate to your project directory.
-. Start the local canister execution environment, if necessary.
+.打开一个新终端并导航到您的项目目录。
+.如有必要，启动本地容器执行环境。
 +
-In most cases, this step is only necessary if you are running the canisters locally.
+在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
-If you were deleting canisters to run on a remote execution environment, e.g. the {IC} blockchain, you would include the `+--network+` command-line option to perform tasks on the environment specified under this parameter.
-. Check the status of the project canisters running on the local canister execution environment by running the following command:
+如果您要删除容器以在远程执行环境中运行，例如{IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
+.通过运行以下命令检查在本地容器执行环境中运行的项目容器的状态：
 +
 [source,bash]
 ----
 dfx canister status --all
 ----
-. Stop all of the project canisters by running the following command:
+. 通过运行以下命令停止所有项目容器：
 +
 [source,bash]
 ----
 dfx canister stop --all
 ----
-. Delete all of the project canisters by running the following command:
+. 通过运行以下命令删除所有项目容器：
 +
 [source,bash]
 ----
@@ -380,8 +379,8 @@ dfx canister delete --all
 
 ////
 == Fork a canister
-<TBD - not in this release>
+<待定 - 不在此版本中>
 
-== Set the controller for a canister
-<TBD - not in this release>
+== 设置容器的控制器
+<待定 - 不在此版本中>
 ////

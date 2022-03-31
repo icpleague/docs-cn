@@ -1,40 +1,40 @@
-= Highlights of what's new in {release}
-:description: DFINITY Canister Software Development Kit Release Notes
+= {release} 中的新功能亮点
+:描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
 :IC: Internet Computer
 :company-id: DFINITY
 :release: 0.8.1
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-An overview of the {release} release:
+{release} 版本概述：
 
-- Adds a `dfx generate` command to generate types for code editors.
-- Adds support for anonymous identities.
-- Makes `dfx import` work with default identities.
-- Adds support for nonstandard wallet modules.
-- Improves performance of the asset canister to allow for storage of more and larger assets.
-- Updates to version 0.6.7 of Motoko.
+- 添加 `dfx generate` 命令为代码编辑器生成类型。
+- 添加对匿名身份的支持。
+- 使 `dfx import` 使用默认身份。
+- 添加对非标准钱包模块的支持。
+- 提高资产容器的性能，以允许存储更多和更大的资产。
+- 更新到 Motoko 0.6.7 版。
 
-== Changes to DFX
+== 对 DFX 的更改
 
-=== New command: dfx generate
+=== 新命令：dfx generate
 
 [source, bash]
 ----
 dfx generate
 ----
 
-This new command will generate type declarations for canisters in dfx.json.
+这个新命令将为 dfx.json 中的容器生成类型声明。
 
-You can control what will be generated and how with corresponding configuration in dfx.json.
+您可以使用 dfx.json 中的相应配置控制将生成什么以及如何生成。
 
-Under dfx.json → "canisters" → "<canister_name>", developers can add a "declarations" config. Options are:
+在 dfx.json → "canisters" → "<canister_name>" 下，开发人员可以添加“声明”配置。 选项是：
 
-* "output" → directory to place declarations for that canister | default is "src/declarations/<canister_name>"
+*“输出”→放置该容器声明的目录| 默认为“src/declarations/<canister_name>”
 
-* "bindings" → [] list of options, ("js", "ts", "did", "mo") | default is "js", "ts", "did"
+* "bindings" → [] 选项列表, ("js", "ts", "did", "mo") | 默认为 "js", "ts", "did"
 
-* "env_override" → a string that will replace process.env.{canister_name_uppercase}_CANISTER_ID in the "src/dfx/assets/language_bindings/canister.js" template.
+* "env_override" → 将替换 "src/dfx/assets/language_bindings/canister.js" 模板中的 process.env.{canister_name_uppercase}_CANISTER_ID 的字符串。
 
 js declarations output
 
@@ -54,9 +54,9 @@ mo declarations output
 
 * <canister_name>.mo - candid mo binding output
 
-=== New feature: dfx now supports the anonymous identity
+=== 新功能：dfx 现在支持匿名身份
 
-Use it with either of these forms:
+将其与以下任何一种形式一起使用：
 [source, bash]
 ----
 dfx identity use anonymous
@@ -77,17 +77,15 @@ cp ~/.config/dfx/identity/xxx/identity.pem alice.pem
 dfx identity import alice alice.pem
 ----
 
-Before, people could manually copy the pem files to the target directory to "import". That workaround still works.
-We suggest using the `import` subcommand since it also validate the private key.
+以前，人们可以手动将 pem 文件复制到目标目录以“导入”。 该解决方法仍然有效。
+我们建议使用 `import` 子命令，因为它也会验证私钥。
 
-=== New feature: Can now provide a nonstandard wallet module with DFX_WALLET_WASM environment variable
+=== 新功能：现在可以提供带有 DFX_WALLET_WASM 环境变量的非标准钱包模块
 
-Define DFX_WALLET_WASM in the environment to use a different wasm module when creating or upgrading the wallet.
+在环境中定义 DFX_WALLET_WASM 以在创建或升级钱包时使用不同的 wasm 模块。
 
-== Changes to the Asset Canister
+== 对资产容器的更改
 
-=== Performance improvement: trust full asset SHA-256 hashes provided by the caller
+=== 性能提升：信任调用者提供的全部资产 SHA-256 哈希
 
-When the caller provides SHA-256 hashes (which dfx does), the asset canister will no longer
-recompute these hashes when committing the changes.  These recomputations were causing
-canisters to run out of cycles, or to attempt to exceed the maximum cycle limit per update.
+当调用方提供 SHA-256 哈希（dfx 提供）时，资产容器在提交更改时将不再重新计算这些哈希。 这些重新计算导致容器用完周期，或试图超过每次更新的最大周期限制。
