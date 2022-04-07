@@ -4,7 +4,7 @@
 因此，容器可以拥有比特币公钥，即比特币地址，并签署比特币交易。
 
 为了简化这一点，https://dfinity.org/howitworks/direct-integration-with-bitcoin[Bitcoin integration] 允许容器直接访问比特币的 UTXO 集，并允许容器向比特币网络发送交易。
-这是通过子网的副本从各种比特币矿工那里提取最新块（并就当前的 UTXO 集达成共识）以及通过副本将由罐签名的交易发送到比特币网络来实现的。
+这是通过子网的副本从各种比特币矿工那里提取最新块（并就当前的 UTXO 集达成共识）以及通过副本将由容器签名的交易发送到比特币网络来实现的。
 请注意，这种与比特币区块链的直接集成不依赖于任何中间方，例如桥梁，因此不需要任何额外的信任假设。
 
 开发人员已经可以使用 IC 比特币 API 和开发人员预览版开始开发智能合约，其中包括 Rust 和 Motoko 中的 https://github.com/dfinity/bitcoin-developer-preview/tree/master/examples[示例项目]。 开发者预览版可以在本地运行以探索比特币 API。 在开发者预览版中，比特币网络被替换为单个本地运行的 https://bitcoin.org/en/full-node[bitcoin] 节点，用户可以完全控制该节点以进行智能合约测试。
@@ -22,11 +22,11 @@ Rust 和 Motoko 中的 https://github.com/dfinity/bitcoin-developer-preview/tree
 在开发者预览版中，比特币网络被替换为单个本地运行的 https://bitcoin.org/en/full-node[bitcoind] 节点，用户可以完全控制该节点以进行智能合约测试。
 ////
 
-注意：开发者预览版不支持与比特币主网或测试网的任何交互。
+注意:开发者预览版不支持与比特币主网或测试网的任何交互。
 
 集成的主要组件是*比特币容器*。 可以在此 https://github.com/dfinity/bitcoin-developer-preview[GitHub 存储库] 中找到其 API 的源代码和文档。
 
-注意：比特币功能将以_virtual canisters_的形式在互联网计算机上提供，类似于https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[管理容器]， 一旦该功能在 IC 主网上普遍可用。
+注意:比特币功能将以_virtual canisters_的形式在互联网计算机上提供，类似于https://smartcontracts.org/docs/interface-spec/index.html#ic-management-canister[管理容器]， 一旦该功能在 IC 主网上普遍可用。
 API 可能会略有变化，但预计在开发人员预览版和主网版本之间基本保持不变，因此稍后切换到主网版本时可能需要对容器代码进行少量代码调整。
 
 有关集成内部工作的更多信息，请参见 https://wiki.internetcomputer.org/wiki/Bitcoin_integration[比特币集成 wiki 页面]。

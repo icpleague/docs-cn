@@ -8,7 +8,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 {release} 版本主要包含支持尚未完成的新功能的更改，包括对 DFX 命令、{proglang}、{proglang} 基础库和 Candid 的修复和更新。
 
-最重要的新特性和功能是对以下内容的更新：
+最重要的新特性和功能是对以下内容的更新:
 
 * <<DFX,DFX>>
 * <<Motoko,Motoko>>
@@ -24,13 +24,13 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 打印与您选择的身份关联的帐户标识符，`dfx ledger transfer`
 允许您将 ICP 从您的分类帐帐户转移到另一个帐户，以及 `dfx ledger create-canister`
 允许您从 ICP 创建一个容器。
-有关 `+dfx ledger+` 子命令的更多信息，请参阅link：../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger]。
+有关 `+dfx ledger+` 子命令的更多信息，请参阅link:../developers-guide/cli-reference/dfx-ledger{outfilesuffix}[dfx ledger]。
 
 * 添加钱包子命令
 +
 `+dfx+` 现在支持专用的 `dfx wallet` 子命令。 这允许您与与您选择的身份相关联的燃料费钱包进行交互。
 +
-以下只是一些可用的命令：
+以下只是一些可用的命令:
 +
 ** `+dfx 钱包余额+` 返回所选身份的燃料费钱包余额。
 +
@@ -39,7 +39,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 你可以使用`dfx wallet send <destination> <amount>`
 将周期发送到另一个钱包。
 +
-有关 `+dfx wallet+` 的更多信息，请参阅link：../developers-guide/cli-reference/dfx-wallet{outfilesuffix}[dfx wallet]。
+有关 `+dfx wallet+` 的更多信息，请参阅link:../developers-guide/cli-reference/dfx-wallet{outfilesuffix}[dfx wallet]。
 
 * 在 `+request-status+` 子命令中添加输出类型。
 +
@@ -69,7 +69,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 * 新方法删除项目中不再存在的资产容器资产——*重大更改* 
 +
-不再支持 `+keys()+` 方法。 使用 `+list()+` 方法删除缺失的项目资产。 例如：
+不再支持 `+keys()+` 方法。 使用 `+list()+` 方法删除缺失的项目资产。 例如:
 +
 [source,bash]
 ----
@@ -86,7 +86,7 @@ assert_match '"/will-delete-this.txt"'
 * 您现在可以为运行 Darwin 的 M1 Mac 安装 DFINITY Canister SDK。
 * 允许将任何大小的资产上传到资产容器。
 +
-添加了以下资产容器调用方法：
+添加了以下资产容器调用方法:
 ** create_batch()
 ** create_chunk()
 ** commit_batch()
@@ -126,7 +126,7 @@ assert_match '"/will-delete-this.txt"'
 +
 此更改修复了删除网络上的容器会删除 `+canister_ids.json+` 文件中容器的所有其他条目的错误。
 
-* 错误消息：发出 dfx start 时已在使用中（操作系统错误 48）。
+* 错误消息:发出 dfx start 时已在使用中（操作系统错误 48）。
 +
 这修复了在停止副本后立即启动副本时发生的错误。
 

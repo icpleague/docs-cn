@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括以下功能领域的更新：
+最重要的新特性和功能包括以下功能领域的更新:
 
 * <<DFX,DFX>>
 * <<Candid,Candid>>
@@ -26,18 +26,18 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 +
 要在主 {IC} 网络上部署和管理应用程序，您必须向 {company-id} Foundation 提供与您的用户身份相关联的主体，并收到一个**钱包容器标识符**作为回报。
 +
-在 {IC} 网络上部署应用程序：
+在 {IC} 网络上部署应用程序:
 +
 --
 . 下载并安装 {sdk-short-name}。
-. 运行 `dfx identity get-principal` 命令以创建您的默认身份和主体：
+. 运行 `dfx identity get-principal` 命令以创建您的默认身份和主体:
 +
 [source,bash]
 ----
 dfx identity get-principal
 ----
 +
-运行该命令会显示类似于以下内容的输出：
+运行该命令会显示类似于以下内容的输出:
 +
 ....
 创建“默认”身份。
@@ -51,7 +51,7 @@ wre5u-xietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
 ----
 dfx identity set-wallet <wallet-canister-identifier>
 ----
-. 通过使用类似于以下的 URL 导航到容器，在 Web 浏览器中打开钱包应用程序：
+. 通过使用类似于以下的 URL 导航到容器，在 Web 浏览器中打开钱包应用程序:
 +
 ....
 https://<WALLET-CANISTER-ID>.ic0.app
@@ -65,26 +65,26 @@ https://<WALLET-CANISTER-ID>.ic0.app
 +
 您可以在本地运行 {IC} 网络或连接到当前的 `+ic+` 网络 (Sodium) 以进行测试时使用此选项。 但是，由于钱包和燃料费余额当前不用于您在连接到当前 `+ic+` 网络 (Sodium) 时创建的容器，因此 `+--with-cycles+` 选项不会影响任何容器操作。
 +
-例如，您可以运行以下 `+dfx canister create+` 命令为项目中的所有容器初始化 `+8000000000+` 燃料费：
+例如，您可以运行以下 `+dfx canister create+` 命令为项目中的所有容器初始化 `+8000000000+` 燃料费:
 +
 ....
 dfx canister create --with-cycles 8000000000 --all
 ....
 +
-如果使用 `+dfx deploy+`，您可以运行以下命令来为项目中的 `+backend+` 容器初始化 `+8000000000+` 燃料费：
+如果使用 `+dfx deploy+`，您可以运行以下命令来为项目中的 `+backend+` 容器初始化 `+8000000000+` 燃料费:
 +
 ....
 dfx deploy --with-cycles 8000000000 backend
 ....
 +
 
-注意：您必须在要在其中创建或部署其他容器的网络上有一个带有燃料费余额的钱包容器。
+注意:您必须在要在其中创建或部署其他容器的网络上有一个带有燃料费余额的钱包容器。
 
 * 您现在可以使用新的`+dfx toolchain+` 命令来管理用于项目的`+dfx+` 命令行界面的版本。
 +
 `+dfx toolchain+` 命令使您能够安装、卸载和设置您想要使用的 `dfx` 的默认版本。
 您可以通过完整版本号、主要和次要版本号或标记名称来指定版本。
-例如：
+例如:
 +
 ....
 dfx toolchain install 0.6.24 # complete version
@@ -94,13 +94,13 @@ dfx toolchain install latest # tag name
 
 * 一个新的 `+deploy-wallet+` 子命令使您能够为您的燃料费钱包 WebAssembly 模块 (WASM) 指定容器标识符。
 +
-例如，如果您拥有第三方交换提供商的帐户并收到钱包容器标识符，则可以运行类似于以下的命令来部署钱包并使用其燃料费进行开发：
+例如，如果您拥有第三方交换提供商的帐户并收到钱包容器标识符，则可以运行类似于以下的命令来部署钱包并使用其燃料费进行开发:
 +
 ....
 dfx identity deploy-wallet <canister-identifier>
 ....
 +
-注意：`+deploy-wallet+` 功能旨在用于未来的用例。 该命令仅在您收到钱包容器标识符作为将 ICP 令牌转换为燃料费的转移操作的一部分时才适用。
+注意:`+deploy-wallet+` 功能旨在用于未来的用例。 该命令仅在您收到钱包容器标识符作为将 ICP 令牌转换为燃料费的转移操作的一部分时才适用。
 此外，`+deploy-wallet+` 子命令**不适用于**当前版本的 {IC} 在本地或远程网络上运行。
 
 === Candid
@@ -127,7 +127,7 @@ dfx identity deploy-wallet <canister-identifier>
 +
 此更改的动机是最终弃用并删除`WordN` 类型。
 因此，不推荐使用 `WordN` 上的包装算术运算，并且它们的使用将打印警告。
-有关替换 Word 类型的信息，请参阅link：../language-guide/language-manual{outfilesuffix}#word-types[Word types]。
+有关替换 Word 类型的信息，请参阅link:../language-guide/language-manual{outfilesuffix}#word-types[Word types]。
 
 * 对于 `Blob` 类型的值 `x`，引入了对 blob `x.vals()` 元素的迭代器。
 它的工作方式类似于 `x.bytes()`，但将元素返回为 `Nat8` 类型。

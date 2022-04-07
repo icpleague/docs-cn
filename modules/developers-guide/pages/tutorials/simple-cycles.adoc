@@ -1,112 +1,112 @@
-= Accept cycles from a wallet
+= 从钱包接受燃料费
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-When you are doing local development, you can use the default wallet in your project to send cycles and check your cycle balance. 
-But what about the canister smart contracts that need to receive and use those cycles, e.g. to execute their functions and provide services to users?
-This tutorial provides a simple example to illustrate how you might add the functions to receive cycles and check your cycle balance to the default template program.
+在进行本地开发时，您可以使用项目中的默认钱包发送周期并检查您的周期余额。
+但是需要接收和使用这些周期的容器智能合约呢？ 执行其功能并向用户提供服务？
+本教程提供了一个简单的示例来说明如何将接收周期和检查周期余额的功能添加到默认模板程序中。
 
-This example consists of the following: 
+此示例包含以下内容:
 
-* The `+wallet_balance+` function enables you to check the current cycle balance for the canister.
-* The `+wallet_receive+` function enables the program to accept cycles that are sent to the canister.
-* The `+greet+` function accepts a text argument and displays a greeting in a terminal.
-* The `+owner+` function returns the principal used by the message caller.
+* `+wallet_balance+` 功能使您可以检查容器的当前循环余额。
+* `+wallet_receive+` 函数使程序能够接受发送到容器的周期。
+* `+greet+` 函数接受文本参数并在终端中显示问候语。
+* `+owner+` 函数返回消息调用者使用的主体。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
 
-* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+* 如果您使用 Visual，您已按照链接中所述为 {proglang} 安装 Visual Studio Code 插件:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件] Studio Code 作为您的 IDE。
 
-* You have stopped any local canister execution environment running on the local
-computer.
+* 您已停止在本地运行的任何本地容器执行环境
+计算机。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project directory for testing access control and switching user identities:
+创建一个新的项目目录来测试访问控制和切换用户身份:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Create a new project by running the following command:
+. 如果您还没有打开一个终端shell，请在您的本地计算机上打开一个终端外壳。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new cycles_hello
 ----
-. Change to your project directory by running the following command:
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd cycles_hello
 ----
 
-== Modify the default program
+== 修改默认程序
 
-For this tutorial, you are going to modify the template source code to include new functions for accepting cycles and checking the cycle balance.
+对于本教程，您将修改模板源代码以包含用于接受周期和检查周期平衡的新函数。
 
-To modify the default program:
+修改默认程序:
 
-. Open the `+src/cycles_hello/main.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the file:
+. 在文本编辑器中打开 `+src/cycles_hello/main.mo+` 文件并删除现有内容。
+. 将以下示例代码复制并粘贴到文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$cycles-main.mo[]
 ----
 +
-Let's take a look at a few key elements of this program:
+让我们来看看这个程序的几个关键元素:
 +
 --
-* The program imports a Motoko base library—`+ExperimentalCycles+`—that provides basic functions for working with cycles. 
-* The program uses an `+actor class+` instead of a single actor so that it can have multiple actor instances to accept different cycle amounts up to a `capacity` for all instances.
-* The `+capacity+` is passed as an argument to the actor class.
-* The `+msg.caller+` identifies the principal associated with the call.
+* 该程序导入了一个 Motoko 基础库——`+ExperimentalCycles+`——它提供了使用循环的基本函数。
+* 该程序使用`+actor class+`而不是单个actor，因此它可以有多个actor实例来接受不同的循环量，直到所有实例的`容量`。
+* `+capacity+` 作为参数传递给actor类。
+* `+msg.caller+` 标识与调用关联的主体。
 --
-. Save your changes and close the `+main.mo+` file to continue.
+. 保存更改并关闭 `+main.mo+` 文件以继续。
 
-== Start the local canister execution environment
+== 启动本地容器执行环境
 
-Before you can build the `+access_hello+` project, you need to connect to the canister execution environment running locally in your development environment, or you need to connect to a subnet that you can access.
+在构建 `+access_hello+` 项目之前，您需要连接到在您的开发环境中本地运行的容器执行环境，或者您需要连接到您可以访问的子网。
 
-To start the local canister execution environment:
+启动本地容器执行环境:
 
 [arabic]
-. Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
-. Start the local canister execution environment on your machine by running the following command:
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 如有必要，导航到项目的根目录。
+. 通过运行以下命令在您的机器上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --clean --background
 ----
 +
-After the local canister execution environment completes its startup operations, you can continue to the next step.
+本地容器执行环境完成启动操作后，可以继续下一步。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
+连接到本地容器执行环境后，您可以在本地注册、构建和部署 dapp。
 
-To deploy the dapp locally:
+要在本地部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your dapp by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令注册、构建和部署您的 dapp:
 +
 [source,bash]
 ----
 dfx deploy --argument '(360000000000)'
 ----
 +
-This example sets the `+capacity+` for the canister to 360,000,000,000 cycles.
-The `+dfx deploy+` command output then displays information about the operations it performs, including the identity associated with the wallet canister created for this local project and the wallet canister identifier.
+此示例将容器的“+容量+”设置为 360,000,000,000 次循环。
+然后，`+dfx deploy+` 命令输出会显示有关它执行的操作的信息，包括与为此本地项目创建的钱包容器相关联的身份和钱包容器标识符。
 +
-For example:
+例如:
 +
 ....
 Deploying all canisters.
@@ -129,79 +129,79 @@ Uploading assets to asset canister...
 Deployed canisters.
 ....
 
-== Test the dapp
+== 测试 dapp
 
-After you have deployed the dapp on your local canister execution environment, you can experiment with the wallet functions and test your program by using `+dfx canister call+` commands.
+在本地容器执行环境中部署 dapp 后，您可以使用 `+dfx canister call+` 命令试验钱包功能并测试您的程序。
 
-To test the dapp:
+测试 dapp:
 
-. Check the principal for the `+default+` user identity by running the following command:
+. 通过运行以下命令检查主体的“+default+”用户身份:
 +
 [source,bash]
 ----
 dfx canister call cycles_hello owner
 ----
 +
-The command displays output similar to the following for the current identity:
+该命令针对当前身份显示类似于以下内容的输出:
 +
 ....
 (principal "g3jww-sbmtm-gxsag-4mecu-72yc4-kef5v-euixq-og2kd-sav2v-p2sb3-pae")
 ....
 +
-If you haven't made changes to the identity you were using to run the `+dfx deploy+` command, you should get the same principal by running the `+dfx identity get-principal+` command.
-This is important because you must be the owner of the wallet canister to perform certain tasks such as sending cycles or granting other *custodian* identities permission to send cycles. 
-. Check the initial wallet cycle balance by running the following command:
+如果您没有更改用于运行 `+dfx deploy+` 命令的身份，则应该通过运行 `+dfx identity get-principal+` 命令获得相同的主体。
+这很重要，因为您必须是钱包容器的所有者才能执行某些任务，例如发送燃料费或授予其他 *保管人* 身份发送周期的权限。
+. 通过运行以下命令检查初始钱包燃料费余额:
 +
 [source,bash]
 ----
 dfx canister call cycles_hello wallet_balance
 ----
 +
-You haven't sent any cycles to the canister, so the command displays the following balance:
+您尚未向容器发送任何周期，因此该命令显示以下余额:
 +
 ....
 (0)
 ....
-. Send some cycles from your default wallet canister to the `+cycles_hello+` canister using the canister principal by running a command similar to the following:
+. 通过运行类似于以下的命令，使用容器主体将一些周期从您的默认钱包容器发送到 `+cycles_hello+` 容器:
 +
 [source,bash]
 ----
 dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_send '(record { canister = principal "rrkah-fqaaa-aaaaa-aaaaq-cai"; amount = (256000000000:nat64); } )'
 ----
-. Call the `+wallet_balance+` function to see that the `cycles_hello` canister has the number of cycles you transferred, if you specified an amount under the allowed capacity, or the `capacity` you specified when you ran the `dfx deploy` command.
+. 调用 `+wallet_balance+` 函数以查看 `cycles_hello` 容器是否具有您转移的周期数，如果您指定的数量低于允许的容量，或者您在运行 `dfx deploy` 命令时指定的 `容量`。
 +
 [source,bash]
 ----
 dfx canister call cycles_hello wallet_balance
 ----
 +
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出:
 +
 ....
 (256_000_000_000)
 ....
-. Call the `+wallet_balance+` function to see the number of cycles in your default wallet by running a command similar to the following:
+. 调用 `+wallet_balance+` 函数，通过运行类似于以下的命令来查看默认钱包中的周期数:
 +
 [source,bash]
 ----
 dfx canister call rwlgt-iiaaa-aaaaa-aaaaa-cai wallet_balance
 ----
 +
-The command returns the balance for the wallet canister identifier you specified as a record using Candid format.
-For example, the command might display a record with an `+amount+` field (represented by the hash `+3_573_748_184+`) and a balance of 97,738,624,621,042 cycles like this:
+该命令使用 Candid 格式返回您指定为记录的钱包容器标识符的余额。
+例如，该命令可能会显示一条带有“+amount+”字段（由哈希“+3_573_748_184+”表示）和余额为 97,738,624,621,042 个燃料费的记录，如下所示:
 +
 ....
 (record { 3_573_748_184 = 97_738_624_621_042 })
 ....
 +
-For this simple tutorial, cycles are only consumed from the balance in the default wallet canister, not from the `+cycles_hello+` canister.
-. Call the `+greet+` function by running a command similar to the following:
+对于这个简单的教程，燃料费仅从默认钱包容器中的余额消耗，而不是从 `+cycles_hello+` 容器中消耗。
+. 通过运行类似于以下的命令调用 `+greet+` 函数:
 +
 [source,bash]
 ----
 dfx canister call cycles_hello greet '("from DFINITY")'
 ----
-. Rerun the call to the `+wallet_balance+` function to see the number of cycles deducted from your default wallet:
+. 重新调用 `+wallet_balance+` 函数以查看从您的默认钱包中扣除的燃料费数:
 +
 [source,bash]
 ----
@@ -214,24 +214,24 @@ For example, you might a result similar to this:
 (record { 3_573_748_184 = 97_638_622_179_500 })
 ....
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with the program, you can stop the local canister execution environment  so that it doesn't continue running in the background.
+完成对程序的试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local canister execution environment:
+要停止本地容器执行环境:
 
-. In the terminal that displays the operations, press Control-C to interrupt the process.
+. 在显示操作的终端中，按 Control-C 中断该过程。
 
-. Stop the local canister execution environment by running the following command:
+. 通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----
 dfx stop
 ----
 
-== Want to learn more?
+== 想了解更多？
 
-If you are looking for more information about working with cycles, check out the following related resources:
+如果您正在寻找有关使用循环的更多信息，请查看以下相关资源:
 
 * link:../concepts/tokens-cycles{outfilesuffix}[Tokens and cycles (overview)]
 * link:../cli-reference/dfx-identity{outfilesuffix}[dfx identity (command reference)]

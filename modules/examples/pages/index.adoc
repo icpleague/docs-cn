@@ -7,14 +7,14 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 [[示例代码介绍]]
-看看下面的一些示例 dapp，看看在 IC 上构建的可能性。 所有示例和其他项目都可以在 https://github.com/dfinity/examples[Samples repo] 中找到。 其他资源可以在 https://github.com/dfinity/awesome-dfinity[Awesome Dfinity repo]（我们社区的一组精选开源项目和示例）或链接中找到：./hackathon-projects.html 【黑客马拉松项目】！
+看看下面的一些示例 dapp，看看在 IC 上构建的可能性。 所有示例和其他项目都可以在 https://github.com/dfinity/examples[Samples repo] 中找到。 其他资源可以在 https://github.com/dfinity/awesome-dfinity[Awesome Dfinity repo]（我们社区的一组精选开源项目和示例）或链接中找到:./hackathon-projects.html 【黑客马拉松项目】！
 
 _hello world_ 的 dapp 等价物，具有单独的后端和前端容器服务于网页。 +
 https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] • https://github.com/dfinity/examples/tree/master/rust/hello[Rust] • https:// 6lqbm-ryaaa-aaaai-qibsa-cai.ic0.app/[查看运行] • link:hello{outfilesuffix}[技术文档]
 
 === 静态网站
 本教程展示了如何快速设置静态网站结构、添加内容和基本样式以及部署到 IC。 +
-link：host-a-website{outfilesuffix}[技术文档] • https://www.youtube.com/watch?v=JAQ1dkFvfPI[视频指南]
+link:host-a-website{outfilesuffix}[技术文档] • https://www.youtube.com/watch?v=JAQ1dkFvfPI[视频指南]
 
 === 基本 DEX
 要在 IC 上启用 DEFI 应用程序，容器需要与令牌容器和分类帐容器交互。 此示例 dapp 通过展示如何使交易所能够托管资金、在用户交易时更新内部余额簿以及在提取资金时将托管权交还给用户来说明这些交互。 +
@@ -29,13 +29,13 @@ https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust] 
 https://github.com/dfinity/examples/tree/master/motoko/basic_dao[Motoko] • https://github.com/dfinity/examples/tree/master/rust/basic_dao[Rust] • link:dao{ outfilesuffix}[技术文档]
 
 === 加密笔记
-使用 https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] 服务和端到端加密从多个设备创建/访问/修改机密笔记。示例代码依赖于 IC 的 _web-serving_ 和 _storage 功能_，并突出了两个关键功能：(1) 客户端、端到端加密和 (2) 多用户和多设备支持。 +
+使用 https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity] 服务和端到端加密从多个设备创建/访问/修改机密笔记。示例代码依赖于 IC 的 _web-serving_ 和 _storage 功能_，并突出了两个关键功能:(1) 客户端、端到端加密和 (2) 多用户和多设备支持。 +
 https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_motoko[Motoko] •
-https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[参见运行] • link：加密注释{outfilesuffix}[技术文档]
+https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp/src/encrypted_notes_rust[Rust] • https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[参见运行] • link:加密注释{outfilesuffix}[技术文档]
 
 === 代币转移
 此示例代码演示了 dapp 如何将代币转移给其最活跃的用户。 +
-https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link： tokentransfer{outfilesuffix}[技术文档]
+https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] • https://github.com/dfinity/examples/tree/master/rust/tokens_transfer[Rust] • link:tokentransfer{outfilesuffix}[技术文档]
 
 
 == 在 Motoko 中探索更多示例
@@ -47,7 +47,7 @@ https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] �
 
 这是基本入门 Motoko 示例的集合，展示了 IC 和 Motoko 语言的基本概念。
 
-- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[Actor_reference] 将 IC 管理罐显示为演员（参考）。
+- https://github.com/dfinity/examples/tree/master/motoko/actor_reference[Actor_reference] 将 IC 管理容器显示为actor（参考）。
 - https://github.com/dfinity/examples/tree/master/motoko/counter[Counter] 展示了一个基本的（稳定的）变量演示。
 - https://github.com/dfinity/examples/tree/master/motoko/echo[Echo] 给出了一个基本的查询功能演示。
 - https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial] 展示了一个基本的阶乘演示。
@@ -61,7 +61,7 @@ https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] �
 - https://github.com/dfinity/examples/tree/master/motoko/classes[Classes] 显示了一个动态参与者（类）实例化。
 - https://github.com/dfinity/examples/tree/master/motoko/pub-sub[Pub-sub] 显示多个容器，以及发布者-订阅者容器间调用。
 - https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] 展示了如何在 Motoko 中通过快速排序对数组进行排序。
-- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple-to-do] 是一个类似 CRUD 的演示服务，没有前端； 另见：电话簿和超级英雄。
+- https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[Simple-to-do] 是一个类似 CRUD 的演示服务，没有前端； 另见:电话簿和超级英雄。
 - https://github.com/dfinity/examples/tree/master/motoko/calc[Calc] 是计数器演示的更高级版本。
 
 === 最小的前端
@@ -84,7 +84,7 @@ https://github.com/dfinity/examples/tree/master/motoko/ledger-transfer[Motoko] �
 [[motoko-advanced]]
 === 高级
 
-由社区提供的大型样本，不一定是最新的：
+由社区提供的大型样本，不一定是最新的:
 
 - https://github.com/ninegua/reversi[Reversi] 附带 https://ninegua.github.io/reversi[博客文章]。
 

@@ -1,34 +1,34 @@
-= Reproducible Canister Builds
-:IC: Internet Computer
+= 可重复的容器构建
+:IC: 互联网计算机
 
-Thanks to its consensus protocol, the {IC} always runs canisters' code correctly.
-But this doesn't mean that it's running the _correct_ code for a canister.
-If you are using a canister somebody else developed, you may want to verify that the canister is indeed running some intended code before giving it control to make important decision for you, e.g., sending your ICP to a canister smart contract.
-Verifying this requires answering two questions:
+由于其共识协议，{IC} 始终正确运行容器的代码。
+但这并不意味着它正在运行容器的_correct_ 代码。
+如果您使用的是其他人开发的容器，您可能需要验证容器是否确实在运行某些预期代码，然后才能控制它为您做出重要决定，例如，将您的 ICP 发送到容器智能合约。
+验证这一点需要回答两个问题:
 
-. Which WebAssembly (Wasm) code is being executed for a canister? 
-. The canisters are normally written in a higher-level language, such as Motoko or Rust, and not directly in Wasm.
-   The second question is then: is the Wasm that's running really the result of compiling the purported source code? 
+. 正在为容器执行哪个 WebAssembly (Wasm) 代码？
+. 这些容器通常是用更高级的语言编写的，例如 Motoko 或 Rust，而不是直接用 Wasm 编写。
+   第二个问题是:正在运行的 Wasm 真的是编译声称的源代码的结果吗？
 
-The rest of the document answers these questions.
-For the first question, we will see how the {IC} provides information about canister code.
-To be able to answer the second question, canister authors should ensure trusted and 
-https://reproducible-builds.org/docs/definition/[reproducible builds] of the Wasm code from the source.
-Such builds allow anyone to follow the same steps as the canister authors and yield the exact same Wasm code,
-which can then be compared to the Wasm code executing in the canister on the {IC}.
+文档的其余部分回答了这些问题。
+对于第一个问题，我们将了解 {IC} 如何提供有关容器代码的信息。
+为了能够回答第二个问题，容器作者应确保可信且 
+https://reproducible-builds.org/docs/definition/[reproducible builds] 来自源代码的 Wasm 代码。
+这样的构建允许任何人遵循与容器作者相同的步骤并产生完全相同的 Wasm 代码，
+然后可以将其与 {IC} 上的容器中执行的 Wasm 代码进行比较。
 
-The impatient reader who is familiar with the topic of reproducible builds can skip straight to the <<repro-build-summary,summary>>.
+熟悉可重现构建主题的不耐烦的读者可以直接跳到<<repro-build-summary,summary>>。
 
-== Finding out which canister code the {IC} is executing
+== 找出 {IC} 正在执行的容器代码
 
-{IC} does not allow you to access the Wasm code of an arbitrary canister.
-This is a design decision, as developers might want to keep some code private.
-However, the {IC} does allow you to access the SHA-256 of the Wasm code of a canister.
+{IC} 不允许您访问任意容器的 Wasm 代码。
+这是一个设计决策，因为开发人员可能希望将某些代码保密。
+但是，{IC} 确实允许您访问容器 Wasm 代码的 SHA-256。
 
-To obtain this hash, you must first note the principal of the {IC} canister whose code you want to check.
-For example, assume we're interested in the code of the Internet Identity canister, whose principal is `rdmx6-jaaaa-aaaaa-aaadq-cai`.
-Then, the easiest way to access this service is using the https://dfinity.org/developers/[`dfx`] tool from the terminal.
-Open your terminal, and run:
+要获取此哈希，您必须首先记下要检查其代码的 {IC} 容器的主体。
+例如，假设我们对 Internet Identity 容器的代码感兴趣，其主体是“rdmx6-jaaaa-aaaaa-aaadq-cai”。
+然后，访问此服务的最简单方法是从终端使用 https://dfinity.org/developers/[`dfx`] 工具。
+打开你的终端，然后运行:
 
 ----
 $ dfx canister --network ic info rdmx6-jaaaa-aaaaa-aaadq-cai
@@ -36,57 +36,57 @@ Controller: r7inp-6aaaa-aaaaa-aaabq-cai
 Module hash: 0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4
 ----
 
-NOTE: If you are running an older version of `dfx`, you will need to run this command from a directory that contains a valid `dfx.json` file.
-If you don't have such a directory, you can create it using `dfx new`.
+注意:如果您正在运行旧版本的“dfx”，则需要从包含有效“dfx.json”文件的目录中运行此命令。
+如果您没有这样的目录，您可以使用 `dfx new` 创建它。
 
-Here, the {IC} tells us that the hash of the Wasm module of the `rdmx6-jaaaa-aaaaa-aaadq-cai` canister (which happens to be the Internet Identity canister) is `0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4`.
+在这里，{IC} 告诉我们“rdmx6-jaaaa-aaaaa-aaadq-cai”容器（恰好是 Internet 身份容器）的 Wasm 模块的哈希是“0xda8d1bdd93fbf1edddeb2a423fa3c528c2e4877d39beed2277a12e60227e44d4”。
 
-CAUTION: The check above provides you the _current_ hash of the canister's Wasm module, but the _controllers_ of an {IC} canister may change the code at any time (e.g., to upgrade a canister). However, if the list of controllers is empty, you know that the canister is immutable since nobody has the power to change the code.
+注意:上面的检查为您提供了容器 Wasm 模块的 _current_ 哈希值，但 {IC} 容器的 _controllers_ 可能随时更改代码（例如，升级容器）。 但是，如果控制器列表为空，则您知道容器是不可变的，因为没有人有权更改代码。
 
-Armed with this hash, you can next check whether it corresponds to some given source code.
-This only works if the build process for the code is reproducible.
+有了这个散列，您接下来可以检查它是否对应于某些给定的源代码。
+这仅在代码的构建过程是可重现的情况下才有效。
 
-== Reproducible builds
+== 可重现的构建
 
-As a canister author, there are a few things you have to provide to your users to allow them to reproduce your build:
+作为容器作者，您必须向用户提供一些东西以允许他们重现您的构建:
 
-* The same source code that you used to create the Wasm module for the canister.
-* Instructions on how to recreate your build environment.
-* Instructions on how to repeat the process of building the Wasm from the source code.
-  Crucially, the process must be deterministic, to ensure that it results in the exact same Wasm.
-  It also has to be trusted, such that the user can be convinced that the Wasm is a faithful translation of the source code, and not an artifact of a malicious build tool.
+* 用于为容器创建 Wasm 模块的源代码相同。
+* 有关如何重新创建构建环境的说明。
+* 有关如何从源代码重复构建 Wasm 的过程的说明。
+   至关重要的是，该过程必须是确定性的，以确保它产生完全相同的 Wasm。
+   它还必须是可信的，这样用户才能确信 Wasm 是源代码的忠实翻译，而不是恶意构建工具的产物。
 
-We next look at each of these points in more detail.
+接下来，我们将更详细地研究这些要点。
 
-=== Providing source code
+=== 提供源代码
 
-Typically, you will version your code in `git` or some other version control system, and your versioned code may be available in a public repository, e.g., GitHub.
-In this case, you should note the particular commit that you used when producing the code to be deployed to the {IC}, and communicate it to the users who are trying to verify your canister.
-Alternatively, you can also provide a package (e.g., a zip file or a tarball) containing the source code you used to build your canister.
+通常，您将在 `git` 或其他版本控制系统中对代码进行版本控制，并且您的版本控制代码可能在公共存储库中可用，例如 GitHub。
+在这种情况下，您应该注意在生成要部署到 {IC} 的代码时使用的特定提交，并将其传达给尝试验证您的容器的用户。
+或者，您也可以提供一个包（例如，zip 文件或 tarball），其中包含您用于构建容器的源代码。
 
-=== Reproducing build environments
+=== 重现构建环境
 
-Before building your code, you should document the build environment you are using in detail.
-In particular, for the languages supported by the {IC} SDK:
+在构建代码之前，您应该详细记录您正在使用的构建环境。
+特别是对于 {IC} SDK 支持的语言:
 
-* Note down the operating system and its version you are using to build your canister.
-* If you are using `dfx`, note the version used, as specified in `dfx.json`. You can install arbitrary versions
-  of `dfx` using `dfx toolchain install <version>`, or by running the installation script with the `DFX_VERSION`
-  environment variable set to the desired version.
-* If you are building Motoko code in a way other than `dfx build`, note the version of `moc` you are using.
-* If you are building Rust, note the version of `cargo` you are using.
-* If you are using Node.js and/or `webpack` for frontend development, note their versions.
-* If your build process depends on any environment variables (such as the time zone or locale), note them down.
+* 记下您用于构建容器的操作系统及其版本。
+* 如果您使用的是 `dfx`，请注意使用的版本，如 `dfx.json` 中指定的那样。 您可以安装任意版本
+   使用 `dfx toolchain install <version>` 或使用 `DFX_VERSION` 运行安装脚本
+   环境变量设置为所需的版本。
+* 如果您以 `dfx build` 以外的方式构建 Motoko 代码，请注意您正在使用的 `moc` 版本。
+* 如果您正在构建 Rust，请注意您正在使用的 `cargo` 版本。
+* 如果您使用 Node.js 和/或 `webpack` 进行前端开发，请注意它们的版本。
+* 如果您的构建过程依赖于任何环境变量（例如时区或语言环境），请记下它们。
 
-You should communicate all of these to your user in the instructions.
-Ideally, do so by providing an executable recipe to recreate the build environment, using tools such as Docker or Nix.
-We recommend using Docker, as this allows you to also pinpoint the operating system used for building the software.
+您应该在说明中将所有这些信息传达给您的用户。
+理想情况下，通过使用 Docker 或 Nix 等工具提供一个可执行的配方来重新创建构建环境。
+我们建议使用 Docker，因为这还可以让您确定用于构建软件的操作系统。
 
-=== Build environments using Docker
+=== 使用 Docker 构建环境
 
-https://docs.docker.com/[Docker containers] are a popular solution for providing build environments.
-You can use a `Dockerfile` such as the following to provide the user with a particular version of the operating system,
-as well as `dfx`, Node.js and the Rust toolchain.
+https://docs.docker.com/[Docker 容器] 是提供构建环境的流行解决方案。
+您可以使用如下所示的 `Dockerfile` 为用户提供特定版本的操作系统，
+以及 `dfx`、Node.js 和 Rust 工具链。
 
 ----
 FROM ubuntu:20.10
@@ -126,81 +126,81 @@ COPY . /canister
 WORKDIR /canister
 ----
 
-There are a couple of things worth noting about this `Dockerfile`:
+关于这个 `Dockerfile` 有几点值得注意:
 
-* It starts from an official Docker image. Furthermore, all the installed tools are standard, 
-  and come from standard sources. 
-  This provides the user with confidence that the build environment hasn't been tampered with, and thus that 
-  the build process using Docker can be trusted.
-* To ensure that specific versions of the build tools are installed, it installs them directly, rather than 
-  through `apt` (the package manager of Ubuntu, the Linux distribution running inside of the container). 
-  Such package managers usually don't provide a way of pinning the build tools to specific versions.
+* 它从一个官方的 Docker 镜像开始。 此外，所有安装的工具都是标准的，
+   来自标准来源。
+   这使用户确信构建环境没有被篡改，因此
+   使用 Docker 的构建过程是可以信任的。
+* 为确保安装了特定版本的构建工具，它直接安装它们，而不是
+   通过 `apt`（Ubuntu 的包管理器，在容器内运行的 Linux 发行版）。
+   这样的包管理器通常不提供将构建工具固定到特定版本的方法。
 
-To use this `Dockerfile`, get Docker https://docs.docker.com[up and running], place the `Dockerfile` in the project directory 
-of your canister, and create the Docker container by running:
+要使用这个 `Dockerfile`，请获取 Docker https://docs.docker.com[up and running]，将 `Dockerfile` 放在项目目录中
+您的容器，并通过运行以下命令创建 Docker 容器:
 ----
 $ docker build -t mycanister .
 ----
 
-This creates a Docker container image called `mycanister`, with Node.js, Rust and `dfx` installed in it, and your canister source code
-copied to `/canister` (recall that you should invoke `docker build` from the canister project directory).
-You can then enter an interactive shell inside of your container by running:
+这将创建一个名为“mycanister”的 Docker 容器映像，其中安装了 Node.js、Rust 和“dfx”，以及您的容器源代码
+复制到`/canister`（记得你应该从canister项目目录调用`docker build`）。
+然后，您可以通过运行以下命令进入容器内的交互式 shell:
 ----
 docker run -it --rm mycanister
 ----
 
-From here, you can experiment with the steps needed to build your canister.
-Once you are confident that the steps are deterministic, you can also put them in the `Dockerfile`, 
-to allow the user to automatically reproduce your build when creating the canister.
-You can see an example in the https://github.com/dfinity/internet-identity/blob/397d0087a29855564c47f0fd3323f60b5b67a8fa/Dockerfile[Dockerfile of the Internet Identity canister].
-Next, we will investigate what is necessary to make the build deterministic.
+从这里，您可以尝试构建您的容器所需的步骤。
+一旦你确信这些步骤是确定性的，你也可以把它们放在`Dockerfile`中，
+允许用户在创建容器时自动复制您的构建。
+您可以在 https://github.com/dfinity/internet-identity/blob/397d0087a29855564c47f0fd3323f60b5b67a8fa/Dockerfile[互联网身份容器的 Dockerfile] 中查看示例。
+接下来，我们将研究使构建具有确定性所需的条件。
 
-=== Ensuring the determinism of the build process
+=== 确保构建过程的确定性
 
-For the build process to be deterministic:
+为了使构建过程具有确定性:
 
-.  You will need to ensure that any dependencies of your canister are always resolved in the same way.
-   Most build tools now support a way of pinning dependencies to a particular version.
+. 您将需要确保您的容器的任何依赖项始终以相同的方式解决。
+   大多数构建工具现在支持将依赖项固定到特定版本的方式。
 
-   * For `npm`, running `npm install` will create a `package-lock.json` file with some fixed versions of all 
-     transitive dependencies of your project that satisfy the requirements specified in your `package.json`.
-     However, `npm install` will overwrite the `package-lock.json` file every time it is invoked.
-     Thus, once you are ready to create the final version of your canister, run `npm install` only once.
-     After that, commit `package-lock.json` to your version control system.
-     Finally, when checking the build for reproducibility, use `npm ci` instead of `npm install`.
+   * 对于 `npm`，运行 `npm install` 将创建一个 `package-lock.json` 文件，其中包含项目的所有
+      传递依赖项的一些固定版本，以满足 `package.json` 中指定的要求。
+      但是，`npm install` 会在每次调用时覆盖 `package-lock.json` 文件。
+      因此，一旦您准备好创建容器的最终版本，只需运行一次“npm install”。
+      之后，将 `package-lock.json` 提交到您的版本控制系统。
+      最后，在检查构建的可重复性时，使用 `npm ci` 而不是 `npm install`。
 
-   * For Rust code, Cargo will automatically generate a `Cargo.lock` file with the fixed versions of
-     your (transitive) dependencies.
-     Like with `package-lock.json`, you should commit this file to your version control system once you
-     are ready to produce the final version of your canister.
-     Furthermore, Cargo by default ignores the locked versions of dependencies.
-     Pass the `--locked` flag to the `cargo` command to ensure that the locked dependencies are used.
+   * 对于 Rust 代码，Cargo 会自动生成一个带有固定版本的 `Cargo.lock` 文件
+      您的（传递）依赖项。
+      与 `package-lock.json` 一样，您应该将此文件提交到您的版本控制系统。
+      准备好生产您的容器的最终版本。
+      此外，默认情况下，Cargo 会忽略依赖项的锁定版本。
+      将 `--locked` 标志传递给 `cargo` 命令以确保使用锁定的依赖项。
 
-   * You have to allocate canister IDs in advance, as canisters refer to each other by their IDs.
+   * 您必须提前分配容器 ID，因为容器通过其 ID 相互引用。
 
-.  Your own build scripts must not introduce non-determinism.
-   Obvious sources of non-determinism include randomness, timestamps, concurrency, or code obfuscators.
-   Less obvious sources include locales, absolute file paths, order of files in a directory, and remote URLs whose content can change.
-   Furthermore, relying on third-party build plug-ins exposes you to any non-determinism introduced by these.
+.  您自己的构建脚本不得引入非确定性。
+    不确定性的明显来源包括随机性、时间戳、并发性或代码混淆器。
+    不太明显的来源包括语言环境、绝对文件路径、目录中文件的顺序以及内容可以更改的远程 URL。
+    此外，依赖第三方构建插件会使您暴露于这些引入的任何不确定性。
 
-.  Given the same dependencies and deterministic build scripts, the build tools themselves (`moc` for Motoko, `cargo` for Rust, `webpack` 
-   by default for front-end development) must also be deterministic.
-   The good news is that all of these tools aim to be deterministic.
-   However, they are complicated pieces of software, and ensuring determinism is non-trivial.
-   Thus, non-determinism bugs can and do occur.
-   For Rust, see the https://github.com/rust-lang/rust/labels/A-reproducibility[list of current potential non-determinism issues in Rust].
-   Furthermore, we have observed differences between Rust code compiled to Wasm under Linux and MacOS, and thus recommend pinning the build platform and its version.
-   For webpack, determinism is important to ensure caching, and webpack has since version 5 introduced https://webpack.js.org/configuration/optimization/[deterministic naming of module and chunk IDs] that you should use.
-   The Motoko compiler aims to be deterministic and reproducible; if you find reproducibility issues, please submit a https://github.com/dfinity/motoko/issues/new/choose[new issue], and we will try to address them to the extent possible.
+.  给定相同的依赖关系和确定性构建脚本，构建工具本身（Motoko 的`moc`，Rust 的`cargo`，webpack`
+   默认情况下用于前端开发）也必须是确定性的。
+   好消息是所有这些工具都旨在确定性。
+   但是，它们是复杂的软件，确保确定性并非易事。
+   因此，非确定性错误可以而且确实会发生。
+   对于 Rust，请参阅 https://github.com/rust-lang/rust/labels/A-reproducibility [Rust 中当前潜在的非确定性问题列表]。
+   此外，我们观察到在 Linux 和 MacOS 下编译为 Wasm 的 Rust 代码之间存在差异，因此建议固定构建平台及其版本。
+   对于 webpack，确定性对于确保缓存很重要，从第 5 版开始，webpack 引入了您应该使用的 https://webpack.js.org/configuration/optimization/[deterministic Naming of module and chunk IDs]。
+   Motoko 编译器的目标是确定性和可重复性；如果您发现重现性问题，请提交 https://github.com/dfinity/motoko/issues/new/choose[新问题]，我们将尽可能解决这些问题。
    
-=== Testing reproducibility
+=== 测试重现性
 
-If reproducibility is vital for your code, you should test your builds to increase your confidence in their reproducibility.
-Such testing is non-trivial: we have seen real-world examples where non-determinism in a canister build took a month to show up!
-Fortunately, the Debian Reproducible Builds project created a tool called https://salsa.debian.org/reproducible-builds/reprotest[reprotest], which can help you automate reproducibility tests.
-It tests your build by running it in two different environments that differ in characteristics such as paths, time, file order, and others,
-and comparing the results.
-To use it, you can put the following `Dockerfile` in the root directory of your canister project.
+如果可重现性对您的代码至关重要，您应该测试您的构建以增加您对其重现性的信心。
+这样的测试并非微不足道:我们已经看到了真实世界的例子，其中容器构建中的非确定性需要一个月才能出现！
+幸运的是，Debian Reproducible Builds 项目创建了一个名为 https://salsa.debian.org/reproducible-builds/reprotest[reprotest] 的工具，它可以帮助您自动化再现性测试。
+它通过在路径、时间、文件顺序等特性不同的两个不同环境中运行构建来测试您的构建，
+并比较结果。
+要使用它，您可以将以下 `Dockerfile` 放在容器项目的根目录中。
 
 ----
 FROM ubuntu:20.10
@@ -240,8 +240,8 @@ COPY . /canister
 WORKDIR /canister
 ----
 
-Next, create a `canister_ids.json` file containing the IDs of your canisters on the {IC}, and put it in your project directory.
-Now, from the root directory of your canister project, you can test the reproducibility of your `dfx` builds as follows:
+接下来，创建一个包含 {IC} 上的容器 ID 的“canister_ids.json”文件，并将其放在项目目录中。
+现在，从您的容器项目的根目录中，您可以测试您的“dfx”构建的可重复性，如下所示:
 ----
 $ docker build -t mycanister .
 ...
@@ -249,19 +249,19 @@ $ docker run --rm --privileged -it mycanister
 root@6fe19d89f8f5:/canister# reprotest -vv "dfx build --network ic" '.dfx/ic/canisters/*/*.wasm'
 ----
 
-The first command builds the Docker canister using the above `Dockerfile`.
-The second one opens an interactive shell (hence the `-it` flags) in the canister.
-We run this in privileged mode (the `--privileged` flag), as `reprotest` uses kernel modules for some build environment variations.
-You can also run it in non-privileged mode by excluding some of the variations; see the https://manpages.debian.org/stretch/reprotest/reprotest.1.en.html[reprotest manual].
-The `--rm` flag will destroy the canister after you close its shell.
-Finally, once inside of the canister, we launch `reprotest` in verbose mode (the `-vv` flags).
-You need to give it the build command you want to run as the first argument.
-Here, we assume that it's `dfx build --network ic` - adjust it if you're using a different build process.
-It will then run the build in two different environments.
-Finally, you need to tell `reprotest` which paths to compare at the end of the two builds.
-Here, we compare the Wasm code for all canisters, which is found in the `.dfx/ic` directory.
+第一个命令使用上面的 `Dockerfile` 构建 Docker 容器。
+第二个在容器中打开一个交互式 shell（因此是 `-it` 标志）。
+我们在特权模式下运行它（`--privileged` 标志），因为 `reprotest` 使用内核模块进行一些构建环境的变化。
+您还可以通过排除一些变体以非特权模式运行它；请参阅 https://manpages.debian.org/stretch/reprotest/reprotest.1.en.html[reprotest 手册]。
+`--rm` 标志将在您关闭其外壳后销毁该容器。
+最后，一旦进入容器，我们以详细模式启动 `reprotest`（`-vv` 标志）。
+您需要将要运行的构建命令作为第一个参数提供给它。
+在这里，我们假设它是 `dfx build --network ic` - 如果您使用不同的构建过程，请调整它。
+然后它将在两个不同的环境中运行构建。
+最后，您需要告诉 `reprotest` 在两个构建结束时要比较哪些路径。
+在这里，我们比较了所有容器的 Wasm 代码，该代码位于 `.dfx/ic` 目录中。
 
-If the comparison doesn't find any differences, you will see an output similar to this one:
+如果比较没有发现任何差异，您将看到与此类似的输出:
 
 ----
 No differences in ./.dfx/ic/canisters/*/*.wasm
@@ -269,60 +269,60 @@ No differences in ./.dfx/ic/canisters/*/*.wasm
 6af1076f70407854cd6f62f23429d81f58398729f9ee5d4247ae4f93eb12770c  ./.dfx/ic/canisters/Test/Test.wasm
 ----
 
-Congratulations - this is a good indicator that your build is not affected by your environment!
-Note that `reprotest` can't check that your dependencies are pinned properly - use guidelines from the previous section for that.
-Moreover, we recommend you to run the container `reprotest` builds under several host operating systems and compare the results.
-If the comparison does find differences between the Wasm code produced in two builds, it will output a diff.
-You will then likely want to use the `--store-dir` flag of `reprotest` to store the outputs and the diff somewhere where you can analyze them.
-If you are struggling to achieve reproducibility, consider also using https://github.com/dettrace/dettrace[DetTrace],
-which is a container abstraction that tries to make arbitrary builds deterministic.
+恭喜 - 这是一个很好的指标，表明您的构建不受环境影响！
+请注意，`reprotest` 无法检查您的依赖项是否正确固定 - 请使用上一节中的指南。
+此外，我们建议您在多个主机操作系统下运行容器 `reprotest` 构建并比较结果。
+如果比较确实发现两个构建中生成的 Wasm 代码之间存在差异，它将输出一个差异。
+然后，您可能希望使用 `reprotest` 的 `--store-dir` 标志将输出和差异存储在可以分析它们的地方。
+如果您正在努力实现可重复性，请考虑使用 https://github.com/dettrace/dettrace[DetTrace]，
+这是一个容器抽象，它试图使任意构建具有确定性。
 
-Finally, even after you achieve reproducibility for your builds, there are still other things to consider 
-for the long term.
+最后，即使在您实现了构建的可重复性之后，还有其他事情需要考虑
+从长远来看。
 
-=== Long-term considerations
+=== 长期考虑
 
-Reproducibility can be more demanding if you expect your canister canister code to stay around for years, and stay reproducible.
-The biggest challenges are to ensure that your:
+如果您希望您的容器代码能够保留多年并保持可重复性，那么可重复性可能会更高。
+最大的挑战是确保您:
 
-. Build toolchain is still available in the future.
-. Dependencies are avaiable.
-. Toolchain still runs and still correctly builds your dependencies.
+. 构建工具链在未来仍然可用。
+. 依赖项是可用的。
+. Toolchain 仍然运行并且仍然正确地构建您的依赖项。
 
-Distributions and package archives may drop old versions of packages, including both your toolchain and their dependencies.
-Web sites may go offline and URLs might stop working.
-Thus, it's prudent to back up all of your toolchain and dependencies.
-You should consider getting involved in projects such as https://www.softwareheritage.org/[Software Heritage], which do this on a large scale.
-At some later point in time, you might have to adjust your build process (e.g., by changing URLs) to ensure that your canister still builds.
-Even if the build changes, if it still yields the same result, your users can be confident that your canister is running the correct code.
-The trust argument is easier if your dependencies come from a trustworthy source, such as the Software Heritage project.
+发行版和包存档可能会丢弃旧版本的包，包括您的工具链及其依赖项。
+网站可能会脱机，并且 URL 可能会停止工作。
+因此，备份所有工具链和依赖项是谨慎的做法。
+您应该考虑参与诸如 https://www.softwareheritage.org/[Software Heritage] 之类的大规模项目。
+在稍后的某个时间点，您可能需要调整构建过程（例如，通过更改 URL）以确保您的容器仍然可以构建。
+即使构建更改，如果它仍然产生相同的结果，您的用户可以确信您的容器正在运行正确的代码。
+如果您的依赖项来自可信赖的来源，例如 Software Heritage 项目，则信任参数会更容易。
 
-== Summary
+== 总结
 [[repro-build-summary]]
 
-Summarizing our recommendations for canister authors:
+总结我们对容器作者的建议:
 
-* Ideally, when producing the final version of your container code, use Docker or a similar technology to conveniently set up the 
-  operating system and the build tools, and fix their versions for the user. 
-  If the build tools you are using don't guarantee fully reproducible builds, Docker can also help by minimizing the differences in paths, environment variables etc.
-* The build tools and the base Docker image should be sourced from somewhere that the user can trust.
-* Rust and Motoko compilers aim to be deterministic, and thus to support reproducible builds. If you notice non-determinism, file bug reports.
-* When using NPM, ensure that you specify the exact versions of all your dependencies (commit `package_lock.json` to your git repo!).
-  Invoke NPM using the `ci` command rather than `install` to reproduce the build. 
-  Similarly, for Rust packages commit `Cargo.lock` to your repository, and then use `cargo build --locked` when building the package.
-* Webpack builds should be deterministic, but obfuscators and similar tools may compromise reproducibility.
-  Make sure you use deterministic chunk and module IDs.
-* Build tools aren't perfect, and may fail to ensure reproducible builds. 
-  If reproducibility is critical for your canister (e.g., it holds other users' funds), test it.
-  Reprotest is a useful tool for this purpose.
-* Ideally, you want to minimize the number of dependencies, as, in order to do a full audit, the user may have to (reproducibly) rebuild all 
-  of your dependencies too. 
-* Achieving reproducibility is harder over longer time scales, primarily as you need to ensure that a trustworthy source of your 
-  dependencies and build tools stays available.
+* 理想情况下，在生成容器代码的最终版本时，使用 Docker 或类似技术方便地设置
+  操作系统和构建工具，并为用户修复它们的版本。
+  如果您使用的构建工具不能保证完全可重现的构建，Docker 还可以通过最小化路径、环境变量等方面的差异来提供帮助。
+* 构建工具和基础 Docker 镜像应该来自用户可以信任的地方。
+* Rust 和 Motoko 编译器的目标是确定性，因此支持可重现的构建。如果您发现不确定性，请提交错误报告。
+* 使用 NPM 时，请确保指定所有依赖项的确切版本（将 `package_lock.json` 提交到 git 存储库！）。
+  使用 `ci` 命令而不是 `install` 调用 NPM 来重现构建。
+  同样，对于 Rust 包，将 `Cargo.lock` 提交到您的存储库，然后在构建包时使用 `cargo build --locked`。
+* Webpack 构建应该是确定性的，但混淆器和类似工具可能会影响可重复性。
+  确保使用确定性块和模块 ID。
+* 构建工具并不完美，可能无法确保可重现的构建。
+  如果可重复性对您的容器至关重要（例如，它持有其他用户的资金），请对其进行测试。
+  再抗议是用于此目的的有用工具。
+* 理想情况下，您希望最小化依赖项的数量，因为为了进行全面审计，用户可能必须（可重复地）重建所有
+  你的依赖关系。
+* 在更长的时间范围内实现再现性更难，主要是因为您需要确保您的可靠来源
+  依赖项和构建工具保持可用。
 
-Finally, if your build is reproducible, you can compare the hash of the resulting Wasm code to the hash of the code that is running in a canister, which you retrieve as follows:
+最后，如果您的构建是可重现的，您可以将生成的 Wasm 代码的哈希值与容器中运行的代码的哈希值进行比较，您可以按如下方式检索它:
 ----
 $ dfx canister --network ic info <canister-id>
 ----
 
-Beware that this hash might change if the controllers upgrade the canister code.
+请注意，如果控制器升级容器代码，此哈希可能会更改。

@@ -21,14 +21,14 @@ dfx help [subcommand]
 
 == 例子
 
-要显示 `+dfx+` 的使用信息，请运行以下命令：
+要显示 `+dfx+` 的使用信息，请运行以下命令:
 
 [source,bash]
 ----
 dfx help
 ----
 
-要显示 `+dfx new+` 的使用信息，请运行以下命令：
+要显示 `+dfx new+` 的使用信息，请运行以下命令:
 
 [source,bash]
 ----

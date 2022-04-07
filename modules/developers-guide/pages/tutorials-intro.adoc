@@ -1,14 +1,14 @@
 = 教程
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-link：../quickstart/quickstart-intro{outfilesuffix}[快速入门] 提供了对创建和部署新项目的基本工作流程的简化介绍，无需探索项目目录或示例代码的内容。
+link:../quickstart/quickstart-intro{outfilesuffix}[快速入门] 提供了对创建和部署新项目的基本工作流程的简化介绍，无需探索项目目录或示例代码的内容。
 
 接下来，我们将探索编写一些简单的程序，让您亲身体验创建在 {platform} 上运行的程序。
 
-注意：这些教程中的大多数都说明了如何使用 {proglang} 编程语言编写 dapp。
+注意:这些教程中的大多数都说明了如何使用 {proglang} 编程语言编写 dapp。
 有关以其他语言编写的 dapp 的其他示例，请参阅 {company-id} https://github.com/dfinity/examples[examples] 存储库。
 
-以下教程介绍了编写在 {platform} 上运行的 dapp 的基础知识：
+以下教程介绍了编写在 {platform} 上运行的 dapp 的基础知识:
 
 * link:tutorials/explore-templates{outfilesuffix}[探索默认项目] 通过探索创建新项目时添加到工作区的默认文件和文件夹，更深入地了解创建项目的工作流程。
 
@@ -38,4 +38,4 @@ link：../quickstart/quickstart-intro{outfilesuffix}[快速入门] 提供了对�
 
 * link:tutorials/simple-cycles{outfilesuffix}[Accept Cycles from a wallet] 说明了如何接受从默认钱包容器发送的周期。
 
-涵盖更高级 dapp 的其他教程和如何使用基本构建块的更详细示例可在链接中找到：https://github.com/dfinity/examples[examples] 存储库和链接：../language-guide/motoko {outfilesuffix}[_{proglang} 编程语言指南_]。
+涵盖更高级 dapp 的其他教程和如何使用基本构建块的更详细示例可在链接中找到:https://github.com/dfinity/examples[examples] 存储库和链接:../language-guide/motoko {outfilesuffix}[_{proglang} 编程语言指南_]。

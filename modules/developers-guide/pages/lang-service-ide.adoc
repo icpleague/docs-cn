@@ -19,12 +19,12 @@ https://microsoft.github.io/language-server-protocol[Language Server Protocol (L
 
 例如，如果您使用 Visual Studio Code (VSCode) 或 Emacs 作为开发环境，您可以安装插件扩展，使这些编辑器能够自动调用 {proglang} 语言服务器。
 
-注意：目前只有 Visual Studio Code (VSCode) 插件扩展可用于 {proglang}。
-有关安装插件的信息，请参见链接：../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件]。
+注意:目前只有 Visual Studio Code (VSCode) 插件扩展可用于 {proglang}。
+有关安装插件的信息，请参见链接:../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件]。
 
 == 手动调用语言服务
 
-尽管在终端 shell 中直接启动 {proglang} 语言服务器是非常罕见的。可以通过运行以下命令来做到这一点：
+尽管在终端 shell 中直接启动 {proglang} 语言服务器是非常罕见的。可以通过运行以下命令来做到这一点:
 
 [source,bash,subs="quotes"]
 ----
@@ -69,7 +69,7 @@ dfx _language-service [canister_name] [flag]
 
 === 例子
 
-如果你想使用集成开发环境为容器`+my-canister+`开发代码，你应该让开发环境使用以下`+dfx _language-service+`命令调用语言服务：
+如果你想使用集成开发环境为容器`+my-canister+`开发代码，你应该让开发环境使用以下`+dfx _language-service+`命令调用语言服务:
 [source,bash]
 ----
 dfx _language-service my-canister

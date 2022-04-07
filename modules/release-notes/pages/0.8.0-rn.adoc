@@ -52,7 +52,7 @@ function initCanisterIds() {
 initCanisterIds();
 ```
 
-对于您的bundler，无论是 Webpack 还是您选择的其他bundler，您都需要考虑以下事项：
+对于您的bundler，无论是 Webpack 还是您选择的其他bundler，您都需要考虑以下事项:
 
 1. 识别容器 ID。 输出不再将容器 ID 硬编码为 JavaScript，因此您需要使用自己的策略提供该代码。 其他允许自定义脚本的打包器应该能够重用 webpack 配置逻辑。
 2. 确定“NODE_ENV”。 在开发过程中，应用程序应该调用 `agent.fetchRootKey()`，但它不应该在生产环境中获取根密钥。

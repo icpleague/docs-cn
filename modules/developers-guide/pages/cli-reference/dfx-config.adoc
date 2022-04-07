@@ -53,7 +53,7 @@ dfx config [config_path] [value] [flag]
 
 您可以使用 `+dfx config+` 命令更改配置设置，例如默认输出目录的位置或主程序文件的名称。
 
-例如，要将默认构建输出目录从 `+canisters+` 更改为 `+staging+`，可以运行以下命令：
+例如，要将默认构建输出目录从 `+canisters+` 更改为 `+staging+`，可以运行以下命令:
 
 [source,bash]
 ----
@@ -61,21 +61,21 @@ dfx config defaults.build.output "staging/"
 ----
 
 要查看配置设置的当前值，您可以在配置文件中指定设置的路径而不指定值。
-例如：
+例如:
 
 [source,bash]
 ----
 dfx config defaults.build.output
 ----
 
-该命令返回配置选项的当前值：
+该命令返回配置选项的当前值:
 
 [source,bash]
 ----
 "staging/"
 ----
 
-同样，您可以通过运行类似于以下的命令来更改主源文件的名称或本地容器执行环境的端口号：
+同样，您可以通过运行类似于以下的命令来更改主源文件的名称或本地容器执行环境的端口号:
 
 [source,bash]
 ----

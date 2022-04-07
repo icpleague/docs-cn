@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括以下功能领域的更新：
+最重要的新特性和功能包括以下功能领域的更新:
 
 * <<DFX,DFX>>
 * <<Apps,Sample applications>>
@@ -35,7 +35,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 * 已添加了更新、改进和新的示例应用程序 link:https://github.com/dfinity/examples/tree/master/motoko[example] 存储库。
 +
-所有 Motoko 示例应用程序： link:https://github.com/dfinity/examples/tree/master/motoko[example] 存储库已更新，可与 {sdk-short-name} 的最新版本一起使用。
+所有 Motoko 示例应用程序: link:https://github.com/dfinity/examples/tree/master/motoko[example] 存储库已更新，可与 {sdk-short-name} 的最新版本一起使用。
 +
 还有新的示例应用程序来说明使用数组 (link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort]) 和构建创建/读取/更新/删除 (CRUD) 操作 一个网页应用 link:https://github.com/dfinity/examples/tree/master/motoko/superheroes[Superheroes].
 

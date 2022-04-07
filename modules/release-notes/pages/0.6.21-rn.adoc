@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括以下功能领域的更新：
+最重要的新特性和功能包括以下功能领域的更新:
 
 * <<DFX,DFX>>
 * <<Candid,Candid>>

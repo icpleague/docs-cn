@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括以下更新：
+最重要的新特性和功能包括以下更新:
 
 * 此版本引入了用于指定容器标识符的环境变量。
 +
@@ -18,20 +18,20 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 在构建过程中引用容器标识符和容器 Candid 描述（`.did` 文件）的路径的环境变量。
 这些环境变量使您能够使用正确的容器标识符为前端资产构造 JavaScript。
 +
-环境变量旨在替换链接中描述的依赖容器的 `+import+` 语法：../developers-guide/webpack-config{outfilesuffix}[Entry and output configuration] 已被弃用并将在未来删除 发布。
+环境变量旨在替换链接中描述的依赖容器的 `+import+` 语法:../developers-guide/webpack-config{outfilesuffix}[Entry and output configuration] 已被弃用并将在未来删除 发布。
 
 * 新的`+dfx identity import+` 子命令使您能够导入安全证书以创建身份。
 +
 例如，如果您使用硬件钱包或密钥生成实用程序生成 PEM 文件来验证您的身份，您现在可以将该 PEM 文件导入到`+dfx+` 以创建新身份。
 导入 PEM 文件后，您可以运行“dfx identity use”命令将该身份设置为默认上下文。
 +
-例如，要导入 `my-external-id.pem` 并创建一个名为 `alice` 的身份，您将运行以下命令：
+例如，要导入 `my-external-id.pem` 并创建一个名为 `alice` 的身份，您将运行以下命令:
 +
 ....
 dfx identity import alice my-external-id.pem
 ....
 +
-运行此命令后，您将运行以下命令以开始使用新身份：
+运行此命令后，您将运行以下命令以开始使用新身份:
 +
 ....
 dfx identity use alice

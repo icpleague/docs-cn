@@ -25,30 +25,30 @@ image::principal-identities.svg[]
 
 == 开始之前
 
-在开始本教程之前，请验证以下内容：
+在开始本教程之前，请验证以下内容:
 
-* 您已按照link：../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
 
 * 您已经运行了至少一个导致您的 `+default+` 用户身份被创建的命令。
 您的默认用户身份将全局存储在 `+$HOME/.config/dfx/identity/+` 目录中的所有项目中。
 
-* 如果您使用 Visual，您已按照所述为 {proglang} 安装 Visual Studio Code 插件link：../../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件] Studio Code 作为您的 IDE。
+* 如果您使用 Visual，您已按照所述为 {proglang} 安装 Visual Studio Code 插件link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件] Studio Code 作为您的 IDE。
 
 * 您已停止计算机上运行的任何 {LEE} 进程。
 
 == 创建一个新项目
 
-创建一个新的项目目录来测试访问控制和切换用户身份：
+创建一个新的项目目录来测试访问控制和切换用户身份:
 
 . 如果您还没有打开一个终端外壳，请在您的本地计算机上打开一个终端外壳。
 . 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
-. 通过运行以下命令创建一个新项目：
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new access_hello
 ----
-. 通过运行以下命令切换到您的项目目录：
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
@@ -59,17 +59,17 @@ cd access_hello
 
 在本教程中，您将使用具有分配和检索角色功能的 dapp 替换模板源代码文件。
 
-修改默认 dapp：
+修改默认 dapp:
 
 . 在文本编辑器中打开 `+src/access_hello/main.mo+` 文件并删除现有内容。
-. 将以下示例代码复制并粘贴到文件中：
+. 将以下示例代码复制并粘贴到文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$access-hello/main.mo[]
 ----
 +
-让我们看一下这个 dapp 的几个关键要素：
+让我们看一下这个 dapp 的几个关键要素:
 +
 --
 * 你可能会注意到 `+greet+` 函数是你在之前的教程中看到的 `+greet+` 函数的一个变体。
@@ -86,11 +86,11 @@ include::example$access-hello/main.mo[]
 
 在构建 `+access_hello+` 项目之前，您需要连接到在您的开发环境中运行的 {LEE} 或 {IC} 主网。
 
-要启动 {LEE}：
+要启动 {LEE}:
 
 . 在本地计算机上打开一个新的终端窗口或选项卡。
 . 如有必要，导航到项目的根目录。
-. 通过运行以下命令在您的计算机上启动 {LEE}：
+. 通过运行以下命令在您的计算机上启动 {LEE}:
 +
 [source,bash]
 ----
@@ -104,10 +104,10 @@ dfx start --background
 连接到在您的开发环境中运行的 {LEE} 后，您可以在一个步骤中注册、构建和部署您的 dapp link:../cli-reference/dfx-deploy{outfilesuffix}[`dfx deploy `] 命令。
 您也可以使用单独的链接单独执行这些步骤link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_create[`+dfx canister create+`]，link:../cli-reference/dfx-build{ outfilesuffix}[`+dfx build+`] 和link:../cli-reference/dfx-canister{outfilesuffix}#dfx_canister_install[`+dfx canister install+`] 命令。
 
-要在本地部署 dapp：
+要在本地部署 dapp:
 
 . 如果需要，请检查您是否仍在项目的根目录中。
-. 通过运行以下命令注册、构建和部署 `+access_hello+` 后端 dapp：
+. 通过运行以下命令注册、构建和部署 `+access_hello+` 后端 dapp:
 +
 [source,bash]
 ----
@@ -117,10 +117,10 @@ dfx deploy access_hello
 ....
 在本地网络上创建钱包容器。
 用户“default”的“本地”网络上的钱包容器是“rwlgt-iiaaa-aaaaa-aaaaa-cai”
-部署：access_hello
+部署:access_hello
 创建容器…
 正在创建容器“access_hello”...
-使用容器 ID 创建的“access_hello”容器：“rrkah-fqaaa-aaaaa-aaaaq-cai”
+使用容器 ID 创建的“access_hello”容器:“rrkah-fqaaa-aaaaa-aaaaq-cai”
 建造容器...
 安装容器...
 使用 canister_id rrkah-fqaaa-aaaaa-aaaaq-cai 安装容器 access_hello 的代码
@@ -132,40 +132,40 @@ dfx deploy access_hello
 在我们创建任何其他身份之前，让我们查看与您的 `+default+` 身份相关联的主体标识符以及与您的 `+default+` 身份相关的循环钱包。
 在 {IC} 上，委托人是用户、容器智能合约、节点或子网的内部代表。 主体的文本表示是您在使用主体数据类型时看到的外部标识符。
 
-查看您当前的身份和原则：
+查看您当前的身份和原则:
 
-. 通过运行以下命令验证当前活动的身份：
+. 通过运行以下命令验证当前活动的身份:
 +
 [source,bash]
 ----
 dfx identity whoami
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ……
 默认
 ……
-. 通过运行以下命令检查主体的“+default+”用户身份：
+. 通过运行以下命令检查主体的“+default+”用户身份:
 +
 [source,bash]
 ----
 dfx identity get-principal
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 zen7w-sjxmx-jcslx-ey4hf-rfxdq-l4soz-7ie3o-hti3o-nyoma-nrkwa-cqe
 ....
-. 通过运行以下命令检查与 `+default+` 用户身份关联的角色：
+. 通过运行以下命令检查与 `+default+` 用户身份关联的角色:
 +
 [source,bash]
 ----
 dfx canister --wallet=$(dfx identity get-wallet) call access_hello my_role
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (opt variant { owner })
@@ -175,21 +175,21 @@ dfx canister --wallet=$(dfx identity get-wallet) call access_hello my_role
 
 为了开始测试我们 dapp 中的访问控制，让我们创建一些新的用户身份并将这些用户分配给不同的角色。
 
-要创建新的用户身份：
+要创建新的用户身份:
 
 . 如果需要，请检查您是否仍在项目目录中。
-. 通过运行以下命令创建新的管理用户身份：
+. 通过运行以下命令创建新的管理用户身份:
 +
 [source,bash]
 ----
 dfx identity new ic_admin
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
-创建身份：“ic_admin”。
-创建身份：“ic_admin”。
+创建身份:“ic_admin”。
+创建身份:“ic_admin”。
 ……
 . 调用 `+my_role+` 函数查看您的新用户身份尚未分配给任何角色。
 +
@@ -198,34 +198,34 @@ dfx identity new ic_admin
 dfx --identity ic_admin canister call access_hello my_role
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 在本地网络上创建钱包容器。
 用户“ic_admin”的“本地”网络上的钱包容器是“ryjl3-tyaaa-aaaaa-aaaba-cai”
 （空值）
 ....
-. 切换当前活动的身份上下文以使用新的 `+ic_admin+` 用户身份，并通过运行以下命令显示与 `+ic_admin+` 用户关联的主体：
+. 切换当前活动的身份上下文以使用新的 `+ic_admin+` 用户身份，并通过运行以下命令显示与 `+ic_admin+` 用户关联的主体:
 +
 [source,bash]
 ----
 dfx identity use ic_admin && dfx identity get-principal
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 Using identity: "ic_admin".
 c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae
 ....
-. 通过运行以下命令检查用于调用 `+access_hello+` 容器智能合约的主体：
+. 通过运行以下命令检查用于调用 `+access_hello+` 容器智能合约的主体:
 +
 [source,bash]
 ----
 dfx canister call access_hello callerPrincipal
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (principal "ryjl3-tyaaa-aaaaa-aaaba-cai")
@@ -237,22 +237,22 @@ dfx canister call access_hello callerPrincipal
 
 == 为身份分配角色
 
-要将管理员角色分配给 ic_admin 身份：
+要将管理员角色分配给 ic_admin 身份:
 
-. 通过运行以下命令，将当前活动的身份上下文切换为使用 `+default+` 用户身份：
+. 通过运行以下命令，将当前活动的身份上下文切换为使用 `+default+` 用户身份:
 +
 [source,bash]
 ----
 dfx identity use default
 ----
-. 使用 Candid 语法运行类似于以下的命令，为 `+ic_admin+` 主体分配 `+admin+` 角色：
+. 使用 Candid 语法运行类似于以下的命令，为 `+ic_admin+` 主体分配 `+admin+` 角色:
 +
 [source,bash]
 ----
 dfx canister --wallet=$(dfx identity get-wallet) call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'
 ----
 
-注意：确保将 `+principal+` 哈希替换为 `+dfx identity get-principal+` 命令为 `+ic_admin+` 身份返回的哈希。
+注意:确保将 `+principal+` 哈希替换为 `+dfx identity get-principal+` 命令为 `+ic_admin+` 身份返回的哈希。
 
 +
 或者，您可以重新运行命令以调用 `+my_role+` 函数来验证角色分配。
@@ -262,19 +262,19 @@ dfx canister --wallet=$(dfx identity get-wallet) call access_hello assign_role '
 dfx --identity ic_admin canister call access_hello my_role
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (opt variant { admin })
 ....
-. 通过运行以下命令，使用您刚刚分配了 `+admin+` 角色的 `+ic_admin+` 用户身份调用 `+greet+` 函数：
+. 通过运行以下命令，使用您刚刚分配了 `+admin+` 角色的 `+ic_admin+` 用户身份调用 `+greet+` 函数:
 +
 [source,bash]
 ----
 dfx --identity ic_admin canister call access_hello greet "Internet Computer Admin"
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (
@@ -288,49 +288,49 @@ dfx --identity ic_admin canister call access_hello greet "Internet Computer Admi
 让我们添加另一个用户身份并将其分配给 `+authorized+` 角色。
 但是，对于本示例，我们将使用环境变量来存储用户的主体。
 
-添加新的授权用户身份：
+添加新的授权用户身份:
 
 . 如果需要，请检查您是否仍在项目目录中。
-. 通过运行以下命令创建新的授权用户身份：
+. 通过运行以下命令创建新的授权用户身份:
 +
 [source,bash]
 ----
 dfx identity new alice_auth
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 Creating identity: "alice_auth".
 Created identity: "alice_auth".
 ....
-. 通过运行以下命令，切换当前活动的身份上下文以使用新的 `+alice_auth+` 用户身份：
+. 通过运行以下命令，切换当前活动的身份上下文以使用新的 `+alice_auth+` 用户身份:
 +
 [source,bash]
 ----
 dfx identity use alice_auth
 ----
-. 通过运行以下命令将 `+alice_auth+` 用户的主体存储在环境变量中：
+. 通过运行以下命令将 `+alice_auth+` 用户的主体存储在环境变量中:
 +
 [source,bash]
 ----
 ALICE_ID=$(dfx identity get-principal)
 ----
 +
-您可以通过运行以下命令来验证存储的主体：
+您可以通过运行以下命令来验证存储的主体:
 +
 [source,bash]
 ----
 echo $ALICE_ID
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ....
 +
-. 通过运行以下命令，使用 `+ic_admin+` 身份将 `+authorized+` 角色分配给 `+alice_auth+`：
+. 通过运行以下命令，使用 `+ic_admin+` 身份将 `+authorized+` 角色分配给 `+alice_auth+`:
 +
 [source,bash]
 ----
@@ -342,19 +342,19 @@ dfx --identity ic_admin canister call access_hello assign_role "(principal \"$AL
 ----
 dfx --identity alice_auth canister call access_hello my_role
 ----
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (opt variant { authorized })
 ....
-. 通过运行以下命令，使用您刚刚分配了 `+authorized+` 角色的 `+alice_auth+` 用户身份调用 `+greet+` 函数：
+. 通过运行以下命令，使用您刚刚分配了 `+authorized+` 角色的 `+alice_auth+` 用户身份调用 `+greet+` 函数:
 +
 [source,bash]
 ----
 dfx canister call access_hello greet "Alice"
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 (
@@ -367,29 +367,29 @@ dfx canister call access_hello greet "Alice"
 您现在已经看到了一个创建具有特定角色和权限的用户的简单示例。
 下一步是创建未分配给角色或未授予任何特殊权限的用户身份。
 
-添加未经授权的用户身份：
+添加未经授权的用户身份:
 
 . 如果需要，请检查您是否仍在项目目录中。
-. 如果需要，通过运行以下命令检查您当前活动的身份：
+. 如果需要，通过运行以下命令检查您当前活动的身份:
 +
 [source,bash]
 ----
 dfx identity whoami
 ----
-. 通过运行以下命令创建新的用户身份：
+. 通过运行以下命令创建新的用户身份:
 +
 [source,bash]
 ----
 dfx identity new bob_standard
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 Creating identity: "bob_standard".
 Created identity: "bob_standard".
 ....
-. 通过运行以下命令将 `+bob_standard+` 用户的主体存储在环境变量中：
+. 通过运行以下命令将 `+bob_standard+` 用户的主体存储在环境变量中:
 +
 [source,bash]
 ----
@@ -403,7 +403,7 @@ dfx --identity bob_standard canister call access_hello assign_role "(principal \
 ----
 +
 此命令返回一个 `+unauthorized+` 错误。
-. 通过运行以下命令，尝试使用 `+default+` 用户身份为 `+bob_standard+` 分配 `+owner+` 角色：
+. 通过运行以下命令，尝试使用 `+default+` 用户身份为 `+bob_standard+` 分配 `+owner+` 角色:
 +
 [source,bash]
 ----
@@ -411,14 +411,14 @@ dfx --identity default canister --wallet=$(dfx --identity default identity get-w
 ----
 +
 此命令失败，因为无法为用户分配 `+owner+` 角色。
-. 通过运行以下命令，使用 `+bob_standard+` 用户身份调用 `+greet+` 函数：
+. 通过运行以下命令，使用 `+bob_standard+` 用户身份调用 `+greet+` 函数:
 +
 [source,bash]
 ----
 dfx --identity bob_standard canister call access_hello greet "Bob"
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 （“你好，鲍勃。很高兴认识你！”）
@@ -429,10 +429,10 @@ dfx --identity bob_standard canister call access_hello greet "Bob"
 到目前为止，您已经了解了如何为各个命令创建和切换用户身份。
 您还可以指定要使用的用户身份，然后在该用户身份的上下文中运行多个命令。
 
-在一个用户身份下运行多个命令：
+在一个用户身份下运行多个命令:
 
 . 如果需要，请检查您是否仍在项目目录中。
-. 通过运行以下命令列出当前可用的用户身份：
+. 通过运行以下命令列出当前可用的用户身份:
 +
 [source,bash]
 ----
@@ -449,13 +449,13 @@ ic_admin
 ....
 +
 在此示例中，除非您明确选择不同的身份，否则使用 `+default+` 用户身份。
-. 从列表中选择一个新的用户身份，并通过运行类似于以下的命令使其成为活动用户上下文：
+. 从列表中选择一个新的用户身份，并通过运行类似于以下的命令使其成为活动用户上下文:
 +
 [source,bash]
 ----
 dfx identity use ic_admin
 ----
-+ 该命令显示类似于以下内容的输出：
++ 该命令显示类似于以下内容的输出:
 +
 ....
 Using identity: "ic_admin".
@@ -469,11 +469,11 @@ Using identity: "ic_admin".
 
 在您完成对 dapp 的试验并使用身份之后，您可以停止 {LEE}，使其不会继续在后台运行。
 
-要停止 {LEE}：
+要停止 {LEE}:
 
 . 在显示网络操作的终端中，按 Control-C 中断本地网络进程。
 
-. 通过运行以下命令停止 {LEE}：
+. 通过运行以下命令停止 {LEE}:
 +
 [source,bash]
 ----
@@ -482,7 +482,7 @@ dfx stop
 
 == 想了解更多？
 
-如果您正在寻找有关身份和身份验证的更多信息，请查看以下相关资源：
+如果您正在寻找有关身份和身份验证的更多信息，请查看以下相关资源:
 
-* link：../cli-reference/dfx-identity{outfilesuffix}[dfx 身份（命令参考）]
+* link:../cli-reference/dfx-identity{outfilesuffix}[dfx 身份（命令参考）]
 * link:../working-with-canisters{outfilesuffix}#set-owner[设置身份以拥有容器智能合约（操作方法）]

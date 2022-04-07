@@ -2,7 +2,7 @@
 
 使用带有标志和子命令的 `+dfx cache+` 命令来管理 `+dfx+` 版本缓存。
 
-运行 `+dfx cache+` 命令的基本语法是：
+运行 `+dfx cache+` 命令的基本语法是:
 
 [source,bash]
 ----
@@ -27,7 +27,7 @@ dfx cache [subcommand] [flag]
 |===
 
 要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx cache delete+` 的使用信息，可以运行以下命令：
+例如，要查看 `+dfx cache delete+` 的使用信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -69,7 +69,7 @@ dfx cache delete [version] [flag]
 === 例子
 
 您可以使用 `+dfx cache delete+` 命令永久删除不想再使用的 `+dfx+` 版本。
-例如，您可以运行以下命令删除`+dfx+`版本`+0.6.2+`：
+例如，您可以运行以下命令删除`+dfx+`版本`+0.6.2+`:
 
 [source,bash]
 ----
@@ -102,7 +102,7 @@ dfx cache install [flag]
 === 例子
 
 您可以使用`+dfx cache install+` 命令从缓存中的版本强制安装`+dfx+`。
-例如，您可以运行以下命令来安装 `+dfx+`：
+例如，您可以运行以下命令来安装 `+dfx+`:
 
 [source,bash]
 ----
@@ -136,14 +136,14 @@ dfx cache list [flag]
 === Examples
 
 您可以使用 `+dfx cache list+` 命令列出您当前在项目中安装和使用的 `+dfx+` 版本。
-例如，您可以运行以下命令来列出在缓存中找到的 `+dfx+` 的版本：
+例如，您可以运行以下命令来列出在缓存中找到的 `+dfx+` 的版本:
 
 [source,bash]
 ----
 dfx cache list
 ----
 
-此命令显示找到的 `+dfx+` 版本列表，类似于以下内容：
+此命令显示找到的 `+dfx+` 版本列表，类似于以下内容:
 
 [source,bash]
 ----
@@ -176,7 +176,7 @@ dfx cache show [flag]
 
 === 例子
 
-您可以使用 `+dfx cache show+` 命令显示您当前使用的 `+dfx+` 版本使用的缓存的路径：
+您可以使用 `+dfx cache show+` 命令显示您当前使用的 `+dfx+` 版本使用的缓存的路径:
 
 [source,bash]
 ----

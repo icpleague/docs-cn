@@ -1,193 +1,193 @@
-= Import library modules
+= 导入库模块
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-In this tutorial, you are going to write a simple dapp that enables you to store and look up telephone numbers.
-This tutorial illustrates how to import and use a few basic {proglang} library functions.
+在本教程中，您将编写一个简单的 dapp，使您能够存储和查找电话号码。
+本教程说明了如何导入和使用一些基本的 {proglang} 库函数。
 
-For this tutorial, the {proglang} base library functions are defined in the  `+List+` and `+AssocList+` modules and enable you to work with lists as linked key-value pairs.
-In this example, the *key* is a `+name+` and the *value* is the `+phone+` text string associated with that name.
+对于本教程，{proglang} 基础库函数在 `+List+` 和 `+AssocList+` 模块中定义，使您能够将列表作为链接的键值对使用。
+在本例中，*key* 是 `+name+`，*value* 是与该名称关联的 `+phone+` 文本字符串。
 
-This dapp supports the following function calls:
+该 dapp 支持以下函数调用:
 
-* The `+insert+` function accepts the `+name+` and `+phone+` key-value pair as input stored in the `+book+` variable.
-* The `+lookup+` function is a query that uses the specified `+name+` key as input to find the associated phone number.
+* `+insert+` 函数接受 `+name+` 和 `+phone+` 键值对作为存储在 `+book+` 变量中的输入。
+* `+lookup+` 函数是一个查询，它使用指定的 `+name+` 键作为输入来查找关联的电话号码。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped the local canister execution environment provided by `dfx`.
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已经停止了 `dfx` 提供的本地容器执行环境。
 
-This tutorial takes approximately 10 minutes to complete.
+完成本教程大约需要 10 分钟。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project for this tutorial:
+要为本教程创建一个新项目:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already
-have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Create a new project by running the following command:
+. 在本地计算机上打开终端 shell（如果您还没有的话）
+有一个打开。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new phonebook
 ----
-. Change to your project directory by running the following command:
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd phonebook
 ----
 
-== Modify the default dapp
+== 修改默认dapp
 
-For this tutorial, let's create a new `+main.mo+` file for the simple phone number lookup dapp.
+对于本教程，让我们为简单的电话号码查找 dapp 创建一个新的 `+main.mo+` 文件。
 
-To modify the default template:
+修改默认模板:
 
-. Open the `+src/phonebook/main.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the `+main.mo+` file:
+. 在文本编辑器中打开 `+src/phonebook/main.mo+` 文件并删除现有内容。
+. 将以下示例代码复制并粘贴到 `+main.mo+` 文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$phonebook.mo[]
 ----
 +
-In looking at this sample dapp, you might notice the following key elements:
+在查看此示例 dapp 时，您可能会注意到以下关键元素:
 +
 --
 
-* The code defines `+Name+` and `+Phone+` as custom Text types.
-Creating user-defined types improves the readability of the code.
+* 代码将 `+Name+` 和 `+Phone+` 定义为自定义文本类型。
+创建用户定义的类型可以提高代码的可读性。
 
-* The `+insert+` function is an update call and the `+lookup+` function is a query call.
+* `+insert+` 函数是更新调用，`+lookup+` 函数是查询调用。
 
-* The `+Phone+` type is identified as an optional value by using the `+?Phone+` syntax.
+* `+Phone+` 类型通过使用`+?Phone+` 语法被识别为可选值。
 --
 
-== Start the local canister execution environment
+== 启动本地容器执行环境
 
-For development purposes `dfx` provides a local canister execution environment. This requires a `+dfx.json+` file, so you should be sure you are in your project's root directory. For this tutorial, you should have two separate terminal shells, so that you can start and see the output of the local canister execution environment in one terminal and manage your project in another.
+出于开发目的，“dfx”提供了一个本地容器执行环境。 这需要一个 `+dfx.json+` 文件，因此您应该确保您位于项目的根目录中。 对于本教程，您应该有两个独立的终端 shell，以便您可以在一个终端中启动并查看本地容器执行环境的输出，并在另一个终端中管理您的项目。
 
-To start the local canister execution environment:
+启动本地容器执行环境:
 
 [arabic]
-. Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 如有必要，导航到项目的根目录。
 +
 --
-* You should now have **two terminals** open.
-* You should have the **project directory** as your **current working directory**.
+* 您现在应该打开了**两个终端**。
+* 您应该将 **project 目录** 作为您的 **current 工作目录**。
 --
-. Start the local canister execution environment on your local computer by running the following command:
+. 通过运行以下命令在本地计算机上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --clean
 ----
 +
-For this tutorial, we're using the `+--clean+` option to start the local canister execution environment in a clean state.
+对于本教程，我们使用 `+--clean+` 选项以干净状态启动本地容器执行环境。
 +
-This option removes any orphan background processes or canister identifiers that might disrupt normal operations.
-For example, if you forgot to issue a `+dfx stop+` when moving between projects, you might have a process running in the background or in another terminal. 
-The `+--clean+` option ensures that you can start the local canister execution environment and continue to the next step without manually finding and terminating any running processes.
-. Leave the terminal that displays the output of the local canister execution environment open and switch your focus to your original terminal where you created your new project.
+此选项会删除任何可能会中断正常操作的孤立后台进程或容器标识符。
+例如，如果您在项目之间移动时忘记发出`+dfx stop+`，则可能有一个进程在后台或另一个终端中运行。
+`+--clean+` 选项确保您可以启动本地容器执行环境并继续下一步，而无需手动查找和终止任何正在运行的进程。
+. 将显示本地容器执行环境的输出的终端保持打开状态，然后将焦点切换到创建新项目的原始终端。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-Once the local canister execution environment is up and running in your development environment, you can register, build, and deploy your dapp onto it.
+一旦本地容器执行环境在您的开发环境中启动并运行，您就可以在其上注册、构建和部署您的 dapp。
 
-To deploy the dapp locally:
+要在本地部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your dapp locally by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令在本地注册、构建和部署您的 dapp:
 +
 [source,bash]
 ----
 dfx deploy phonebook
 ----
-The `+dfx.json+` file provides default settings for creating a dapp front-end entry point and `+assets+` canister smart contract.
+`+dfx.json+` 文件提供了用于创建 dapp 前端入口点和 `+assets+` 容器智能合约的默认设置。
 +
-In previous tutorials, we deleted the entries for the asset canister because we were not adding a front-end for the sample dapp. That change kept our project workspace tidy by eliminating files that would go unused. There is no requirement to do this, however, and there is no harm in leaving the asset canister smart contract description in the `dfx.json` file. For example, you might want to use it as a placeholder if you intend to add front-end assets later.
+在之前的教程中，我们删除了资产容器的条目，因为我们没有为示例 dapp 添加前端。 通过消除将不使用的文件，该更改使我们的项目工作区保持整洁。 但是，没有要求这样做，将资产容器智能合约描述保留在“dfx.json”文件中也没有什么坏处。 例如，如果您打算稍后添加前端资产，您可能希望将其用作占位符。
 +
-For this tutorial, you can deploy just the phonebook back-end canister smart contract using the `+dfx deploy phonebook+` command because the project doesn't include any front-end assets and you will interact with it via the terminal.
+对于本教程，您可以使用 `+dfx deploy phonebook+` 命令仅部署电话簿后端容器智能合约，因为该项目不包含任何前端资产，您将通过终端与其交互。
 +
-Although this tutorial illustrates how to skip compiling a front-end canister, you can add a simple user interface to this dapp later by exploring the link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[phone-book] project in the link:https://github.com/dfinity/examples[examples] repository.
+虽然本教程说明了如何跳过编译前端容器，但您可以稍后通过浏览链接为这个 dapp 添加一个简单的用户界面link:https://github.com/dfinity/examples/tree/master/motoko/phone- 链接中的 book[phone-book] 项目link:https://github.com/dfinity/examples[examples] 存储库。
 
-== Add names and numbers using the insert function
+== 使用插入函数添加名称和数字
 
-You now have a dapp deployed as a *canister smart contract* on your local canister execution environment and can test your dapp by using `+dfx canister call+` commands.
+您现在在本地容器执行环境中部署了一个 dapp 作为 *canister 智能合约*，并且可以使用 `+dfx canister call+` 命令测试您的 dapp。
 
-To test the dapp you have deployed:
+要测试您已部署的 dapp:
 
-. Use the `+dfx canister call+` command to call the canister smart contract `+phonebook+` using the `+insert+` function and pass it a name and phone number by running the following command:
+. 使用 `+dfx canister call+` 命令通过 `+insert+` 函数调用 canister 智能合约 `+phonebook+`，并通过运行以下命令将名称和电话号码传递给它:
 +
 [source,bash]
 ----
 dfx canister call phonebook insert '("Chris Lynn", "01 415 792 1333")'
 ----
-. Add a second name and number pair by running the following command:
+. 通过运行以下命令添加第二个名称和号码对:
 +
 [source,bash]
 ----
 dfx canister call phonebook insert '("Maya Garcia", "01 408 395 7276")'
 ----
-. Verify that the command returns the number associated with "Chris Lynn" using the `+lookup+` function by running the following command:
+. 通过运行以下命令，使用 `+lookup+` 函数验证该命令是否返回与“Chris Lynn”关联的数字:
 +
 [source,bash]
 ----
 dfx canister call phonebook lookup '("Chris Lynn")'
 ----
 +
-The command returns output similar to the following:
+该命令返回类似于以下内容的输出:
 +
 ....
 (opt "01 415 792 1333")
 ....
 +
-. Try to call the `+lookup+` function with the number associated with "Maya Garcia" by running the following command:
+. 通过运行以下命令，尝试使用与“Maya Garcia”关联的数字调用 `+lookup+` 函数:
 +
 [source,bash]
 ----
 dfx canister call phonebook lookup '("01 408 395 7276")'
 ----
 +
-Note that, in this case, the command returns `+(null)+` because the phone number is not a key associated with the "Maya Garcia" name entry.
-. Try to call the `+lookup+` function again to return the phone numbers for both "Maya Garcia" and "Chris Lynn" by running the following command:
+请注意，在这种情况下，该命令返回 `+(null)+`，因为电话号码不是与“Maya Garcia”名称条目关联的键。
+. 尝试再次调用 `+lookup+` 函数，通过运行以下命令返回“Maya Garcia”和“Chris Lynn”的电话号码:
 +
 [source,bash]
 ----
 dfx canister call phonebook lookup '("Maya Garcia","Chris Lynn")'
 ----
 +
-Because the dapp is written to return one value for one key, the command only returns information associated with the first key, in this example the phone number for `+Maya Garcia+`.
+因为 dapp 被编写为为一个键返回一个值，所以该命令仅返回与第一个键关联的信息，在本例中为“+Maya Garcia+”的电话号码。
 
 include::example$candid-ui.adoc[]
 +
 image:candid-phonebook.png[Phonebook functions]
 
-== Revise the source code in your dapp
+== 修改你的 dapp 中的源代码
 
-To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
+要扩展您在本教程中学到的知识，您可能需要尝试修改源代码以返回不同的结果。
 
-For example, you might want to change the source code so that instead of a dapp that inserts and looks up a current key-value (name-phone) pair to create a dapp that stores contact information similar to a database "record" in which a primary key is associated with multiple fields.
-In this example, your dapp might enable users or another dapp to add information—such as a home phone number, a cell phone number, an email address, and a street address—and selectively return all or specific field values.
+例如，您可能希望更改源代码，以便代替插入和查找当前键值（姓名-电话）对的 dapp 来创建存储联系人信息的 dapp，类似于数据库“记录”，其中一个主键与多个字段相关联。
+在此示例中，您的 dapp 可能允许用户或其他 dapp 添加信息——例如家庭电话号码、手机号码、电子邮件地址和街道地址——并有选择地返回所有或特定字段值。
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with your dapp, you can stop the local canister execution environment so that it does not continue running in the background.
+完成 dapp 试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local canister execution environment:
+要停止本地容器执行环境:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+.在显示网络操作的终端中，按 Control-C 可中断本地网络进程。
 
-. Stop the local canister execution environment by running the following command:
+.通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----
@@ -195,7 +195,7 @@ dfx stop
 ----
 
 ////
-To experiment with modifying the source code for this tutorial:
-- Insert list of potential changes
-- Insert new sample code for a more advanced example
+要尝试修改本教程的源代码:
+- 插入潜在变化列表
+- 为更高级的示例插入新的示例代码
 ////

@@ -1,32 +1,31 @@
-= Neurons and governance
-:keywords: Internet Computer,blockchain,proposals,voting,Neuron Nervous System,NNS,platform management,configuration management,network management,smart contract,canister
+= 神经元和治理
+:keywords: 互联网计算机,区块链,提案,投票,神经系统,NNS,平台管理,配置管理,网管,智能合约,容器
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-As a decentralized blockchain, all changes to the configuration and behavior of the Internet Computer are controlled by a governance body called the Network Nervous System (NNS). The NNS controls many aspects of the Internet Computer blockchain including the following:
+作为一个去中心化的区块链，互联网计算机的配置和行为的所有变化都由一个称为网络神经系统（NNS）的治理机构控制。 NNS 控制互联网计算机区块链的许多方面，包括:
 
-- which data center providers participate in the network
-- the number, location, and ownership of the nodes accepted from a data center provider
-- assignment of nodes to subnet blockchains
-- whether upgrades to canister smart contracts or to a new protocol version are allowed or not
+- 哪些数据中心提供商参与网络
+- 从数据中心提供商处接受的节点的数量、位置和所有权
+- 将节点分配给子网区块链
+- 是否允许升级到容器智能合约或新协议版本
 
-In addition, only members of the governance body can vote to adopt or reject requests to upgrade Internet Computer replicas or modify the Internet Computer protocol.
+此外，只有治理机构的成员才能投票通过或拒绝升级 Internet 计算机副本或修改 Internet 计算机协议的请求。
 
-## Voting rights for stakeholders
+## 利益相关者的投票权
 
-Because tokens on the Internet Computer are generally liquid, they do not represent a stable enough commitment on the part of their holders for them to be used for governance purposes. To provide the stability required for responsible governance, tokens can be converted to **neurons**. A neuron represents a number of ICP tokens that cannot be exchanged for a minimum period of time (the lock-up period).
+由于互联网计算机上的代币通常具有流动性，因此它们并不代表其持有者的足够稳定的承诺，无法将其用于治理目的。为了提供负责任治理所需的稳定性，代币可以转换为**神经元**。一个神经元代表许多 ICP 代币，这些代币在最短时间（锁定期）内无法交换。
 
-When a person or organization has some number of ICP tokens locked up in a neuron, the neuron holder has the right to vote on proposals, and to be paid for voting in proportion to the number of ICP locked up, the length of the lock-up period and the relative number of votes cast.
+当一个人或组织在一个神经元中锁定了一定数量的 ICP 代币时，神经元持有者有权对提案进行投票，并根据锁定的 ICP 数量、锁定时长等比例获得投票报酬。上升期和相对票数。
 
-The Internet Computer blockchain tracks the number of ICP tokens that are locked up in neurons and provides the logic necessary for voting in conjunction with managing ICP token account balances.
+互联网计算机区块链跟踪锁定在神经元中的 ICP 代币数量，并提供投票所需的逻辑以及管理 ICP 代币账户余额。
 
 ////
-== Want to learn more?
+== 想了解更多？
 
-If you are looking for more information about staking, voting, and autonomous governance, check out the following related resources:
+如果您正在寻找有关质押、投票和自治治理的更多信息，请查看以下相关资源:
 
-* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
-* link:https://www.youtube.com/watch?v=xVNSxFFAYUo&list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng&index=1[Community Conversations | Staking & Neurons]
-
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[介绍容器—智能合约的演变（视频）]
+* link:https://www.youtube.com/watch?v=xVNSxFFAYUo&list=PLuhDt1vhGcrez-f3I0_hvbwGZHZzkZ7Ng&index=1[社区对话 | 质押和神经元]
 ////

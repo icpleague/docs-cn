@@ -6,45 +6,45 @@
 :release: 0.9.0
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-{release} 版本概述：
+{release} 版本概述:
 
 此版本通过利用容器现在可以有多个控制器的事实删除了 `--no-wallet` 参数。
 Please see below for required upgrade steps.
 
 == 对 DFX 的更改
 
-=== 新功能（重大更改）：删除钱包代理和 --no-wallet 标志
+=== 新功能（重大更改）:删除钱包代理和 --no-wallet 标志
 
-重大变化：除了“dfx canister create”之外，容器命令将直接调用，而不是通过用户的钱包。 `--no-wallet` 标志因此从 `dfx canister` 中删除，因为它的行为是默认的。
+重大变化:除了“dfx canister create”之外，容器命令将直接调用，而不是通过用户的钱包。 `--no-wallet` 标志因此从 `dfx canister` 中删除，因为它的行为是默认的。
 
 使用现有容器时，将 `--wallet` 标志与 `dfx identity get-wallet` 结合使用，以恢复旧行为。
 
-您将需要升级您的钱包和现有的每个容器以使用新系统。 为此，请在每个 dfx 项目中执行以下操作：
+您将需要升级您的钱包和现有的每个容器以使用新系统。 为此，请在每个 dfx 项目中执行以下操作:
 [source, bash]
 ----
 dfx wallet upgrade
 dfx canister --wallet "$(dfx identity get-wallet)" update-settings --all --add-controller "$(dfx identity get-principal)"
 ----
-要升级您已部署到 IC 主网的项目，请执行以下操作：
+要升级您已部署到 IC 主网的项目，请执行以下操作:
 [source, bash]
 ----
 dfx wallet --network ic upgrade
 dfx canister --network ic --wallet "$(dfx identity --network ic get-wallet)" update-settings --all --add-controller "$(dfx identity get-principal)"
 ----
 
-=== 新功能：为“canister update-settings”添加 --add-controller 和 --remove-controller 标志
+=== 新功能:为“canister update-settings”添加 --add-controller 和 --remove-controller 标志
 
 `dfx canister update-settings`以前只允许你覆盖整个控制器列表； `--add-controller` 和 `--remove-controller` 改为从列表中添加或删除。
 
-=== 新功能：为“canister delete”添加 --no-withdrawal 标志，用于当容器超出燃料费时
+=== 新功能:为“canister delete”添加 --no-withdrawal 标志，用于当容器超出燃料费时
 
 `dfx canister delete --no-withdrawal <canister>` 可用于在不尝试撤燃料费的情况下删除容器。
 
-=== 已修复：将 ic-starter（以及副本）的 RUST_MIN_STACK 设置为 8MB
+=== 已修复:将 ic-starter（以及副本）的 RUST_MIN_STACK 设置为 8MB
 
 这与生产中使用的值相匹配，并且旨在超过配置的 5 MB wasmtime 堆栈。
 
-=== 固定：资产上传将按预期重试失败的请求
+=== 固定:资产上传将按预期重试失败的请求
 
 修复了资产同步中的一个缺陷，即在整体前 30 秒后不会尝试重试。
 
@@ -55,13 +55,13 @@ dfx canister --network ic --wallet "$(dfx identity --network ic get-wallet)" upd
 * 实现类型联合/交集
 * 将数组上的 for 循环转换为 while 循环
 * 收紧模式中类型注释的类型规则
-*Candid 解码：快速跳过vec
+*Candid 解码:快速跳过vec
 * 将 MAX_HP_FOR_GC 从 1GB 提高到 3GB
-*Candid 解码：如果主值太大，则Trap
+*Candid 解码:如果主值太大，则Trap
 * 消除对数组进行 for-iteration 的 bignum 调用
 * 改进调度
 * 提高 bignum 相等的性能
-* 稳定签名：前端、元数据、命令行参数
+* 稳定签名:前端、元数据、命令行参数
 * 添加心跳支持
 
 == 燃料费钱包
@@ -73,7 +73,7 @@ https://github.com/dfinity/cycles-wallet/commit/57e53fcb679d1ea33cc713d2c0c24fc5
 
 将副本更新为
 75138bbf11e201aac47266f07bee289dc18a082b.
-这包括以下已执行的提案：
+这包括以下已执行的提案:
 
 * https://dashboard.internetcomputer.org/proposal/33828[33828]
 * https://dashboard.internetcomputer.org/proposal/31275[31275]
@@ -92,8 +92,8 @@ https://github.com/dfinity/cycles-wallet/commit/57e53fcb679d1ea33cc713d2c0c24fc5
 副本日志将大约每五分钟显示一次有关缺少注册表设置的警告。
 副本将使用所需的最小值。 您可以忽略此警告。
 
-警告如下所示：
+警告如下所示:
 
 ----
-1 月 19 日 19:03:42.719 警告 s:crz25-qujie-7jqyj-d5ldq-p3psu-y2hmg-c32rf-pnfda-xskfm-dtnmc-iqe/n:fw7p7-4ynfm-s6e5c-axkum-76532-d2k4j-aowre-7twtq- gabts-hfs2e-cae/ic_consensus/payload_builder max_block_payload_size 太小。 当前值：0，所需最小值：3670016！ max_block_payload_size 必须大于 max_ingress_bytes_per_message 和 MAX_XNET_PAYLOAD_IN_BYTES。 更新注册表！
+1 月 19 日 19:03:42.719 警告 s:crz25-qujie-7jqyj-d5ldq-p3psu-y2hmg-c32rf-pnfda-xskfm-dtnmc-iqe/n:fw7p7-4ynfm-s6e5c-axkum-76532-d2k4j-aowre-7twtq- gabts-hfs2e-cae/ic_consensus/payload_builder max_block_payload_size 太小。 当前值:0，所需最小值:3670016！ max_block_payload_size 必须大于 max_ingress_bytes_per_message 和 MAX_XNET_PAYLOAD_IN_BYTES。 更新注册表！
 ----

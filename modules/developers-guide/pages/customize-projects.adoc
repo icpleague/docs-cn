@@ -13,14 +13,14 @@
 
 但是，根据 dapp 的复杂性和架构，您可能需要修改 dapp 源代码、前端源代码或前端输出的默认位置。
 
-例如，对于一个简单的 dapp，您可能希望删除一个目录级别并将源代码放在 `+src+` 目录中：
+例如，对于一个简单的 dapp，您可能希望删除一个目录级别并将源代码放在 `+src+` 目录中:
 
 [source,text]
 ----
   "main": "src/main.mo",
 ----
 
-对于更复杂的 dapp，您可能希望使用多层目录结构：
+对于更复杂的 dapp，您可能希望使用多层目录结构:
 
 [source,text]
 ----
@@ -37,7 +37,7 @@
 }
 ----
 
-注意：如果您修改源代码目录的默认设置，请确保 `+dfx.json+` 配置文件中的设置与文件系统上的目录位置匹配。
+注意:如果您修改源代码目录的默认设置，请确保 `+dfx.json+` 配置文件中的设置与文件系统上的目录位置匹配。
 ////
 == 如何更改输出目录
 
@@ -45,7 +45,7 @@
 您可以通过修改项目的本地 `+dfx.json+` 配置文件来自定义项目的默认输出文件夹。
 您可以通过编辑文件手动更改 `+dfx.json+` 配置文件中的设置，也可以通过运行 `+dfx config+` 命令以编程方式更改设置。
 
-要查看您当前使用的默认输出文件夹，请运行以下命令：
+要查看您当前使用的默认输出文件夹，请运行以下命令:
 
 [source,bash]
 ----
@@ -53,7 +53,7 @@ dfx config defaults.build.output
 ----
 
 该命令返回您当前在 `+dfx.json+` 配置文件中定义的设置。
-例如：
+例如:
 
 [source,bash]
 ----
@@ -61,7 +61,7 @@ dfx config defaults.build.output
 ----
 
 要更改默认输出文件夹，请运行 `+dfx config+` 命令并指定一个新位置。
-例如，要将默认输出目录从 `+canisters+` 更改为 `+ready_for_release+`，请运行以下命令：
+例如，要将默认输出目录从 `+canisters+` 更改为 `+ready_for_release+`，请运行以下命令:
 
 [source,bash]
 ----
@@ -70,7 +70,7 @@ dfx config defaults.build.output ready_for_release
 
 此命令将 `+dfx.json` 配置文件中的 `+output+` 设置更改为 `+ready for release`。
 
-例如：
+例如:
 
 [source,json]
 ----
@@ -84,9 +84,9 @@ dfx config defaults.build.output ready_for_release
 
 在使用 `+dfx build+` 命令为项目编译源代码之前，您应该验证用于 dapp 源代码的位置和文件名。
 
-例如，如果你想为 `+factorial+` dapp 构建一个罐式智能合约，并且 dapp 的源代码位于 `+src/math/factorial.mo+`，你应该确保你有正确的路径 在配置文件的 `+canisters+` 部分中为 `+main+` 设置指定。
+例如，如果你想为 `+factorial+` dapp 构建一个容器智能合约，并且 dapp 的源代码位于 `+src/math/factorial.mo+`，你应该确保你有正确的路径 在配置文件的 `+canisters+` 部分中为 `+main+` 设置指定。
 
-例如：
+例如:
 
 [source,json]
 ----
@@ -100,7 +100,7 @@ dfx config defaults.build.output ready_for_release
 
 您可以通过修改 `+dfx.json+` 配置文件中的本地网络设置来更改为 dapp 前端提供服务的默认主机名和端口号。
 
-例如，您可以通过修改 `+bind+` 设置来更改本地网络的 IP 地址：
+例如，您可以通过修改 `+bind+` 设置来更改本地网络的 IP 地址:
 
 [source,json]
 ----

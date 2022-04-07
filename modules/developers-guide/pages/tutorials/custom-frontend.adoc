@@ -1,43 +1,43 @@
-= Customize the front-end
+= 自定义前端
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-Now that you have a basic understanding of how to create, build, and deploy a simple dapp and are familiar with the default project files and sample front-end, you might want to start experimenting with different ways to customize the front-end user experience for your project.
+现在您已经对如何创建、构建和部署一个简单的 dapp 有了基本的了解，并且熟悉了默认项目文件和示例前端，您可能想要开始尝试不同的方式来自定义前端用户体验为您的项目。
 
-This tutorial illustrates using the React framework to create a new front-end for the default sample dapp and guides you through some basic modifications to customize the interface displayed.
-Later tutorials expand on the techniques introduced here, but if you already know how to use CSS, HTML, JavaScript, and React or other frameworks to build your user interface, you can skip this tutorial.
+本教程说明了使用 React 框架为默认示例 dapp 创建一个新的前端，并指导您完成一些基本修改以自定义显示的界面。
+稍后的教程将扩展此处介绍的技术，但如果您已经知道如何使用 CSS、HTML、JavaScript 和 React 或其他框架来构建您的用户界面，您可以跳过本教程。
 
-NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your canister smart contract.
-Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
+注意:本教程说明了使用 React 框架来管理容器智能合约的文档对象模型 (DOM)。
+因为 React 有自己的自定义 DOM 语法，所以需要修改 webpack 配置来编译前端代码，前端代码是用 JSX 编写的。有关学习使用 React 和 JSX 的更多信息，请参见 https://reactjs.org/[React 网站] 上的link:https://reactjs.org/docs/getting-started.html[Getting started]。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have `+node.js+` installed for front-end development and can install packages using `+npm install+` in your project.
-For information about installing node for your local operating system and package manager, see the link:https://nodejs.org/en/[Node] website.
+* 你已经为前端开发安装了`+node.js+`，并且可以在你的项目中使用`+npm install+`来安装包。
+有关为本地操作系统和包管理器安装节点的信息，请参阅link:https://nodejs.org/en/[Node] 网站。
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
 
-* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+* 如果您使用 Visual，您已按照链接中所述为 {proglang} 安装 Visual Studio Code 插件link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件] Studio Code 作为您的 IDE。
 
-* You have stopped any {sdk-short-name} processes running on the local
-computer.
+* 您已停止在本地运行的任何 {sdk-short-name} 进程
+计算机。
 
-NOTE: This tutorial requires you to use the {sdk-short-name} version `+0.8.0+` or later.
+注意:本教程要求您使用 {sdk-short-name} 版本 `+0.8.0+` 或更高版本。
 
-This tutorial takes approximately 30 minutes to complete.
+完成本教程大约需要 30 分钟。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project directory for your custom front-end dapp:
+为您的自定义前端 dapp 创建一个新项目目录:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Check that you have `+node.js+` installed locally by running the following commands:
+. 如果您还没有打开一个终端外壳，请在您的本地计算机上打开一个终端外壳。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令检查您是否在本地安装了 `+node.js+`:
 +
 [source,bash]
 ----
@@ -45,56 +45,56 @@ which node
 which npm
 ----
 +
-If you don't have `+node.js+` installed, you should download and install it before continuing to the next step.
-For information about installing node for your local operating system and package manager, see the link:https://nodejs.org/en/[Node] website.
-. Create a new project by running the following command:
+如果你没有安装`+node.js+`，你应该在继续下一步之前下载并安装它。
+有关为本地操作系统和包管理器安装节点的信息，请参阅link:https://nodejs.org/en/[Node] 网站。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new custom_greeting
 ----
 +
-The `+dfx new custom_greeting+` command creates a new `+custom_greeting+` project.
-. Change to your project directory by running the following command:
+`+dfx new custom_greeting+` 命令创建一个新的 `+custom_greeting+` 项目。
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd custom_greeting
 ----
 
-== Install the React framework
+== 安装 React 框架
 
-If you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+如果您以前从未使用过 React，您可能想探索link:https://reactjs.org/tutorial/tutorial.html[Intro to React] 教程或link:https://reactjs.org/[React website] 在编辑前端代码之前。
 
-To install required framework modules:
+要安装所需的框架模块:
 
-. Install the React module by running the following command:
+. 通过运行以下命令安装 React 模块:
 +
 [source,bash]
 ----
 npm install --save react react-dom
 ----
-. Install the required TypeScript language compiler loader by running the following command:
+. 通过运行以下命令安装所需的 TypeScript 语言编译器加载程序:
 +
 [source,bash]
 ----
 npm install --save-dev typescript ts-loader
 ----
 +
-NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
+注意:作为安装这些模块的替代方法，您可以编辑默认的 `+package.json` 文件来为您的项目添加依赖项。
 +
 ....
 include::example$custom-frontend-package.json[]
 ....
 
-== Review the default configuration
+== 查看默认配置
 
-Before we make any changes to use React for this tutorial, let's review the default front-end settings in the `+dfx.json+` configuration file for your project.
+在我们对本教程使用 React 进行任何更改之前，让我们回顾一下项目的 `+dfx.json+` 配置文件中的默认前端设置。
 
-To review the default `+dfx.json+` configuration file:
+查看默认的 `+dfx.json+` 配置文件:
 
-. Open the `+dfx.json+` configuration file in a text editor.
-. Notice that the `+canisters+` key includes settings for a `custom_greeting_assets` canister.
+. 在文本编辑器中打开 `+dfx.json+` 配置文件。
+. 请注意，`+canisters+` 键包含 `custom_greeting_assets` 容器的设置。
 +
 ....
 {
@@ -118,42 +118,42 @@ To review the default `+dfx.json+` configuration file:
 }
 ....
 +
-Let's take a look at the settings in this section.
+让我们看一下本节中的设置。
 +
 --
-* Front-end assets for your project are compiled into their own canister, in this case, a canister named `+custom_greeting_assets+`.
+* 项目的前端资产被编译到它们自己的容器中，在这种情况下，一个名为 `+custom_greeting_assets+` 的容器。
 
-* The assets canister has a default dependency on the main canister for the project.
+* 资产容器默认依赖于项目的主容器。
 
-* The `+frontend.entrypoint+` setting specifies the path to a file—in this case, the `+index.html+` file—to use as your dapp entry point.
-If you had a different starting point—for example, a custom `first-page.html` file—you would modify this setting.
+* `+frontend.entrypoint+` 设置指定文件的路径——在本例中为 `+index.html+` 文件——用作你的 dapp 入口点。
+如果你有一个不同的起点——例如，一个自定义的 `first-page.html` 文件——你可以修改这个设置。
 
-* The `+source+` settings specify the path to your `src` and `dist` directories. The `src` setting specifies the directory to use for static assets that will be included in your assets canister when you build your project.
-If you have custom cascading stylesheet (CSS) or JavaScript files, you would include them in the folder specified by this path.
-After building the project, the project assets are served from the directory specified by the `+dist+` setting.
+* `+source+` 设置指定了 `src` 和 `dist` 目录的路径。 `src` 设置指定用于在构建项目时包含在资产容器中的静态资产的目录。
+如果您有自定义级联样式表 (CSS) 或 JavaScript 文件，您可以将它们包含在此路径指定的文件夹中。
+构建项目后，项目资产从 `+dist+` 设置指定的目录提供。
 
-* The `+type+` setting specifies that the `+custom_greeting_assets+` should use the https://github.com/dfinity/certified-assets[certified asset canister], which comes with everything you need to host static assets on the {platform}.
+* `+type+` 设置指定 `+custom_greeting_assets+` 应该使用 https://github.com/dfinity/certified-assets[certified asset canister]，它提供了在 {platform }。
 --
 +
-For this tutorial, we are going to add React JavaScript in an `+index.jsx+` file, but that won't require any changes to the default settings in the `dfx.json` file.
-. Close the `+dfx.json+` file to continue.
+对于本教程，我们将在 `+index.jsx+` 文件中添加 React JavaScript，但这不需要对 `dfx.json` 文件中的默认设置进行任何更改。
+.关闭 `+dfx.json+` 文件以继续。
 
-== Review the default front-end files
+== 查看默认的前端文件
 
-For this tutorial, you are going to make calls to the default `+main.mo+` canister through a custom front-end.
-Before you make any changes, though, let's take a look at what's in the default front-end files for a project.
+在本教程中，您将通过自定义前端调用默认的 `+main.mo+` 容器。
+不过，在您进行任何更改之前，让我们看一下项目的默认前端文件中的内容。
 
-To review the default front-end files:
+查看默认前端文件:
 
-. Open the `+src/custom_greeting_assets/src/index.html+` file in a text editor.
+.在文本编辑器中打开 `+src/custom_greeting_assets/src/index.html+` 文件。
 +
-This template file is the default front-end entry point for the dapp as specified by the `+frontend.entrypoint+` setting in the `dfx.json` file.
+此模板文件是 dapp 的默认前端入口点，由 `dfx.json` 文件中的 `+frontend.entrypoint+` 设置指定。
 +
-This file contains standard HTML with references to a CSS file and an image that are located in the `+src/custom_greeting_assets/assets+` directory. 
-The default `+index.html+` file also includes standard HTML syntax for displaying an input field for the `+name+` argument and a clickable button.
+此文件包含标准 HTML，其中包含对位于 `+src/custom_greeting_assets/assets+` 目录中的 CSS 文件和图像的引用。
+默认的 `+index.html+` 文件还包括标准 HTML 语法，用于显示 `+name+` 参数的输入字段和可点击按钮。
 +
-This is the same default front-end you saw in link:explore-templates{outfilesuffix}#default-frontend[Viewing the default front-end].
-. Open the `+src/custom_greeting_assets/src/index.js+` file in a text editor.
+这与您在链接中看到的默认前端相同:explore-templates{outfilesuffix}#default-frontend[查看默认前端]。
+. 在文本编辑器中打开 `+src/custom_greeting_assets/src/index.js+` 文件。
 +
 ....
 import { custom_greeting } from "../../declarations/custom_greeting";
@@ -168,19 +168,19 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 ....
 +
 --
-* The `import` statement points to an actor that will allow us to make calls to our `custom_greeting` canister from `"../declarations"`
-* The declarations haven't been created yet, but we will come back to that.
+* `import` 语句指向一个actor，它允许我们从`"../declarations"` 调用我们的`custom_greeting` 容器
+* 声明尚未创建，但我们会回来讨论。
 --
-. Close the `+index.js+` file to continue.
+. 关闭 `+index.js+` 文件以继续。
 
-== Modify the front-end files
+== 修改前端文件
 
-You are now ready to create a new front-end for the default dapp.
+您现在已准备好为默认 dapp 创建一个新的前端。
 
-To prepare the front-end files:
+准备前端文件:
 
-. Open the webpack configuration file (`webpack.config.js`) in a text editor.
-. Modify the front-end entry to replace the default `+index.html+` with `+index.jsx+`.
+. 在文本编辑器中打开 webpack 配置文件（`webpack.config.js`）。
+. 修改前端入口，将默认的`+index.html+`替换为`+index.jsx+`.
 +
 [source,js]
 ----
@@ -201,32 +201,32 @@ module: {
 },
 ----
 +
-This setting enables the project to use the `+ts-loader+` compiler for a React JavaScript `+index.jsx+` file.
-Note that there's a commented section in the default `webpack.config.js` file that you can modify to add the `module` key.
-. Create a new file named `+tsconfig.json+` in the root directory for your project.
-. Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
+此设置使项目能够将 `+ts-loader+` 编译器用于 React JavaScript `+index.jsx+` 文件。
+请注意，默认的 `webpack.config.js` 文件中有一个注释部分，您可以修改它以添加 `module` 键。
+. 在项目的根目录中创建一个名为 `+tsconfig.json+` 的新文件。
+. 在文本编辑器中打开 `+tsconfig.json+` 文件，然后将以下内容复制并粘贴到文件中:
 +
 [source,json]
 ----
 include::example$sample-tsconfig.json[]
 ----
-. Save your changes and close the `+tsconfig.json+` file to continue.
-. Open the default `+src/custom_greeting_assets/src/index.js+` file in a text editor and delete lines 2 to 9.
-. Copy and paste the following sample code into the `+index.js+` file:
+. 保存更改并关闭 `+tsconfig.json+` 文件以继续。
+. 在文本编辑器中打开默认的 `+src/custom_greeting_assets/src/index.js+` 文件并删除第 2 到 9 行。
+. 将以下示例代码复制并粘贴到 `+index.js+` 文件中:
 +
 [source,react]
 ----
 include::example$react-index.jsx[]
 ----
-. Rename the modified `index.js` file as `index.jsx` by running the following command:
+. 通过运行以下命令将修改后的 `index.js` 文件重命名为 `index.jsx`:
 +
 [source,bash]
 ----
 mv src/custom_greeting_assets/src/index.js src/custom_greeting_assets/src/index.jsx
 ----
-. Open the default `+src/custom_greeting_assets/src/index.html+` file in a text editor, then replace the body contents with `+<div id="app"></div>+`.
+. 在文本编辑器中打开默认的 `+src/custom_greeting_assets/src/index.html+` 文件，然后将正文内容替换为 `+<div id="app"></div>+`.
 +
-For example:
+例如:
 +
 [source,html]
 ----
@@ -245,98 +245,98 @@ For example:
 </html>
 ----
 
-== Start the local canister execution environment
+== 启动本地容器执行环境
 
-Before you can build the `+custom_greeting+` project, you need to connect to either the live {platform}, or a canister execution environment running locally in your development environment.
+在构建 `+custom_greeting+` 项目之前，您需要连接到实时 {platform} 或在您的开发环境中本地运行的容器执行环境。
 
-To start the environment locally:
+在本地启动环境:
 
-. Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
-. Start the local canister execution environment on your local computer by running the following command:
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 如有必要，导航到项目的根目录。
+. 通过运行以下命令在本地计算机上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the local canister execution environment completes its startup operations, you can continue to the next step.
+本地容器执行环境完成启动操作后，可以继续下一步。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
+连接到本地容器执行环境后，您可以在本地注册、构建和部署 dapp。
 
-To deploy the dapp locally:
+要在本地部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your dapp by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令注册、构建和部署您的 dapp:
 +
 [source,bash]
 ----
 dfx deploy
 ----
 +
-The `+dfx deploy+` command output displays information about the operations it performs.
+`+dfx deploy+` 命令输出显示有关它执行的操作的信息。
 
-== View the new front-end
+== 查看新的前端
 
-You can now access the new front-end for the default dapp by entering the canister identifier for the assets canister in a browser.
+您现在可以通过在浏览器中输入资产容器的容器标识符来访问默认 dapp 的新前端。
 
-To view the custom front-end:
+查看自定义前端:
 
-. Open a new tab or window of your terminal and run
+. 打开终端的新选项卡或窗口并运行
 +
 [source,bash]
 ----
 npm start
 ----
-. Open a browser and navigate to http://localhost:8080.
+. 打开浏览器并导航到 http://localhost:8080。
 
-. Verify that you are prompted to type a greeting.
+. 确认系统提示您键入问候语。
 +
-For example:
+例如:
 +
-image:react-greeting.png[Sample front-end]
-. Replace *Name* in the input field with the text you want to display, then click *Get Greeting* to see the result.
+image:react-greeting.png[前端示例]
+. 将输入字段中的 *Name* 替换为您要显示的文本，然后单击 *Get Greeting* 以查看结果。
 +
-For example:
+例如:
 +
 image:greeting-response.png[Greeting result]
 
-== Revise the front-end and test your changes
+== 修改前端并测试您的更改
 
-After viewing the front-end, you might want to make some changes.
+查看前端后，您可能需要进行一些更改。
 
-To modify the front-end:
+修改前端:
 
-. Open the `index.jsx` file in a text editor and modify its style settings.
-For example, you might want to change the font family and use a placeholder for the input field by making changes similar to the following:
+. 在文本编辑器中打开 `index.jsx` 文件并修改其样式设置。
+例如，您可能想要更改字体系列并通过进行类似于以下的更改来为输入字段使用占位符:
 +
 [source,react]
 ....
 include::example$react-revised-index.jsx[]
 ....
-. Save the file and view the updated page in your browser.
+. 保存文件并在浏览器中查看更新的页面。
 +
-For example:
+例如:
 +
 image:revised-greeting.png[Modified styles on your entry page]
-. Type a new message and see your new greeting.
-For example:
+. 键入新消息并查看您的新问候语。
+例如:
 +
 image:modified-result.png[Modified greeting result]
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with the front-end for your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
+完成 dapp 前端的试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local network:
+停止本地网络:
 
-. In the terminal that displays the webpack development server, press Control-C to interrupt the dev-server.
+. 在显示 webpack 开发服务器的终端中，按 Control-C 中断开发服务器。
 
-. In the terminal that displays network operations, press Control-C to interrupt the local network process.
+. 在显示网络操作的终端中，按 Control-C 中断本地网络进程。
 
-. Stop the local canister execution environment by running the following command:
+. 通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----

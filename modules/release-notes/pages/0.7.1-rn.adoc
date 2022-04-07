@@ -10,12 +10,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括 DFX 命令的以下更新：
+最重要的新特性和功能包括 DFX 命令的以下更新:
 
 * `+dfx canister sign+` 命令的更新使您能够对更新调用的`+request_status+` 消息进行签名。
 +
 如果您使用 `+dfx canister sign+` 调用生成更新消息的方法，该命令还会签署相应的 `+request_status+` 消息并将其作为 `+signed_request_status+` 附加到 `+message.json+` 文件中。
-使用 `+dfx canister send+` 命令发送消息后，您可以通过运行以下命令检查调用的 `+request_status+`：
+使用 `+dfx canister send+` 命令发送消息后，您可以通过运行以下命令检查调用的 `+request_status+`:
 +
 [source,bash]
 ----
@@ -27,14 +27,14 @@ dfx canister send message.json --status
 * 新的 `+deposit_cycles+` 和 `+uninstall_code+` 管理容器方法也作为 `+dfx canister+` 子命令公开。
 +
 两个新命令是`+dfx canister deposit-cycles+`和`+dfx canister uninstall-code+`。
-例如，您现在可以通过运行类似于以下的命令将周期从您的燃料费钱包发送到特定容器：
+例如，您现在可以通过运行类似于以下的命令将周期从您的燃料费钱包发送到特定容器:
 +
 [source,bash]
 ----
 dfx canister deposit-cycles 125000000000 hello_world
 ----
 +
-您可以通过运行类似于以下的命令来卸载已部署的 WASM 模块的代码：
+您可以通过运行类似于以下的命令来卸载已部署的 WASM 模块的代码:
 +
 [source,bash]
 ----
@@ -47,7 +47,7 @@ dfx canister uninstall-code hello_world
 默认情况下，与 {sdk-short-name} 一起安装的本地 {IC} 副本具有人为的共识延迟，以模拟用户在网络环境中可能看到的延迟。
 使用这个新标志，您可以通过运行 `+dfx start --no-artificial-delay+` 或 `+dfx replica --no-artificial-delay+` 来跳过启动本地 {IC} 时的内置延迟 命令。
 +
-例如，您可以通过运行以下命令立即启动本地 {IC}：
+例如，您可以通过运行以下命令立即启动本地 {IC}:
 +
 [source,bash]
 ----
@@ -70,7 +70,7 @@ dfx start -no-artificial-delay
 但是，使用燃料费钱包容器标识符执行“+dfx 容器调用+”命令会导致每个调用都被视为容器间调用，并且这些调用需要比需要解决的时间更长的时间。
 +
 在此版本中，`+dfx canister call+` 命令默认不再使用燃料费钱包容器标识符来执行查询和更新调用。
-如果您想使用燃料费钱包执行查询或更新调用，您可以运行类似于以下的命令：
+如果您想使用燃料费钱包执行查询或更新调用，您可以运行类似于以下的命令:
 +
 [source,bash,subs=quotes]
 ----

@@ -1,109 +1,109 @@
-= Add a stylesheet
+= 添加样式表
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-Cascading stylesheets are an important part of any front-end user interface. The default starter is configured to import a `main.css` file that you can edit, but you may prefer to import your stylesheet into a JavaScript file, or to use an alternate format such as Syntactically Awesome Style Sheets, aka SCSS.
-This tutorial illustrates how to configure webpack to import a stylesheet by walking through building a contact dapp.
-If you already know how to add cascading stylesheets (CSS) to a webpack-based project, you can skip this tutorial.
+级联样式表是任何前端用户界面的重要组成部分。 默认启动器配置为导入可以编辑的 `main.css` 文件，但您可能更喜欢将样式表导入 JavaScript 文件，或者使用替代格式，例如 Syntactically Awesome Style Sheets，又名 SCSS。
+本教程通过逐步构建联系人 dapp 来说明如何配置 webpack 以导入样式表。
+如果您已经知道如何将级联样式表 (CSS) 添加到基于 webpack 的项目中，则可以跳过本教程。
 
-NOTE: This tutorial illustrates using the React framework to manage the Document Object Model (DOM) for your front-end.
-Because React has its own custom DOM syntax, you need to modify the webpack configuration to compile the front-end code, which is written in JSX. For more information about learning to use React and JSX, see link:https://reactjs.org/docs/getting-started.html[Getting started] on the https://reactjs.org/[React website].
+注意:本教程说明了使用 React 框架来管理前端的文档对象模型 (DOM)。
+因为 React 有自己的自定义 DOM 语法，所以需要修改 webpack 配置来编译前端代码，前端代码是用 JSX 编写的。 有关学习使用 React 和 JSX 的更多信息，请参见 https://reactjs.org/[React 网站] 上的link:https://reactjs.org/docs/getting-started.html[Getting started]。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have `+node.js+` installed for front-end development and can install packages using `+npm install+` in your project.
-For information about installing node for your local operating system and package manager, see the link:https://nodejs.org/en/[Node] website.
+* 你已经为前端开发安装了`+node.js+`，并且可以在你的项目中使用`+npm install+`来安装包。
+有关为本地操作系统和包管理器安装节点的信息，请参阅link:https://nodejs.org/en/[Node] 网站。
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
 
-* You have installed the Visual Studio Code plugin for {proglang} as described in link:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[Install the language editor plug-in] if you are using Visual Studio Code as your IDE.
+* 如果您使用 Visual，您已按照链接中所述为 {proglang} 安装 Visual Studio Code 插件:../../quickstart/local-quickstart{outfilesuffix}#install-vscode[安装语言编辑器插件] Studio Code 作为您的 IDE。
 
-* You have stopped any local canister execution environment processes running on the local
-computer.
+* 您已停止在本地运行的任何本地容器执行环境进程
+计算机。
 
-NOTE: This tutorial requires you to use the {sdk-short-name} version `+0.8.0+` or later.
+注意:本教程要求您使用 {sdk-short-name} 版本 `+0.8.0+` 或更高版本。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project directory for your custom front-end dapp:
+为您的自定义前端 dapp 创建一个新项目目录:
 
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Verify that you have `+node.js+` installed locally, if necessary.
-. Create a new project by running the following command:
+. 如果您还没有打开一个终端外壳，请在您的本地计算机上打开一个终端外壳。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 如有必要，请验证您是否在本地安装了 `+node.js+`。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new contacts
 ----
-. Change to your project directory by running the following command:
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd contacts
 ----
 
-== Install the React framework
+== 安装 React 框架
 
-if you've never used React before, you might want to explore the link:https://reactjs.org/tutorial/tutorial.html[Intro to React] tutorial or the link:https://reactjs.org/[React website] before editing the front-end code.
+如果您以前从未使用过 React，您可能想探索link:https://reactjs.org/tutorial/tutorial.html[Intro to React] 教程或link:https://reactjs.org/[React website] 在编辑前端代码之前。
 
-To install required framework modules:
+要安装所需的框架模块:
 
-. Install the React module by running the following command:
+. 通过运行以下命令安装 React 模块:
 +
 [source,bash]
 ----
 npm install --save react react-dom
 ----
-. Install the required TypeScript language compiler loader by running the following command:
+. 通过运行以下命令安装所需的 TypeScript 语言编译器加载程序:
 +
 [source,bash]
 ----
 npm install --save-dev typescript ts-loader
 ----
-. Install the required style loaders by running the following command:
+. 通过运行以下命令安装所需的样式加载器:
 +
 [source,bash]
 ----
 npm install --save-dev style-loader css-loader
 ----
 +
-If the `+npm install+` command reports a vulnerability, you might also want to run the `+npm audit fix+` command to attempt to fix the vulnerability reported before continuing.
+如果 `+npm install+` 命令报告了漏洞，您可能还需要运行 `+npm audit fix+` 命令来尝试修复报告的漏洞，然后再继续。
 +
-NOTE: As an alternative to installing these modules, you can edit the default `+package.json+` file to add dependencies for your project.
+注意:作为安装这些模块的替代方法，您可以编辑默认的 `+package.json+` 文件来为您的项目添加依赖项。
 +
 ....
 include::example$add-stylesheet-package.json[]
 ....
 +
-The version of the JavaScript agent in this example `+package.json+` file is `+0.10.0+`. In most cases, however, you would want to use the latest version of the agent available. When you create a new project, the `+dfx new+` command automatically retrieves the latest version of the JavaScript agent for you. You can also manually retrieve the latest version after creating a project by running the `+npm install --save @dfinity/agent+` command.
+此示例 `+package.json+` 文件中的 JavaScript 代理版本为 `+0.10.0+`。 但是，在大多数情况下，您会希望使用可用的最新版本的代理。 当您创建一个新项目时，`+dfx new+` 命令会自动为您检索最新版本的 JavaScript 代理。 您还可以在创建项目后通过运行 `+npm install --save @dfinity/agent+` 命令手动检索最新版本。
 
-== Modify the default program
+== 修改默认程序
 
-For this tutorial, you are going to modify the main program to with code that allows you to store and look up contact information.
+对于本教程，您将使用允许您存储和查找联系信息的代码修改主程序。
 
-To modify the default program:
+修改默认程序:
 
-. Open the `+src/contacts/main.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the file:
+. 在文本编辑器中打开 `+src/contacts/main.mo+` 文件并删除现有内容。
+. 将以下示例代码复制并粘贴到文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$mycontacts/contacts.mo[]
 ----
-. Save your changes and close the `+main.mo+` file to continue.
+. 保存更改并关闭 `+main.mo+` 文件以继续。
 
-== Modify the front-end files
+== 修改前端文件
 
-You are now ready to create a new front-end for your program.
+您现在已准备好为您的程序创建一个新的前端。
 
-. Open the webpack configuration file (`webpack.config.js`) in a text editor.
-. Modify the front-end entry to replace the default index.html with index.jsx.
+. 在文本编辑器中打开 webpack 配置文件（`webpack.config.js`）。
+. 修改前端入口，将默认的 index.html 替换为 index.jsx。
 +
 [source,js]
 ----
@@ -113,7 +113,7 @@ entry: {
   index: path.join(__dirname, asset_entry).replace(/\.html$/, ".jsx"),
 },
 ----
-. Locate the commented example for the `+module+` key above the `+plugins+` section, then uncomment the following lines:
+. 在 `+plugins+` 部分上方找到 `+module+` 键的注释示例，然后取消注释以下行:
 +
 [source,js]
 ----
@@ -125,16 +125,16 @@ module: {
 },
 ----
 +
-. These settings enable your program to use the `+ts-loader+` compiler and to import CSS files.
+. 这些设置使您的程序能够使用 `+ts-loader+` 编译器并导入 CSS 文件。
 +
-Note: if you want to add support for `+.scss+` or `+.sass+` files, you should install `+sass-loader+` with:
+注意:如果你想添加对 `+.scss+` 或 `+.sass+` 文件的支持，你应该安装 `+sass-loader+` :
 +
 [source,bash]
 ----
 npm install --save react react-dom
 ----
 + 
-and then add this additional rule beneath the `+css-loader+` rule in `+webpack.config.js+`:
+然后在 `+webpack.config.js` 中的 `+css-loader url 下面添加这个附加规则:
 +
 [source,js]
 ----
@@ -156,60 +156,60 @@ module: {
 },
 ----
 
-. Save your changes and close the `+webpack.config.js+` file to continue.
-. Create a new file named `+tsconfig.json+` in the root directory for your project.
-. Open the `+tsconfig.json+` file in a text editor, then copy and paste the following into the file:
+. 保存更改并关闭 `+webpack.config.js+` 文件以继续。
+. 在项目的根目录中创建一个名为 `+tsconfig.json+` 的新文件。
+. 在文本编辑器中打开 `+tsconfig.json+` 文件，然后将以下内容复制并粘贴到文件中:
 +
 [source,json]
 ----
 include::example$sample-tsconfig.json[]
 ----
-. Save your changes and close the `+tsconfig.json+` file to continue.
+. 保存更改并关闭 `+tsconfig.json+` 文件以继续。
 
-== Add a stylesheet to your project
+== 为您的项目添加样式表
 
-You are now ready to create a new cascading stylesheet and add it to your project.
+您现在已准备好创建一个新的级联样式表并将其添加到您的项目中。
 
-To add a stylesheet:
+添加样式表:
 
-. Change to the `+src/contacts_assets/assets+` directory.
+. 切换到 `+src/contacts_assets/assets+` 目录。
 +
 [source,bash]
 ----
 cd src/contacts_assets/assets/
 ----
-. Open the `+main.css+` file in a text editor and delete the existing content.
-. Define some style properties for the front-end.
+. 在文本编辑器中打开 `+main.css+` 文件并删除现有内容。
+. 为前端定义一些样式属性。
 +
-For example, copy and paste the following sample styles into the file:
+例如，将以下示例样式复制并粘贴到文件中:
 +
 [source,bash]
 ----
 include::example$mycontacts/mycontacts.css[]
 ----
-. Save your changes and close the `+main.css+` file to continue.
-. Change to the `+src/contacts_assets/src+` directory.
+. 保存更改并关闭 `+main.css` 文件以继续。
+. 切换到 `+src/contacts assets/src` 目录。
 +
 [source,bash]
 ----
 cd ../src
 ----
-. Open the default `+index.js+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the `+index.js+` file:
+. 在文本编辑器中打开默认的 `+index.js+` 文件并删除现有内容。
+. 将以下示例代码复制并粘贴到 `+index.js+` 文件中:
 +
 [source,react]
 ----
 include::example$mycontacts/mod-index.jsx[]
 ----
-. Rename the modified `index.js` file as `index.jsx` by running the following command:
+. 通过运行以下命令将修改后的 `index.js` 文件重命名为 `index.jsx`:
 +
 [source,bash]
 ----
 mv index.js index.jsx
 ----
-. Open the default `src/contacts_assets/src/index.html` file in a text editor, then remove the `main.css` link and update the `body` contents with `<div id="contacts"></div>`.
+. 在文本编辑器中打开默认的 `src/contacts_assets/src/index.html` 文件，然后删除 `main.css` 链接并使用 `<div id="contacts"></div> 更新 `body` 内容 `。
 +
-For example:
+例如:
 +
 [source,bash]
 ----
@@ -237,102 +237,102 @@ For example:
 cd ../../..
 ----
 
-== Start the local network
+== 启动本地网络
 
-Before you can build the `+contacts+` project, you need to connect to the local canister execution environment.
+在构建 `+contacts+` 项目之前，您需要连接到本地容器执行环境。
 
-To start the environment locally:
+在本地启动环境:
 
 [arabic]
-. Open a new terminal window or tab on your local computer.
-. Start the local canister execution environment on your local computer by running the following command:
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 通过运行以下命令在本地计算机上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-After the environment completes its startup operations, you can continue to the next step.
+环境完成启动操作后，您可以继续下一步。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-After you connect to the local canister execution environment in your development environment, you can register, build, and deploy your dapp for testing.
+在开发环境中连接到本地容器执行环境后，您可以注册、构建和部署 dapp 以进行测试。
 
-To deploy the dapp:
+部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your dapp by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令注册、构建和部署您的 dapp:
 +
 [source,bash]
 ----
 dfx deploy
 ----
 +
-The `+dfx deploy+` command output displays information about the operations it performs.
+`+dfx deploy+` 命令输出显示有关它执行的操作的信息。
 +
-Keep in mind that because you are running the canister execution environment locally, the identifiers displayed when you run the `+dfx deploy+` command are only valid on your machine.
+请记住，因为您在本地运行容器执行环境，所以当您运行 `+dfx deploy+` 命令时显示的标识符仅在您的计算机上有效。
 +
-To deploy canisters on the {platform}, you must specify that you are deploying to the {IC} and not your local environment by using the `+--network+` command-line option:
+要在 {platform} 上部署容器，您必须使用 `+--network+` 命令行选项指定要部署到 {IC} 而不是本地环境:
 +
 [source,bash]
 ----
 dfx deploy --network=ic
 ----
-. Start the Webpack development server:
+. 启动 Webpack 开发服务器:
 +
 [source,bash]
 ----
 npm start
 ----
 
-== View the front-end
+== 查看前端
 
-You can now access the front-end for the `+contacts+` dapp.
+您现在可以访问 `+contacts+` dapp 的前端。
 
-To view the front-end:
+查看前端:
 
-. Open a browser and navigate to the `http://localhost:8080`.
-. Verify that you are prompted with a **My Contacts** form.
+. 打开浏览器并导航到“http://localhost:8080”。
+. 验证是否使用 **My Contacts** 表单提示您。
 +
-For example:
+例如:
 +
 image:mycontacts-form.png[Sample front-end]
 
-. Create one or more test records by entering text in the Name, Address, and Email input fields and a number in the Phone input field, then clicking *Add Contact*.
-. Clear the form fields and type a contact name in the Lookup name field, then click *Lookup* to see the stored contact information.
+. 通过在姓名、地址和电子邮件输入字段中输入文本并在电话输入字段中输入数字，然后单击*添加联系人*，创建一个或多个测试记录。
+. 清除表单字段并在查找姓名字段中键入联系人姓名，然后单击*查找*以查看存储的联系人信息。
 +
-Keep in mind that the *Lookup name* you type must be an exact match for the name of a contact you added.
+请记住，您键入的 *查找名称* 必须与您添加的联系人姓名完全匹配。
 
-== Modify the stylesheet and test your changes
+== 修改样式表并测试您的更改
 
-After viewing the Contacts dapp, you might want to make some changes.
+查看联系人 dapp 后，您可能需要进行一些更改。
 
-To change stylesheet properties:
+要更改样式表属性:
 
-. Open the `+src/contacts_assets/assets/mycontacts.css+` file in a text editor and modify its style settings.
+.在文本编辑器中打开 `+src/contacts_assets/assets/mycontacts.css+` 文件并修改其样式设置。
 +
-For example, you might want to change the background color or style the input form.
+例如，您可能想要更改输入表单的背景颜色或样式。
 +
-You should see the changes update immediately in your open browser window.
+您应该会在打开的浏览器窗口中立即看到更改更新。
 
-== Modify the front-end or back-end code
+== 修改前端或后端代码
 
-If you want to explore further, you might want to experiment with modifying the front-end or back-end code for this tutorial.
-For example, you might want try modifying the tutorial to do the following:
+如果您想进一步探索，您可能需要尝试修改本教程的前端或后端代码。
+例如，您可能想尝试修改教程以执行以下操作:
 
-- Change the front-end code to clear the input fields after adding a new contact, for example, as part of an `+onClick+` event.
-- Change the {proglang} program functions to do partial instead of exact string matching on the `+Name+` field. (You will need to run `dfx deploy` to test your changes on the local environment)
-- Change the {proglang} program to allow lookups based on a different field.
+- 更改前端代码以在添加新联系人后清除输入字段，例如，作为 `+onClick+` 事件的一部分。
+- 将 {proglang} 程序函数更改为在 `+Name+` 字段上进行部分而不是精确的字符串匹配。 （您需要运行 `dfx deploy` 来测试您在本地环境中所做的更改）
+- 更改 {proglang} 程序以允许基于不同字段的查找。
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with your program, you can stop the local environment so that it doesn’t continue running in the background.
+完成对程序的试验后，您可以停止本地环境，使其不会继续在后台运行。
 
-To stop the local development environment:
+停止本地开发环境:
 
-. In the terminal that displays your webpack dev server, press Control-C to interrupt the development server.
+.在显示 webpack 开发服务器的终端中，按 Control-C 中断开发服务器。
 
-. Stop the {IC} network by running the following command:
+.通过运行以下命令停止 {IC} 网络:
 +
 [source,bash]
 ----

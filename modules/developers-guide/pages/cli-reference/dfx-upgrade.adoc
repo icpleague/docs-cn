@@ -29,14 +29,14 @@ dfx upgrade [flag] [option]
 |===
 |选项 |说明
 
-|`+--current-version <version>+` |指定您要标识为当前版本的版本。
+|`+--current-version <版本>+` |指定您要标识为当前版本的版本。
 此选项使您能够用您在命令行上传递的版本覆盖当前标识为最新版本的软件版本。
 
 |===
 
 == 例子
 
-您可以通过运行以下命令来升级您当前安装的 {sdk-short-name} 的版本：
+您可以通过运行以下命令来升级您当前安装的 {sdk-short-name} 的版本:
 
 [source,bash]
 ----
@@ -48,7 +48,7 @@ dfx upgrade
 
 [source,bash]
 ----
-当前版本：0.6.8
+当前版本:0.6.8
 获取清单\https://sdk.dfinity.org/manifest.json
 已经是最新的了
 ----

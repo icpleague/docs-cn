@@ -6,14 +6,14 @@
 :release: 0.8.4
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-{release} 版本概述：
+{release} 版本概述:
 
 * 添加了对 Rust容器的一流支持。
 * 包含的副本现在支持 canister_heartbeat。
 
 == 对 DFX 的更改
 
-=== 新功能：添加了“Rust”容器类型
+=== 新功能:添加了“Rust”容器类型
 
 您现在可以在 dfx.json 中声明“Rust”容器。
 [source, json]
@@ -52,11 +52,11 @@ dfx new --type=rust <project-name>
 
 此外，还为入门模板添加了一些润色，包括网站图标并在示例应用程序中使用更多语义 html 
 
-=== 新功能：可执行路径名的环境变量覆盖
+=== 新功能:可执行路径名的环境变量覆盖
 
 您现在可以通过指定环境变量来覆盖通常从缓存中调用的任何可执行文件的位置。 例如，DFX_ICX_PROXY_PATH 将指定 `icx-proxy` 的路径。
 
-=== 新功能：dfx deploy --mode=reinstall <canister>
+=== 新功能:dfx deploy --mode=reinstall <canister>
 
 `dfx deploy` 现在可以重新安装单个容器，由新的 `--mode=reinstall` 参数控制。
 这是破坏性的（它会重置容器的状态），因此需要确认并且一次只能在一个容器上执行。

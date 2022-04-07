@@ -1,46 +1,46 @@
-= Decentralized data centers
-:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
+= 去中心化数据中心
+:keywords: 互联网计算机,区块链,协议,副本,子网,数据中心,智能合约,容器,开发者
 :proglang: Motoko
-:IC: Internet Computer blockchain
+:IC: 互联网计算机 区块链
 :company-id: DFINITY
 
-The {IC} is not physical hardware that exists in any physical location.
-Instead, the {IC} combines computing resources provided by independently-operated data centers around the world.
+{IC} 不是存在于任何物理位置的物理硬件。
+相反，{IC} 结合了全球独立运营的数据中心提供的计算资源。
 
-Unlike a public or private cloud, the {IC} is not owned and operated by a single private company.
-Instead, the {IC} is a public utility with updates and operations that are managed through an algorithmic, decentralized governance system defined in the protocol.
-Its architecture enables multiple computers to operate like one, very powerful, virtual machine.
+与公共云或私有云不同，{IC} 并非由一家私营公司拥有和运营。
+相反，{IC} 是一种公用事业，其更新和操作通过协议中定义的算法、去中心化治理系统进行管理。
+它的架构使多台计算机能够像一个非常强大的虚拟机一样运行。
 
-The nodes located in data centers around the globe that make up the Internet Computer are organized into subnet blockchains that in turn connect to each other using Chain Key cryptography.
-The distributed architecture enables secure communication without firewalls or technologies that are vulnerable to attack.
-Independent node operators pay data centers to host their nodes and receive remuneration for contributing computing capacity and hosting services to support dapps running on the {IC}.
+构成互联网计算机的全球数据中心中的节点被组织成子网区块链，这些子网区块链又使用链密钥加密技术相互连接。
+分布式架构无需防火墙或易受攻击的技术即可实现安全通信。
+独立节点运营商向数据中心支付费用以托管他们的节点，并获得报酬以提供计算能力和托管服务以支持在 {IC} 上运行的 dapp。
 
-== Subnets and data centers
+== 子网和数据中心
 
-To provide a truly decentralized blockchain that can withstand potential service disruptions, the physical nodes that make up any given blockchain subnet are distributed across data centers in diverse locations.
-The nodes themselves might be owned or provided by different parties in partnership or unaffiliated with the data center location where they operate.
+为了提供能够承受潜在服务中断的真正分散的区块链，构成任何给定区块链子网的物理节点分布在不同位置的数据中心。
+节点本身可能由不同方以合作伙伴关系拥有或提供，或者与它们运营所在的数据中心位置无关。
 
-The following diagram provides a simplified view of a subnet with nodes in four data centers.
+下图提供了在四个数据中心中具有节点的子网的简化视图。
 
 image:data-center-simplified.svg[]
 
-In this simplified scenario:
+在这个简化的场景中:
 
-* There are four geographically-independent data centers.
-* Each data center has hardware supplied by multiple node providers.
-* Any single node provider might have equipment in multiple data centers.
+* 有四个地理上独立的数据中心。
+* 每个数据中心都有多个节点供应商提供的硬件。
+* 任何单个节点提供商都可能在多个数据中心拥有设备。
 
-Although this example represents one subnet blockchain with nodes in multiple data centers, any of the nodes could be moved out of this blockchain subnet to form a new blockchain subnet, if needed.
-Changes to the network topology are managed through the {IC} governance system called the **Network Nervous System** (NNS).
+尽管此示例表示一个子网区块链，其节点位于多个数据中心，但如果需要，任何节点都可以移出该区块链子网以形成新的区块链子网。
+网络拓扑的更改通过称为 **Network Nervous System** (NNS) 的 {IC} 治理系统进行管理。
 
-== Node providers and data center operators
+== 节点提供商和数据中心运营商
 
-In most cases, node providers—or the data center operators they partner with—are responsible for monitoring and maintaining the compute capacity of the equipment on which the {IC} runs.
-For example, node providers or data center operators might need to repair or replace equipment if there's a hardware failure or if a system under-performs.
-Network operations and upgrades, however, are monitored and managed through the decentralized governance system, the Network Nervous System (NNS).
+在大多数情况下，节点提供商或与他们合作的数据中心运营商负责监控和维护运行 {IC} 的设备的计算能力。
+例如，如果出现硬件故障或系统性能不佳，节点提供商或数据中心运营商可能需要维修或更换设备。
+然而，网络运营和升级是通过分散的治理系统网络神经系统 (NNS) 进行监控和管理的。
 
-== Want to learn more?
+== 想了解更多？
 
-If you are looking for more information about data center operations and node providers, check out the following related resources:
+如果您正在寻找有关数据中心运营和节点提供商的更多信息，请查看以下相关资源:
 
-* link:https://support.internetcomputer.org/hc/en-us/sections/4405489337748-Node-Provider[Internet Computer Help Center for Node Providers (FAQ and articles)]
+* link:https://support.internetcomputer.org/hc/en-us/sections/4405489337748-Node-Provider[节点提供者互联网计算机帮助中心（常见问题和文章）]

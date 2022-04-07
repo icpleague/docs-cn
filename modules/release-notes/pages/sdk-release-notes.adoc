@@ -9,11 +9,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 {sdk-long-name} 使开发人员能够开发在 {IC} 上运行的应用程序。
 {proglang} 新编程语言与 {sdk-long-name} 捆绑在一起，为创建防篡改软件和开放互联网服务提供原生支持。
 
-{sdk-short-name} 提供了执行以下关键任务所需的一切：
+{sdk-short-name} 提供了执行以下关键任务所需的一切:
 
 - 在 {proglang} 中编写容器并将它们编译为 WebAssembly。
 - 模拟在您的开发计算机上本地运行的 {IC} 网络。
-- 将编译后的程序部署为link：../developers-guide/glossary{outfilesuffix}#g-canister[canisters]。
+- 将编译后的程序部署为link:../developers-guide/glossary{outfilesuffix}#g-canister[canisters]。
 - 使用命令行界面或通过 Web 浏览器与您的应用程序服务交互。
 
 [NOTE]
@@ -36,9 +36,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 其他问题和反馈
 
-加入link：https://forum.dfinity.org/[DFINITY 开发者论坛] 是向社区成员学习、提出问题、寻求其他开发者帮助以及提供有关您的体验的见解和反馈的有效方式。
+加入link:https://forum.dfinity.org/[DFINITY 开发者论坛] 是向社区成员学习、提出问题、寻求其他开发者帮助以及提供有关您的体验的见解和反馈的有效方式。
 
-如果您有社区未回答的问题，您可能还想查看link：../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] 主题以获取有关常见问题、已知问题的解决方法或帮助的信息 排除警告或错误。
+如果您有社区未回答的问题，您可能还想查看link:../developers-guide/troubleshooting{outfilesuffix}[Troubleshooting] 主题以获取有关常见问题、已知问题的解决方法或帮助的信息 排除警告或错误。
 
 如需技术支持，请发送电子邮件至 support@dfinity.org[DFINITY支持]。
 

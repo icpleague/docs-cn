@@ -62,7 +62,7 @@ dfx build [flag] [option] [--all | canister_name]
 == 例子
 
 您可以使用 `+dfx build+` 命令从 `+canisters+` 键下的 `+dfx.json+` 配置文件中指定的程序构建一个或多个 WebAssembly 模块。
-例如，如果你的 `+dfx.json+` 配置文件定义了一个 `+hello_world+` 容器和一个 `+hello_world_assets+` 容器，那么运行 `+dfx build+` 会编译两个 WebAssembly 模块：
+例如，如果你的 `+dfx.json+` 配置文件定义了一个 `+hello_world+` 容器和一个 `+hello_world_assets+` 容器，那么运行 `+dfx build+` 会编译两个 WebAssembly 模块:
 
 [source,json]
 ----
@@ -72,7 +72,7 @@ include::example$sample-dfx.json[]
 请注意，文件系统上程序的文件名和路径必须与 `+dfx.json+` 配置文件中指定的信息匹配。
 
 在此示例中，`+hello_world+` 容器包含主程序代码，`+hello_world_assets+` 容器存储前端代码和资产。
-如果要保留 `+dfx.json+` 文件中定义的 `+hello_world_assets+` 容器，但只构建后端程序，可以运行以下命令：
+如果要保留 `+dfx.json+` 文件中定义的 `+hello_world_assets+` 容器，但只构建后端程序，可以运行以下命令:
 
 [source,bash]
 ----
@@ -81,7 +81,7 @@ dfx build hello_world
 
 当您在 dfx.json 文件中定义了多个容器，但想要独立测试和调试容器的操作时，构建特定容器非常有用。
 
-要测试容器是否在不连接到 {platform} 或本地容器执行环境的情况下编译，您将运行以下命令：
+要测试容器是否在不连接到 {platform} 或本地容器执行环境的情况下编译，您将运行以下命令:
 
 [source,bash]
 ----

@@ -1,22 +1,22 @@
-= Concepts
-:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
+= 概念
+:keywords: 互联网计算机,区块链,协议,副本,子网,数据中心,智能合约,容器,开发者
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
 
-You don’t need to know much about the inner workings of the {platform} to write programs that run successfully on it.
-However, learning a few key concepts will help you get the most out of the unique features that the {IC} provides.
+您无需了解太多有关 {platform} 的内部工作原理即可编写在其上成功运行的程序。
+但是，学习一些关键概念将帮助您充分利用 {IC} 提供的独特功能。
 
-Knowing a little about the design and architecture of the {platform} can make it easier for you to realize the benefits that align with your goals and inform the types of applications you develop.
+稍微了解一下 {platform} 的设计和架构，可以让您更轻松地实现与您的目标相一致的好处，并为您开发的应用程序类型提供信息。
 
-The topics in this section introduce key components and terminology to help you understand the architecture and operation of the {IC}.
+本节中的主题介绍了关键组件和术语，以帮助您了解 {IC} 的架构和操作。
 
-If you want to get right to developing code, though, you can skip this introductory material—key concepts and terminology—and look them up later when you need them either in this section or in the link:../glossary{outfilesuffix}[glossary].
+但是，如果您想直接开发代码，则可以跳过此介绍性材料（关键概念和术语），稍后在需要时在本节或链接中查找它们:../glossary{outfilesuffix}[ 词汇表]。
 
-If you are looking for more introductory information, check out the following related resources:
+如果您正在寻找更多介绍性信息，请查看以下相关资源:
 
-* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
-* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
-* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
-* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[互联网计算机概述（视频）]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[在 {IC} 上构建:基础（视频）]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[介绍容器——智能合约的演变（视频）]
+* link:https://dfinity.org/faq/ [常见问题（视频和短文）]

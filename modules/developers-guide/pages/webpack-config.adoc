@@ -2,9 +2,9 @@
 
 {platform} 允许您使用我们的 https://www.npmjs.com/package/@dfinity/agent[JavaScript 代理] 为您的 dapp 托管 Web 3.0 前端。 通过使用 `+dfx+` 提供的 https://github.com/dfinity/certified-assets[asset canister] 将静态文件上传到 {IC}，您将能够在去中心化技术上运行您的整个应用程序。 本节详细介绍了由 `+dfx new+` 提供的默认前端模板、前端配置选项以及使用其他框架为您的项目构建用户界面。
 
-以下是一些教程的快速链接，其中包含开发前端 dapp 各个阶段的示例代码：
+以下是一些教程的快速链接，其中包含开发前端 dapp 各个阶段的示例代码:
 
-* 构建 React dapp 的教程link：tutorials/custom-frontend{outfilesuffix}[自定义前端]
+* 构建 React dapp 的教程link:tutorials/custom-frontend{outfilesuffix}[自定义前端]
 * 使用 link:tutorials/hello-location{outfilesuffix}#candid-ui[Candid] 作为基本接口来公开和测试容器中的功能。
 * 使用 link:tutorials/explore-templates{outfilesuffix}#default-frontend[raw HTML and JavaScript] 来显示一个简单的 HTML 入口页面。
 * 使用 link:tutorials/custom-frontend{outfilesuffix}[React and compiled JavaScript] 将 HTML 属性和元素直接嵌入到页面中。
@@ -16,7 +16,7 @@
 
 默认情况下，`+index.js+` 文件会导入位于 `+src/declarations+` 文件夹中的代理。当您在本地或部署到 IC 时运行 `dfx deploy` 时，`+dfx+` 将生成该目录。
 
-生成的代码将如下所示： 
+生成的代码将如下所示: 
 
 [source,js]
 ----
@@ -54,7 +54,7 @@ export const createActor = (canisterId, options) => {
 export const hello = createActor(canisterId);
 ----
 
-然后，如果你返回到`+index.js+`，你可以看到它获取了生成的actor，并使用它来调用`+hello+`容器的`greet`方法：
+然后，如果你返回到`+index.js+`，你可以看到它获取了生成的actor，并使用它来调用`+hello+`容器的`greet`方法:
 
 [source,js]
 ----
@@ -77,7 +77,7 @@ document.getElementById("clickMeBtn").addEventListener("click", async () => {
 
 如果您查看模板 `+webpack.config.js+` 文件中的代码，您会发现它从 `.dfx/local/canister_ids.json` 和 `'./canister_ids.json 推断出容器 ID '` 用于您配置的任何其他环境。 它根据“DFX_NETWORK”过程变量或“NODE_ENV”是否设置为“生产”来决定使用哪个网络。
 
-您可以在以下代码块中看到这些步骤：
+您可以在以下代码块中看到这些步骤:
 
 [source,js]
 ----
@@ -115,7 +115,7 @@ initCanisterIds();
 在很多情况下，您可以直接使用默认的 `+webpack.config.js+` 文件，无需任何修改，也可以添加插件、模块和其他自定义配置以满足您的需求。
 您对 `+webpack.config.js+` 配置所做的具体更改很大程度上取决于您要使用的其他工具和框架。
 
-例如，如果您尝试过 link:tutorials/custom-frontend{outfilesuffix}[自定义前端] 或 link:tutorials/my-contacts{outfilesuffix}[Add a stylesheet] 前端教程，您可能有 修改了以下部分以使用 React JavaScript：
+例如，如果您尝试过 link:tutorials/custom-frontend{outfilesuffix}[自定义前端] 或 link:tutorials/my-contacts{outfilesuffix}[Add a stylesheet] 前端教程，您可能有 修改了以下部分以使用 React JavaScript:
 
 [source,js]
 ----
@@ -130,7 +130,7 @@ initCanisterIds();
 ----
 
 
-如果您的应用程序不使用 `+dfx+` 来运行构建脚本，您可以自己提供变量。 例如：
+如果您的应用程序不使用 `+dfx+` 来运行构建脚本，您可以自己提供变量。 例如:
 
 [source,bash]
 ----
@@ -143,7 +143,7 @@ DFX_NETWORK=staging NODE_ENV=production HELLO_CANISTER_ID=rrkah... npm run build
 
 因为项目依赖 webpack 为默认前端提供框架，所以您必须在开发环境中安装 `+node.js+` 并且可以在项目目录中访问。
 
-* 如果您想在不使用默认 webpack 配置和容器别名的情况下开发项目，您可以从 `+dfx.json+` 文件中删除 `+assets+` 容器或使用特定容器名称构建项目。 例如，您可以通过运行以下命令选择仅构建没有前端资产的 hello 程序：
+* 如果您想在不使用默认 webpack 配置和容器别名的情况下开发项目，您可以从 `+dfx.json+` 文件中删除 `+assets+` 容器或使用特定容器名称构建项目。 例如，您可以通过运行以下命令选择仅构建没有前端资产的 hello 程序:
 +
 ....
 dfx build hello
@@ -156,16 +156,16 @@ dfx build hello
 
 == 在 React 框架中使用其他模块
 
-几个教程和示例项目link：https://github.com/dfinity/examples[examples] 存储库说明了如何使用 `+npm install+` 命令添加 React 模块。
+几个教程和示例项目link:https://github.com/dfinity/examples[examples] 存储库说明了如何使用 `+npm install+` 命令添加 React 模块。
 您可以使用这些模块来构建您想要在项目中使用的用户界面组件。
-例如，您可以运行以下命令来安装 `+react-router+` 模块：
+例如，您可以运行以下命令来安装 `+react-router+` 模块:
 
 [source,bash]
 ----
 npm install --save react react-router-dom
 ----
 
-然后，您可以使用该模块构建类似于以下内容的导航组件：
+然后，您可以使用该模块构建类似于以下内容的导航组件:
 
 [source,react]
 ----
@@ -195,11 +195,11 @@ export default Navigation;
 
 webpack 开发服务器——`+webpack-dev-server+`——提供对 webpack 资产的内存访问，使您能够使用实时重新加载进行更改并立即在浏览器中看到它们的反映。
 
-要利用 `+webpack-dev-server+`：
+要利用 `+webpack-dev-server+`:
 
 . 创建一个新项目并切换到您的项目目录。
 . 如有必要，在本地启动 {IC}，然后像往常一样进行部署，例如，通过运行 `+dfx deploy+` 命令。
-. 通过运行以下命令启动 webpack 开发服务器：
+. 通过运行以下命令启动 webpack 开发服务器:
 +
 [source,bash]
 ----
@@ -207,7 +207,7 @@ npm start
 ----
 . 打开 Web 浏览器并使用端口 8080 导航到应用程序的资产容器。
 +
-例如：
+例如:
 +
 ....
 http://localhost:8080
@@ -215,7 +215,7 @@ http://localhost:8080
 . 打开一个新的终端窗口或选项卡并导航到您的项目目录。
 . 在文本编辑器中打开项目的 `+index.js+` 文件并更改内容。
 +
-例如，您可以使用 JavaScript 向页面添加一个元素：
+例如，您可以使用 JavaScript 向页面添加一个元素:
 +
 document.body.onload = addElement;
 +
@@ -246,7 +246,7 @@ function addElement () {
 
 == 使用其他框架
 
-您可能想要使用 webpack 以外的捆绑器。 每个捆绑器的说明尚未准备好，但如果您熟悉您的捆绑器，以下步骤应该可以帮助您：
+您可能想要使用 webpack 以外的捆绑器。 每个捆绑器的说明尚未准备好，但如果您熟悉您的捆绑器，以下步骤应该可以帮助您:
 
 . 从 `+package.json+` 中删除 `+copy:types+`、`+prestart+` 和 `+prebuild+` 脚本
 . 运行 `+dfx deploy+` 为您的容器生成本地绑定

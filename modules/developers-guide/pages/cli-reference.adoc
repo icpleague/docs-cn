@@ -5,7 +5,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc-title: COMMAND REFERENCE
 :toclevels: 1
 :proglang: Motoko
-:平台：互联网计算机平台
+:平台:互联网计算机平台
 :IC: 互联网计算机
 :company-id: DFINITY
 
@@ -13,7 +13,7 @@ DFINITY 命令行执行环境 (`+dfx+`) 是为 {platform} 创建、部署和管�
 
 您可以使用带有不同标志和子命令的 `+dfx+` 父命令来执行不同类型的操作。
 
-运行 `+dfx+` 命令的基本语法是：
+运行 `+dfx+` 命令的基本语法是:
 
 [source,bash]
 ----

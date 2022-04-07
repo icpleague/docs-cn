@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 新特性和功能
 
-最重要的新特性和功能包括以下功能领域的更新：
+最重要的新特性和功能包括以下功能领域的更新:
 
 * <<DFX,DFX>>
 * <<Candid,Candid>>
@@ -25,7 +25,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 === Candid
 
 Candid Web 界面已更新，可提供更轻松的导航和更好的用户体验。
-Candid Web 界面的更新包括以下新功能和改进：
+Candid Web 界面的更新包括以下新功能和改进:
 
 * 新的控制台抽屉提供对方法输出的快速访问和所有可用方法的列表，作为快速导航的链接。
 * Canister 方法及其相关的表单元素更清晰地分离和注释。

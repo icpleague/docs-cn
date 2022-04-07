@@ -6,13 +6,13 @@
 :release: 0.9.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-{release} 版本概述：
+{release} 版本概述:
 
-由于 dfx 0.8.4 以来的重大更改，请务必查看链接：0.9.0-rn[0.9.0 Release Notes] 并按照说明进行操作。
+由于 dfx 0.8.4 以来的重大更改，请务必查看链接:0.9.0-rn[0.9.0 Release Notes] 并按照说明进行操作。
 
 == 对 DFX 的更改
 
-=== 新功能：验证 Candid 和 Motoko 稳定变量类型的容器升级安全性
+=== 新功能:验证 Candid 和 Motoko 稳定变量类型的容器升级安全性
 
 新部署的 Motoko 容器现在在 Wasm 模块中嵌入了 Candid 界面和 Motoko 稳定签名。
 `dfx deploy` 和 `dfx canister install` 会自动检查
@@ -22,9 +22,9 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 详情参见 https://smartcontracts.org/docs/language-guide/compatibility.html[升级兼容性]。
 
-=== 新功能：跨构建命令的统一环境变量
+=== 新功能:跨构建命令的统一环境变量
 
-使用自定义构建工具的三种容器类型——“assets”、“rust”和“custom”——现在在构建任务期间都支持相同的环境变量集：
+使用自定义构建工具的三种容器类型——“assets”、“rust”和“custom”——现在在构建任务期间都支持相同的环境变量集:
 
 * `DFX_VERSION` - 用于构建容器的 DFX 版本。
 * `DFX_NETWORK` - 正在构建的网络名称。 通常是`ic`或`local`。
@@ -35,12 +35,12 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 * `CANISTER_CANDID_PATH` - 与`CANISTER_CANDID_PATH_{self}` 相同，其中`{self}` 是_此_容器的名称。
 
 
-=== 新功能：支持本地分类帐调用
+=== 新功能:支持本地分类帐调用
 
 如果您安装了 ICP Ledger（请参阅 https://github.com/dfinity/ic/tree/master/rs/rosetta-api/ledger_canister#deploying-locally[Ledger 安装指南]），`dfx ledger balance` 现在支持“dfx 账本转移”
 `--ledger-canister-id` 参数。
 
-一些例子：
+一些例子:
 [source, base]
 ----
 $ dfx ledger \
@@ -53,10 +53,10 @@ $ dfx ledger \
   --network local \
   transfer --amount 0.1 --memo 0 \
   --ledger-canister-id  rrkah-fqaaa-aaaaa-aaaaq-cai 8af54f1fa09faeca18d294e0787346264f9f1d6189ed20ff14f029a160b787e8
-以区块高度发送的转移：1
+以区块高度发送的转移:1
 ----
 
-=== 新功能：`dfx ledger account-id` 现在可以计算容器地址
+=== 新功能:`dfx ledger account-id` 现在可以计算容器地址
 
 `dfx ledger account-id` 现在可以计算主体和容器的地址。
 该命令现在还支持分类帐子帐户。
@@ -68,26 +68,26 @@ dfx ledger --network small02 account-id --of-canister ledger_demo
 dfx ledger account-id --of-principal 53zcu-tiaaa-aaaaa-qaaba-cai --subaccount 0000000000000000000000000000000000000000000000000000000000000001
 ----
 
-=== 新功能：在失败的情况下打印完整的错误链
+=== 新功能:在失败的情况下打印完整的错误链
 
 现在，所有“dfx”命令都将打印导致问题的完整错误堆栈，而不仅仅是最近的错误。
-例子：
+例子:
 
 [source]
 ----
-错误：子帐户“00000000000000000000000000000000000000000000000000000000000000000”不是有效的十六进制字符串
-造成：
+错误:子帐户“00000000000000000000000000000000000000000000000000000000000000000”不是有效的十六进制字符串
+造成:
    奇数位数
 ----
 
-=== 修正：dfx import 现在将导入由 `quill generate` 创建的 pem 文件
+=== 修正:dfx import 现在将导入由 `quill generate` 创建的 pem 文件
 
 `quill generate` 当前输出没有 `EC PARAMETERS` 部分的 .pem 文件。
 `dfx identity import` 现在将正确地将这些标识为 EC 密钥，而不是 Ed25519。
 
-=== 已修复：分类帐创建容器、充值、转移失败时重试
+=== 已修复:分类帐创建容器、充值、转移失败时重试
 
-dfx 现在调用 `transfer` 而不是 `send_dfx`，并设置 created_at_time 字段以重试以下命令：
+dfx 现在调用 `transfer` 而不是 `send_dfx`，并设置 created_at_time 字段以重试以下命令:
 
 * dfx ledger create-canister
 * dfx ledger top-up
@@ -101,7 +101,7 @@ dfx 现在调用 `transfer` 而不是 `send_dfx`，并设置 created_at_time 字
 
 将副本更新为
 04fe8b0a1262f07c0cec1fdfa838a37607370a61。
-这包括以下已执行的提案：
+这包括以下已执行的提案:
 
 * https://dashboard.internetcomputer.org/proposal/45091[45091]
 * https://dashboard.internetcomputer.org/proposal/43635[43635]

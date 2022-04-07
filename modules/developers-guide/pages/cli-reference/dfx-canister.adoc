@@ -3,7 +3,7 @@
 使用带有标志和子命令的 `+dfx canister+` 命令来管理容器操作以及与 {platform} 或本地容器执行环境的交互。
 在大多数情况下，您在编译程序后使用 `+dfx canister+` 子命令来管理容器生命周期并执行关键任务，例如调用程序函数。
 
-运行 `+dfx canister+` 命令的基本语法是：
+运行 `+dfx canister+` 命令的基本语法是:
 
 [source,bash]
 ----
@@ -12,7 +12,7 @@ dfx canister [subcommand] [flag]
 
 根据您指定的 `+dfx canister+` 子命令，可能会应用或需要其他参数、选项和标志。
 要查看特定 `+dfx canister+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx canister call+` 的使用信息，可以运行以下命令：
+例如，要查看 `+dfx canister call+` 的使用信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -57,14 +57,14 @@ dfx canister call --help
 默认情况下，`+dfx canister+` 命令在 `+dfx.json+` 文件中指定的本地容器执行环境中运行。
 如果您想在不更改 `+dfx.json+` 配置文件中的设置的情况下向 {platform} 或测试网发送 `+dfx canister+` 子命令，则可以使用 `+-- 显式指定要连接的 URL 网络+`选项。
 
-例如，要在本地容器执行环境中为项目注册唯一容器标识符，您可以运行以下命令：
+例如，要在本地容器执行环境中为项目注册唯一容器标识符，您可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister create --all
 ----
 
-如果要在 {platform} 上为同一项目注册唯一容器标识符，可以运行以下命令：
+如果要在 {platform} 上为同一项目注册唯一容器标识符，可以运行以下命令:
 
 [source,bash]
 ----
@@ -73,7 +73,7 @@ dfx canister --network ic create --all
 
 {sdk-short-name} 带有一个别名 `+ic+`，它被配置为指向 {platform}。 您还可以将 URL 作为网络选项传递，或者您可以在 `+networks+` 配置下的 `+dfx.json+` 中配置其他别名。
 
-为了说明，您可以使用类似于以下的命令调用在测试网上运行的容器和函数：
+为了说明，您可以使用类似于以下的命令调用在测试网上运行的容器和函数:
 
 [source,bash]
 ----
@@ -106,7 +106,7 @@ dfx canister call [option] _canister_name_ _method_name_ [argument] [flag]
 
 |`+--query+` |使您能够向已部署的容器发送查询请求。
 为了获得最佳性能，当您明确想要使用查询方法检索信息时，您应该使用此标志。
-有关查询和更新调用之间差异的信息，请参阅link：../concepts/canisters-code{outfilesuffix}#canister-state[容器包括程序和状态]。
+有关查询和更新调用之间差异的信息，请参阅link:../concepts/canisters-code{outfilesuffix}#canister-state[容器包括程序和状态]。
 
 |`+--update+` |使您能够向已部署的容器发送更新请求。
 默认情况下，容器调用使用更新方法。
@@ -144,15 +144,15 @@ canister 方法是必需的参数。
 |`+argument+` |指定要传递给方法的参数。
 根据您的程序逻辑，参数可以是必需参数或可选参数。
 如果将参数传递给容器，则可以使用 `+--type+` 选项指定数据格式类型。
-默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
-有关使用 Candid 及其支持的类型的信息，请参阅链接link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+默认情况下，您可以使用以下链接指定参数link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅链接link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link:../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
 如果要将原始字节传递给容器，可以使用 `+raw+` 作为参数类型。
 |===
 
 === 例子
 
 在使用 `+dfx canister install+` 命令部署容器后，可以使用 `+dfx canister call+` 命令调用特定方法（带或不带参数）。
-例如，要为 `+canister_name+` 为 `+counter+` 的容器调用 `+get+` 方法，可以运行以下命令：
+例如，要为 `+canister_name+` 为 `+counter+` 的容器调用 `+get+` 方法，可以运行以下命令:
 
 [source,bash]
 ----
@@ -166,7 +166,7 @@ dfx canister call counter get --async
 
 ==== 使用 IDL 语法
 
-您可以通过对 Text 数据类型运行类似于以下的命令来显式指定使用 IDL 语法传递参数：
+您可以通过对 Text 数据类型运行类似于以下的命令来显式指定使用 IDL 语法传递参数:
 
 [source,bash]
 ----
@@ -177,7 +177,7 @@ dfx canister call hello greet '("Lisa")' --type idl
 ("Hello, Lisa!")
 ----
 
-您还可以通过运行类似于以下的命令来隐式使用 IDL：
+您还可以通过运行类似于以下的命令来隐式使用 IDL:
 
 [source,bash]
 ----
@@ -186,7 +186,7 @@ dfx canister call hello greet '("Lisa")'
 ----
 
 要使用 IDL 语法指定多个参数，请在参数之间使用逗号。
-例如：
+例如:
 
 [source,bash]
 ----
@@ -195,7 +195,7 @@ dfx canister call contacts insert '("Amy Lu","01 916-335-2042")'
 dfx canister call hotel guestroom '("Deluxe Suite",42,true)'
 ----
 
-您可以通过运行类似于以下内容的命令以字节为单位传递原始数据：
+您可以通过运行类似于以下内容的命令以字节为单位传递原始数据:
 
 [source,bash]
 ----
@@ -260,14 +260,14 @@ dfx canister create [option] [flag] [--all | _canister_name_]
 === 例子
 
 您可以使用 `+dfx canister create+` 命令注册容器标识符，而无需先编译任何代码。
-例如，如果要在编写程序之前为项目`+my_counter+`创建容器标识符，可以运行以下命令：
+例如，如果要在编写程序之前为项目`+my_counter+`创建容器标识符，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister create my_counter
 ----
 
-您可以使用带有 `+--with-cycles+` 选项的 `+dfx canister create+` 命令来指定在项目中创建一个或所有容器时的初始平衡。 例如，要为所有容器指定 8000000000000 个循环的初始平衡，请运行以下命令：
+您可以使用带有 `+--with-cycles+` 选项的 `+dfx canister create+` 命令来指定在项目中创建一个或所有容器时的初始平衡。 例如，要为所有容器指定 8000000000000 个循环的初始平衡，请运行以下命令:
 
 [source,bash]
 ----
@@ -312,14 +312,14 @@ dfx canister delete [flag] [--all | _canister_name_]
 
 === 例子
 您可以使用 `+dfx canister delete` 命令删除特定容器或所有容器。
-要删除 `+hello_world` 容器，可以运行以下命令：
+要删除 `+hello_world` 容器，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister delete hello_world
 ----
 
-要删除您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
+要删除您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令:
 
 [source,bash]
 ----
@@ -369,14 +369,14 @@ dfx canister id [flag] _canister_name_
 
 您可以使用 `+dfx canister id+` 命令显示特定容器名称的容器标识符。
 
-要显示 `+hello_world+` 容器的容器标识符，可以运行以下命令：
+要显示 `+hello_world+` 容器的容器标识符，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister id hello_world
 ----
 
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 
 [source,bash]
 ----
@@ -419,8 +419,8 @@ dfx canister install [flag] [option] [--all | _canister_name_]
 |`+--argument <argument>+` |指定在安装期间传递给容器的参数。
 
 |`+--argument-type <argument-type>+` |使用 `+--argument+` 选项安装时指定参数的数据格式。 有效值为 `+idl+` 和 `+raw+`。
-默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
-有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+默认情况下，您可以使用以下链接指定参数link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link:../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
 如果要将原始字节传递给容器，可以使用 `+raw+` 作为参数类型。
 
 |`+-c+`, `+--compute-allocation <compute-allocation>+` |为容器执行定义计算分配（本质上相当于设置 CPU 分配）。
@@ -430,7 +430,7 @@ dfx canister install [flag] [option] [--all | _canister_name_]
 您可以在 0 到 8MB 的范围内设置此值。
 
 |`+-m+`, `+--mode <mode>+` |指定您是要`+install+`、`+reinstall+` 还是`+upgrade+` 容器。
-有关安装模式和容器管理的更多信息，请参阅link：../working-with-canisters{outfilesuffix}[管理容器]。
+有关安装模式和容器管理的更多信息，请参阅link:../working-with-canisters{outfilesuffix}[管理容器]。
 
 |===
 
@@ -452,7 +452,7 @@ dfx canister install [flag] [option] [--all | _canister_name_]
 === 例子
 
 您可以使用 `+dfx canister install+` 命令将使用 `+dfx build+` 命令编译的 WebAssembly 部署为 {platform} 或本地容器执行环境上的容器。
-最常见的用例是通过运行以下命令来安装所有容器：
+最常见的用例是通过运行以下命令来安装所有容器:
 
 [source,bash]
 ----
@@ -462,7 +462,7 @@ dfx canister install --all
 ==== 安装特定的容器
 
 您还可以使用 `+dfx canister install+` 命令部署特定的容器，而不是项目中的所有容器。
-例如，如果您有一个带有 `+hello_world+` 容器和 `+hello_world_assets+` 容器的项目，但只想部署 `+hello_world+` 容器，则可以通过运行以下命令仅部署该容器：
+例如，如果您有一个带有 `+hello_world+` 容器和 `+hello_world_assets+` 容器的项目，但只想部署 `+hello_world+` 容器，则可以通过运行以下命令仅部署该容器:
 
 [source,bash]
 ----
@@ -471,13 +471,13 @@ dfx canister install hello_world
 
 ==== 发送异步请求
 
-如果您想提交安装容器的请求并返回请求标识符以稍后检查您的请求状态，而不是等待命令完成，您可以运行类似于以下的命令：
+如果您想提交安装容器的请求并返回请求标识符以稍后检查您的请求状态，而不是等待命令完成，您可以运行类似于以下的命令:
 [source,bash]
 ----
 dfx canister install hello_world --async
 ----
 
-此命令提交安装容器的请求并返回类似于以下内容的请求标识符：
+此命令提交安装容器的请求并返回类似于以下内容的请求标识符:
 [source,bash]
 ----
 0x58d08e785445dcab4ff090463b9e8b12565a67bf436251d13e308b32b5058608
@@ -489,7 +489,7 @@ dfx canister install hello_world --async
 
 如果您想在不更改 `+dfx.json+` 配置文件中的设置的情况下在测试网上部署容器，可以使用 `+--network` 选项明确指定要连接的测试网。
 
-例如，您可以通过运行类似于以下的命令来指定测试网 URL：
+例如，您可以通过运行类似于以下的命令来指定测试网 URL:
 
 [source,bash]
 ----
@@ -502,7 +502,7 @@ dfx canister --network \http://192.168.3.1:5678 install --all
 
 `+--compute-allocation+` 选项允许您将计算资源分配为 0 到 100 范围内的百分比，以指示您的容器应该多久安排一次执行。
 
-例如，假设您运行以下命令：
+例如，假设您运行以下命令:
 
 [source,bash]
 ----
@@ -553,7 +553,7 @@ dfx canister request-status _request_id_
 
 === 例子
 
-您可以使用 `+dfx canister request-status+` 命令检查容器状态更改的状态，或者通过运行类似于以下的命令来验证呼叫未被拒绝：
+您可以使用 `+dfx canister request-status+` 命令检查容器状态更改的状态，或者通过运行类似于以下的命令来验证呼叫未被拒绝:
 
 [source,bash]
 ----
@@ -608,14 +608,14 @@ dfx canister set-controller [flag] _canister_ _new-controller_
 
 您可以使用 `+dfx canister set-controller+` 命令将用户或容器指定为特定容器的控制标识。
 
-例如，您可以创建一个名为 `+pubsadmin+` 的新身份，然后运行 `+dfx canister set-controller+` 以指定您希望 `+pubsadmin+` 身份成为 `+hello_world+` 容器的控制器，方法是运行 以下命令：
+例如，您可以创建一个名为 `+pubsadmin+` 的新身份，然后运行 `+dfx canister set-controller+` 以指定您希望 `+pubsadmin+` 身份成为 `+hello_world+` 容器的控制器，方法是运行 以下命令:
 
 ....
 dfx identity new pubsadmin
 dfx canister set-controller hello_world pubsadmin
 ....
 
-要使用身份主体的文本表示来设置控制身份，您可以运行类似于以下内容的命令：
+要使用身份主体的文本表示来设置控制身份，您可以运行类似于以下内容的命令:
 
 ....
 dfx canister set-controller hello_world wcp5u-pietp-k5jz4-sdaaz-g3x4l-zjzxa-lxnly-fp2mk-j3j77-25qat-pqe
@@ -648,7 +648,7 @@ dfx identity get-wallet
 r7inp-6aaaa-aaaaa-aaabq-cai
 用户“sf-controller”的本地容器执行环境上的钱包容器是“r7inp-6aaaa-aaaaa-aaabq-cai”
 ....
-. 将活动标识切换到容器的当前控制器。 例如，如果使用默认身份创建容器，您将运行以下命令：
+. 将活动标识切换到容器的当前控制器。 例如，如果使用默认身份创建容器，您将运行以下命令:
 +
 ....
 dfx identity use default
@@ -701,7 +701,7 @@ dfx canister send _file_name_
 
 === 例子
 
-使用 `+dfx canister send+` 命令将使用 `+dfx canister sign+` 命令创建的签名消息发送到创世代币容器 (GTC)，以通过运行以下命令代表您创建神经元：
+使用 `+dfx canister send+` 命令将使用 `+dfx canister sign+` 命令创建的签名消息发送到创世代币容器 (GTC)，以通过运行以下命令代表您创建神经元:
 
 `+dfx canister send message.json+`
 
@@ -742,8 +742,8 @@ dfx canister sign [flag] [option] _canister-name_ _method-name_ [argument]
 |`+--random <random>+` |指定生成随机参数的配置。
 |`+--type <type>+` |使用参数进行调用时指定参数的数据类型。
 
-默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
-有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+默认情况下，您可以使用以下链接指定参数link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link:../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
 如果要传递原始字节，可以使用 `+raw+` 作为参数类型。
 |===
 
@@ -763,14 +763,14 @@ canister 方法是必需的参数。
 |`+argument+` |指定要传递给方法的参数。
 根据您的程序逻辑，参数可以是必需参数或可选参数。
 如果将参数传递给容器，则可以使用 `+--type+` 选项指定数据格式类型。
-默认情况下，您可以使用以下链接指定参数link：../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
-有关使用 Candid 及其支持的类型的信息，请参阅link：../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link：../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
+默认情况下，您可以使用以下链接指定参数link:../../candid-guide/candid-intro{outfilesuffix}[Candid] (`+idl+`) 数据值语法。
+有关使用 Candid 及其支持的类型的信息，请参阅link:../../candid-guide/candid-howto{outfilesuffix}#idl-syntax[与终端中的服务交互] 和link:../.. /candid-guide/candid-types{outfilesuffix}[支持的类型]。
 如果要传递原始字节，可以使用 `+raw+` 作为参数类型。
 |===
 
 === 例子
 
-使用 `+dfx canister sign+` 命令创建一个签名的 `message.json` 文件，该文件使用与您使用隐私增强邮件 (PEM) 文件创建的身份相关联的主体，方法是运行类似于以下内容的命令：
+使用 `+dfx canister sign+` 命令创建一个签名的 `message.json` 文件，该文件使用与您使用隐私增强邮件 (PEM) 文件创建的身份相关联的主体，方法是运行类似于以下内容的命令:
 
 `+dfx canister --network=ic sign --expire-after=1h rno2w-sqaaa-aaaaa-aaacq-cai create_neurons ‘(“PUBLIC_KEY”)’+`
 
@@ -782,7 +782,7 @@ canister 方法是必需的参数。
 
 如果您不指定 `+--expire-after+` 选项，则默认过期时间为 5 分钟。
 
-通过运行以下命令将签名的消息发送到创世代币容器 (GTC) 以代表您创建神经元：
+通过运行以下命令将签名的消息发送到创世代币容器 (GTC) 以代表您创建神经元:
 
 `+dfx canister send message.json+`
 
@@ -833,14 +833,14 @@ dfx canister start [flag] [--all | _canister_name_]
 
 您可以使用 `+dfx canister start+` 命令启动特定容器或所有容器。
 
-要启动 `+hello_world+` 容器，可以运行以下命令：
+要启动 `+hello_world+` 容器，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister start hello_world
 ----
 
-要启动您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
+要启动您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令:
 
 [source,bash]
 ----
@@ -892,14 +892,14 @@ dfx canister status [flag] [--all | _canister_name_]
 
 您可以使用 `+dfx canister status+` 命令检查特定容器或所有容器的状态。
 
-要检查 `+hello_world+` 容器的状态，可以运行以下命令：
+要检查 `+hello_world+` 容器的状态，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister status hello_world
 ----
 
-要检查您在 `+ic+` {platform} 上部署的所有容器的状态，可以运行以下命令：
+要检查您在 `+ic+` {platform} 上部署的所有容器的状态，可以运行以下命令:
 
 [source,bash]
 ----
@@ -953,14 +953,14 @@ dfx canister stop [flag] [--all | _canister_name_]
 
 您可以使用 `+dfx canister stop+` 命令启动特定容器或所有容器。
 
-要停止 `+hello_world+` 容器，可以运行以下命令：
+要停止 `+hello_world+` 容器，可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister stop hello_world
 ----
 
-要停止您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令：
+要停止您在 `+ic+` {platform} 上部署的所有容器，可以运行以下命令:
 
 [source,bash]
 ----

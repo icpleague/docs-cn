@@ -1,71 +1,71 @@
 [[candid-ui]]
-== Test functions in a browser
+== 在浏览器中测试功能
 
 
-The canister interface description language—often referred to as Candid or more generally as the IDL—provides a common language for specifying the signature of a canister smart contract.
-Candid provides a unified way for you to interact with canister smart contracts that are written in different languages or accessed using different tools.
-For example, Candid provides a consistent view of a service whether the underlying program is native Rust, JavaScript, or {proglang}. 
-Candid also enables different tools—such as the `+dfx+` command-line interface and the Network Nervous System dapp—to share a common description for a service.
+容器接口描述语言（通常称为 Candid 或更一般地称为 IDL）为指定容器智能合约的签名提供了一种通用语言。
+Candid 为您提供了一种统一的方式来与用不同语言编写或使用不同工具访问的容器智能合约进行交互。
+例如，无论底层程序是原生 Rust、JavaScript 还是 {proglang}，Candid 都能提供一致的服务视图。
+Candid 还启用了不同的工具——例如`+dfx+` 命令行界面和网络神经系统 dapp——来共享服务的通用描述。
 
-Based on the type signature of the actor, Candid also provides a web interface that allows you to call canister functions for testing and debugging.
+基于 actor 的类型签名，Candid 还提供了一个 Web 界面，允许您调用容器函数进行测试和调试。
 
 
-After you have deployed your project in the local canister execution environment using the `+dfx deploy+` or `+dfx canister install+` command, you can access the Candid web interface endpoint in a browser. 
-This web interface—the Candid UI—exposes the service description in a form, enabling you to quickly view and test functions and experiment with entering different data types without writing any front-end code.
+使用 `+dfx deploy+` 或 `+dfx canister install+` 命令在本地容器执行环境中部署项目后，您可以在浏览器中访问 Candid Web 界面端点。
+此 Web 界面 — Candid UI — 以表单形式公开服务描述，使您无需编写任何前端代码即可快速查看和测试功能并尝试输入不同的数据类型。
 
-To use the Candid web interface to test canister functions:
+要使用 Candid Web 界面测试容器功能:
 
-. Find the Candid UI canister identifier associated with the current project using the `+dfx canister id __Candid_UI+` command.
+.使用 `+dfx canister id __Candid_UI+` 命令查找与当前项目关联的 Candid UI 容器标识符。
 +
 [source,bash]
 ----
 dfx canister id __Candid_UI
 ----
 +
-The command displays the canister identifier for the Candid UI with output similar to the following:
+该命令显示 Candid UI 的容器标识符，输出类似于以下内容:
 +
 ....
 r7inp-6aaaa-aaaaa-aaabq-cai
 ....
 +
-. Copy the Candid UI canister identifier so that it is available in the clipboard.
-. If you've stopped the local canister execution environment, restart it locally by running the following command:
+. 复制 Candid UI 容器标识符，使其在剪贴板中可用。
+. 如果您已停止本地容器执行环境，请通过运行以下命令在本地重新启动它:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. Open a browser and navigate to the address and port number specified in the `+dfx.json+` configuration file.
+. 打开浏览器并导航到 `+dfx.json+` 配置文件中指定的地址和端口号。
 +
-By default, the local canister execution environment binds to the `+127.0.0.1:8000+` address and port number.
-. Add the required `+canisterId+` parameter and the Candid UI canister identifier returned by the `+dfx canister id __Candid_UI+` command to the URL.
+默认情况下，本地容器执行环境绑定到`+127.0.0.1:8000+`地址和端口号。
+. 将所需的 `+canisterId+` 参数和 `+dfx canister id __Candid_UI+` 命令返回的 Candid UI 容器标识符添加到 URL。
 +
-For example, the full URL should look similar to the following but with the `+CANDID-UI-CANISTER-IDENTIFIER+` that was returned by the `+dfx canister id __Candid_UI+` command:
+例如，完整的 URL 应该类似于以下内容，但带有由 `+dfx canister id __Candid_UI+` 命令返回的`+CANDID-UI-CANISTER-IDENTIFIER+`:
 +
 ....
 http://127.0.0.1:8000/?canisterId=<CANDID-UI-CANISTER-IDENTIFIER>
 ....
 +
-For instance, with the example canister identifier for the Candid UI as shown above, this could look as follows:
+例如，对于 Candid UI 的示例容器标识符，如上所示，可能如下所示:
 +
 ....
 http://127.0.0.1:8000/?canisterId=r7inp-6aaaa-aaaaa-aaabq-cai
 ....
 +
-The browser then displays a form for you to specify a canister identifier or choose a Candid description (`+.did+`) file. 
-Note that this field refers to the canister identifier of the canister you would like to interact with (as opposed to the canister identifier for the Candid UI that we used in the last step).
+然后，浏览器会显示一个表单供您指定容器标识符或选择 Candid 描述 (`+.did+`) 文件。
+请注意，此字段是指您要与之交互的容器的容器标识符（与我们在上一步中使用的 Candid UI 的容器标识符相反）。
 +
-. Specify the canister identifier of the canister you would like to test in the *Provide a canister ID* field, then click *Go* to display the service description.
+. 在 *Provide a canister ID* 字段中指定要测试的容器的容器标识符，然后单击 *Go* 以显示服务描述。
 +
-If you aren’t sure which canister identifier to use, you can run the `+dfx canister id+` command to look up the identifier for a specific canister name.
-For instance, to get the canister identifier for a canister named `+my_counter+`, you would use:
+如果您不确定要使用哪个容器标识符，可以运行 `+dfx canister id+` 命令来查找特定容器名称的标识符。
+例如，要获取名为 `+my_counter+` 的容器的容器标识符，您可以使用:
 +
 ....
 dfx canister id my_counter
 ....
 +
-. Review the list of function calls and types defined in the dapp.
-. Type a value of the appropriate type for a function or click *Random* to generate a value, then click *Call* or *Query* to see the result.
+. 查看 dapp 中定义的函数调用和类型列表。
+. 为函数键入适当类型的值或单击 *Random* 生成值，然后单击 *Call* 或 *Query* 以查看结果。
 +
-Note that depending on the data type, the Candid interface might display additional configuration settings for testing functions.
-For example, if a function takes an array, you might need to specify the number of items in the array before entering values.
+请注意，根据数据类型，Candid 界面可能会显示用于测试功能的其他配置设置。
+例如，如果一个函数接受一个数组，您可能需要在输入值之前指定数组中的项目数。

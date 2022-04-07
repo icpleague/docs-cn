@@ -4,7 +4,7 @@
 
 此命令可用于进行从一个容器到另一个容器的 ICP 实用程序代币交易，或使用来自 ICP 的周期为容器充值。
 
-运行 `+dfx ledger+` 命令的基本语法是：
+运行 `+dfx ledger+` 命令的基本语法是:
 
 [source,bash]
 ----
@@ -26,7 +26,7 @@ dfx ledger [options] [subcommand]
 |===
 
 要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看`+dfx ledger transfer+`的使用信息，可以运行以下命令：
+例如，要查看`+dfx ledger transfer+`的使用信息，可以运行以下命令:
 
 `+dfx ledger transfer --help+`
 
@@ -56,14 +56,14 @@ dfx ledger account-id [flag]
 
 === 例子
 
-如果您创建了多个身份，请通过运行 `+dfx identity whoami+` 命令或 `+dfx identity get-principal+` 命令检查您当前使用的身份。 然后，您可以通过运行以下命令来检查您当前选择的开发者身份的帐户标识符：
+如果您创建了多个身份，请通过运行 `+dfx identity whoami+` 命令或 `+dfx identity get-principal+` 命令检查您当前使用的身份。 然后，您可以通过运行以下命令来检查您当前选择的开发者身份的帐户标识符:
 
 [source,bash]
 ----
 dfx ledger account-id
 ----
 
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 
 ....
 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
@@ -104,13 +104,13 @@ dfx ledger --network ic balance [of] [flag]
 === 例子
 
 您可以使用 `+dfx ledger balance+` 命令查看其他用户的余额。
-例如，您可以运行以下命令来查看与已知帐户标识符关联的 ICP 实用令牌：
+例如，您可以运行以下命令来查看与已知帐户标识符关联的 ICP 实用令牌:
 
 [source,bash]
 ----
 dfx ledger --network ic balance 03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223
 ----
-此命令显示类似于以下内容的 ICP 数量：
+此命令显示类似于以下内容的 ICP 数量:
 ....
 2.49798000 ICP
 ....
@@ -164,7 +164,7 @@ dfx ledger --network ic create-canister _controller_ [options]  [flag]
 
 === 例子
 
-要创建具有燃料费的新容器，请通过运行类似于以下的命令从您的分类帐帐户转移 ICP 代币：
+要创建具有燃料费的新容器，请通过运行类似于以下的命令从您的分类帐帐户转移 ICP 代币:
 
 [source,bash]
 ----
@@ -175,14 +175,14 @@ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5
 
 在此示例中，该命令将 1.25 个 ICP 代币转换为燃料费，并将默认身份的主体标识符指定为新容器的控制器。
 
-如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出：
+如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出:
 
-....
-在 BlockHeight 发送的转账：20
-使用 id 创建的容器：“53zcu-tiaaa-aaaaa-qaaba-cai”
+……
+在 BlockHeight 发送的转账:20
+使用 id 创建的容器:“53zcu-tiaaa-aaaaa-qaaba-cai”
 ....
 
-您可以通过运行类似于以下的命令为 ICP 令牌和 e8s 指定单独的值来创建新容器：
+您可以通过运行类似于以下的命令为 ICP 令牌和 e8s 指定单独的值来创建新容器:
 
 [source,bash]
 ----
@@ -286,18 +286,18 @@ dfx ledger --network ic top-up [options] _canister_ [flag]
 === 例子
 
 您可以使用 `+dfx ledger top-up+` 命令从您控制的 ICP 代币余额中充值特定容器的周期。
-容器标识符必须与能够接收燃料费的燃料费钱包容器相关联。 或者，您可以修改非燃料费钱包容器以使用链接中描述的系统 API 来实现接收燃料费的方法link：../../interface-spec/index{outfilesuffix}[Internet 计算机接口规范]。
+容器标识符必须与能够接收燃料费的燃料费钱包容器相关联。 或者，您可以修改非燃料费钱包容器以使用链接中描述的系统 API 来实现接收燃料费的方法link:../../interface-spec/index{outfilesuffix}[Internet 计算机接口规范]。
 
-例如，您可以运行以下命令来为部署在互联网计算机上的燃料费钱包容器充值 1 ICP 价值的燃料费：
+例如，您可以运行以下命令来为部署在互联网计算机上的燃料费钱包容器充值 1 ICP 价值的燃料费:
 
 [source,bash]
 ----
 dfx ledger --network ic top-up --icp 1 5a46r-jqaaa-aaaaa-qaadq-cai
 ----
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
-....
-在 BlockHeight 发送的转账：59482
+……
+在 BlockHeight 发送的转账:59482
 容器被充值了！
 ....
 
@@ -353,33 +353,33 @@ dfx ledger transfer [options] _to_ --memo _memo_
 
 您可以使用`+dfx ledger transfer+`命令将ICP发送到目的地的Account Identifier。
 
-例如，您可以运行以下命令来检查与您当前使用的委托人关联的帐户标识符：
+例如，您可以运行以下命令来检查与您当前使用的委托人关联的帐户标识符:
 
 [source,bash]
 ----
 dfx ledger account-id
 ----
 
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
 ....
 30e596fd6c5ff5ad7b7d70bbbda1187c833e646c6251464da7f82bc217bba397
 ....
 
-您可以通过运行以下命令查看此帐户的余额：
+您可以通过运行以下命令查看此帐户的余额:
 
 [source,bash]
 ----
 dfx ledger --network ic balance
 ----
 
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
 ....
 64.89580000 ICP
 ....
 
-== 对Motoko使用 `+dfx ledger transfer+` 命令将您的一些 ICP 余额发送到另一个已知目的地，使用以下命令：的改动
+== 对Motoko使用 `+dfx ledger transfer+` 命令将您的一些 ICP 余额发送到另一个已知目的地，使用以下命令:的改动
 
 
 [source,bash]
@@ -387,10 +387,10 @@ dfx ledger --network ic balance
 dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb85b9b9850bd60766f --memo 12345 --icp 1
 ----
 
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
-....
-在 BlockHeight 发送的转账：59513
-....
+……
+在 BlockHeight 发送的转账:59513
+……
 
 然后，您可以使用 `+dfx ledger --network ic balance+` 命令检查您的帐户余额是否反映了您刚刚进行的交易。

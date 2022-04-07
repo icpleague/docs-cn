@@ -6,20 +6,20 @@
 :release: 0.8.2
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-{release} 版本概述：
+{release} 版本概述:
 
 - 如何为“dfx canister create”指定控制器的方式发生重大变化
 - 请务必使用`dfx wallet upgrade`或`dfx wallet --network ic upgrade`升级你的钱包
 
 == 对 DFX 的更改
 
-=== 重大变化：dfx canister create 的控制器参数
+=== 重大变化:dfx canister create 的控制器参数
 
-重大变化：`dfx canister create` 的控制器参数现在作为命名参数传递，
+重大变化:`dfx canister create` 的控制器参数现在作为命名参数传递，
 而不是可选地跟随容器名称。
 
-旧：dfx canister create [容器名称] [控制器]
-新：dfx canister create --controller <控制器> [容器名称]
+旧:dfx canister create [容器名称] [控制器]
+新:dfx canister create --controller <控制器> [容器名称]
 
 === JS Codegen 更新 - JSDoc 注释现在接受 createActor 的完整代理
 
@@ -30,23 +30,23 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 可以使用“--withdraw-cycles-to-dank”将循环返回到当前身份主体的 dank
 并使用“--withdraw-cycles-to-dank-principal”指定给指定的委托人。
 
-=== 新功能：dfx canister create 现在接受多个 --controller 参数实例
+=== 新功能:dfx canister create 现在接受多个 --controller 参数实例
 
 现在可以通过将 `--controller` 参数的多个实例传递给 `dfx canister create` 来创建具有多个控制器的容器。
 
 您需要使用 `dfx wallet upgrade` 或 `dfx wallet --network ic upgrade` 来升级钱包
 
-=== 新功能：dfx canister update-settings 现在接受多个 --controller 参数实例
+=== 新功能:dfx canister update-settings 现在接受多个 --controller 参数实例
 
 现在可以通过将 `--controller` 参数的多个实例传递给 `dfx canister update-settings` 来将容器配置为具有多个控制器。
 
-=== 新功能：dfx 容器信息和 dfx 容器状态现在显示所有控制器
+=== 新功能:dfx 容器信息和 dfx 容器状态现在显示所有控制器
 
-=== 已修复：dfx 现在在查找旧凭据时尊重 $DFX_CONFIG_ROOT
+=== 已修复:dfx 现在在查找旧凭据时尊重 $DFX_CONFIG_ROOT
 
 以前，这总是在 `$HOME/.dfinity/identity/creds.pem` 中查找。
 
-=== 已修复：将 dfx 容器 (create|update-settings) --memory-allocation 限制更改为 12 GiB
+=== 已修复:将 dfx 容器 (create|update-settings) --memory-allocation 限制更改为 12 GiB
 
 将 `--memory-allocation` 值的最大值更新为 12 GiB（12,884,901,888 字节）
 

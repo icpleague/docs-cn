@@ -3,7 +3,7 @@
 使用带有子命令和标志的 `+dfx identity+` 命令来管理用于执行命令并与 {platform} 或本地容器执行环境通信的身份。
 创建多个用户身份使您能够测试基于用户的访问控制。
 
-运行 `+dfx identity+` 命令的基本语法是：
+运行 `+dfx identity+` 命令的基本语法是:
 
 [source,bash]
 ----
@@ -12,7 +12,7 @@ dfx identity [subcommand] [flag]
 
 根据您指定的 `+dfx identity+` 子命令，可能会应用或需要其他参数、选项和标志。
 要查看特定 `+dfx identity+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx identity new+` 的使用信息，可以运行以下命令：
+例如，要查看 `+dfx identity new+` 的使用信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -54,7 +54,7 @@ dfx identity new --help
 `+default+` 用户的凭据从 `+$HOME/.dfinity/identity/creds.pem+` 迁移到 `+$HOME/.config/dfx/identity/default/identity.pem+`。
 
 然后，您可以使用 `+dfx identity new+` 创建新的用户身份并将这些身份的凭据存储在 `+$HOME/.config/dfx/identity/<identity_name>/identity.pem+` 文件中。
-例如，您可以通过运行以下命令创建一个名为 `+ic_admin+` 的身份：
+例如，您可以通过运行以下命令创建一个名为 `+ic_admin+` 的身份:
 
 ....
 dfx identity new ic_admin
@@ -89,7 +89,7 @@ dfx identity get-principal [flag]
 
 === 示例
 
-如果要显示与特定用户身份上下文关联的主体的文本表示，可以运行类似于以下的命令：
+如果要显示与特定用户身份上下文关联的主体的文本表示，可以运行类似于以下的命令:
 
 [source,bash]
 ----
@@ -127,14 +127,14 @@ dfx identity get-wallet [flag]
 
 === 示例
 
-如果要显示与您的身份关联的钱包容器的容器标识符，可以运行以下命令：
+如果要显示与您的身份关联的钱包容器的容器标识符，可以运行以下命令:
 
 [source,bash]
 ----
 dfx identity get-wallet
 ----
 
-要在特定测试网上显示与您的身份相关联的钱包容器的容器标识符，您可以运行类似于以下内容的命令：
+要在特定测试网上显示与您的身份相关联的钱包容器的容器标识符，您可以运行类似于以下内容的命令:
 
 [source,bash]
 ----
@@ -166,7 +166,7 @@ dfx identity import [flag] _identity-name_ _pem_file-name_
 === 例子
 
 您可以使用 `+dfx identity import+` 命令导入包含用于身份的安全证书的 PEM 文件。
-例如，您可以运行以下命令导入 `generated-id.pem` 文件以创建用户身份 `alice`：
+例如，您可以运行以下命令导入 `generated-id.pem` 文件以创建用户身份 `alice`:
 
 [source,bash]
 ----
@@ -203,14 +203,14 @@ dfx identity list [flag]
 === 例子
 
 您可以使用 `+dfx identity list+` 命令列出您当前可用的所有身份，并确定哪个身份正在用作当前活动的用户上下文以运行 `+dfx+` 命令。
-例如，您可以运行以下命令来列出可用的身份：
+例如，您可以运行以下命令来列出可用的身份:
 
 [source,bash]
 ----
 dfx identity list
 ----
 
-此命令显示找到的身份列表，类似于以下内容：
+此命令显示找到的身份列表，类似于以下内容:
 
 [source,bash]
 ----
@@ -264,7 +264,7 @@ dfx identity new [flag] _identity-name_
 === 例子
 
 然后，您可以使用 `+dfx identity new+` 创建新的用户身份并将这些身份的凭据存储在 `+$HOME/.config/dfx/identity/<identity_name>/identity.pem+` 文件中。
-例如，您可以通过运行以下命令创建一个名为 `+ic_admin+` 的身份：
+例如，您可以通过运行以下命令创建一个名为 `+ic_admin+` 的身份:
 
 ....
 dfx identity new ic_admin
@@ -272,7 +272,7 @@ dfx identity new ic_admin
 
 此命令在 `+~/.config/dfx/identity/ic_admin/identity.pem+` 文件中为 `+ic_admin+` 用户身份添加私钥。
 
-添加新身份的私钥后，该命令会显示已创建身份的确认信息：
+添加新身份的私钥后，该命令会显示已创建身份的确认信息:
 
 ....
 Creating identity: "ic_admin".
@@ -319,24 +319,24 @@ dfx identity remove [flag] _identity-name_
 === 例子
 
 您可以使用 `+dfx identity remove+` 命令删除任何以前创建的身份，包括 `+default+` 用户身份。
-例如，如果您添加了命名用户身份并希望删除 `+default+` 用户身份，则可以运行以下命令：
+例如，如果您添加了命名用户身份并希望删除 `+default+` 用户身份，则可以运行以下命令:
 
 ....
 dfx identity remove default
 ....
 
-该命令显示确认身份已被删除：
+该命令显示确认身份已被删除:
 
-....
+……
 删除身份“默认”。
 删除身份“默认”。
 ....
 
 虽然如果您创建了其他身份来替换它，您可以删除`+default+` 身份，但您必须始终至少有一个身份可用。
-如果您尝试删除最后剩余的用户上下文，`+dfx identity remove+` 命令会显示类似于以下内容的错误：
+如果您尝试删除最后剩余的用户上下文，`+dfx identity remove+` 命令会显示类似于以下内容的错误:
 
 ....
-身份错误：
+身份错误:
    无法删除默认身份
 ....
 
@@ -383,7 +383,7 @@ dfx identity rename [flag] _from_identity-name_ _to_identity-name_
 === 示例
 
 您可以重命名 `+default+` 用户或您之前使用 `+dfx identity rename+` 命令创建的任何身份。
-例如，如果您想重命名您之前创建的 `+test_admin+` 身份，您可以通过运行指定要更改的当前身份名称 **from** 和要更改为 **to** 的新名称 类似于以下的命令：
+例如，如果您想重命名您之前创建的 `+test_admin+` 身份，您可以通过运行指定要更改的当前身份名称 **from** 和要更改为 **to** 的新名称 类似于以下的命令:
 
 ....
 dfx identity rename test_admin devops
@@ -418,7 +418,7 @@ dfx identity set-wallet [flag] [--canister-name canister-name]
 如果您使用多个主体作为您的身份，您可能有权访问多个钱包容器标识符。
 您可以使用 `+dfx identity set-wallet+` 命令指定用于给定身份的钱包容器标识符。
 
-例如，您可以将钱包容器标识符存储在环境变量中，然后调用 `+dfx identity set-wallet+` 命令通过运行以下命令将该钱包容器用于其他操作：
+例如，您可以将钱包容器标识符存储在环境变量中，然后调用 `+dfx identity set-wallet+` 命令通过运行以下命令将该钱包容器用于其他操作:
 
 ....
 export WALLET_CANISTER_ID=$(dfx identity get-wallet)
@@ -464,7 +464,7 @@ dfx identity use [flag] _identity-name_
 
 === 例子
 
-如果要使用相同的用户身份上下文运行多个命令，可以运行类似于以下的命令：
+如果要使用相同的用户身份上下文运行多个命令，可以运行类似于以下的命令:
 
 ....
 dfx identity use ops
@@ -496,7 +496,7 @@ dfx identity whoami [flag]
 
 === 示例
 
-如果要显示当前活动用户身份的名称，可以运行以下命令：
+如果要显示当前活动用户身份的名称，可以运行以下命令:
 
 [source,bash]
 ----
@@ -504,7 +504,7 @@ dfx 身份 whoami
 ----
 
 该命令显示用户身份的名称。
-例如，您之前运行过命令 `+dfx identity use bob_standard+`，该命令将显示：
+例如，您之前运行过命令 `+dfx identity use bob_standard+`，该命令将显示:
 
 ....
 bob_standard

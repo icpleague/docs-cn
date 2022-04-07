@@ -1,139 +1,138 @@
-= Query using an actor
+= 使用actor查询
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-In the link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start], you had your first look at a simple canister for the {IC} involving an actor object and asynchronous messaging.
-As the next step in learning to write canisters that take advantage of actor-based messaging, this tutorial illustrates how to modify a traditional `+Hello, World!+` canister to define an actor, then deploy and test your canister on a local canister execution environment.
+在link:../../quickstart/quickstart-intro{outfilesuffix}[快速入门]中，您第一次看到了一个用于 {IC} 的简单容器，其中涉及一个参与者对象和异步消息传递。
+作为学习编写利用基于 actor 的消息传递的容器的下一步，本教程说明了如何修改传统的 `+Hello, World!+` 容器以定义一个actor，然后在本地容器上部署和测试您的容器 执行环境。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any local canister execution environment processes
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已停止任何本地容器执行环境进程
 
-This tutorial takes approximately 20 minutes to complete.
+完成本教程大约需要 20 分钟。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project for this tutorial:
+要为本教程创建一个新项目:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already
-have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Create a new project by running the following command:
+. 在本地计算机上打开终端 shell（如果您还没有的话）
+有一个打开。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new actor_hello
 ----
-. Change to your project directory by running the following command:
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd actor_hello
 ----
 
-== Modify the default configuration
+== 修改默认配置
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
-In this tutorial, you need to modify a few of the default settings to reflect your project.
+在link:explore-templates{outfilesuffix}[Exploring the default project] 教程中，您看到创建新项目会将默认的`+dfx.json+` 配置文件添加到您的项目目录中。
+在本教程中，您需要修改一些默认设置以反映您的项目。
 
-To modify the `+dfx.json+` configuration file:
+修改 `+dfx.json+` 配置文件:
 
-. Open the `+dfx.json+` configuration file in a text editor.
-. Check the default settings for the `+actor_hello+` project.
-. Notice that the names and paths to source and output files all use the `+actor_hello+` project name.
+. 在文本编辑器中打开 `+dfx.json+` 配置文件。
+. 检查 `+actor_hello+` 项目的默认设置。
+. 请注意，源文件和输出文件的名称和路径都使用 `+actor_hello+` 项目名称。
 +
-For example, the default canister smart contract name is `+actor_hello+` and the default path to the main code file is `+src/actor_hello/main.mo+`.
+例如，默认容器智能合约名称为`+actor_hello+`，主代码文件的默认路径为`+src/actor_hello/main.mo+`。
 +
-You can rename any of these files or directories.
-If you make any changes, however, be sure that the names you use for your files and directories on the file system match the names you specify in the `+dfx.json+` configuration file.
-If you plan to use the default directory and file names, no changes are necessary.
-. Remove all of the `+actor_hello_assets+` configuration settings from the file.
+您可以重命名这些文件或目录中的任何一个。
+但是，如果您进行任何更改，请确保您在文件系统上用于文件和目录的名称与您在 `+dfx.json+` 配置文件中指定的名称匹配。
+如果您打算使用默认目录和文件名，则无需更改。
+. 从文件中删除所有 `+actor_hello_assets+` 配置设置。
 +
-The sample canister for this tutorial doesn't use any front-end assets, so you can remove those settings from the configuration file.
+本教程的示例容器不使用任何前端资产，因此您可以从配置文件中删除这些设置。
 +
-For example, the configuration file looks like this after you remove the `+actor_hello_assets+` section:
+例如，删除 `+actor_hello_assets+` 部分后的配置文件如下所示:
 +
 ....
 include::example$define-actor-dfx.json[]
 ....
-. Save your changes and close the file to continue.
+. 保存更改并关闭文件以继续。
 
-== Modify the default canister
+== 修改默认容器
 
-In the link:explore-templates{outfilesuffix}[Exploring the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
-In this tutorial, you modify the template code to create a simple "Hello, World!" canister. by defining an actor in {proglang}. In Motoko,  an {IC} canister is representeded as a Motoko actor.
+在链接:explore-templates{outfilesuffix}[Exploring the default project] 教程中，您看到创建一个新项目会创建一个带有模板 `+main.mo+` 文件的默认 `+src+` 目录。
+在本教程中，您将修改模板代码以创建一个简单的“Hello, World!”容器。 通过在 {proglang} 中定义一个actor。 在 Motoko 中，{IC} 容器被表示为 Motoko actor。
 
-To modify the default template source code:
+修改默认模板源代码:
 
-. Change to the source code directory for your project by running the following command:
+. 通过运行以下命令切换到项目的源代码目录:
 +
 [source,bash]
 ----
 cd src/actor_hello
 ----
-. Open the template `+main.mo+` file in a text editor and delete the existing content.
+. 在文本编辑器中打开模板 `+main.mo+` 文件并删除现有内容。
 +
-The next step is to write a canister that prints a statement like the traditional "Hello, World!" sample canister.
-To compile the canister for the {IC}, however, your Motoko code must define an `+actor+`.  
-. Copy and paste the following sample code into the `+main.mo+` file:
+下一步是编写一个容器，打印类似传统的“Hello, World!”这样的语句。 样品容器。
+但是，要为 {IC} 编译容器，您的 Motoko 代码必须定义一个 `+actor+`。
+. 将以下示例代码复制并粘贴到 `+main.mo+` 文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$actor_hello.mo[]
 ----
 +
-Let's take a closer look at this Motoko actor defining our canister:
+让我们仔细看看定义我们的容器的这个 Motoko actor:
 +
 --
-* The code imports a `+Debug+` module to provide the `+print+` functionality.
-* The actor uses the `+public query func+` declaration to define an {IC} _query_ method.  Our method doesn't need to make any permanent changes to the state of the actor. Declaring it as a query means that  any changes it does make are transient and discarded after the query completes.
+* 代码导入一个 `+Debug+` 模块以提供 `+print+` 功能。
+* actor 使用 `+public query func+` 声明来定义一个 {IC} _query_ 方法。 我们的方法不需要对参与者的状态进行任何永久性更改。 将其声明为查询意味着它所做的任何更改都是暂时的，并在查询完成后被丢弃。
 --
 +
-For more information about using a query call, see link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
-. Save your changes and close the `+main.mo+` file.
+有关使用查询调用的更多信息，请参阅link:../concepts/canisters-code{outfilesuffix}#query-update[query calls] in link:../concepts/canisters-code{outfilesuffix}#canister-state[ 容器包括程序和状态]。
+. 保存更改并关闭 `+main.mo+` 文件。
 
-== Checking that the canister builds
+== 检查容器是否构建
 
-Usually, in order to build a canister, it's necessary to first reserve a unique canister identifier
-on the {IC} blockchain mainnet.
+通常，为了构建一个容器，首先需要在 {IC} 区块链主网上保留一个唯一的容器标识符。
 
-However, it's also possible to compile your program without connecting to the {IC} blockchain mainnet at all.
-The `+dfx build --check+` command uses a temporary, hard-coded canister identifier to accomplish this.
+但是，也可以在完全不连接到 {IC} 区块链主网的情况下编译您的程序。
+`+dfx build --check+` 命令使用一个临时的硬编码容器标识符来完成此操作。
 
-To check that the canister builds:
+要检查容器是否构建:
 
-. Navigate back to the root of your project directory.
-. Build the canister executable with a temporary, hard-coded identifier by running the following command:
+. 导航回项目目录的根目录。
+. 通过运行以下命令，使用临时的硬编码标识符构建容器可执行文件:
 +
 [source,bash]
 ----
 dfx build --check
 ----
 +
-The `+--check+` option enables you to build a project locally to verify that it compiles and to inspect the files produced.
-Because the `+dfx build --check+` command only uses a temporary identifier, you should see output similar to the following:
+`+--check+` 选项使您能够在本地构建项目以验证它是否可以编译并检查生成的文件。
+因为 `+dfx build --check+` 命令仅使用临时标识符，您应该会看到类似于以下内容的输出:
 +
+……
+构建容器以检查它们是否构建好。 容器 ID 可能是硬编码的。
+构建容器...
 ....
-Building canisters to check they build ok. Canister IDs might be hard coded.
-Building canisters...
-....
 +
-If the canister compiles successfully, you can inspect the output in the default `+.dfx/local/canisters+` directory and `+.dfx/local/canisters/actor_hello/+` subdirectory.
+如果容器编译成功，您可以在默认的 `+.dfx/local/canisters+` 目录和 `+.dfx/local/canisters/actor_hello/+` 子目录中检查输出。
 +
-For example, you might use the `+tree+` command to review the files created:
+例如，您可以使用 `+tree+` 命令查看创建的文件:
 +
 [source,bash]
 ----
 tree .dfx/local/canisters
 ----
 +
-The command displays output similar to the following
+该命令显示类似于以下内容的输出
 ....
 .dfx/local/canisters
 ├── actor_hello
@@ -147,40 +146,40 @@ The command displays output similar to the following
 2 directories, 5 files
 ....
 
-== Deploy the project
+== 部署项目
 
-You cannot deploy the output from the `+dfx build --check+` command to  a local canister execution environment or the {IC} mainnet.
-If you wanted to deploy this project, you would need to do the following:
+您无法将 `+dfx build --check+` 命令的输出部署到本地容器执行环境或 {IC} 主网。
+如果要部署此项目，则需要执行以下操作:
 
-* Connect to the either the local canister execution environment or {IC} mainnet.
-* Register a connection-specific canister identifier.
-* Deploy the canister.
+* 连接到本地容器执行环境或 {IC} 主网。
+* 注册特定于连接的容器标识符。
+* 部署容器。
 
-Let's consider these steps in a bit more detail.
-Before you can deploy this project, you must connect to either your local canister execution environment, provided by `dfx`, or to the Internet Computer blockchain mainnet.
-After you connect to a local canister execution environment or {IC} mainnet, you must also generate a unique, *connection-specific* canister identifier to replace your locally-defined identifier.
-To see the steps involved for yourself, let's deploy the project locally.
+让我们更详细地考虑这些步骤。
+在部署此项目之前，您必须连接到由 dfx 提供的本地容器执行环境或 Internet 计算机区块链主网。
+连接到本地容器执行环境或 {IC} 主网后，您还必须生成唯一的、*连接特定的*容器标识符来替换本地定义的标识符。
+要亲自查看涉及的步骤，让我们在本地部署项目。
 
-To deploy this project locally:
+要在本地部署此项目:
 
-. Open a terminal and navigate to your project directory, if needed.
-. Start the local canister execution environment on your local computer by running the following command:
+. 如果需要，打开终端并导航到您的项目目录。
+. 通过运行以下命令在本地计算机上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
 +
-For this tutorial, you can use the `+--background+` option to start the local canister execution environment as background processes.
-With this option, you can continue to the next step without opening another terminal shell on your local computer.
-. Generate a new canister identifier for your project on the local canister execution environment by running the following command:
+对于本教程，您可以使用 `+--background+` 选项将本地容器执行环境作为后台进程启动。
+使用此选项，您可以继续下一步，而无需在本地计算机上打开另一个终端 shell。
+. 通过运行以下命令，在本地容器执行环境中为您的项目生成新的容器标识符:
 +
 [source,bash]
 ----
 dfx canister create actor_hello
 ----
 +
-You should see output similar to the following:
+您应该会看到类似于以下内容的输出:
 +
 ....
 Creating a wallet canister on the local network.
@@ -189,9 +188,9 @@ Creating canister "actor_hello"...
 "actor_hello" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
 ....
 +
-The `+dfx canister create+` command also stores the connection-specific canister identifier in a `+canister_ids.json+` file in the `+.dfx/local+` directory.
+`+dfx canister create+` 命令还将连接特定的容器标识符存储在 `+.dfx/local+` 目录中的 `+canister_ids.json+` 文件中。
 +
-For example:
+例如:
 +
 ....
 {
@@ -200,63 +199,63 @@ For example:
   }
 }
 ....
-. Build the canister by running the following command:
+. 通过运行以下命令构建容器:
 +
 [source,bash]
 ----
 dfx build
 ----
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出:
 +
 ....
 Building canisters...
 ....
-. Deploy your `+actor_hello+` project on the local canister execution environment by running the following command:
+. 通过运行以下命令，在本地容器执行环境中部署您的 `+actor_hello+` 项目:
 +
 [source,bash]
 ----
 dfx canister install actor_hello
 ----
 +
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出:
 +
 ....
 Installing code for canister actor_hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
 ....
 
-== Query the canister
+== 查询容器
 
-You now have a canister deployed on your local canister execution environment and can test your canister by using the `+dfx canister call+` command.
+您现在已经在本地容器执行环境中部署了容器，并且可以使用 `+dfx canister call+` 命令测试您的容器。
 
-To test the canister you have deployed on the local canister execution environment:
+要测试您在本地容器执行环境中部署的容器:
 
-. Use `+dfx canister call+` to call the `+hello+` function by running the following command:
+. 通过运行以下命令，使用 `+dfx canister call+` 调用 `+hello+` 函数:
 +
 [source,bash]
 ----
 dfx canister call actor_hello hello
 ----
-. Verify that the command returns the text specified for the `+hello+` function along with a checkpoint message in the terminal running the local canister execution environment.
+. 验证该命令是否返回为 `+hello+` 函数指定的文本以及运行本地容器执行环境的终端中的检查点消息。
 +
-For example, the canister displays "Hello, World from DFINITY" in output similar to the following:
+例如，容器在输出中显示“Hello, World from DFINITY”，类似于以下内容:
 +
 ....
 [Canister rrkah-fqaaa-aaaaa-aaaaq-cai] Hello, World from DFINITY 
 ....
 +
-Note that if you are running the Internet Computer mainnet in a separate terminal instead of in the background, the "Hello, World from DFINITY" message is displayed in the terminal that displays mainnet activity.
+请注意，如果您在单独的终端而不是在后台运行 Internet 计算机主网，则会在显示主网活动的终端中显示“Hello, World from DFINITY”消息。
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with your canister, you can stop the local canister execution environment so that it doesn’t continue running in the background.
+完成对容器的试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local canister execution environment, you can:
+要停止本地容器执行环境，您可以:
 
-. In the terminal used to interact with your canister, issue the command `dfx stop`; or
-. In the terminal that displays operations from the local canister execution environment, press Control-C to interrupt that process; or
-. Kill the `replica` process using commands or tools of your operating system.
+. 在用于与您的容器交互的终端中，发出命令“dfx stop”； 要么
+. 在显示来自本地容器执行环境的操作的终端中，按 Control-C 中断该进程； 要么
+. 使用操作系统的命令或工具终止“副本”进程。
 
-. Stop the local canister execution environment by running the following command:
+. 通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----

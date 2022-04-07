@@ -3,7 +3,7 @@
 使用 `+dfx deploy+` 命令在本地容器执行环境、{platform} 或指定的测试网上注册、构建和部署 dapp。
 默认情况下，会部署项目`+dfx.json+`配置文件中定义的所有容器。
 
-此命令使您能够运行一个命令而不是将以下命令作为单独的步骤运行，从而简化了开发人员的工作流程：
+此命令使您能够运行一个命令而不是将以下命令作为单独的步骤运行，从而简化了开发人员的工作流程:
 
 ....
 dfx canister create --all
@@ -67,14 +67,14 @@ dfx deploy [flag] [option] [canister_name]
 
 您可以使用 `+dfx deploy+` 命令在本地容器执行环境、{platform} 或指定测试网上部署所有或特定容器。
 
-例如，要在 `+dfx.json+` 配置文件中配置的假设 `+ic-pubs+` 测试网上部署 `+hello+` 项目，可以运行以下命令：
+例如，要在 `+dfx.json+` 配置文件中配置的假设 `+ic-pubs+` 测试网上部署 `+hello+` 项目，可以运行以下命令:
 
 [source,bash]
 ----
 dfx deploy hello --network ic-pubs
 ----
 
-要在本地容器执行环境上部署项目并将单个参数传递给安装步骤，您可以运行类似于以下内容的命令：
+要在本地容器执行环境上部署项目并将单个参数传递给安装步骤，您可以运行类似于以下内容的命令:
 
 [source,bash]
 ----
@@ -83,7 +83,7 @@ dfx deploy hello_actor_class --argument '("from DFINITY")'
 
 请注意，目前您必须在 {proglang} dapp 中使用演员类。
 在此示例中，`+dfx deploy+` 命令指定要传递给`+hello_actor_class+` 容器的参数。
-`+hello_actor_class+` 容器的主程序如下所示：
+`+hello_actor_class+` 容器的主程序如下所示:
 ....
 actor class Greet(name: Text) {
     public query func greet() : async Text {
@@ -92,7 +92,7 @@ actor class Greet(name: Text) {
 };
 ....
 
-您可以使用带有 `+--with-cycles+` 选项的 `+dfx deploy+` 命令来指定钱包创建的容器的初始余额。 如果您未指定容器，则默认情况下您指定的循环数将添加到所有容器。 为避免这种情况，请按名称指定特定容器。 例如，要将 8000000000000 个周期的初始余额添加到名为“hello-assets”的容器中，请运行以下命令：
+您可以使用带有 `+--with-cycles+` 选项的 `+dfx deploy+` 命令来指定钱包创建的容器的初始余额。 如果您未指定容器，则默认情况下您指定的循环数将添加到所有容器。 为避免这种情况，请按名称指定特定容器。 例如，要将 8000000000000 个周期的初始余额添加到名为“hello-assets”的容器中，请运行以下命令:
 
 [source,bash]
 ----

@@ -1,208 +1,208 @@
-= Pass text arguments
+= 传递文本参数
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-This tutorial provides a simple variation on the default program that lets you pass a single text argument to a single actor, compile the code to create a canister smart contract, then retrieve the argument.
-Throughout this document, the terms canister smart contract and canister are considered synonymous.
+本教程提供了默认程序的简单变体，允许您将单个文本参数传递给单个参与者，编译代码以创建容器智能合约，然后检索参数。
+在本文档中，术语容器智能合约和容器被视为同义词。
 
-This tutorial illustrates how to pass arguments on the command-line in a terminal using the Candid interface description language (IDL) and how to modify the program to allow it to accept more than one value for the text argument.
+本教程说明了如何使用 Candid 接口描述语言 (IDL) 在终端中的命令行上传递参数，以及如何修改程序以允许它接受多个文本参数值。
 
-== Before you begin
+== 开始之前
 
-Before you start this tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any canister execution environments running on the local
-computer.
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已停止在本地运行的任何容器执行环境
+计算机。
 
-This tutorial takes approximately 20 minutes to complete.
+完成本教程大约需要 20 分钟。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project for this tutorial:
+要为本教程创建一个新项目:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Create a new project by running the following command:
+. 如果您还没有打开一个终端shell，请在您的本地计算机上打开一个终端外壳。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new location_hello
 ----
-. Change to your project directory by running the following command:
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd location_hello
 ----
 
-== Modify the default configuration
+== 修改默认配置
 
-In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
-You should always review the default settings in the file to verify the information accurately reflects the project settings you want to use.
-For this tutorial, you'll modify the default configuration to remove settings that aren't used.
+在link:explore-templates{outfilesuffix}[Explore the default project] 教程中，您看到创建一个新项目会在您的项目目录中添加一个默认的`+dfx.json+` 配置文件。
+您应始终查看文件中的默认设置，以验证信息是否准确反映了您要使用的项目设置。
+对于本教程，您将修改默认配置以删除未使用的设置。
 
-To modify settings in the `+dfx.json+` configuration file:
+修改 `+dfx.json+` 配置文件中的设置:
 
-. Open the `+dfx.json+` configuration file in a text editor.
-. Check the default settings for the `+location_hello+` project.
+. 在文本编辑器中打开 `+dfx.json+` 配置文件。
+. 检查 `+location_hello+` 项目的默认设置。
 +
-. Remove all of the unnecessary configuration settings.
+. 删除所有不必要的配置设置。
 +
-Because this tutorial does not involve creating any front-end assets, you can remove all of the `+location_hello_assets+` configuration settings from the file.
-. Save your changes and close the file to continue.
+由于本教程不涉及创建任何前端资产，因此您可以从文件中删除所有 `+location_hello_assets+` 配置设置。
+. 保存更改并关闭文件以继续。
 
-== Modify the default program
+== 修改默认程序
 
-In the link:explore-templates{outfilesuffix}[Explore the default project] tutorial, you saw that creating a new project creates a default `+src+` directory with a template `+main.mo+` file.
+在link:explore-templates{outfilesuffix}[Explore the default project] 教程中，您看到创建一个新项目会创建一个带有模板 `+main.mo+` 文件的默认 `+src+` 目录。
 
-To modify the default template source code:
+修改默认模板源代码:
 
-. Open the `+src/location_hello/main.mo+` source code file in a text editor.
-. Modify the default source code to replace the `+greet+` function with a `+location+` function and the `+name+` argument with a `+city+` argument.
+. 在文本编辑器中打开 `+src/location_hello/main.mo+` 源代码文件。
+. 修改默认源代码，将 `+greet+` 函数替换为 `+location+` 函数，将 `+name+` 参数替换为 `+city+` 参数。
 +
-For example:
+例如:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$location_hello.mo[]
 ----
-. Save your changes and close the file to continue.
+. 保存更改并关闭文件以继续。
 
-== Start the local canister execution environment
+== 启动本地容器执行环境
 
-Before you can build your project, you need to connect to a local canister execution environment or the Internet Computer blockchain mainnet.
+在构建项目之前，您需要连接到本地容器执行环境或 Internet Computer 区块链主网。
 
-Starting a canister execution environment locally requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
-For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
+在本地启动容器执行环境需要一个 `+dfx.json+` 文件，因此您应该确保您位于项目的根目录中。
+对于本教程，您应该有两个独立的终端 shell，以便您可以在一个终端中启动和查看网络操作并在另一个终端中管理您的项目。
 
-To start the local canister execution environment:
+启动本地容器执行环境:
 
 [arabic]
-. Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 如有必要，导航到项目的根目录。
 +
 --
-* You should now have **two terminals** open.
-* You should have the **project directory** as your **current working directory**.
+* 您现在应该打开了**两个终端**。
+* 您应该将 **project 目录** 作为您的 **current 工作目录**。
 --
-. Start the canister execution environment on your local computer by running the following command:
+. 通过运行以下命令在本地计算机上启动容器执行环境:
 +
 [source,bash]
 ----
 dfx start
 ----
 +
-If you are prompted to allow or deny incoming network connections, click *Allow*.
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your project.
+如果系统提示您允许或拒绝传入的网络连接，请单击 *Allow*。
+. 让显示网络操作的终端保持打开状态，然后将注意力转移到创建项目的原始终端。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-After you connect to the local canister execution environment, you can register, build, and deploy your dapp locally.
+连接到本地容器执行环境后，您可以在本地注册、构建和部署 dapp。
 
-To deploy the dapp locally:
+要在本地部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your application by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令来注册、构建和部署您的应用程序:
 +
 [source,bash]
 ----
 dfx deploy
 ----
 +
-The `+dfx deploy+` command output displays information about the operations it performs.
+`+dfx deploy+` 命令输出显示有关它执行的操作的信息。
 
-== Pass a text argument
+== 传递一个文本参数
 
-You now have a program deployed as a *canister smart contract* in your local canister execution environment and can test your program by using `+dfx canister call+` commands.
+您现在在本地容器执行环境中部署了一个程序作为 *canister 智能合约*，并且可以使用 `+dfx canister call+` 命令测试您的程序。
 
-To test the program you have deployed locally:
+要测试您在本地部署的程序:
 
-. Call the `+location+` method in the program and pass your `+city+` argument of type `+text+` by running the following command:
+. 在程序中调用 `+location+` 方法并通过运行以下命令传递类型为 `+text+` 的 `+city+` 参数:
 +
 [source,bash]
 ----
 dfx canister call location_hello location "San Francisco"
 ----
 +
-Because the argument in this case includes a space between `+San+` and `+Francisco+`, you need to enclose the argument in quotes.
-The command displays output similar to the following:
+因为这种情况下的参数在 `+San+` 和 `+Francisco+` 之间包含一个空格，所以您需要将参数括在引号中。
+该命令显示类似于以下内容的输出:
 +
 ....
 ("Hello, San Francisco!")
 ....
 +
-If the argument did not contain a space that required enclosing the text inside of quotation marks, you could allow the Candid interface description language to infer the data type like this:
+如果参数不包含需要将文本括在引号内的空格，则可以允许 Candid 接口描述语言推断数据类型，如下所示:
 +
 [source,bash]
 ----
 dfx canister call location_hello location Paris
 ----
 +
-Candid infers the data type as `Text` and returns the output from your program as text like this:
+Candid 将数据类型推断为“文本”，并将程序的输出作为文本返回，如下所示:
 +
 ....
 ("Hello, Paris!")
 ....
-. Call the `+location+` method in the program and pass your `+city+` argument explicitly using the Candid interface description language syntax for Text arguments:
+. 在程序中调用 `+location+` 方法并使用用于 Text 参数的 Candid 接口描述语言语法显式传递您的 `+city+` 参数:
 +
 [source,bash]
 ----
 dfx canister call location_hello location '("San Francisco and Paris")'
 ----
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出:
 +
 ....
 ("Hello, San Francisco and Paris!")
 ....
 +
-Because your program only accepts a single text argument, specifying multiple strings returns only the first argument.
+因为您的程序只接受一个文本参数，所以指定多个字符串只返回第一个参数。
 +
-For example, if you try this command:
+例如，如果您尝试以下命令:
 +
 [source,bash]
 ----
 dfx canister call location_hello location '("San Francisco","Paris","Rome")'
 ----
 +
-Only the first argument—`+("Hello, San Francisco!")+`—is returned.
+只有第一个参数——`+("Hello, San Francisco!")+`——被返回。
 
-== Revise the source code in your program
+== 修改程序中的源代码
 
-To extend what you have learned in this tutorial, you might want to try modifying the source code to return different results.
-For example, you might want to modify the `+location+` function to return multiple city names.
+要扩展您在本教程中学到的知识，您可能需要尝试修改源代码以返回不同的结果。
+例如，您可能想要修改 `+location+` 函数以返回多个城市名称。
 
-To experiment with modifying the source code for this tutorial:
+要尝试修改本教程的源代码:
 
-. Open the `+dfx.json+` configuration file in a text editor and change the default `+location_hello+` settings to `+favorite_cities+`.
+. 在文本编辑器中打开 `+dfx.json+` 配置文件并将默认的 `+location_hello+` 设置更改为 `+favorite_cities+`。
 +
-For this step, you should modify both the canister name and the path to the main program for the canister smart contract to use `+favorite_cities+`.
-. Save your changes and close the `+dfx.json+` file to continue.
-. Copy the `+location_hello+` source file directory to match the name specified in the `+dfx.json+` configuration file by running the following command:
+对于这一步，您应该修改容器名称和容器智能合约的主程序路径以使用`+favorite_cities+`。
+. 保存您的更改并关闭 `+dfx.json+` 文件以继续。
+. 通过运行以下命令，复制 `+location_hello+` 源文件目录以匹配 `+dfx.json+` 配置文件中指定的名称:
 +
 [source,bash]
 ----
 cp -r src/location_hello src/favorite_cities
 ----
-. Open the `+src/favorite_cities/main.mo+` file in a text editor.
-. Copy and paste the following code sample to replace the `+location+` function with two new functions.
+. 在文本编辑器中打开 `+src/favorite_cities/main.mo+` 文件。
+. 复制并粘贴以下代码示例，将 `+location+` 函数替换为两个新函数。
 +
-For example:
+例如:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$favorite_cities.mo[]
 ----
 +
-You might notice that `+Text+` in this code example is enclosed by square (`+[ ]+`) brackets. By itself, `+Text+` represents a collection of UTF-8 characters.
-The square brackets around a type indicate that it is an *array* of that type.
-In this context, therefore, `+[Text]+` indicates an array of a collection of UTF-8 characters, enabling the program to accept and return multiple text strings.
+您可能会注意到此代码示例中的 `+Text+` 被方括号 (`+[ ]+`) 括起来。 `+Text+` 本身代表 UTF-8 字符的集合。
+类型周围的方括号表示它是该类型的*array*。
+因此，在这种情况下，`+[Text]+` 表示一个 UTF-8 字符集合的数组，使程序能够接受和返回多个文本字符串。
 +
-The code sample also uses the basic format of an `+apply+` operation for the array, which can be abstracted as:
+代码示例还使用了数组的“+apply+”操作的基本格式，可以抽象为:
 +
 ....
 public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
@@ -214,37 +214,37 @@ public func apply<A, B>(fs : [A -> B], xs : [A]) : [B] {
 };
 ....
 +
-For information about the functions that perform operations on arrays, see the description of the Array module in the {proglang} base library or the _{proglang} Programming Language Reference_.
-For another example focused on the use of arrays, see link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] in the link:https://github.com/dfinity/examples/[examples] repository.
-. Register, build, and deploy the dapp by running the following command:
+有关对数组执行操作的函数的信息，请参阅 {proglang} 基础库或_{proglang} 编程语言参考_中对 Array 模块的描述。
+另一个专注于使用数组的例子，见link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[Quicksort] link:https://github.com/dfinity/examples /[示例] 存储库。
+. 通过运行以下命令注册、构建和部署 dapp:
 +
 [source,bash]
 ----
 dfx deploy
 ----
-. Call the `+location+` method in the program and pass your `+city+` argument using the Candid interface description syntax by running the following command:
+. 在程序中调用 `+location+` 方法并使用 Candid 接口描述语法通过运行以下命令传递您的 `+city+` 参数:
 +
 [source,bash]
 ----
 dfx canister call favorite_cities location '(vec {"San Francisco";"Paris";"Rome"})'
 ----
 +
-The command uses the Candid interface description syntax `+(vec { val1; val2; val3; })+` to return a vector of values.
-For more information about the Candid interface description language, see the link:../../candid-guide/candid-intro{outfilesuffix}[Candid] language guide.
+该命令使用 Candid 接口描述语法 `+(vec { val1; val2; val3; })+` 返回值向量。
+有关 Candid 界面描述语言的更多信息，请参见链接:../../candid-guide/candid-intro{outfilesuffix}[Candid] 语言指南。
 +
-This command displays output similar to the following:
+此命令显示类似于以下内容的输出:
 +
 ....
 ("Hello, from ["San Francisco", "Paris", "Rome"]!")
 ....
-. Call the `+location_pretty+` method in the program and pass your `+city+` argument using the interface description syntax by running the following command:
+. 在程序中调用 `+location_pretty+` 方法并使用接口描述语法通过运行以下命令传递您的 `+city+` 参数:
 +
 [source,bash]
 ----
 dfx canister call favorite_cities location_pretty '(vec {"San Francisco";"Paris";"Rome"})'
 ----
 +
-The command displays output similar to the following:
+该命令显示类似于以下内容的输出:
 +
 ....
 ("Hello from San Francisco, Paris, Rome, bon voyage!")
@@ -252,19 +252,19 @@ The command displays output similar to the following:
 
 include::example$candid-ui.adoc[]
 +
-In this example, each function accepts an array of text strings. Therefore, you first select the length of the array, then set values for each item before clicking **Call**.
+在此示例中，每个函数都接受一个文本字符串数组。 因此，您首先选择数组的长度，然后为每个项目设置值，然后单击**调用**。
 +
 image:candid-favorite-cities-result.png[Specifying an array]
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with your program, you can stop the local canister execution environment so that it doesn’t continue running in the background.
+完成对程序的试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local canister execution environment:
+要停止本地容器执行环境:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local process.
+. 在显示网络操作的终端中，按 Control-C 中断本地进程。
 
-. Stop the canister execution environment by running the following command:
+. 通过运行以下命令停止容器执行环境:
 +
 [source,bash]
 ----

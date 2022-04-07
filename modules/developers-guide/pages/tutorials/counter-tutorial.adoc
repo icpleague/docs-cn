@@ -1,204 +1,204 @@
-= Increment a natural number
+= 增加一个自然数
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-In this tutorial, you are going to write a program that creates a single actor and provides a few basic functions to increment a counter and illustrate persistence of a value.
+在本教程中，您将编写一个程序来创建单个参与者并提供一些基本函数来增加计数器并说明值的持久性。
 
-For this tutorial, the actor is named `+Counter+`.
-The program uses the `+currentValue+` variable to contain a natural number that represents the current value of the counter.
-This program supports the following function calls:
+在本教程中，actor 被命名为 `+Counter+`。
+该程序使用 `+currentValue+` 变量来包含一个表示计数器当前值的自然数。
+该程序支持以下函数调用:
 
-* The `+increment+` function call updates the current value, incrementing it by 1 (no return value).
-* The `+get+` function call queries and returns the current value of the counter.
-* The `+set+` function call updates the current value to an arbitrary numeric value you specify as an argument.
+* `+increment+` 函数调用更新当前值，将其递增 1（无返回值）。
+* `+get+` 函数调用查询并返回计数器的当前值。
+* `+set+` 函数调用将当前值更新为您指定为参数的任意数值。
 
-This tutorial provides a simple example of how you can increment a counter by calling functions on a deployed canister smart contract.
-By calling the functions to increment and query the counter value multiple times, you can verify that the variable state—that is, the value of the variable between calls—persists.
+本教程提供了一个简单示例，说明如何通过调用已部署容器智能合约上的函数来增加计数器。
+通过多次调用函数递增和查询计数器值，您可以验证变量状态（即两次调用之间的变量值）是否保持不变。
 
-== Before you begin
+== 开始之前
 
-Before starting the tutorial, verify the following:
+在开始本教程之前，请验证以下内容:
 
-* You have downloaded and installed the {sdk-short-name} package as described in link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[Download and install].
-* You have stopped any local canister execution environments running on the computer.
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已停止计算机上运行的任何本地容器执行环境。
 
-This tutorial takes approximately 20 minutes to complete.
+完成本教程大约需要 20 分钟。
 
-== Create a new project
+== 创建一个新项目
 
-To create a new project directory for this tutorial:
+要为本教程创建一个新的项目目录:
 
 [arabic]
-. Open a terminal shell on your local computer, if you don’t already have one open.
-. Change to the folder you are using for your {IC} projects, if you are using one.
-. Create a new project by running the following command:
+. 如果您还没有打开一个终端外壳，请在您的本地计算机上打开一个终端外壳。
+. 更改为您用于 {IC} 项目的文件夹（如果您正在使用一个）。
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new my_counter
 ----
 +
-The command creates a new `+my_counter+` project for your project.
-. Change to your project directory by running the following command:
+该命令为您的项目创建一个新的 `+my_counter+` 项目。
+. 通过运行以下命令切换到您的项目目录:
 +
 [source,bash]
 ----
 cd my_counter
 ----
 
-== Modify the default configuration
+== 修改默认配置
 
-You have already seen that creating a new project adds a default `+dfx.json+` configuration file to your project directory.
-In this tutorial, you will modify the default settings to use a different name for the main program in your project.
+您已经看到创建一个新项目会在您的项目目录中添加一个默认的 `+dfx.json+` 配置文件。
+在本教程中，您将修改默认设置，为项目中的主程序使用不同的名称。
 
-To modify the `+dfx.json+` configuration file:
+修改 `+dfx.json+` 配置文件:
 
-. Open the `+dfx.json+` configuration file in a text editor and change the default `+main+` setting from `+main.mo+` to `+increment_counter.mo+`.
+. 在文本编辑器中打开 `+dfx.json+` 配置文件，并将默认的 `+main+` 设置从 `+main.mo+` 更改为 `+increment_counter.mo+`。
 +
-For example:
+例如:
 +
 [source,json]
 ----
 "main": "src/my_counter/increment_counter.mo",
 ----
 +
-For this tutorial, changing the name of the source file from `+main.mo+` to `+increment_counter.mo+` simply illustrates how the setting in the `+dfx.json+` configuration file determines the source file to be compiled.
+对于本教程，将源文件的名称从 `+main.mo+` 更改为 `+increment_counter.mo+` 只是说明了 `+dfx.json+` 配置文件中的设置如何确定要编译的源文件。
 +
-In a more complex dapp, you might have multiple source files with dependencies that you need to manage using settings in the `+dfx.json+` configuration file.
-In a scenario like that—with multiple canister smart contracts and programs defined in your `dfx.json` file—having multiple files all named `main.mo` might be confusing.
+在更复杂的 dapp 中，您可能有多个具有依赖关系的源文件，您需要使用 `+dfx.json+` 配置文件中的设置来管理这些源文件。
+在这样的场景中——在你的“dfx.json”文件中定义了多个容器智能合约和程序——拥有多个名为“main.mo”的文件可能会令人困惑。
 +
-You can leave the rest of the default settings as they are.
-. Save your change and close the `+dfx.json+` file to continue.
-. Change the name of the main program file in the source code directory `+src+` to match the name specified in the `+dfx.json+` configuration file by running the following command
+您可以保留其余的默认设置。
+. 保存更改并关闭 `+dfx.json+` 文件以继续。
+. 通过运行以下命令，将源代码目录`+src+`中的主程序文件的名称更改为与`+dfx.json+`配置文件中指定的名称匹配
 +
 [source,bash]
 ----
 mv src/my_counter/main.mo src/my_counter/increment_counter.mo
 ----
 
-== Modify the default program
+== 修改默认程序
 
-So far, you have only changed the name of the main program for your project.
-The next step is to modify the code in the `+src/my_counter/increment_counter.mo+` file to define an actor named `+Counter+` and implement the `+increment+`, `+get+`, and `+set+` functions.
+到目前为止，您只更改了项目的主程序的名称。
+下一步是修改 `+src/my_counter/increment_counter.mo+` 文件中的代码，定义一个名为 `+Counter+` 的 actor，并实现 `+increment+`、`+get+` 和 `+set+` 函数。
 
-To modify the default template source code:
+修改默认模板源代码:
 
-. Check that you are still in your project directory, if needed.
-. Open the `+src/my_counter/increment_counter.mo+` file in a text editor and delete the existing content.
-. Copy and paste the following sample code into the `+increment_counter.mo+` file:
+. 如果需要，请检查您是否仍在项目目录中。
+. 在文本编辑器中打开 `+src/my_counter/increment_counter.mo+` 文件并删除现有内容。
+. 将以下示例代码复制并粘贴到 `+increment_counter.mo+` 文件中:
 +
 [source.copy,motoko,no-repl]
 ----
 include::example$counter.mo[]
 ----
 +
-Let's take a closer look at this sample program:
+让我们仔细看看这个示例程序
 +
 --
 
-* You can see that the `+currentValue+` variable declaration in this example includes the `+stable+` keyword to indicate the state—the value that can be set, incremented, and retrieved—persists.
+* 你可以看到这个例子中的 `+currentValue+` 变量声明包含了 `+stable+` 关键字来指示状态——可以设置、递增和检索的值——持续存在。
 +
-This keyword ensures that the value for the variable is unchanged when the program is upgraded. 
-* The declaration for the `+currentValue+` variable also specifies that its type is a natural number (`+Nat+`).
-* The program includes two public update methods—the `+increment+` and `+set+` functions—and one a query method-the `+get+` function.
+该关键字确保程序升级时变量的值不变。
+* `+currentValue+` 变量的声明还指定它的类型是自然数（`+Nat+`）。
+* 该程序包括两种公共更新方法——`+increment+` 和`+set+` 函数——以及一种查询方法——`+get+` 函数。
 --
 +
-For more information about stable and flexible variables, see link:../../language-guide/upgrades{outfilesuffix}[Stable variables and upgrade methods] in the link:../../language-guide/motoko{outfilesuffix}[_{proglang} Programming Language Guide_].
+有关稳定和灵活变量的更多信息，请参阅link:../../language-guide/upgrades{outfilesuffix}[稳定变量和升级方法]link:../../language-guide/motoko{outfilesuffix }[_{proglang} 编程语言指南_]。
 +
-For more information about the differences between a query and an update, see link:../concepts/canisters-code{outfilesuffix}#query-update[Query and update methods] in link:../concepts/canisters-code{outfilesuffix}#canister-state[Canisters include both program and state].
-. Save your changes and close the file to continue.
+有关查询和更新之间差异的更多信息，请参阅link:../concepts/canisters-code{outfilesuffix}#query-update[查询和更新方法] in link:../concepts/canisters-code{outfilesuffix }#canister-state[容器包括程序和状态]。
+. 保存更改并关闭文件以继续。
 
-== Start the local canister execution environment
+== 启动本地容器执行环境
 
-Before you can build the `+my_counter+` project, you need to either connect to a local canister execution environment simulating the {IC} blockchain or to the {IC} blockchain mainnet. 
+在构建“+my_counter+”项目之前，您需要连接到模拟 {IC} 区块链的本地容器执行环境或连接到 {IC} 区块链主网。
 
-Starting the local canister execution environment requires a `+dfx.json+` file, so you should be sure you are in your project's root directory.
-For this tutorial, you should have two separate terminal shells, so that you can start and see network operations in one terminal and manage your project in another.
+启动本地容器执行环境需要一个 `+dfx.json+` 文件，因此您应该确保您位于项目的根目录中。
+对于本教程，您应该有两个独立的终端 shell，以便您可以在一个终端中启动和查看网络操作并在另一个终端中管理您的项目。
 
-To start the local canister execution environment:
+启动本地容器执行环境:
 
 [arabic]
-. Open a new terminal window or tab on your local computer.
-. Navigate to the root directory for your project, if necessary.
+. 在本地计算机上打开一个新的终端窗口或选项卡。
+. 如有必要，导航到项目的根目录。
 +
 --
-* You should now have **two terminals** open.
-* You should have the **project directory** as your **current working directory**.
+* 您现在应该打开了**两个终端**。
+* 您应该将 **project 目录** 作为您的 **current 工作目录**。
 --
-. Start the local canister execution environment on your computer by running the following command:
+. 通过运行以下命令在您的计算机上启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start
 ----
 +
-After you start the local canister execution environment, the terminal displays messages about network operations.
-. Leave the terminal that displays network operations open and switch your focus to your original terminal where you created your new project.
+启动本地容器执行环境后，终端会显示有关网络操作的消息。
+. 让显示网络操作的终端保持打开状态，然后将注意力转移到创建新项目的原始终端。
 
-== Register, build, and deploy the dapp
+== 注册、构建和部署 dapp
 
-After you connect to the local canister execution environment running in your development environment, you can register, build, and deploy your dapp locally.
+连接到在您的开发环境中运行的本地容器执行环境后，您可以在本地注册、构建和部署您的 dapp。
 
-To deploy the dapp locally:
+要在本地部署 dapp:
 
-. Check that you are still in the root directory for your project, if needed.
-. Register, build, and deploy your dapp by running the following command:
+. 如果需要，请检查您是否仍在项目的根目录中。
+. 通过运行以下命令注册、构建和部署您的 dapp:
 +
 [source,bash]
 ----
 dfx deploy
 ----
 +
-The `+dfx deploy+` command output displays information about the operations it performs.
+`+dfx deploy+` 命令输出显示有关它执行的操作的信息。
 
-== Invoke methods on the deployed canister smart contract
+== 在已部署的容器智能合约上调用方法
 
-After successfully deploying the canister smart contract, you can simulate an end-user invoking the methods provided by the canister.
-For this tutorial, you invoke the `+get+` method to query the value of a counter, the `+increment+` method that increments the counter each time it is called, and the `+set+` method to pass an argument to update the counter to an arbitrary value you specify.
+成功部署容器智能合约后，您可以模拟最终用户调用容器提供的方法。
+在本教程中，您调用 `+get+` 方法来查询计数器的值，调用 `+increment+` 方法在每次调用时递增计数器，并调用 `+set+` 方法来传递参数以更新 与您指定的任意值相反。
 
-To test invoking methods on the deployed canister smart contract:
+要在已部署的容器智能合约上测试调用方法:
 
 [arabic]
-. Run the following command to invoke the `+get+` function, which reads the current value of the `+currentValue+` variable on the deployed canister:
+. 运行以下命令调用 `+get+` 函数，该函数读取已部署容器上的 `+currentValue+` 变量的当前值:
 +
 [source,bash]
 ----
 dfx canister call my_counter get
 ----
 +
-The command returns the current value of the `+currentValue+` variable as zero:
+该命令将 `+currentValue+` 变量的当前值返回为零:
 +
 ....
 (0 : nat)
 ....
 [arabic]
-. Run the following command to invoke the `+increment+` function to increment the value of the `+currentValue+` variable on the deployed canister by one:
+. 运行以下命令调用 `+increment+` 函数，将已部署容器上的 `+currentValue+` 变量的值加一:
 +
 [source,bash]
 ----
 dfx canister call my_counter increment
 ----
 +
-This command increments the value of the variable—changing its state—but does not return the result.
+这个命令增加变量的值——改变它的状态——但不返回结果。
 [arabic]
-. Rerun the following command to get the current value of the `+currentValue+` variable on the deployed canister:
+. 重新运行以下命令以获取已部署容器上的 `+currentValue+` 变量的当前值:
 +
 [source,bash]
 ----
 dfx canister call my_counter get
 ----
 +
-The command returns the updated value of the `+currentValue+` variable as one:
+该命令将 `+currentValue+` 变量的更新值返回为 1:
 +
 ....
 (1 : nat)
 ....
 [arabic]
-. Run additional commands to experiment with invoking other methods and using different values.
+. 运行其他命令来尝试调用其他方法和使用不同的值。
 +
-For example, try commands similar to the following to set and return the counter value:
+例如，尝试类似以下的命令来设置和返回计数器值:
 +
 [source,bash]
 ----
@@ -206,8 +206,8 @@ dfx canister call my_counter set '(987)'
 dfx canister call my_counter get
 ----
 +
-This returns the updated value of the `+currentValue+` to be 987.
-Running the additional commands
+这会将 `+currentValue+` 的更新值返回为 987。
+运行附加命令
 +
 [source,bash]
 ----
@@ -215,21 +215,21 @@ dfx canister call my_counter increment
 dfx canister call my_counter get
 ----
 +
-returns the incremented `+currentValue+` of 988.
+返回递增的 `+currentValue+` 988。
 
 include::example$candid-ui.adoc[]
 +
 image:candid-counter.png[Counter functions]
 
-== Stop the local canister execution environment
+== 停止本地容器执行环境
 
-After you finish experimenting with your dapp, you can stop the local canister execution environment so that it doesn’t continue running in the background.
+完成 dapp 试验后，您可以停止本地容器执行环境，使其不会继续在后台运行。
 
-To stop the local canister execution environment:
+要停止本地容器执行环境:
 
-. In the terminal that displays network operations, press Control-C to interrupt the local canister execution environment.
+. 在显示网络操作的终端中，按 Control-C 可中断本地容器执行环境。
 
-. Stop the local canister execution environment by running the following command:
+. 通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----

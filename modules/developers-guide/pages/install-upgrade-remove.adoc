@@ -4,7 +4,7 @@
 :IC: 互联网计算机
 :company-id: DFINITY
 
-如链接中所述link：../quickstart/quickstart-intro{outfilesuffix}[快速启动]，您可以通过在终端 shell 中运行命令来下载并安装最新版本的 DFINITY Canister 智能合约 SDK 包。
+如链接中所述link:../quickstart/quickstart-intro{outfilesuffix}[快速启动]，您可以通过在终端 shell 中运行命令来下载并安装最新版本的 DFINITY Canister 智能合约 SDK 包。
 本节中的主题提供有关安装、升级和删除 {sdk-short-name} 的其他信息。
 
 include::ROOT:page$download.adoc[leveloffset=0,tag=install]
@@ -12,7 +12,7 @@ include::ROOT:page$download.adoc[leveloffset=0,tag=install]
 == 安装了什么
 
 {sdk-short-name} 安装脚本会在本地计算机的默认位置安装多个组件。
-下表描述了安装脚本安装的开发环境组件：
+下表描述了安装脚本安装的开发环境组件:
 
 [cols="20,55,25",options="header"]
 |===
@@ -46,7 +46,7 @@ include::ROOT:page$download.adoc[leveloffset=0,tag=install]
 
 `~/.cache/dfinity/versions` 目录存储了 {sdk-short-name} 的一个或多个版本化子目录。
 每个版本化的子目录都包含特定版本的 {sdk-short-name} 所需的所有目录和文件。
-例如，如果您列出 `~/.cache/dfinity/versions/0.9.2` 目录的内容，您会看到以下核心组件：
+例如，如果您列出 `~/.cache/dfinity/versions/0.9.2` 目录的内容，您会看到以下核心组件:
 
 ....
 total 349192
@@ -89,7 +89,7 @@ drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
 请注意，您无需在安装新版本之前卸载软件。
 但是，如果您想执行全新安装而不是升级，您可以先按照外部参照:remove[删除软件]中的说明卸载软件，然后重新运行下载和安装命令。
 
-有关最新版本中的功能和修复的信息，请参阅外部参考：release-notes:sdk-release-notes.adoc[Release notes]。
+有关最新版本中的功能和修复的信息，请参阅外部参考:release-notes:sdk-release-notes.adoc[Release notes]。
 
 [[remove]]
 == 删除软件
@@ -97,13 +97,13 @@ drwxr-xr-x  20 pubs  staff       640 Mar 15 11:55 bootstrap
 安装 {sdk-short-name} 时，安装脚本会将所需的二进制文件放在本地目录中并创建缓存。
 您可以通过运行位于 `.cache` 文件夹中的 `+uninstall+` 脚本从本地计算机中删除 SDK 二进制文件和缓存。
 
-例如：
+例如:
 [source,bash]
 ----
 ~/.cache/dfinity/uninstall.sh
 ----
 
-如果您因为想立即重新安装干净版本的 `dfx` 而卸载，可以运行以下命令：
+如果您因为想立即重新安装干净版本的 `dfx` 而卸载，可以运行以下命令:
 
 [source,bash]
 ----

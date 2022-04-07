@@ -5,7 +5,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: 互联网计算机
 :company-id: DFINITY
 
-由 DFINITY 开发或社区贡献的示例代码、应用程序和微服务可从以下链接获得link：https://github.com/dfinity/examples[DFINITY public repository]。
+由 DFINITY 开发或社区贡献的示例代码、应用程序和微服务可从以下链接获得link:https://github.com/dfinity/examples[DFINITY public repository]。
 
 通过访问公共存储库，您可以直接下载、克隆、fork 或共享示例项目。
 您还可以通过使用标准 GitHub 工作流程为已发布项目建议更新或报告问题来做出贡献。
@@ -16,32 +16,32 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 本节初步介绍了一些应用程序和微服务的示例代码，您可以复制和修改这些示例代码以启动您自己的项目。
 
 == C
-对于 {IC} 用 C 编程语言编写的项目示例，请参见link：https://github.com/dfinity/examples/tree/master/c[C++ 示例项目]。
+对于 {IC} 用 C 编程语言编写的项目示例，请参见link:https://github.com/dfinity/examples/tree/master/c[C++ 示例项目]。
 
-* link：https://github.com/dfinity/examples/tree/master/c/adventure【冒险游戏】
-* link：https://github.com/dfinity/examples/tree/master/c/qr[二维码生成器]
-* link：https://github.com/dfinity/examples/tree/master/c/reverse【反向游戏】
+* link:https://github.com/dfinity/examples/tree/master/c/adventure【冒险游戏】
+* link:https://github.com/dfinity/examples/tree/master/c/qr[二维码生成器]
+* link:https://github.com/dfinity/examples/tree/master/c/reverse【反向游戏】
 
 == Motoko
 
-对于使用 {proglang} 编程语言的项目，请参见链接：https://github.com/dfinity/examples/tree/master/motoko[Motoko 示例项目]。
+对于使用 {proglang} 编程语言的项目，请参见链接:https://github.com/dfinity/examples/tree/master/motoko[Motoko 示例项目]。
 
-* link：https://github.com/dfinity/examples/tree/master/motoko/calc【计算器-简单函数】
-* link：https://github.com/dfinity/examples/tree/master/motoko/counter[计数器]
-* link：https://github.com/dfinity/examples/tree/master/motoko/echo[Echo]
-* link：https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
-//* link：https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[最喜欢的城市]
-* link：https://github.com/dfinity/examples/tree/master/motoko/hello-world[你好，世界]
-* link：https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[你好，燃料费]
-//* 链接：[十六进制编码和解码]
-* link：https://github.com/dfinity/examples/tree/master/motoko/life[生命游戏-升级]
-* link：https://github.com/dfinity/examples/tree/master/motoko/phone-book[电话本]
-* link：https://github.com/dfinity/examples/tree/master/motoko/pub-sub[发布/订阅]
-* link：https://github.com/dfinity/examples/tree/master/motoko/quicksort[快速排序]
-* link：https://github.com/dfinity/examples/tree/master/motoko/random_maze[随机迷宫-密码随机性]
-* link：https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[待办事项清单]
-* link：https://github.com/dfinity/examples/tree/master/motoko/superheroes【超级英雄数据库】
-* link：https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
+* link:https://github.com/dfinity/examples/tree/master/motoko/calc【计算器-简单函数】
+* link:https://github.com/dfinity/examples/tree/master/motoko/counter[计数器]
+* link:https://github.com/dfinity/examples/tree/master/motoko/echo[Echo]
+* link:https://github.com/dfinity/examples/tree/master/motoko/factorial[Factorial]
+//* link:https://github.com/dfinity/examples/tree/master/motoko/favorite_cities[最喜欢的城市]
+* link:https://github.com/dfinity/examples/tree/master/motoko/hello-world[你好，世界]
+* link:https://github.com/dfinity/examples/tree/master/motoko/hello_cycles[你好，燃料费]
+//* 链接:[十六进制编码和解码]
+* link:https://github.com/dfinity/examples/tree/master/motoko/life[生命游戏-升级]
+* link:https://github.com/dfinity/examples/tree/master/motoko/phone-book[电话本]
+* link:https://github.com/dfinity/examples/tree/master/motoko/pub-sub[发布/订阅]
+* link:https://github.com/dfinity/examples/tree/master/motoko/quicksort[快速排序]
+* link:https://github.com/dfinity/examples/tree/master/motoko/random_maze[随机迷宫-密码随机性]
+* link:https://github.com/dfinity/examples/tree/master/motoko/simple-to-do[待办事项清单]
+* link:https://github.com/dfinity/examples/tree/master/motoko/superheroes【超级英雄数据库】
+* link:https://github.com/dfinity/examples/tree/master/motoko/whoami[whoami]
 
 
 == 其他示例应用程序
@@ -54,7 +54,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 ==== 源代码
 
-该项目包括以下外部参照：hex[hex.mo] 源代码。
+该项目包括以下外部参照:hex[hex.mo] 源代码。
 
 [[hex]]
 ===== hex.mo

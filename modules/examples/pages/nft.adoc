@@ -5,7 +5,7 @@
 此示例演示如何实现 NFT 容器。 NFT（不可替代代币）是具有任意元数据的独特代币——通常是某种图像，形成交易卡的数字等价物。 {ic} 有几种不同的 NFT 标准，但循环效率最高且功能最完整的一个是 {dip}[DIP-721] 标准，因此这是该容器使用的标准。
 
 此示例可从 Rust 和 Motoko 的 https://github.com/dfinity/examples[examples] 存储库获得
-版本：
+版本:
 
 * https://github.com/dfinity/examples/tree/master/rust/dip721-nft-container[Rust]
 * Motoko（即将推出）

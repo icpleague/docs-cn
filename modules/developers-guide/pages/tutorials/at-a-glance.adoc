@@ -1,25 +1,25 @@
-= At a glance
-:IC: Internet Computer
+= 一览
+:IC: 互联网计算机
 :company-id: DFINITY
 
-The link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] provides a fast path to deploying a simple default application without stopping to admire the scenery along the way. 
-Individual link:../tutorials-intro{outfilesuffix}[tutorials] walk through specific scenarios, pointing out details about what you're doing in each step. 
+link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] 提供了快速部署简单默认应用程序的途径，无需停下来欣赏沿途的风景。
+单独link:../tutorials-intro{outfilesuffix}[tutorials] 遍历特定场景，指出您在每个步骤中所做的细节。
 
-If the quick start and tutorials aren’t quite your style, this at-a-glance cheat sheet summarizes the steps to follow for quick reference.  
+如果快速入门和教程不是您的风格，这份概览备忘单总结了要遵循的步骤以供快速参考。
 
-After you install the {sdk-short-name}, here's all you need to know:
+安装 {sdk-short-name} 后，您需要了解以下内容:
 
-. Create a new project and change to the project directory.
+. 创建一个新项目并切换到项目目录。
 +
 ....
 dfx new <project_name> && cd <project_name>>
 ....
-. Edit the back-end that defines your service or application.
-. Edit the HTML, JavaScript, and CSS that provides the front-end for your service or application.
-. Start the {IC} for local development or check your connection to the {IC} for network deployment.
-. Register, build, and deploy locally or on the network.
+. 编辑定义您的服务或应用程序的后端。
+. 编辑为您的服务或应用程序提供前端的 HTML、JavaScript 和 CSS。
+. 启动 {IC} 进行本地开发或检查您与 {IC} 的连接以进行网络部署。
+. 在本地或网络上注册、构建和部署。
 +
 ....
 dfx deploy --network <network>
 ....
-. View your service or application in a browser.
+. 在浏览器中查看您的服务或应用程序。

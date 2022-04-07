@@ -42,7 +42,7 @@ dfx [option] [subcommand] [flag]
 
 |`+--log <logmode>+` |指定要使用的记录模式。
 +
-您可以将日志模式设置为以下之一：
+您可以将日志模式设置为以下之一:
 
 - `+stderr+` 将消息记录到标准错误工具。
 
@@ -99,7 +99,7 @@ dfx [option] [subcommand] [flag]
 == 例子
 
 您可以使用`+dfx+` 父命令来显示使用信息或版本信息。
-例如，要显示有关您当前安装的 `+dfx+` 版本的信息，可以运行以下命令：
+例如，要显示有关您当前安装的 `+dfx+` 版本的信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -107,7 +107,7 @@ dfx --version
 ----
 
 要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx build+` 的使用信息，可以运行以下命令：
+例如，要查看 `+dfx build+` 的使用信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -122,7 +122,7 @@ dfx build --help
 指定两个详细标志 (`+-vv+`) 会增加日志记录级别以包括 DEBUG 和 TRACE 消息。
 
 添加 `+--quiet+` 标志会降低日志记录级别。
-例如，要删除所有消息，您可以运行类似于以下的命令：
+例如，要删除所有消息，您可以运行类似于以下的命令:
 
 [source,bash]
 ----
@@ -131,7 +131,7 @@ dfx -qqqq build
 
 请记住，使用 TRACE 级别的日志记录 (`+--vv+`) 会生成大量可能影响性能的日志消息，并且只能在需要进行故障排除或分析时使用。
 
-要在创建新项目时将日志消息输出到名为“newlog.txt”的文件并在终端上显示消息，可以运行类似于以下的命令：
+要在创建新项目时将日志消息输出到名为“newlog.txt”的文件并在终端上显示消息，可以运行类似于以下的命令:
 
 [source,bash]
 ----
@@ -144,7 +144,7 @@ dfx --log tee --logfile newlog.txt new hello_world
 
 在最常见的用例中，您使用 `+--identity+` 选项调用特定容器函数来测试特定操作的访问控制。
 
-例如，您可能想通过运行以下命令来测试 `+devops+` 用户身份是否可以调用 `+accounts+` 容器的 `+modify_profile+` 函数：
+例如，您可能想通过运行以下命令来测试 `+devops+` 用户身份是否可以调用 `+accounts+` 容器的 `+modify_profile+` 函数:
 
 ....
 dfx --identity devops canister call accounts modify_profile '("Kris Smith")'

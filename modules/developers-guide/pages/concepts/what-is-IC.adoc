@@ -1,55 +1,55 @@
-= What is the {IC}?
-:keywords: Internet Computer,blockchain,protocol,replica,subnet,data center,smart contract,canister,developer
+= {IC} 是什么？
+:keywords: 互联网计算机,区块链,协议,副本,子网,数据中心,智能合约,容器,开发者
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
 [[ic-overview]]
 
-The *{IC}* is a blockchain that enables developers, organizations, and entrepreneurs to build and deploy secure, autonomous, and tamper-proof *canisters*, an evolution of *smart contracts*.
+*{IC}* 是一个区块链，使开发人员、组织和企业家能够构建和部署安全、自主和防篡改的*容器*，这是*智能合约*的演变。
 
-As a dapp developer, you might find it useful to think of the {IC} as providing the following key features:
+作为 dapp 开发人员，您可能会发现将 {IC} 视为提供以下关键功能很有用:
 
-* A *globally-accessible, public blockchain* for running smart contracts at web speed, that can serve interactive web content to users.
-* A secure cryptographic protocol (*Internet Computer Protocol*) run by nodes machines operated by independent node providers in independent data centers all over the world. This guarantees the secure execution of smart contracts.
-* A *network of blockchains* connected using Chain Key cryptography that can scale out its capacity as required.
+* 一个*全球可访问的公共区块链*，用于以网络速度运行智能合约，可为用户提供交互式网络内容。
+* 一种安全加密协议（*互联网计算机协议*），由世界各地独立数据中心的独立节点提供商运营的节点机器运行。这保证了智能合约的安全执行。
+* 使用可根据需要扩展其容量的链密钥加密技术连接的*区块链网络*。
 
-== An open blockchain
+== 一个开放的区块链
 
-The {IC} is a blockchain hosted on node machines operated by independent parties and located in geographically distributed datacenters. The nodes run the {IC} Protocol, an advanced cryptographic fault-tolerant protocol which ensures that smart contracts running on the blockchain cannot be tampered with or stopped.  The {IC} is composed of individual subnet blockchains running in parallel and connected using chain key cryptography. This means that canisters running on a subnet can seamlessly call canisters hosted in any other subnet of the {IC} blockchain.
+{IC} 是托管在由独立方运营的节点机器上的区块链，位于地理上分布的数据中心。节点运行 {IC} 协议，这是一种高级加密容错协议，可确保在区块链上运行的智能合约不会被篡改或停止。 {IC} 由并行运行并使用链密钥加密技术连接的各个子网区块链组成。这意味着运行在子网上的容器可以无缝调用托管在 {IC} 区块链的任何其他子网中的容器。
 
-Another important feature of the {IC} is that it runs under the control of a decentralized permissionless governance system, called *Network Nervous System* (NNS), which runs completely on-chain. The NNS can make decisions on several topics, including scaling out the {IC} by creating new subnet blockchains, updating the node machines, and configuring parameters used in the {IC} protocol. Anyone can participate in the governance and submit new proposals to the NNS or vote on open proposals. To do so, users have to stake ICP, the {IC} utility tokens, and create a *neuron* with the NNS.
+{IC} 的另一个重要特征是它在一个去中心化的无许可治理系统的控制下运行，称为 *Network Nervous System* (NNS)，该系统完全在链上运行。 NNS 可以就多个主题做出决策，包括通过创建新的子网区块链、更新节点机器以及配置 {IC} 协议中使用的参数来扩展 {IC}。任何人都可以参与治理并向 NNS 提交新提案或对公开提案进行投票。为此，用户必须质押 ICP、{IC} 实用代币，并使用 NNS 创建一个*神经元*。
 
 [[next-gen]]
-== Building the next generation of software and services
+== 构建下一代软件和服务
 
-The {IC} protocol reduces platform-based risks and paves the way for innovation by re-imagining how software is built, deployed, and accessed. 
+{IC} 协议通过重新构想软件的构建、部署和访问方式，降低了基于平台的风险并为创新铺平了道路。
 
-For example, with the {IC}, developers can focus on writing code using canister smart contracts without environment-related distractions such as:
+例如，使用 {IC}，开发人员可以专注于使用容器智能合约编写代码，而不会受到与环境相关的干扰，例如:
 
-* physical or virtual network configuration requirements
-* load balancing services
-* firewalls, network topology, or port management
-* database configuration and maintenance
-* storage volumes and devices
+* 物理或虚拟网络配置要求
+* 负载均衡服务
+* 防火墙、网络拓扑或端口管理
+* 数据库配置和维护
+*存储卷和设备
 
-By enabling developers to focus on building applications and delivering value, the {IC} helps simplify the development process, reduce time to market, and foster innovation.
+通过使开发人员能够专注于构建应用程序和交付价值，{IC} 有助于简化开发流程、缩短上市时间并促进创新。
 
-For end-users, the {IC} provides a secure environment for accessing dapps with fewer risks.
-Because of the inherent security of the blockchain, programs running on the {IC} cannot be hijacked by malicious code, which also reduces the total cost of ownership for both application end-users or organizations.
+对于最终用户，{IC} 为访问 dapps 提供了一个安全的环境，风险较小。
+由于区块链固有的安全性，在 {IC} 上运行的程序不会被恶意代码劫持，这也降低了应用程序最终用户或组织的总拥有成本。
 
-In addition, because dapps can be "autonomous" and public, developers can write services that communicate with each other and share functions in ways that increase productivity and efficiency while leaving room to innovate and improve projects with confidence.
+此外，由于 dapp 可以是“自治的”和公共的，开发人员可以编写相互通信和共享功能的服务，从而提高生产力和效率，同时为创新和改进项目留出空间，充满信心。
 
-The {IC} also enables developers to use cryptographically-secure identities to enforce access controls, reducing the need to rely on usernames and passwords or external identity management plug-ins.
+{IC} 还使开发人员能够使用加密安全身份来实施访问控制，从而减少对用户名和密码或外部身份管理插件的依赖。
 
 ////
-== Want to learn more?
+== 想了解更多？
 
-If you are looking for more information about the Internet Computer project and how it fits into the natural evolution of blockchain technology and the internet itself, check out the following related resources:
+如果您正在寻找有关互联网计算机项目的更多信息，以及它如何适应区块链技术和互联网本身的自然演变，请查看以下相关资源:
 
-* link:https://www.youtube.com/watch?v=XgsOKP224Zw[Overview of the Internet Computer (video)]
-* link:https://www.youtube.com/watch?v=jduSMHxdYD8[Building on the {IC}: Fundamentals (video)]
-* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[Introducing Canisters — An Evolution of Smart Contracts (video)]
-* link:https://dfinity.org/faq/[Frequently Asked Questions (video and short articles)]
+* link:https://www.youtube.com/watch?v=XgsOKP224Zw[互联网计算机概述（视频）]
+* link:https://www.youtube.com/watch?v=jduSMHxdYD8[在 {IC} 上构建:基础（视频）]
+* link:https://www.youtube.com/watch?v=LKpGuBOXxtQ[介绍容器——智能合约的演变（视频）]
+* link:https://dfinity.org/faq/【常见问题（视频和短文）】
 
 ////

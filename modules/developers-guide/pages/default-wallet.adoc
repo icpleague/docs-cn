@@ -5,7 +5,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: 互联网计算机
 :company-id: DFINITY
 
-如link：concepts/tokens-cycles{outfilesuffix}[代币和周期] 中所述，ICP代币可以转换为 *cycles* 以驱动容器操作。
+如link:concepts/tokens-cycles{outfilesuffix}[代币和周期] 中所述，ICP代币可以转换为 *cycles* 以驱动容器操作。
 燃料费反映了 dapp 消耗的通信、计算和存储的运营成本。
 
 与 ICP代币不同，燃料费仅与容器相关联，与用户或开发人员主体无关。
@@ -21,7 +21,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 但是，您应该记住，对燃料费钱包容器的调用是使用与当前选择的用户身份关联的燃料费钱包主体执行的。
 根据您当前选择的身份以及与该身份关联的委托人是否已添加为钱包的控制器或保管人，您可能会看到不同的结果或被拒绝访问特定方法。
 
-要检查您当前使用的身份，请运行以下命令：
+要检查您当前使用的身份，请运行以下命令:
 
 [source,bash]
 ----
@@ -32,7 +32,7 @@ dfx identity whoami
 
 可以将用户主体或容器主体分配给 *controller* 或 *custodian* 角色。
 
-*controller* 是特权最高的角色，分配给控制器角色的主体可以执行特权任务，包括以下内容：
+*controller* 是特权最高的角色，分配给控制器角色的主体可以执行特权任务，包括以下内容:
 
 * 添加和删除其他主体作为控制器。
 * 授权和取消授权其他委托人作为保管人。
@@ -44,14 +44,14 @@ dfx identity whoami
 * 创建容器和额外的燃料费钱包。
 
 
-分配给 *保管人* 角色的委托人只能执行周期钱包管理任务的子集，包括以下内容：
+分配给 *保管人* 角色的委托人只能执行周期钱包管理任务的子集，包括以下内容:
 
 *访问燃料费钱包余额和所有其他钱包相关信息。
 * 将燃料费发送到其他容器。
 * 接受来自其他容器的燃料费接收。
 *创建容器。
 
-注意：授权委托人作为保管人不会自动授予委托人访问循环钱包的权限。 分配给保管人角色的身份也必须分配给循环钱包主体。 例如，如果您在本地项目中授权身份 `+alice_custodian+` 作为循环钱包 (`+rwlgt-iiaaa-aaaaa-aaaaa-cai+`) 的保管人，则还需要分配该用户以使用该钱包 使用`+dfx identity set-wallet rwlgt-iiaaa-aaaaa-aaaaa-cai+` 命令。
+注意:授权委托人作为保管人不会自动授予委托人访问循环钱包的权限。 分配给保管人角色的身份也必须分配给循环钱包主体。 例如，如果您在本地项目中授权身份 `+alice_custodian+` 作为循环钱包 (`+rwlgt-iiaaa-aaaaa-aaaaa-cai+`) 的保管人，则还需要分配该用户以使用该钱包 使用`+dfx identity set-wallet rwlgt-iiaaa-aaaaa-aaaaa-cai+` 命令。
 
 [[钱包创建]]
 == 创建一个循环钱包
@@ -60,7 +60,7 @@ dfx identity whoami
 
 如果您在 {IC} 上进行部署，您通常通过将 ICP 代币转换为燃料费、将燃料费转移到新的容器主体以及使用默认燃料费钱包 WebAssembly 模块 (WASM) 更新容器来创建燃料费钱包。
 
-有一些 dapp 可以帮助您将 ICP 转换为燃料费并创建新的燃料费钱包，例如，link：../token-holders/nns-app-quickstart{outfilesuffix}#_deploy_a_canister_with_cycles[NNS dapp]。
+有一些 dapp 可以帮助您将 ICP 转换为燃料费并创建新的燃料费钱包，例如，link:../token-holders/nns-app-quickstart{outfilesuffix}#_deploy_a_canister_with_cycles[NNS dapp]。
 
 [[wallet-check-balance]]
 == 检查燃料费平衡
@@ -71,23 +71,23 @@ dfx identity whoami
 
 如果你在做本地开发，你可以使用`+dfx wallet balance+`命令逐个项目检查当前燃料费余额。
 
-要检查本地项目中的燃料费余额：
+要检查本地项目中的燃料费余额:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行以下命令，显示与当前选择的身份关联的燃料费钱包中的燃料费余额：
+. 通过运行以下命令，显示与当前选择的身份关联的燃料费钱包中的燃料费余额:
 +
 [source,bash]
 ----
 dfx wallet balance
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 78000000000000 cycles.
@@ -97,23 +97,23 @@ dfx wallet balance
 
 如果您在 {IC} 上部署了cycles 钱包，您可以使用`+dfx wallet balance+` 命令查看网络上当前的cycles 余额。
 
-要检查 {IC} 上的燃料费余额：
+要检查 {IC} 上的燃料费余额:
 
 . 打开终端并导航到包含 `+dfx.json+` 配置文件的目录。
-. 通过运行以下命令检查您与 {IC} 的连接：
+. 通过运行以下命令检查您与 {IC} 的连接:
 +
 [source,bash]
 ----
 dfx ping ic
 ----
-. 通过运行以下命令，显示与当前选择的身份关联的燃料费钱包中的燃料费余额：
+. 通过运行以下命令，显示与当前选择的身份关联的燃料费钱包中的燃料费余额:
 +
 [source,bash]
 ----
 dfx wallet --network ic balance
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 67991783875995 cycles.
@@ -122,14 +122,14 @@ dfx wallet --network ic balance
 === 调用燃料费 wallet_balance 方法
 
 您还可以通过直接调用燃料费钱包容器中的`+wallet_balance+`方法来检查燃料费余额。
-例如，如果您的委托人是 `h5aet-waaaa-aaaab-qaamq-cai` 燃料费钱包的控制器，您可以通过运行以下命令检查当前燃料费余额：
+例如，如果您的委托人是 `h5aet-waaaa-aaaab-qaamq-cai` 燃料费钱包的控制器，您可以通过运行以下命令检查当前燃料费余额:
 
 ....
 dfx canister --network ic call h5aet-waaaa-aaaab-qaamq-cai wallet_balance
 ....
 
 该命令使用 Candid 格式返回余额作为记录，其中包含金额字段（由哈希 3_573_748_184 表示）和余额
-6,895,656,625,450 次这样的燃料费：
+6,895,656,625,450 次这样的燃料费:
 
 ....
 (record { 3_573_748_184 = 6_895_656_625_450 })
@@ -141,29 +141,29 @@ dfx canister --network ic call h5aet-waaaa-aaaab-qaamq-cai wallet_balance
 如果您是循环钱包的控制器，您可以将其他用户主体或容器主体添加到控制器角色。
 将委托人添加到控制器角色也会自动将委托人添加到保管人角色。
 
-要将控制器添加到本地项目中的循环钱包：
+要将控制器添加到本地项目中的循环钱包:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行类似于以下内容的命令，显示与当前选择的身份关联的循环钱包中的燃料费余额：
+. 通过运行类似于以下内容的命令，显示与当前选择的身份关联的循环钱包中的燃料费余额:
 +
 [source,bash]
 ----
 dfx wallet add-controller <controller-principal>
 ----
 +
-例如，您将运行以下命令来添加由主体 b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe 代表的用户作为本地燃料费钱包的控制器：
+例如，您将运行以下命令来添加由主体 b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe 代表的用户作为本地燃料费钱包的控制器:
 +
 ....
 dfx wallet add-controller b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ....
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 Added b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a controller.
@@ -174,7 +174,7 @@ Added b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a contr
 
 作为运行 `+dfx wallet add-controller+` 命令的替代方法，您可以直接调用 `add_controllers` 方法将主体添加为燃料费钱包的控制器。
 
-例如：
+例如:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe")'
@@ -182,7 +182,7 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(prin
 
 在此示例中，当前活动身份的主体是 `+f3yw6-7qaaa-aaaab-qaabq-cai+` 燃料费钱包的控制器。
 
-要使燃料费钱包成为其自身的控制器，您将运行类似于以下的命令：
+要使燃料费钱包成为其自身的控制器，您将运行类似于以下的命令:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(principal "f3yw6-7qaaa-aaaab-qaabq-cai")'
@@ -194,23 +194,23 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(prin
 
 您可以使用 `+dfx wallet controllers+` 命令或 `get_controllers` 方法列出对指定周期钱包容器具有完全控制权的委托人。
 
-列出本地项目中循环钱包的控制器：
+列出本地项目中循环钱包的控制器:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行以下命令列出对当前项目中的循环钱包具有完全控制权的委托人：
+. 通过运行以下命令列出对当前项目中的循环钱包具有完全控制权的委托人:
 +
 [source,bash]
 ----
 dfx wallet controllers
 ----
 +
-该命令显示控制周期钱包的委托人的文本表示，输出类似于以下内容：
+该命令显示控制周期钱包的委托人的文本表示，输出类似于以下内容:
 +
 ....
 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
@@ -220,13 +220,13 @@ b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ////
 === 调用 get_controllers 方法
 
-例如：
+例如:
 
 ....
 dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai get_controllers
 ....
 
-该命令返回类似于以下内容的主体列表：
+该命令返回类似于以下内容的主体列表:
 
 ....
 (
@@ -243,23 +243,23 @@ dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai get_controllers
 
 您可以使用 `+dfx wallet remove-controller+` 命令或 `+remove_controller+` 方法将主体删除为控制器。
 
-要在本地项目中删除循环钱包的控制器：
+要在本地项目中删除循环钱包的控制器:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行类似于以下内容的命令，指定要从当前项目中的控制器角色中删除的主体：
+. 通过运行类似于以下内容的命令，指定要从当前项目中的控制器角色中删除的主体:
 +
 [source,bash]
 ----
 dfx wallet remove-controller b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ----
 +
-命令输出类似于以下内容：
+命令输出类似于以下内容:
 +
 ....
 Removed b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a controller.
@@ -268,7 +268,7 @@ Removed b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a con
 ////
 使用 `remove-controller` 方法删除作为控制器的主体。
 
-例如：
+例如:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai remove_controller '(principal "zdm3q-uxmkz-lsghp-r737v-dgwav-rinn2-hs3zf-fnib3-2rylb-3kuek-hae")'
@@ -280,30 +280,30 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai remove_controller '(p
 
 您可以使用 `+dfx wallet authorize+` 命令或 `+authorize+` 方法授权委托人作为燃料费钱包的保管人。
 
-授权委托人作为本地项目中循环钱包的保管人：
+授权委托人作为本地项目中循环钱包的保管人:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行类似于以下内容的命令，指定要授权为当前项目和当前身份的保管人的主体：
+. 通过运行类似于以下内容的命令，指定要授权为当前项目和当前身份的保管人的主体:
 +
 [source,bash]
 ----
 dfx wallet authorize b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ----
 +
-命令输出类似于以下内容：
+命令输出类似于以下内容:
 +
 ....
 Authorized b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a custodian.
 ....
 
 ////
-例如：
+例如:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai authorize '(principal "zdm3q-uxmkz-lsghp-r737v-dgwav-rinn2-hs3zf-fnib3-2rylb-3kuek-hae")'
@@ -315,23 +315,23 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai authorize '(principal
 
 您可以使用 `+dfx wallet custodians+` 命令或 `+get_custodians+` 方法返回当前定义为燃料费钱包托管人的委托人列表。
 
-列出本地项目中循环钱包的保管人：
+列出本地项目中循环钱包的保管人:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行以下命令，列出当前项目中对燃料费钱包具有保管人角色的委托人：
+. 通过运行以下命令，列出当前项目中对燃料费钱包具有保管人角色的委托人:
 +
 [source,bash]
 ----
 dfx wallet custodians
 ----
 +
-该命令显示类似于以下内容的输出：
+该命令显示类似于以下内容的输出:
 +
 ....
 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
@@ -343,7 +343,7 @@ b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai get_custodians
 ....
 
-该命令返回类似于以下内容的主体列表：
+该命令返回类似于以下内容的主体列表:
 
 ....
 (
@@ -362,30 +362,30 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai get_custodians
 您可以使用 `+dfx wallet deauthorize+` 命令或 `+deauthorize+` 方法将委托人删除为循环钱包的保管人。
 取消对先前添加为控制器的主体的授权也会自动从控制器角色中删除该主体。
 
-要在本地项目中删除循环钱包的保管人：
+要在本地项目中删除循环钱包的保管人:
 
 . 打开终端并导航到项目的根目录。
-. 通过运行以下命令启动本地容器执行环境：
+. 通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行类似于以下的命令，指定要从当前项目中的保管人角色中删除的主体：
+. 通过运行类似于以下的命令，指定要从当前项目中的保管人角色中删除的主体:
 +
 [source,bash]
 ----
 dfx wallet deauthorize b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe
 ----
 +
-命令输出类似于以下内容：
+命令输出类似于以下内容:
 +
 ....
 Deauthorized b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe as a custodian.
 ....
 
 ////
-例如：
+例如:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai deauthorize '(principal "zdm3q-uxmkz-lsghp-r737v-dgwav-rinn2-hs3zf-fnib3-2rylb-3kuek-hae")'
@@ -400,10 +400,10 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai deauthorize '(princip
 
 如果您在 {IC} 上部署了燃料费钱包，则可以使用`+dfx wallet send+` 命令在容器之间发送燃料费。
 
-要将燃料费发送到在 {IC} 上运行的另一个容器：
+要将燃料费发送到在 {IC} 上运行的另一个容器:
 
 . 打开终端并导航到包含 `+dfx.json+` 配置文件的目录。
-. 通过运行以下命令检查您与 {IC} 的连接：
+. 通过运行以下命令检查您与 {IC} 的连接:
 +
 [source,bash]
 ----
@@ -411,26 +411,26 @@ dfx ping ic
 ----
 . 获取要接收燃料费的容器的委托人。
 +
-例如，运行以下命令以在 {IC} 上显示与当前用户身份关联的燃料费钱包主体：
+例如，运行以下命令以在 {IC} 上显示与当前用户身份关联的燃料费钱包主体:
 +
 [source,bash]
 ----
 dfx identity --network ic get-wallet
 ----
 +
-该命令显示燃料费钱包主体，其输出类似于以下内容：
+该命令显示燃料费钱包主体，其输出类似于以下内容:
 +
 ....
 gastn-uqaaa-aaaae-aaafq-cai
 ....
-. 通过运行类似于以下内容的命令将燃料费发送到容器：
+. 通过运行类似于以下内容的命令将燃料费发送到容器:
 +
 [source,bash]
 ----
 dfx wallet --network ic send <destination> <amount>
 ----
 +
-例如：
+例如:
 +
 ....
 dfx wallet --network ic send gastn-uqaaa-aaaae-aaafq-cai 10000000000
@@ -438,34 +438,34 @@ dfx wallet --network ic send gastn-uqaaa-aaaae-aaafq-cai 10000000000
 如果传输成功，该命令不会显示任何输出。
 +
 
-注意：燃料费钱包中可以存储的最大循环数为 2^128^。
-. 通过运行以下命令检查燃料费钱包余额以查看更新的可用燃料费数：
+注意:燃料费钱包中可以存储的最大循环数为 2^128^。
+. 通过运行以下命令检查燃料费钱包余额以查看更新的可用燃料费数:
 +
 [source,bash]
 ----
 dfx wallet --network ic balance
 ----
 +
-例如：
+例如:
 +
 ....
 67991699387090 cycles.
 ....
 
 ////
-例如，如果您尝试使用如下命令向 hello 容器 (`hbe6c-baaaa-aaaab-qaaoq-cai`) 发送燃料费：
+例如，如果您尝试使用如下命令向 hello 容器 (`hbe6c-baaaa-aaaab-qaaoq-cai`) 发送燃料费:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai wallet_send '(record { canister = principal "hbe6c-baaaa-aaaab-qaaoq-cai";amount=2000000000000:nat64;})'
 ....
 
-您将看到类似于以下内容的错误消息：
+您将看到类似于以下内容的错误消息:
 
 ……
 容器 hbe6c-baaaa-aaaab-qaaoq-cai 没有更新方法“wallet_receive”
 ……
 
-但是，如果您调用该方法将周期发送到燃料费钱包，则该命令会成功：
+但是，如果您调用该方法将周期发送到燃料费钱包，则该命令会成功:
 
 ....
 dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai wallet_send '(record { canister = principal "h5aet-waaaa-aaaab-qaamq-cai";amount=2000000000000:nat64;})'
@@ -476,23 +476,23 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai wallet_send '(record 
 
 您可以使用`+dfx 钱包地址+` 命令或`+list_addresses+` 方法列出已为燃料费钱包配置的主体和角色。
 
-要查看在 {IC} 上运行的燃料费钱包的地址簿条目：
+要查看在 {IC} 上运行的燃料费钱包的地址簿条目:
 
 . 打开终端并导航到包含 `+dfx.json+` 配置文件的目录。
-. 通过运行以下命令检查您与 {IC} 的连接：
+. 通过运行以下命令检查您与 {IC} 的连接:
 +
 [source,bash]
 ----
 dfx ping ic
 ----
-. 通过运行以下命令获取燃料费钱包的地址簿条目：
+. 通过运行以下命令获取燃料费钱包的地址簿条目:
 +
 [source,bash]
 ----
 dfx wallet --network ic addresses
 ----
 +
-该命令显示燃料费钱包的控制器和保管人，输出类似于以下内容：
+该命令显示燃料费钱包的控制器和保管人，输出类似于以下内容:
 +
 ....
 Id: tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe, Kind: Unknown, Role: Controller, Name: No name set.
@@ -511,13 +511,13 @@ Id: b5quc-npdph-l6qp4-kur4u-oxljq-7uddl-vfdo6-x2uo5-6y4a6-4pt6v-7qe, Kind: Unkno
 使用 `+wallet_create_wallet+` 方法来创建一个具有初始燃料费余额的新燃料费钱包容器，并且可以选择将特定主体作为其控制器。
 如果您未指定控制主体，则用于创建新钱包的燃料费钱包将成为新钱包的控制器。
 
-例如，您可以运行类似于以下的命令来创建新钱包并将委托人分配为控制器：
+例如，您可以运行类似于以下的命令来创建新钱包并将委托人分配为控制器:
 
 ....
 dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
 ....
 
-该命令返回新钱包的主体：
+该命令返回新钱包的主体:
 
 ....
 (record { 1_313_628_723 = principal "dcxxq-jqaaa-aaaab-qaavq-cai" })
@@ -530,13 +530,13 @@ dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_wallet '(
 此方法创建一个具有初始燃料费余额的新“空”容器占位符，并且可以选择将特定主体作为其控制器。
 注册容器主体后，您可以为容器安装代码作为单独的步骤。
 
-例如，您可以运行类似于以下的命令来创建新钱包并将委托人分配为控制器：
+例如，您可以运行类似于以下的命令来创建新钱包并将委托人分配为控制器:
 
 ....
 dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister '(record { cycles = 5000000000000 : nat64; controller = principal "vpqee-nujda-46rtu-4noo7-qnxmb-zqs7g-5gvqf-4gy7t-vuprx-u2urx-gqe"})'
 ....
 
-该命令返回您创建的新容器的主体：
+该命令返回您创建的新容器的主体:
 
 ....
 (record { 1_313_628_723 = principal "dxqg5-iyaaa-aaaab-qaawa-cai" })
@@ -555,7 +555,7 @@ dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister 
 [[wallet-addresses]]
 === 管理地址
 
-使用以下方法管理通讯录条目：
+使用以下方法管理通讯录条目:
 
 * `add_address`: (address: AddressEntry) -> ();
 * `remove_address`: (address: principal) -> ();
@@ -568,20 +568,20 @@ dfx canister --network  call f3yw6-7qaaa-aaaab-qaabq-cai wallet_create_canister 
 * `get_events`: (opt record { from: opt nat32; to: opt nat32; }) -> (vec Event) 查询；
 * `get_chart`: (opt record { count: opt nat32; precision: opt nat64; } ) -> (vec record { nat64; nat64; }) 查询；
 
-例如，您可以使用 `+get_events+` 方法返回 `+canister_create+` 和其他事件，方法是运行类似于以下的命令：
+例如，您可以使用 `+get_events+` 方法返回 `+canister_create+` 和其他事件，方法是运行类似于以下的命令:
 
 [source,bash]
 ----
 dfx canister call <cycles-wallet-principal> get_events '(record {from = null; to = null})'
 ----
 
-如果循环钱包（`+gastn-uqaaa-aaaae-aaafq-cai+`）部署在 {IC} 主网络上，您可以运行如下所示的命令来返回事件：
+如果循环钱包（`+gastn-uqaaa-aaaae-aaafq-cai+`）部署在 {IC} 主网络上，您可以运行如下所示的命令来返回事件:
 
 ....
 dfx canister --network ic call gastn-uqaaa-aaaae-aaafq-cai get_events '(record {from = null; to = null})'
 ....
 
-该命令的输出采用 Candid 格式，类似于以下内容：
+该命令的输出采用 Candid 格式，类似于以下内容:
 
 ....
 (

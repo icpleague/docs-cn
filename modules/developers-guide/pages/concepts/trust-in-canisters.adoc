@@ -1,44 +1,44 @@
-= Trust in canisters
-:keywords: Internet Computer,blockchain,protocol,trust,data center,smart contract,canister,developer
+=信任容器
+:keywords: 互联网计算机,区块链,协议,信任,数据中心,智能合约,容器,开发者
 :proglang: Motoko
-:IC: Internet Computer
+:IC: 互联网计算机
 :company-id: DFINITY
 
-== Background
-A key aspect of DeFi and related applications in canister smart contracts is the ability to transfer value, e.g. ICP or Bitcoin. Such functionality makes trust in canister smart contracts essential. How can one ensure that it is safe to entrust ICPs to a canister?
+== 背景
+容器智能合约中 DeFi 和相关应用的一个关键方面是转移价值的能力，例如ICP或比特币。这样的功能使得对容器智能合约的信任变得至关重要。如何确保将 ICP 委托给容器是安全的？
 
-The answer to this question has two separate dimensions: 
+这个问题的答案有两个不同的维度:
 
-. confidence that the canister does what it is supposed to do and 
-. confidence that the canister behavior will not unexpectedly change. 
+.相信容器会做它应该做的事情，并且
+.对容器行为不会意外改变的信心。
 
-== The canister does what it is supposed to do
-The correct behavior of a canister can be checked in two steps. First,  inspect the source code used to generate the Wasm code deployed in a canister to ensure that it implements the expected/claimed functionality, and only this functionality.  Second, ensure that the Wasm module the canister runs, has indeed been generated from the claimed source code. 
-Here, reproducibility of the build is crucial: the developer should have constructed the Wasm module so that precisely the same Wasm can be rebuilt from scratch. The user can then compare the hash of the rebuilt Wasm module with the module hash  reported by the IC. Developers and users can find guidance on ensuring reproducibility in https://smartcontracts.org/docs/developers-guide/tutorials/reproducible-builds.html[Reproducible canisters]. 
+== 容器做了它应该做的事
+可以通过两个步骤检查容器的正确行为。首先，检查用于生成部署在容器中的 Wasm 代码的源代码，以确保它实现了预期/声明的功能，并且仅实现了此功能。其次，确保容器运行的 Wasm 模块确实是从声明的源代码生成的。
+在这里，构建的可重复性至关重要:开发人员应该构建 Wasm 模块，以便可以从头开始重建完全相同的 Wasm。然后用户可以将重建的 Wasm 模块的哈希值与 IC 报告的模块哈希值进行比较。开发人员和用户可以在 https://smartcontracts.org/docs/developers-guide/tutorials/reproducible-builds.html[Reproducible canisters] 中找到有关确保可重复性的指南。
 
-== The behavior of the canister cannot unexpectedly change
-Canister smart contracts are deployed and managed by controllers. Among other capabilities, controllers can change the code for the canisters which they control so canister code is *mutable*, unlike smart contracts on other blockchains. This feature brings canister smart contracts closer to typical software and makes them suitable for a broad range of applications where software logic can be changed on an as-needed basis.
+== 容器的行为不能意外改变
+容器智能合约由控制器部署和管理。在其他功能中，控制器可以更改他们控制的容器的代码，因此容器代码是*可变的*，这与其他区块链上的智能合约不同。此功能使容器智能合约更接近典型软件，并使它们适用于可以根据需要更改软件逻辑的广泛应用程序。
 
-For critical applications like those used in DeFI, mutability can be dangerous; the controller could change a benign canister into a canister that steals ICP. Below we outline some options available to developers on how to verifiably restrict mutability. 
+对于像 DeFI 中使用的关键应用程序，可变性可能是危险的；控制器可以将一个良性的容器变成一个窃取 ICP 的容器。下面我们概述了一些可供开发人员使用的关于如何可验证地限制可变性的选项。
  
-=== Complete immutability
-The simplest option is to make the canister immutable by removing its controller. A user can verify the list of controllers for a canister <canister> using dfx. For example: 
+=== 完全不变
+最简单的选择是通过移除其控制器使容器不可变。用户可以使用 dfx 验证容器 <canister> 的控制器列表。例如:
 
 ----
 dfx canister --network ic info ryjl3-tyaaa-aaaaa-aaaba-cai
 ----
 
-will return the list of controllers for the canister with principal `ryjl3-tyaaa-aaaaa-aaaba-cai` (in this example, the ledger canister).  
+将返回具有主体“ryjl3-tyaaa-aaaaa-aaaba-cai”的容器的控制器列表（在本例中为账本容器）。
 
-If the controller list is empty then the canister is immutable. 
+如果控制器列表为空，则容器是不可变的。
 
-A user can obtain the list of controllers of another canister via a  https://smartcontracts.org/docs/interface-spec/index.html#http-read-state[`read_state` request] to get the relevant https://smartcontracts.org/docs/interface-spec/index.html#state-tree-canister-information[canister information] which includes the list of controllers. NB: currently a canister cannot obtain this information. 
+用户可以通过 https://smartcontracts.org/docs/interface-spec/index.html#http-read-state[`read_state` request] 获取另一个容器的控制器列表以获取相关的 https:// smartcontracts.org/docs/interface-spec/index.html#state-tree-canister-information[canister information]，其中包括控制器列表。注意:目前容器无法获取此信息。
 
-Immutability can also be achieved by setting the controller of a canister to be itself. In this case, however, you need to carefully verify that the canister cannot somehow submit a request to upgrade itself, e.g. by issuing a reinstall request.  Here, code inspection and reproducible builds are crucial. 
+不变性也可以通过将容器的控制器设置为自身来实现。但是，在这种情况下，您需要仔细验证容器不能以某种方式提交升级自身的请求，例如通过发出重新安装请求。在这里，代码检查和可重现的构建至关重要。
 
-Finally, a somewhat more useful solution is to pass control of the canister to a so-called https://github.com/ninegua/ic-blackhole[“black hole” canister]. This canister is itself immutable (it has only itself as controller)  but allows third parties to obtain useful information about the canisters the black hole controls, such as the available cycles balance of a black-holed canister. An instance of a black hole canister  is https://ic.rocks/principal/e3mmv-5qaaa-aaaah-aadma-cai[e3mmv-5qaaa-aaaah-aadma-cai] which is thoroughly documented https://github.com/ninegua/ic-blackhole[here]. 
+最后，一个更有用的解决方案是将容器的控制权交给所谓的 https://github.com/ninegua/ic-blackhole [“黑洞”容器]。这个容器本身是不可变的（它只有自己作为控制器），但允许第三方获取有关黑洞控制的容器的有用信息，例如黑洞容器的可用循环平衡。黑洞容器的一个实例是 https://ic.rocks/principal/e3mmv-5qaaa-aaaah-aadma-cai[e3mmv-5qaaa-aaaah-aadma-cai]，它有完整的文档记录 https://github.com/ Ninegua/ic-黑洞[这里]。
 
-=== Governed mutability
-A more complex but powerful approach is to control the canister via a distributed governance mechanism.  One can imagine different levels of complexity and control that such a governance mechanism may implement.  An example is the (upcoming) https://medium.com/dfinity/how-the-service-nervous-system-sns-will-bring-tokenized-governance-to-on-chain-dapps-b74fb8364a5c[SNS feature] which allows developers to set the controller of their canister to some governing canister.
+=== 受控的可变性
+一种更复杂但更强大的方法是通过分布式治理机制来控制容器。可以想象这样一种治理机制可以实现不同级别的复杂性和控制。一个例子是（即将推出的）https://medium.com/dfinity/how-the-service-nervous-system-sns-will-bring-tokenized-governance-to-on-chain-dapps-b74fb8364a5c[SNS 功能]这允许开发人员将其容器的控制器设置为某个管理容器。
 
-Needless to say, the trust requirements are moved to the SNS controlling the canister where all of the considerations regarding code inspection and reproducibility apply. 
+不用说，信任要求转移到了控制容器的 SNS，所有关于代码检查和再现性的考虑都适用。

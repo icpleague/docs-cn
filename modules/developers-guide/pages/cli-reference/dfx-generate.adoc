@@ -1,7 +1,7 @@
 = dfx 生成
 
 使用 `+dfx generate+` 命令为支持的编程语言生成容器类型声明。
-目前，`+dfx generate+` 支持四种语言：Motoko、Candid、JavaScript 和 TypeScript。
+目前，`+dfx generate+` 支持四种语言:Motoko、Candid、JavaScript 和 TypeScript。
 
 Y您可以使用此命令为所有容器生成类型声明
 在项目的 `+dfx.json+` 配置文件或特定容器中为项目定义的。
@@ -50,7 +50,7 @@ dfx generate [canister_name]
 
 `+dfx generate+` 的行为由 `+dfx.json+` 配置文件控制。
 在 `+dfx.json+` → `+canisters+` → `+<canister_name>+` 下，您可以添加 `+declarations+` 部分。
-在本节中，您可以指定以下字段：
+在本节中，您可以指定以下字段:
 
 [width="100%",cols="<32%,<68%",options="header"]
 |===

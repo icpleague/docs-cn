@@ -5,7 +5,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :IC: 互联网计算机
 :company-id: DFINITY
 
-如果您按照链接中的教程尝试使用 {sdk-long-name}：tutorials-intro{outfilesuffix}[Tutorials] 部分或通过从链接克隆示例link：https://github.com/dfinity/ examples[examples] 存储库，您已经熟悉如何将程序构建和部署为**容器智能合约**。
+如果您按照链接中的教程尝试使用 {sdk-long-name}:tutorials-intro{outfilesuffix}[Tutorials] 部分或通过从链接克隆示例link:https://github.com/dfinity/ examples[examples] 存储库，您已经熟悉如何将程序构建和部署为**容器智能合约**。
 本节提供有关容器生命周期以及如何管理容器的附加信息。
 [[create-canister]]
 == 获取容器智能合约标识符
@@ -14,10 +14,10 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 例如，如果您想在编写任何代码之前在子网上为您的容器智能合约保留一个唯一标识符，您可以通过运行`+dfx canister create+` 命令来实现。
 此命令实质上创建了一个空容器占位符，您以后可以在其中安装代码。 生成的容器将获得一个唯一标识符。
 
-要获取容器的唯一标识符：
+要获取容器的唯一标识符:
 
 . 在本地计算机上打开一个新的终端窗口或选项卡。
-. 通过运行类似于以下内容的命令，为您计划创建的容器创建一个新项目：
+. 通过运行类似于以下内容的命令，为您计划创建的容器创建一个新项目:
 +
 [source,bash]
 ----
@@ -31,7 +31,7 @@ dfx new YOUR-PROJECT-NAME
 如果您使用的是本地部署，则可以跳过此步骤。
 +
 如果您想在编译代码之前为您认为需要的任何其他容器创建标识符，您还可以选择更改容器的名称或将容器设置添加到配置文件中。
-. 如有必要，通过运行以下命令启动本地容器执行环境：
+. 如有必要，通过运行以下命令启动本地容器执行环境:
 +
 [source,bash]
 ----
@@ -41,7 +41,7 @@ dfx start --background
 在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
 如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
-. 通过运行以下命令为在 `+dfx.json+` 中定义的容器注册唯一标识符：
+. 通过运行以下命令为在 `+dfx.json+` 中定义的容器注册唯一标识符:
 +
 [source,bash]
 ----
@@ -57,13 +57,13 @@ dfx canister create --all
 
 如果您只是为了本地调试而编译您的项目，您可以为您的项目生成一个本地定义的标识符。
 
-要生成本地定义的标识符：
+要生成本地定义的标识符:
 
 . 使用配置设置和程序逻辑创建一个项目以满足您的需求。
 . 如有必要，启动本地容器执行环境。
 +
 如果您正在编译容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
-. 通过运行以下命令，为在 `+dfx.json+` 中定义的容器生成硬编码的本地标识符：
+. 通过运行以下命令，为在 `+dfx.json+` 中定义的容器生成硬编码的本地标识符:
 +
 [source,bash]
 ----
@@ -79,12 +79,12 @@ dfx build --check
 
 因为这种场景是最常见的，也是最简单的。
 
-要将容器标识符注册为构建过程的一部分：
+要将容器标识符注册为构建过程的一部分:
 
 . 如有必要，启动 {IC} 网络。
 +
 在大多数情况下，仅当您将本地主机用作 {IC} 网络提供程序并已在本地停止网络时，才需要执行此步骤。
-. 通过运行以下命令构建 WebAssembly 可执行文件：
+. 通过运行以下命令构建 WebAssembly 可执行文件:
 +
 [source,bash]
 ----
@@ -101,7 +101,7 @@ dfx build
 
 预先或在构建过程中创建的容器标识符决定了您的代码在部署过程中的安装位置。
 
-首次部署代码：
+首次部署代码:
 
 . 打开一个新终端并导航到您的项目目录。
 . 如有必要，启动本地容器执行环境。
@@ -110,7 +110,7 @@ dfx build
 +
 如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
 . 验证您具有要部署的所有容器的容器标识符。
-. 通过运行以下命令部署所有容器：
+. 通过运行以下命令部署所有容器:
 +
 [source,bash]
 ----
@@ -128,13 +128,13 @@ dfx canister install --all
 例如，本地部署的容器的标识符位于项目的 `+.dfx/local/canister_ids.json+` 文件中。
 
 您可以通过运行 `+dfx canister id+` 命令来查找任何特定容器的容器标识符。
-例如，要查找部署在本地容器执行环境中的 `+lookup+` 容器的容器标识符，您可以运行以下命令：
+例如，要查找部署在本地容器执行环境中的 `+lookup+` 容器的容器标识符，您可以运行以下命令:
 
 ....
 dfx canister id lookup
 ....
 
-要查找部署在由 `+ic+` 别名指定的环境中的同一容器的容器标识符，您将运行以下命令：
+要查找部署在由 `+ic+` 别名指定的环境中的同一容器的容器标识符，您将运行以下命令:
 
 ....
 dfx canister --network=ic id lookup
@@ -145,17 +145,17 @@ dfx canister --network=ic id lookup
 
 当您进行本地开发时，创建一个新项目会自动创建一个默认钱包，供您与该项目中的容器一起使用。 如果你想为之前创建的容器添加一个钱包，你可以通过几个手动步骤强制“dfx”生成一个。
 
-要添加用于现有容器的钱包：
+要添加用于现有容器的钱包:
 
 . 打开终端并导航到您的项目目录。
-. 如有必要，通过运行以下命令停止本地容器执行环境：
+. 如有必要，通过运行以下命令停止本地容器执行环境:
 +
 [source,bash]
 ----
 dfx stop
 ----
 . 删除`+.dfx+`目录。
-. 通过运行以下命令启动本地容器执行环境网络：
+. 通过运行以下命令启动本地容器执行环境网络:
 +
 [source,bash]
 ----
@@ -170,7 +170,7 @@ dfx start --clean
 在这种情况下，您可能希望保留已注册的容器标识符，但不保留任何容器代码或状态。
 例如，您的容器可能只有您不想保留的测试数据，或者您可能已决定完全更改程序但想要在您用于安装先前程序的容器标识符下重新安装。
 
-要重新安装容器：
+要重新安装容器:
 
 . 打开一个新终端并导航到您的项目目录。
 . 如有必要，启动本地容器执行环境。
@@ -179,7 +179,7 @@ dfx start --clean
 +
 如果您正在注册容器以在远程执行环境中运行，例如 {IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
 . 验证您具有要重新部署的所有容器的容器标识符。
-. 通过运行以下命令重新部署所有容器：
+. 通过运行以下命令重新部署所有容器:
 +
 [source,bash]
 ----
@@ -198,39 +198,39 @@ dfx canister install --all --mode reinstall
 
 例如，以下场景说明了创建“+registered_owner+”身份，然后用于注册、构建、部署和调用“+pubs+”项目。
 
-为项目设置标识：
+为项目设置标识:
 
-. 通过运行以下命令创建一个新项目：
+. 通过运行以下命令创建一个新项目:
 +
 [source,bash]
 ----
 dfx new pubs
 ----
-. 通过运行以下命令切换到项目目录：
+. 通过运行以下命令切换到项目目录:
 +
 [source,bash]
 ----
 cd pubs
 ----
-. 通过运行以下命令在后台启动本地容器执行环境：
+. 通过运行以下命令在后台启动本地容器执行环境:
 +
 [source,bash]
 ----
 dfx start --background
 ----
-. 通过运行以下命令创建一个新的 `+registered_owner+` 身份：
+. 通过运行以下命令创建一个新的 `+registered_owner+` 身份:
 +
 [source,bash]
 ----
 dfx identity new registered_owner
 ----
-. 通过运行以下命令将活动用户上下文设置为使用 `+registered_owner+` 身份：
+. 通过运行以下命令将活动用户上下文设置为使用 `+registered_owner+` 身份:
 +
 [source,bash]
 ----
 dfx identity use registered_owner
 ----
-. 通过运行以下命令为项目注册、构建和部署容器：
+. 通过运行以下命令为项目注册、构建和部署容器:
 +
 [source,bash]
 ----
@@ -240,7 +240,7 @@ dfx canister install --all
 ----
 +
 这些命令使用 `+registered_owner+` 身份运行，使该用户成为部署的容器的所有者。
-. 通过运行以下命令调用 `+greet+` 函数以验证部署是否成功：
+. 通过运行以下命令调用 `+greet+` 函数以验证部署是否成功:
 +
 [source,bash]
 ---- 
@@ -260,14 +260,14 @@ dfx canister call pubs greet '("Sam")'
 
 // tag::check-status[]
 您可以通过运行 `+dfx canister status+` 命令查看所有容器或指定容器的当前状态。
-例如，要查看在本地容器执行环境中运行的所有容器的状态，您可以运行以下命令：
+例如，要查看在本地容器执行环境中运行的所有容器的状态，您可以运行以下命令:
 
 [source,bash]
 ----
 dfx canister status --all
 ----
 
-如果容器当前正在运行，此命令将返回类似于以下内容的输出：
+如果容器当前正在运行，此命令将返回类似于以下内容的输出:
 
 ……
 容器 status_check 的状态为 Running。
@@ -283,7 +283,7 @@ dfx canister status --all
 dfx canister stop --all
 ----
 
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
 ……
 容器状态检查的停止代码，容器 ID 为 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaaa-aaaaa-q
@@ -295,14 +295,14 @@ dfx canister stop --all
 
 // tag::restart-status[]
 要重新启动容器（例如，在容器升级成功后），您可以运行 `+dfx canister start+` 命令。
-例如，要重新启动所有容器，您将运行以下命令：
+例如，要重新启动所有容器，您将运行以下命令:
 
 [source,bash]
 ----
 dfx canister start --all
 ----
 
-此命令显示类似于以下内容的输出：
+此命令显示类似于以下内容的输出:
 
 ……
 容器状态检查的起始代码，容器 ID 为 75hes-oqbaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-q
@@ -319,10 +319,10 @@ dfx canister start --all
 如果您想向 dapp 添加新功能，您需要能够更新容器代码而不会丢失任何先前存储的数据。
 容器升级使您能够使用程序更改更新现有容器标识符，而不会丢失程序状态。
 
-注意：要在升级用 {proglang} 编写的容器时保留状态，请务必使用 `+stable+` 关键字来标识要保留的变量。有关在 {proglang} 中保留变量状态的更多信息，请参阅link：../language-guide/upgrades{outfilesuffix}[稳定变量和升级方法]。
-如果你正在升级一个用 Rust 编写的容器，你应该使用 `+pre_upgrade+` 和 `+post_upgrade+` 函数，如链接所示link：https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage /src/asset_storage_rs/lib.rs[Rust CDK 资产存储] 示例，以确保在容器升级后正确保留数据。
+注意:要在升级用 {proglang} 编写的容器时保留状态，请务必使用 `+stable+` 关键字来标识要保留的变量。有关在 {proglang} 中保留变量状态的更多信息，请参阅link:../language-guide/upgrades{outfilesuffix}[稳定变量和升级方法]。
+如果你正在升级一个用 Rust 编写的容器，你应该使用 `+pre_upgrade+` 和 `+post_upgrade+` 函数，如链接所示link:https://github.com/dfinity/cdk-rs/blob/master/examples/asset_storage /src/asset_storage_rs/lib.rs[Rust CDK 资产存储] 示例，以确保在容器升级后正确保留数据。
 
-要升级容器：
+要升级容器:
 
 .打开一个新终端并导航到您的项目目录。
 .如有必要，启动本地容器执行环境。
@@ -335,7 +335,7 @@ dfx canister start --all
 请注意，您的程序必须通过在变量声明中使用 `+stable+` 关键字来标识要为其维护状态的变量。
 +
 有关声明稳定变量的更多信息，请参阅_{proglang} 编程语言指南_。
-.通过运行以下命令升级所有容器：
+.通过运行以下命令升级所有容器:
 +
 [source,bash]
 ----
@@ -350,7 +350,7 @@ dfx canister install --all --mode upgrade
 删除容器会移除容器标识符、代码和状态。
 但是，在您可以删除容器之前，您必须先停止容器以清除任何待处理的消息请求或回复。
 
-要删除项目的所有容器：
+要删除项目的所有容器:
 
 .打开一个新终端并导航到您的项目目录。
 .如有必要，启动本地容器执行环境。
@@ -358,19 +358,19 @@ dfx canister install --all --mode upgrade
 在大多数情况下，仅当您在本地运行容器时才需要此步骤。
 +
 如果您要删除容器以在远程执行环境中运行，例如{IC} 区块链，您将包括 `+--network+` 命令行选项以在此参数下指定的环境中执行任务。
-.通过运行以下命令检查在本地容器执行环境中运行的项目容器的状态：
+.通过运行以下命令检查在本地容器执行环境中运行的项目容器的状态:
 +
 [source,bash]
 ----
 dfx canister status --all
 ----
-. 通过运行以下命令停止所有项目容器：
+. 通过运行以下命令停止所有项目容器:
 +
 [source,bash]
 ----
 dfx canister stop --all
 ----
-. 通过运行以下命令删除所有项目容器：
+. 通过运行以下命令删除所有项目容器:
 +
 [source,bash]
 ----

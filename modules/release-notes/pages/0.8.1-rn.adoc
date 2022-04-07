@@ -6,7 +6,7 @@
 :release: 0.8.1
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-{release} 版本概述：
+{release} 版本概述:
 
 - 添加 `dfx generate` 命令为代码编辑器生成类型。
 - 添加对匿名身份的支持。
@@ -17,7 +17,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 == 对 DFX 的更改
 
-=== 新命令：dfx generate
+=== 新命令:dfx generate
 
 [source, bash]
 ----
@@ -28,7 +28,7 @@ dfx generate
 
 您可以使用 dfx.json 中的相应配置控制将生成什么以及如何生成。
 
-在 dfx.json → "canisters" → "<canister_name>" 下，开发人员可以添加“声明”配置。 选项是：
+在 dfx.json → "canisters" → "<canister_name>" 下，开发人员可以添加“声明”配置。 选项是:
 
 *“输出”→放置该容器声明的目录| 默认为“src/declarations/<canister_name>”
 
@@ -54,9 +54,9 @@ mo declarations output
 
 * <canister_name>.mo - candid mo binding output
 
-=== 新功能：dfx 现在支持匿名身份
+=== 新功能:dfx 现在支持匿名身份
 
-将其与以下任何一种形式一起使用：
+将其与以下任何一种形式一起使用:
 [source, bash]
 ----
 dfx identity use anonymous
@@ -80,12 +80,12 @@ dfx identity import alice alice.pem
 以前，人们可以手动将 pem 文件复制到目标目录以“导入”。 该解决方法仍然有效。
 我们建议使用 `import` 子命令，因为它也会验证私钥。
 
-=== 新功能：现在可以提供带有 DFX_WALLET_WASM 环境变量的非标准钱包模块
+=== 新功能:现在可以提供带有 DFX_WALLET_WASM 环境变量的非标准钱包模块
 
 在环境中定义 DFX_WALLET_WASM 以在创建或升级钱包时使用不同的 wasm 模块。
 
 == 对资产容器的更改
 
-=== 性能提升：信任调用者提供的全部资产 SHA-256 哈希
+=== 性能提升:信任调用者提供的全部资产 SHA-256 哈希
 
 当调用方提供 SHA-256 哈希（dfx 提供）时，资产容器在提交更改时将不再重新计算这些哈希。 这些重新计算导致容器用完周期，或试图超过每次更新的最大周期限制。

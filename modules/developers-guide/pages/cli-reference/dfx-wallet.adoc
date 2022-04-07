@@ -2,7 +2,7 @@
 
 使用带有子命令和标志的 `+dfx wallet+` 命令来管理您身份的燃料费钱包，并将燃料费发送到其他帐户燃料费钱包容器的钱包。
 
-运行 `+dfx wallet+` 命令的基本语法是：
+运行 `+dfx wallet+` 命令的基本语法是:
 
 [source,bash]
 ----
@@ -11,7 +11,7 @@ dfx wallet [option] <subcommand> [flag]
 
 根据您指定的 `+dfx wallet+` 子命令，可能会应用或需要其他参数、选项和标志。
 要查看特定 `+dfx wallet+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx wallet send+` 的使用信息，可以运行以下命令：
+例如，要查看 `+dfx wallet send+` 的使用信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -57,7 +57,7 @@ dfx wallet send --help
 
 == dfx 钱包添加控制器
 
-使用 `+dfx wallet add-controller+` 将控制器添加到钱包。 分配了控制器角色的身份拥有最多的权限，并且可以在所选身份的燃料费钱包上执行以下操作：
+使用 `+dfx wallet add-controller+` 将控制器添加到钱包。 分配了控制器角色的身份拥有最多的权限，并且可以在所选身份的燃料费钱包上执行以下操作:
 
 * 重命名燃料费钱包。
 
@@ -67,7 +67,7 @@ dfx wallet send --help
 
 *授权和取消授权保管人。
 
-控制器也是保管人，可以执行与该角色相关的以下操作：
+控制器也是保管人，可以执行与该角色相关的以下操作:
 
 *访问钱包信息。
 
@@ -121,7 +121,7 @@ dfx wallet add-controller [option] <controller> [flag]
 
 === 例子
 
-您可以使用 `+dfx wallet add-controller+` 命令将控制器添加到您的钱包。 如果您要添加的控制器位于不同的环境中，请使用 `+--network+` 选项指定它。 例如：
+您可以使用 `+dfx wallet add-controller+` 命令将控制器添加到您的钱包。 如果您要添加的控制器位于不同的环境中，请使用 `+--network+` 选项指定它。 例如:
 
 [source,bash]
 ----
@@ -155,7 +155,7 @@ dfx wallet addresses
 
 === 例子
 
-您可以使用`+dfx 钱包地址+` 命令检索钱包地址簿中的地址信息。 例如：
+您可以使用`+dfx 钱包地址+` 命令检索钱包地址簿中的地址信息。 例如:
 
 [source,bash]
 ----
@@ -166,15 +166,15 @@ Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unkno
 
 == dfx 钱包授权
 
-使用 `+dfx wallet authorize+` 命令为钱包授权托管人。 分配了保管人角色的身份可以在燃料费钱包上执行以下操作：
+使用 `+dfx wallet authorize+` 命令为钱包授权托管人。 分配了保管人角色的身份可以在燃料费钱包上执行以下操作:
 
-* 访问钱包信息。
+*访问钱包信息。
 
 * 发送燃料费。
 
-* 转接电话。
+*转接电话。
 
-* 创建容器。
+*创建容器。
 
 === 基本用法
 
@@ -206,7 +206,7 @@ dfx wallet authorize <custodian> [flag]
 
 === 示例
 
-例如，要将 alice_auth 添加为保管人，请在以下命令中指定她的委托人：
+例如，要将 alice_auth 添加为保管人，请在以下命令中指定她的委托人:
 
 [source,bash]
 ----
@@ -244,7 +244,7 @@ dfx wallet balance
 dfx wallet balance
 ----
 
-此命令显示您的燃料费钱包中的燃料费数。 例如：
+此命令显示您的燃料费钱包中的燃料费数。 例如:
 
 ....
 89000000000000 cycles.
@@ -281,7 +281,7 @@ dfx wallet controllers
 dfx wallet controllers
 ----
 
-如果有两个控制器，返回的信息应该类似于以下内容：
+如果有两个控制器，返回的信息应该类似于以下内容:
 
 ....
 dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
@@ -319,7 +319,7 @@ dfx wallet custodians
 dfx wallet custodians
 ----
 
-如果有两个保管人，则返回的信息应类似于以下内容：
+如果有两个保管人，则返回的信息应类似于以下内容:
 
 ....
 dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfpgu-em25m-2ae
@@ -331,7 +331,7 @@ hpnmi-qgxsv-tgecj-hmjyn-gmfft-vbego-lpcax-ou4ld-oh7kr-l3nu2-yae
 
 使用 `+dfx wallet deauthorize+` 命令从燃料费钱包中删除保管人。
 
-注意：如果保管人也是控制器，这也将删除控制器的角色。
+注意:如果保管人也是控制器，这也将删除控制器的角色。
 
 === 基本用法
 
@@ -363,7 +363,7 @@ dfx wallet deauthorize <custodian> [flag]
 
 === 示例
 
-例如，要删除“alice_auth”作为保管人，请在以下命令中指定她的委托人：
+例如，要删除“alice_auth”作为保管人，请在以下命令中指定她的委托人:
 
 [source,bash]
 ----
@@ -394,7 +394,7 @@ dfx wallet name [flag]
 
 === 示例
 
-如果您已将您的燃料费钱包命名为“Terrances_wallet”，则该命令将返回以下内容：
+如果您已将您的燃料费钱包命名为“Terrances_wallet”，则该命令将返回以下内容:
 
 ....
 Terrances_wallet
@@ -434,7 +434,7 @@ dfx wallet remove-controller <controller> [flag]
 
 === 示例
 
-例如，要删除 alice_auth 作为控制器，请在以下命令中指定她的主体：
+例如，要删除 alice_auth 作为控制器，请在以下命令中指定她的主体:
 
 [source,bash]
 ----
@@ -443,7 +443,7 @@ dfx wallet remove-controller dheus-mqf6t-xafkj-d3tuo-gh4ng-7t2kn-7ikxy-vvwad-dfp
 
 == dfx 钱包发送
 
-使用 `+dfx wallet send+` 命令将燃料费从所选身份的燃料费钱包发送到使用目标燃料费钱包的罐 ID 的另一个燃料费钱包。
+使用 `+dfx wallet send+` 命令将燃料费从所选身份的燃料费钱包发送到使用目标燃料费钱包的容器 ID 的另一个燃料费钱包。
 
 === 基本用法
 
@@ -489,7 +489,7 @@ dfx wallet [network] send [flag] <destination> <amount>
 
 将周期从所选身份的燃料费钱包发送到另一个燃料费钱包。
 
-例如，要将 2,000,000,000 个周期从所选身份的燃料费钱包`+<ic_admin>+`发送到目标身份的燃料费钱包`+<buffy_standard>+`，钱包地址为`+r7inp-6aaaa- aaaaa-aaabq-cai+`，运行以下命令：
+例如，要将 2,000,000,000 个周期从所选身份的燃料费钱包`+<ic_admin>+`发送到目标身份的燃料费钱包`+<buffy_standard>+`，钱包地址为`+r7inp-6aaaa- aaaaa-aaabq-cai+`，运行以下命令:
 
 [source,bash]
 ----
@@ -530,7 +530,7 @@ dfx wallet send r7inp-6aaaa-aaaaa-aaabq-cai 2000000000
 
 === 示例
 
-如果要将当前身份的燃料费钱包的名称设置为“Terrances_wallet”，可以运行以下命令：
+如果要将当前身份的燃料费钱包的名称设置为“Terrances_wallet”，可以运行以下命令:
 
 [source,bash]
 ----
@@ -560,7 +560,7 @@ dfx wallet set-name Terrances_wallet
 |===
 
 === 示例
-要将 Wasm 模块升级到最新版本，请运行以下命令：
+要将 Wasm 模块升级到最新版本，请运行以下命令:
 
 [source,bash]
 ----
