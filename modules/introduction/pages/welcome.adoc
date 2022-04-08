@@ -10,7 +10,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 如果你登陆到这里，有兴趣了解更多关于互联网计算机的信息。那么你来对了地方--看看下面的内容，看看从哪里开始吧！
 
-注释: 合格的开发者可以获得价值20美元的免费燃料费，开始向互联网计算机区块链部署容器智能合约。https://faucet.dfinity.org/auth[申请你的免费燃料费]
+注释: 合格的开发者可以获得价值20美元的免费燃料费，开始向互联网计算机区块链部署容器智能合约。link:https://faucet.dfinity.org/auth[申请你的免费燃料费]
 
 [[针对菜鸟]]
 == 针对: 菜鸟
@@ -23,8 +23,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 有兴趣了解更多吗？请查看以下资源：
 
 * link:https://www.youtube.com/watch?v=YWHTNr8RZHg&list=PLuhDt1vhGcrf4DgKZecU3ar_RA1cB0vUT&index=17&ab_channel=DFINITY[互联网计算机入门]， 10分钟的互联网计算机高级概述
-* link:https://medium.com/dfinity[互联网计算机评测]， 我们的博客涵盖了互联网计算机的更新
-* link:https://thereboot.com/[重新启动]], 我们的探讨当前互联网的问题的技术性出版物
+* link:https://medium.com/dfinity[互联网计算机博客]， 我们的博客涵盖了互联网计算机的更新
+* link:https://thereboot.com/[thereboot], 我们的探讨当前互联网的问题的技术性出版物
 
 在官方上关注我们获取最新的更新信息link:https://twitter.com/dfinity[DFINITY Twitter]。
 
@@ -46,7 +46,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 * link:https://discord.gg/cA7y6ezyE2[Developer Discord]， 我们为开发者社区提供的官方 Discord
 * link:https://forum.dfinity.org/[开发者论坛]， 一个关于在互联网上建立计算机的技术讨论的温馨空间。
 
-您可以通过link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] 关注我们，了解最新的开发者专用更新。
+您可以通过link:https://twitter.com/dfinitydev[DFINITY Developer Twitter] 关注我们，了解最新的开发者更新。
 
 
 [[针对协议爱好者]]
@@ -59,6 +59,6 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 要了解更多关于互联网计算机协议的信息，请查看以下资源：
 
 * link:https://dfinity.org/technicals/[技术库], 了解我们世界级研发团队解释互联网计算机协议组成部分的深入视频。特别值得注意的是:
-** link:https://dfinity.org/technicals/chain-key-technology[链式密钥加密法], 是使互联网计算机能够扩展到数百万节点的基本突破之一。链式钥匙加密法最显著的创新是，互联网计算机有一个单一的公钥，这使得任何设备都可以验证互联网计算机产生的人工制品的真实性，甚至是智能手表和手机。
+** link:https://dfinity.org/technicals/chain-key-technology[chain-key技术], 是使互联网计算机能够扩展到数百万节点的基本突破之一。链式钥匙加密法最显著的创新是，互联网计算机有一个单一的公钥，这使得任何设备都可以验证互联网计算机产生的人工制品的真实性，甚至是智能手表和手机。
 * xref:interface-spec:index.adoc[接口规范], 是一份深入的技术文件，提供了互联网计算机的低级外部接口的概述
 * link:https://dashboard.internetcomputer.org/[互联网计算机仪表盘], 以监测围绕互联网计算机区块链的实时指标。
