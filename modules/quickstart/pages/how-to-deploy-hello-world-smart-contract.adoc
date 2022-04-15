@@ -7,8 +7,8 @@
 
 在本教程中，我们将部署一个简单的 `Hello` dapp，它只有一个功能——称为 `greet`。 `greet` 函数接受一个文本参数并返回带有问候语的结果。 例如，如果您使用文本参数 `Alice` 调用 `greet` 方法。
 
-a. 如果您通过命令行调用它，dapp 将在终端中返回“Hello，Alice！”。
-b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着“你好，爱丽丝！”
+a. 如果您通过命令行调用它，dapp 将在终端中返回 `Hello,Alice!`。
+b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着 `Hello,Alice!`
 
 虽然代码为您准备好开箱即用，但这个 dapp 包含用 Motoko 编写的后端代码，Motoko 是一种专为与互联网计算机 (IC) 交互而设计的编程语言，以及一个简单的基于 webpack 的前端。 
 
@@ -16,7 +16,7 @@ b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着
 
 * *canister smart contract/dapp* 是一种捆绑代码和状态的智能合约。 容器可以作为智能合约部署在互联网计算机上并通过 Internet 访问。
 
-* *燃料费*是以处理、内存、存储和网络带宽的形式消耗的资源的计量单位。 就本教程而言，这类似于以太坊的 gas:这是运行 dapp 所需要的，但对于开发人员来说，它更稳定、更便宜。 每个容器都有一个燃料费帐户，对容器消耗的资源进行收费。 互联网计算机的实用程序令牌 (ICP) 可以转换为燃料费并转移到容器中。 ICP 始终可以使用测量的 ICP 当前价格转换为燃料费link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] 使用一万亿燃料费对应一个 SDR 的约定。 **在本教程中，您将从cycles faucet获得免费燃料费。**
+* *燃料费* 是以处理、内存、存储和网络带宽的形式消耗的资源的计量单位。 就本教程而言，这类似于以太坊的 gas:这是运行 dapp 所需要的，但对于开发人员来说，它更稳定、更便宜。 每个容器都有一个燃料费帐户，对容器消耗的资源进行收费。 互联网计算机的实用程序令牌 (ICP) 可以转换为燃料费并转移到容器中。 ICP 始终可以使用测量的 ICP 当前价格转换为燃料费link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] 使用一万亿燃料费对应一个 SDR 的约定。 **在本教程中，您将从cycles faucet获得免费燃料费。**
 
 == 支持的平台和操作系统
 
@@ -25,23 +25,25 @@ b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着
 ** 英特尔
 ** M1（可能需要link:https://support.apple.com/en-us/HT211861[Apple's Rosetta]）使配备 Apple 芯片的 Mac 能够使用为配备 Intel 处理器的 Mac 构建的应用程序。
 
+[[installing]]
 == 1. 安装工具
 
 要构建 dapp，用户需要安装以下内容:
 
 === 1.1 node.js
 
-本教程最适合使用高于 `16.*.*` 的 node.js 版本。
+本教程最适合使用高于 `16.*` 的 node.js 版本。
 
 安装 node.js 的方法有很多，包括来自链接:https://nodejs.org/en/download[nodejs.org网页]。
 
-除了安装 node.js，用户还需要安装:
+除了安装 node.js，用户还需要安装
+
 * 节点包管理器（NPM）。
 * 节点版本管理器（NVM），见link:https://github.com/nvm-sh/nvm#installing-and-updating[installing NVM]。
 
-=== 1.2 Canister SDK（又名“dfx”）
+=== 1.2 Canister SDK（又名 `dfx` ）
 
-本教程中使用的 Canister SDK 称为“dfx”，由 DFINITY 基金会维护。 SDK 有很多，这只是其中之一。
+本教程中使用的 Canister SDK 称为 `dfx`，由 DFINITY 基金会维护。 SDK 有很多，这只是其中之一。
 
 要安装，需要运行:
 [source,bash]
@@ -60,6 +62,7 @@ $ dfx --version
 
 image:quickstart/dfx-version.png[dfx version]
 
+[[create-default]]
 == 2. 创建一个默认项目（1 分钟）
 
 === 2.1 启动一个新项目
@@ -91,6 +94,7 @@ $ cd hello
 image:quickstart/cd-hello.png[cd new]
 
 
+[[deploy-local]]
 == 3. 将 dapp 部署到本地机器（3 分钟）
 
 === 使用两个终端窗口/选项卡
@@ -140,7 +144,7 @@ image:quickstart/terminal-a-dfx-start.png[dfx start]
 
 *恭喜 - 现在您的机器上运行了本地版本的 IC。 继续时保持此窗口/选项卡打开并运行。* 如果窗口/选项卡关闭，IC 的本地版本将不会运行，教程的其余部分将失败。
 
-=== 3.2 将“hello”dapp部署到本地版IC（终端B）
+=== 3.2 将 `hello` dapp部署到本地版IC（终端B）
 
 注意:由于这是 IC 的本地版本，因此与部署到主网（需要燃料费）相比，本节的步骤更少。
 
@@ -170,8 +174,8 @@ image:quickstart/terminal-b-dfx-deploy.png[dfx deploy]
 
 [source, bash]
 ----
-使用 canister_id rrkah-fqaaa-aaaaa-aaaaq-cai 安装容器 hello 的代码
-使用 canister_id ryjl3-tyaaa-aaaaa-aaaba-cai 安装容器 hello_assets 的代码
+Installing code for canister hello, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+Installing code for canister hello_assets, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
 ----
 
 a. `hello` 容器 `rrkah-fqaaa-aaaaa-aaaaq-cai` 包含后端逻辑。
@@ -233,6 +237,7 @@ $ dfx stop
 ----
 
 
+[[cycles]]
 == 4. 获取部署链上的周期（10-15 分钟）
 
 === 4.1 燃料费:简介
@@ -303,26 +308,26 @@ $ dfx wallet --network ic balance
 ==== 本节的基本总结
 要从 ICP 创建循环，基本步骤（我们将在此 **4.3** 中深入探讨）:
 
-1. 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的`account id`。
+1. 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的 `account id`。
    * 注意:这通常需要将 ICP *从交易所、钱包或 NNS 前端 dapp* 转移到由 `dfx` 控制的`account id`。
 2. 使用 `dfx` 告诉 Ledger canister 将你的 ICP 转换为燃料费。
    * 注意:这仅适用于 `account id` 控制的 `dfx` 具有 ICP 令牌。
 3. 创建一个容器来容纳你所有的燃料费并将它们转移到你的 dapps
 
-==== 4.4.1 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的`account id`*（终端 B）
+==== 4.4.1 将 ICP 转移到 *由您本地版本的 `dfx`* 控制的 `account id`*（终端 B）
 
-当您第一次安装“dfx”时，它会在本地创建并保存“开发者身份”，其中包括:
+当您第一次安装 `dfx` 时，它会在本地创建并保存“开发者身份”，其中包括:
 
 a. Ledger `account id`
 ** 这是由 `dfx` 控制的 ICP 的存储位置。
-** 例子:`03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
+** 例如: `03e3d86f29a069c6f2c5c48e01bc084e4ea18ad02b0eec8fccadf4487183c223`. 
 
 b. `principal`
 ** IC 上实体的标识符，例如用户、容器（dapps/智能合约）或子网。 在这种情况下，“dfx”有一个主体，即它如何向 IC 标识自己。
-** 例子:`tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
+** 例如: `tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe`.
 
 
-**1. 查找由 dfx 控制的 Ledger `account id`**
+**1. 查找由 dfx 控制的 Ledger `account id` **
 [source,bash]
 ----
 $ dfx ledger account-id
@@ -330,7 +335,7 @@ $ dfx ledger account-id
 
 **2. 将 ICP 转移到您的 Ledger `account id`**
 
-您可以从任何交易所、钱包或 NNS 前端 dapp 转移 ICP 代币到上面第 1 步中的“account id”。 就本教程而言，向其发送 2 个 ICP代币就足以部署。
+您可以从任何交易所、钱包或 NNS 前端 dapp 转移 ICP 代币到上面第 1 步中的 `account id`。 就本教程而言，向其发送 2 个 ICP代币就足以部署。
 
 **3. 确认账户有ICP**
 
@@ -343,9 +348,9 @@ $ dfx ledger --network ic balance
 
 ==== 4.4.2 使用 `dfx` 告诉 Ledger canister 将你的 ICP 转换为燃料费（终端 B）
 
-现在您的“帐户 ID”有 ICP 代币，我们需要告诉 Ledger Canister 将其转换为我们的燃料费。 Ledger canister 需要知道哪个 PRINCIPAL 将控制创建的燃料费，因此我们会将 dfx 在本地创建的principal 作为开发者身份的一部分发送给它。
+现在您的 `account id`有 ICP 代币，我们需要告诉 Ledger Canister 将其转换为我们的燃料费。 Ledger canister 需要知道哪个 PRINCIPAL 将控制创建的燃料费，因此我们会将 dfx 在本地创建的principal 作为开发者身份的一部分发送给它。
 
-注意:精明的读者可能想知道为什么 Ledger Canister 需要知道 `principal`，因为 `principal` 控制着 `account id`。 答案是“dfx”实际上可以设置一个*不同的*主体，以防它希望另一个实体控制在此步骤中创建的燃料费。
+注意:精明的读者可能想知道为什么 Ledger Canister 需要知道 `principal`，因为 `principal` 控制着 `account id`。 答案是 `dfx` 实际上可以设置一个*不同的*principal，以防它希望另一个实体控制在此步骤中创建的燃料费。
 
 **1. 查找您的 dfx 使用的 `principal`**
 
@@ -393,8 +398,8 @@ $ dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-ak
 
 [source,bash]
 ----
-在 BlockHeight 发送的转账:20
-使用 id 创建的容器:"gastn-uqaaa-aaaae-aaafq-cai"
+Transfer sent at BlockHeight: 20
+Canister created with id: "gastn-uqaaa-aaaae-aaafq-cai"
 ----
 
 这返回了一个 ID 为“gastn-uqaaa-aaaae-aaafq-cai”的容器。 **这不是我们在本教程中创建的 `Hello` dapp。** 这是为您创建的容器，仅用于一个目的:*保持您的燃料费并将它们转移到您的 dapps。*
@@ -423,8 +428,8 @@ $ dfx identity --network ic deploy-wallet gastn-uqaaa-aaaae-aaafq-cai
 如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出:
 [source,bash]
 ----
-在 ic 网络上创建钱包容器。
-用户“default”在“ic”网络上的钱包容器是“gastn-uqaaa-aaaae-aaafq-cai”
+Creating a wallet canister on the ic network.
+The wallet canister on the "ic" network for user "default" is "gastn-uqaaa-aaaae-aaafq-cai"
 ----
 
 在下一节中，我们将部署 `Hello` dapp。 这将需要从最近创建的燃料费容器（上例中的“gastn-uqaaa-aaaae-aaafq-cai”）传输燃料费。
@@ -454,14 +459,15 @@ $ dfx wallet --network ic balance
 $ dfx ledger --network ic top-up gastn-uqaaa-aaaae-aaafq-cai --amount 1.005
 ----
 
-此命令将额外的 1.005 ICP 代币转换为在 4.3.2 的步骤 2 中创建的“gastn-uqaaa-aaaae-aaafq-cai”燃料费钱包的燃料费。 该命令返回类似于以下内容的输出:
+此命令将额外的 1.005 ICP 代币转换为在 4.3.2 的步骤 2 中创建的   `gastn-uqaaa-aaaae-aaafq-cai` 燃料费钱包的燃料费。 该命令返回类似于以下内容的输出:
 
 [source, bash]
 ----
-在 BlockHeight 发送的转账:81520
-容器被加满了！
+Transfer sent at BlockHeight: 81520
+Canister was topped up!
 ----
 
+[[deploy-on-chain]]
 == 5. 部署链上（1 分钟）
 
 === 5.1 通过dfx（终端B）在链上部署dapp
@@ -546,8 +552,9 @@ $ dfx canister --network ic call hello greet '("everyone": text)'
 $ dfx canister --network ic id hello
 ----
 
-带上那个容器ID 并访问 +https://<canister-id>.ic0.app+, 在 URL 中插入 `hello_assets` 容器 ID 作为子域。 在本教程中，它是`5h5yf-eiaaa-aaaaa-qaada-cai` so it would be https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app+.
+带上那个容器ID 并访问 +https://<canister-id>.ic0.app+ , 在 URL 中插入 `hello_assets` 容器 ID 作为子域。 在本教程中，它是 `5h5yf-eiaaa-aaaaa-qaada-cai` 所以地址应该是 https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app.
 
+[[result]]
 == 6. 结论
 
 === 6.1 总结:你做了什么
@@ -563,11 +570,13 @@ $ dfx canister --network ic id hello
 
 您可以将之前收到的燃料费用于其他 dapp。
 
+
+[[question]]
 == 7. 故障排除
 
 === 资源
 
 * 鼓励遇到任何区块的开发者搜索或发帖link:https://forum.dfinity.org[互联网计算机开发者论坛]。
 
-*link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[互联网计算机维基]。
+* link:https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki[互联网计算机维基]。
 

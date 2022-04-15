@@ -4,7 +4,7 @@
 
 示例交换在 https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/defi[Rust ]并且可以看到https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[在IC上运行]。
 
-＃＃ 体系
+## 体系
 
 IC 的设计允许更复杂的链上计算。 结合廉价存储，可以拥有链上订单簿。 此示例代码利用这些功能并将用户余额和订单存储在交换容器中。 样本交换功能可以浓缩为以下步骤:
 
@@ -13,7 +13,7 @@ IC 的设计允许更复杂的链上计算。 结合廉价存储，可以拥有�
 * 用户在交易所进行交易，导致交易所更新其内部资产负债表。
 * 从交易所提取资金会将保管权归还给用户。
 
-＃＃＃ 界面
+### 界面
 
 从交易所请求用户特定的分类帐帐户标识符。 这个唯一的账户标识符代表了交易所总账账户中用户特定的子账户，允许它区分用户存款。
 
@@ -51,7 +51,7 @@ cancelOrder: (OrderId) -> (CancelOrderReceipt);
 getBalance: (Token) -> (nat) query;
 ```
 
-＃＃＃ 费用
+## 费用
 
 交易所有责任从交易中扣除费用。这很重要，因为交易所必须为取款和内部转账支付费用。
 

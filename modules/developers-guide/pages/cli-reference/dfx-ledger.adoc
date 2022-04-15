@@ -189,7 +189,7 @@ Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
 dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --icp 3 --e8s 5000
 ----
 
-[[通知]]
+[[notify]]
 == dfx 账本通知
 
 使用 `+dfx ledger notify+` 命令通知账本有关向燃料费铸币容器发送交易的信息。
@@ -235,7 +235,7 @@ dfx ledger notify [options] _block-height_ _destination-principal_
 dfx ledger --network ic notify 75948 tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe
 ----
 
-[[充值]]
+[[top-up]]
 == dfx 账本充值
 
 使用 `+dfx ledger top-up+` 命令来充值具有从 ICP 代币铸造的燃料费的容器。
@@ -301,7 +301,7 @@ Transfer sent at BlockHeight: 59482
 Canister was topped up!
 ....
 
-[[转移]]
+[[transfer]]
 == dfx 账本转账
 
 使用 `+dfx ledger transfer+` 命令将 ICP 代币从您在账本容器中的帐户地址转移到目标地址。

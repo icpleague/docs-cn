@@ -16,5 +16,5 @@
 有一个 https://github.com/dfinity/experimental-minting-tool[命令行铸币工具] 用于铸币简单的 NFT。
 
 该接口是程序化的，但 Rust 版本还包含 HTTP 功能，因此您可以查看元数据文件
-在``<容器 URL>/<NFT ID>/<文件 ID>``。
+在 ``<容器 URL>/<NFT ID>/<文件 ID>``。
 // A running instance of this canister for demonstration purposes is available as https://t5l7c-7yaaa-aaaab-qaehq-cai.ic0.app[t5l7c-7yaaa-aaaab-qaehq-cai].

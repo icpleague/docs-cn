@@ -69,10 +69,10 @@ _{doctitle}_ 旨在为需要了解互联网计算机协议 (ICP) 实用程序代
 == 使用 Rosetta API 与 {IC} 分类帐容器集成
 
 可以通过多种方式与互联网计算机和分类帐容器进行交互。
-本文档概述了如何使用 https://www.rosetta-api.org/[Rosetta application programming interface]. 这是https://www.rosetta-api.org/docs/welcome.html[well-documented and open standard] 旨在支持多种区块链数据格式和用于交易所交易的结构化通信。
+本文档概述了如何使用 https://www.rosetta-api.org/[Rosetta application programming interface]. link:https://www.rosetta-api.org/docs/welcome.html[Rosetta API] 旨在支持多种区块链数据格式和用于交易所交易的结构化通信。
 
 
-接口由集成软件——`+dfinity/rosetta-api+实现。 该软件使您能够在互联网计算机区块链之外部署一个被动 Rosetta 节点，并使用该节点与互联网计算机上运行的分类帐容器进行通信。
+接口由集成软件—— `+dfinity/rosetta-api+` 实现。 该软件使您能够在互联网计算机区块链之外部署一个被动 Rosetta 节点，并使用该节点与互联网计算机上运行的分类帐容器进行通信。
 
 
 下图提供了 Rosetta 节点和互联网计算机之间使用 `+dfinity/rosetta-api+` 集成软件进行通信的简化视图。
@@ -80,7 +80,7 @@ _{doctitle}_ 旨在为需要了解互联网计算机协议 (ICP) 实用程序代
 image:basic-rosetta-api-integration.svg[]
 
 正如该图所示，Rosetta 节点维护 {IC} 帐本容器的本地副本。
-在 Rosetta 节点上运行的“+dfinity/rosetta-api+”软件会定期更新其本地账本视图，方法是向账本容器查询账本链的最新块，然后查询任何丢失的账本块。
+在 Rosetta 节点上运行的 `+dfinity/rosetta-api+` 软件会定期更新其本地账本视图，方法是向账本容器查询账本链的最新块，然后查询任何丢失的账本块。
 Rosetta 节点使用互联网计算机的根密钥来确保账本的本地副本是真实的。
 集成软件还允许您使用 Rosetta 节点向 {IC} 帐本提交交易。
 
@@ -90,8 +90,8 @@ Rosetta 节点使用互联网计算机的根密钥来确保账本的本地副本
 
 用户向Rosetta节点提交交易请求后，该请求被传递给该节点上运行的集成软件与{IC}交互并完成以下操作：
 
-. 它从账本的本地副本中读取，以确定由`+latest_index+`标签标识的最新交易索引和块高度的状态。
-. 它生成一个随机的“+nonce+”值——用于确保交易是唯一的。
+. 它从账本的本地副本中读取，以确定由 `+latest_index+` 标签标识的最新交易索引和块高度的状态。
+. 它生成一个随机的 `+nonce+` 值——用于确保交易是唯一的。
 . 它为调用 `+send+` 函数并指定交易金额和目的地的分类帐容器创建一个入口消息：
 +
 ....
@@ -142,7 +142,8 @@ Starting Rosetta API server
 默认情况下，该软件*不*连接到运行在互联网计算机区块链主网上的帐本容器，而是连接到测试网。
 
 +
-如果您已经分配了一个测试网络和相应的帐本容器标识符，您可以通过指定一个额外的 `+canister+` 参数来针对该网络运行该命令。 例如，以下命令说明了通过将`+canister+`参数设置为`+2xh5f-viaaa-aaaab-aae3q-cai+`来连接到测试网络上的帐本容器。
+如果您已经分配了一个测试网络和相应的帐本容器标识符，您可以通过指定一个额外的 `+canister+` 参数来针对该网络运行该命令。 例如，以下命令说明了通过将 `+canister+` 参数设置为
+`+2xh5f-viaaa-aaaab-aae3q-cai+` 来连接到测试网络上的帐本容器。
 +
 [source,bash]
 ----
@@ -164,7 +165,7 @@ docker run \
 ....
 +
 完成此步骤后，节点继续作为不参与出块的**被动**节点运行。
-. 打开一个新的终端窗口或选项卡并运行“ps”命令来验证服务的状态。
+. 打开一个新的终端窗口或选项卡并运行 `ps` 命令来验证服务的状态。
 +
 如果您需要停止服务，请按 CONTROL-C。 例如，您可能希望这样做以更改您正在使用的容器标识符。
 +
@@ -186,11 +187,11 @@ docker run \
 
 Docker 映像中提供的集成软件有一项要求，该要求不属于标准 Rosetta API 规范的一部分。
 
-对于涉及 ICP 代币的交易，必须在网络收到签名交易前 24 小时内创建未签名交易。 原因是每个事务的 '+created_at+' 字段指的是现有事务（本质上是创建事务时本地可用的 last_index）。 任何提交的交易涉及太旧的交易都会被拒绝以维持运营效率。
+对于涉及 ICP 代币的交易，必须在网络收到签名交易前 24 小时内创建未签名交易。 原因是每个事务的 `+created_at+` 字段指的是现有事务（本质上是创建事务时本地可用的 last_index）。 任何提交的交易涉及太旧的交易都会被拒绝以维持运营效率。
 
 除此要求外，Rosetta API 集成软件与所有标准 Rosetta 端点完全兼容，并通过了所有 `+rosetta-cli+` 测试。
 该软件可以接受任何有效的 Rosetta 请求。
-但是，集成软件仅提示使用 Ed25519 对交易进行签名，而不是 https://www.rosetta-api.org/docs/models/SignatureType.html#values[all the signature schemes listed here] 并且只回复规范支持的一小部分潜在响应。 例如，该软件没有实现 Rosetta 的任何 UTXO 功能，因此您不会在任何软件响应中看到任何 UTXO 消息。
+但是，集成软件仅提示使用 Ed25519 对交易进行签名，而不是 https://www.rosetta-api.org/docs/models/SignatureType.html#values[对所有数据签名] 并且只回复规范支持的一小部分潜在响应。 例如，该软件没有实现 Rosetta 的任何 UTXO 功能，因此您不会在任何软件响应中看到任何 UTXO 消息。
 
 === ICP 实用代币的基本属性
 
@@ -227,7 +228,7 @@ ICP 代币在以下方面与比特币不同：
 
 ==== 如何知道节点是否已经赶上了测试网？
 
-搜索 `Starting Rosetta API server` 启动日志。 将会有一个日志条目显示“你们都被阻止了 XX”。 此消息确认您已了解所有块。
+搜索 `Starting Rosetta API server` 启动日志。 将会有一个日志条目显示 `You are all caught up to block XX`。 此消息确认您已了解所有块。
 
 ==== 如何持久化同步块数据？
 
@@ -274,14 +275,14 @@ ICP 代币在以下方面与比特币不同：
 - 查询的每个块link:https://www.rosetta-api.org/docs/BlockApi.html#block[`/block`] 端点只包含一个事务。 请注意，Rosetta API 调用不支持某些操作，例如 `+burn+`。
 
 - 转移
-     * 操作0：输入`"TRANSACTION"`，从源账户中减去转账金额。
-     * 操作1：输入`"TRANSACTION"`，向目的账户添加相同的转账金额。
-     * 操作2：输入`"FEE"`，从源账户中扣除费用。
-     - 不要依赖上面的顺序，你可以在`/construction/payloads`调用中重新排列它们，当解析一个块中的交易时，你应该检查交易类型和金额符号。
+     * 操作0：输入 `"TRANSACTION"` ，从源账户中减去转账金额。
+     * 操作1：输入 `"TRANSACTION"` ，向目的账户添加相同的转账金额。
+     * 操作2：输入 `"FEE"`，从源账户中扣除费用。
+     - 不要依赖上面的顺序，你可以在 `/construction/payloads` 调用中重新排列它们，当解析一个块中的交易时，你应该检查交易类型和金额符号。
 - 铸币
-     * 操作0：输入`"MINT"`，将铸币数量添加到目标账户。
+     * 操作0：输入 `"MINT"`，将铸币数量添加到目标账户。
 - 燃烧
-     * 操作0：输入`"BURN"`，从源账户中减去燃烧的数量。
+     * 操作0：输入 `"BURN"`，从源账户中减去燃烧的数量。
 - `"status"` 总是 `"COMPLETED"`，失败的交易不会出现在轮询的区块中
 
 ==== 需要什么费用？ 我可以自定义费用吗？
@@ -293,8 +294,8 @@ ICP 代币在以下方面与比特币不同：
 ==== 如何知道提交的交易是否到达了链？
 
 - Rosetta 服务器会在 `/construction/submit` 调用后等待一小段时间，如果交易命中链，它将被返回。
-- 如果账本出现错误，错误信息将在`/construction/submit`结果中提供。
-- `/construction/submit` 调用仍有可能成功返回，但距离它到达链还有一段时间。您可以轮询最新的区块并搜索交易哈希。 我们还实现了一个子集:linkhttps://www.rosetta-api.org/docs/SearchApi.html#searchtransactions[`/search/transactions`] 允许在给定哈希值的情况下搜索交易的端点。
+- 如果账本出现错误，错误信息将在 `/construction/submit` 结果中提供。
+- `/construction/submit` 调用仍有可能成功返回，但距离它到达链还有一段时间。您可以轮询最新的区块并搜索交易哈希。 我们还实现了一个子集link:https://www.rosetta-api.org/docs/SearchApi.html#searchtransactions[`/search/transactions`] 允许在给定哈希值的情况下搜索交易的端点。
 - 5 分钟是最坏情况下的超时。
 - 不要使用 `mempool` API，我们的实现是一个空存根。
 
@@ -313,15 +314,15 @@ ICP 代币在以下方面与比特币不同：
 
 ==== 如何在不调用 Rosetta API 的情况下签署交易？
 
-JavaScript SDK 包含一个link:https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js[implementation] 离线签名逻辑。 这与内部实现细节密切相关，因此我们强烈建议您尽可能调用`/construction/combine` 来签署交易。
+JavaScript SDK 包含一个link:https://github.com/dfinity/rosetta-client/blob/master/lib/construction_combine.js[implementation] 离线签名逻辑。 这与内部实现细节密切相关，因此我们强烈建议您尽可能调用 `/construction/combine` 来签署交易。
 
 ==== 如何配置入口时间段？
 
-在 `/construction/payloads` 调用中，您可以添加一个或全部 `ingress_start` / `ingress_end` 字段来指定入口时间段。 它们是 Unix 纪元以来的纳秒，并且必须在接下来的 24 小时内。 这可以生成和签署交易，但将实际提交延迟到以后。
+在 `/construction/payloads` 调用中，您可以添加一个或全部 `ingress_start/ ingress_end` 字段来指定入口时间段。 它们是 Unix 纪元以来的纳秒，并且必须在接下来的 24 小时内。 这可以生成和签署交易，但将实际提交延迟到以后。
 
 ==== 如何反序列化已签名的交易？
 
-JavaScript SDK 支持link:https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js[deserializing] 一个`signed_transaction`十六进制字符串并恢复有关转移的一些信息。 这在您想要执行健全性检查的情况下可能很有用。
+JavaScript SDK 支持link:https://github.com/dfinity/rosetta-client/blob/master/lib/signed_transaction_decode.js[deserializing] 一个 `signed_transaction` 十六进制字符串并恢复有关转移的一些信息。 这在您想要执行健全性检查的情况下可能很有用。
 
 ////
 

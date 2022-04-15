@@ -4,7 +4,7 @@
 
 === 安全问题
 
-对响应link：https://smartcontracts.org/docs/interface-spec/index.html#http-interface[查询调用]（与更新调用相反）不是由容器/子网进行阈值签名的。 因此，单个恶意副本或边界节点可能会更改数据，从而违反其真实性。 如果更新调用依赖于对查询调用的响应，这尤其危险。
+对响应 link:https://smartcontracts.org/docs/interface-spec/index.html#http-interface[query calls]（与更新调用相反）不是由容器/子网进行阈值签名的。 因此，单个恶意副本或边界节点可能会更改数据，从而违反其真实性。 如果更新调用依赖于对查询调用的响应，这尤其危险。
 
 === 推荐
 
@@ -40,13 +40,14 @@
 
 ==== 推荐
 
-- 使用可能是开源的并且已经被许多人审查过的知名库。例如，在 JavaScript 中使用 https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API]，使用 crates 如link:https://crates.io/crates/ Rust 中的 sha256[sha256]
+- 使用可能是开源的并且已经被许多人审查过的知名库。例如，在 JavaScript 中使用 https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API[Web Crypto API]，使用 crates 如rust实现的link:https://crates.io/crates/sha256[sha256]
 
 === 使用安全加密方案
 
 ==== 安全问题
 
 一些加密方案已被破坏（旧的 TLS 版本、MD5、SHA1、DES、...），或者它们可能太新以至于尚未得到适当的研究。使用这些会引入安全问题。
+
 ==== 推荐
 
 如果您需要使用加密，请仅使用尚未破解且没有已知问题的加密方案。 理想情况下使用已经标准化的算法，例如 NIST 或 IETF。
@@ -65,11 +66,11 @@
 
 为容器实现和前端代码编写测试，尤其是安全相关属性和不变量。
 
-- 在link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]：link:https://mmapped.blog/posts/01-effective-rust-canisters.html #test-upgrades[测试升级]，link:https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
+- 在link:https://mmapped.blog/posts/01-effective-rust-canisters.html[Effective Rust Canisters]： link:https://mmapped.blog/posts/01-effective-rust-canisters.html#test-upgrades[测试升级]，link:https://mmapped.blog/posts/01-effective-rust-canisters.html#target-independent[make code target-independent]
 - 另见link:rust-canister-development-security-best-practices.adoc#test-your-canister-code[即使在系统 API 调用存在的情况下测试您的容器代码]
 - 考虑link:https://docs.dfinity.systems/dfinity/spec/meta/rust.html#_tests[DFINITY Rust 测试指南]
 - 对于 wasm 级别的单元测试，考虑使用link:https://github.com/kritzcreek/motoko-matchers[Motoko Matchers]
-- 对于 Motoko 级别的单元测试，请考虑link:https://kritzcreek.github.io/motoko-matchers/Canister.html[Canister 模块]。还有一些示例测试link:https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[这里]和link:https://github.com/dfinity/motoko-base /blob/master/test/textTest.mo[这里]。作为示例，另请参见端到端测试和单元测试link：https://github.com/dfinity/invoice-canister[invoice-canister]。
+- 对于 Motoko 级别的单元测试，请考虑link:https://kritzcreek.github.io/motoko-matchers/Canister.html[Canister 模块]。还有一些示例测试link:https://github.com/dfinity/motoko-base/blob/master/test/resultTest.mo[这里]和 link:https://github.com/dfinity/motoko-base/blob/master/test/textTest.mo[这里]。作为示例，另请参见端到端测试和单元测试link:https://github.com/dfinity/invoice-canister[invoice-canister]。
 - 对于长时间运行的测试场景，考虑link:https://github.com/matthewhammer/motoko-bigtest[Motoko BigTest]
 
 === 避免在生产环境中使用测试和开发代码

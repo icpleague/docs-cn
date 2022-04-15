@@ -6,7 +6,7 @@
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
-[[示例代码介绍]]
+[[example-code-intro]]
 看看下面的一些示例 dapp，看看在 IC 上构建的可能性。 所有示例和其他项目都可以在 https://github.com/dfinity/examples[Samples repo] 中找到。 其他资源可以在 https://github.com/dfinity/awesome-dfinity[Awesome Dfinity repo]（我们社区的一组精选开源项目和示例）或链接中找到:./hackathon-projects.html 【黑客马拉松项目】！
 
 _hello world_ 的 dapp 等价物，具有单独的后端和前端容器服务于网页。 +

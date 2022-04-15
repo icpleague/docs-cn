@@ -67,7 +67,7 @@
 - 确保交付给浏览器的所有内容都由容器使用资产认证提供和认证。这尤其适用于任何 JavaScript，也适用于字体、CSS 等。
 - 使用link:https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP[Content Security Policy] 来防止脚本和其他来源的其他内容被加载。另请参阅link:web-app-development-security-best-practices.adoc#define-security-headers[定义安全标头，包括内容安全策略 (CSP)]。
 
-[[定义安全标头]]
+[[define-security-headers]]
 === 定义安全标头，包括内容安全策略 (CSP)
 
 ==== 安全问题

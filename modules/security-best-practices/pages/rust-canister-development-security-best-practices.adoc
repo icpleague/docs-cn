@@ -241,7 +241,7 @@ IC 上的 dApp 可以使用link:https://wiki.internetcomputer.org/wiki/HTTP_asse
 
 == 杂项
 
-[[测试您的容器代码]]
+[[test-your-canister-code]]
 === 即使存在系统 API 调用，也可以测试您的容器代码
 
 ==== 安全问题
@@ -352,7 +352,7 @@ link:https://mmapped.blog/posts/01-effective-rust-canisters.html#expose-metrics[
 
 请参阅“时间不是严格单调的”部分link:https://www.joachim-breitner.de/blog/788-How_to_audit_an_Internet_Computer_canister[如何审核 Internet 计算机容器]
 
-[[保护-反对-排水-循环-平衡]]
+[[protect-against-draining-the-cycles-balance]]
 === 防止耗尽循环余额
 
 ==== 安全问题

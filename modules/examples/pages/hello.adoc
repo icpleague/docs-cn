@@ -3,7 +3,7 @@
 这个例子演示了一个由两个容器智能合约组成的简单 dapp：
 
 * 一个简单的后端容器，``hello``，实现应用程序的逻辑，以及
-* 一个简单的前端资产容器“hello_assets”，为 dapp 的 Web 用户界面的资产提供服务。
+* 一个简单的前端资产容器 `hello_assets`，为 dapp 的 Web 用户界面的资产提供服务。
 
 它是无处不在的 _hello world_ 示例的 dapp 等价物。
 
@@ -27,7 +27,7 @@ service : {
 }
 ```
 
-前端容器“hello_assets”显示一个 HTML 页面，其中包含一个用于参数的文本框和一个用于调用该参数的函数 greet 的按钮。
+前端容器 `hello_assets` 显示一个 HTML 页面，其中包含一个用于参数的文本框和一个用于调用该参数的函数 greet 的按钮。
 调用结果显示在消息框中。
 
 image:hello.png[hello frontend]

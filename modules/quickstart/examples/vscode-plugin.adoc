@@ -1,4 +1,4 @@
-[[安装-vscode]]
+[[install-vscode]]
 == 安装语言编辑器插件
 如果您打算使用 {proglang} 编写程序并使用 Visual Studio Code (VSCode) 作为编辑器，则可以安装 VSCode 的 {proglang} 语言客户端插件。
 {proglang} 插件提供语法高亮、类型信息和自动完成功能。
