@@ -28,7 +28,7 @@
 dfx canister --network ic info ryjl3-tyaaa-aaaaa-aaaba-cai
 ----
 
-将返回具有主体“ryjl3-tyaaa-aaaaa-aaaba-cai”的容器的控制器列表（在本例中为账本容器）。
+将返回principal“ryjl3-tyaaa-aaaaa-aaaba-cai”的容器的控制器列表（在本例中为账本容器）。
 
 如果控制器列表为空，则容器是不可变的。
 

@@ -29,7 +29,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 在官方上关注我们获取最新的更新信息link:https://twitter.com/dfinity[DFINITY Twitter]。
 
 
-[[针对开发者]]
+[[developer]]
 == 针对: 开发者
 互联网计算机承载着特殊的智能合约，称为 link:https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[canisters]. 容器智能合约是一些 link:https://webassembly.org/[WebAssembly]字节码逻辑和内存页。互联网计算机上的Dapps是由一个或多个容器创建的。
 

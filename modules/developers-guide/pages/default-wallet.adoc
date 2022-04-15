@@ -53,7 +53,7 @@ dfx identity whoami
 
 注意:授权委托人作为保管人不会自动授予委托人访问循环钱包的权限。 分配给保管人角色的身份也必须分配给循环钱包主体。 例如，如果您在本地项目中授权身份 `+alice_custodian+` 作为循环钱包 (`+rwlgt-iiaaa-aaaaa-aaaaa-cai+`) 的保管人，则还需要分配该用户以使用该钱包 使用`+dfx identity set-wallet rwlgt-iiaaa-aaaaa-aaaaa-cai+` 命令。
 
-[[钱包创建]]
+[[wallet-create]]
 == 创建一个循环钱包
 
 如果您正在进行本地开发，当您使用 `+dfx canister create+` 注册新的容器主体或使用 `+dfx deploy+` 注册、构建和部署容器时，将创建您的燃料费钱包。
@@ -189,7 +189,7 @@ dfx canister --network ic call f3yw6-7qaaa-aaaab-qaabq-cai add_controller '(prin
 ....
 ////
 
-[[钱包获取控制器]]
+[[wallet-get-controllers]]
 == 列出当前的控制器
 
 您可以使用 `+dfx wallet controllers+` 命令或 `get_controllers` 方法列出对指定周期钱包容器具有完全控制权的委托人。

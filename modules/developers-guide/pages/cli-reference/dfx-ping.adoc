@@ -20,7 +20,7 @@ dfx ping [provider] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 
 |`+-V+`, `+--version+` |显示版本信息。
 |===

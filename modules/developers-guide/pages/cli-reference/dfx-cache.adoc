@@ -15,19 +15,19 @@ dfx cache [subcommand] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |命令 |描述
-|<<dfx cache delete,`+delete+`>> |从本地缓存中删除指定版本的`+dfx+`。
+|<<dfx cache delete,`+delete+`>> |从本地缓存中删除指定版本的 `+dfx+`。
 
-|`+help+` |显示指定子命令的使用信息消息。
+|`+help+` |显示指定子命令的帮助信息消息。
 
-|<<dfx cache install,`+install+`>> |从本地缓存安装指定版本的`+dfx+`。
+|<<dfx cache install,`+install+`>> |从本地缓存安装指定版本的 `+dfx+`。
 
-|<<dfx 缓存列表,`+list+`>> |列出当前项目中当前安装和使用的`+dfx+`的版本。
+|<<dfx 缓存列表,`+list+`>> |列出当前项目中当前安装和使用的 `+dfx+` 的版本。
 
-|<<dfx cache show,`+show+`>> |显示此版本的`+dfx+` 可执行文件使用的缓存路径。
+|<<dfx cache show,`+show+`>> |显示此版本的 `+dfx+` 可执行文件使用的缓存路径。
 |===
 
-要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx cache delete+` 的使用信息，可以运行以下命令:
+要查看特定子命令的帮助信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx cache delete+` 的帮助信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -37,7 +37,8 @@ dfx cache delete --help
 [[delete]]
 == dfx cache delete
 
-使用 `+dfx cache delete` 命令从本地计算机的版本缓存中删除特定版本的 `+dfx`。
+使用 `+dfx cache delete+` 命令从本地计算机的版本缓存中删除特定版本的 `+dfx+`
+
 === 基本用法
 
 [source,bash]
@@ -52,8 +53,8 @@ dfx cache delete [version] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|`+-h+`, `+--help+` |显示帮助信息
+|`+-V+`, `+--version+` |显示版本信息
 |===
 
 === 参数
@@ -63,13 +64,13 @@ dfx cache delete [version] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |命令 |描述
-|`+version+` |指定要从本地缓存中删除的`+dfx+` 的版本。
+|`+version+` |指定要从本地缓存中删除的 `+dfx+` 的版本。
 |===
 
 === 例子
 
 您可以使用 `+dfx cache delete+` 命令永久删除不想再使用的 `+dfx+` 版本。
-例如，您可以运行以下命令删除`+dfx+`版本`+0.6.2+`:
+例如，您可以运行以下命令删除 `+dfx+` 版本 `+0.6.2+`:
 
 [source,bash]
 ----
@@ -95,13 +96,13 @@ dfx cache install [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
-|`+-V+`, `+--version+` |显示版本信息。
+|`+-h+`, `+--help+` |显示帮助信息
+|`+-V+`, `+--version+` |显示版本信息
 |===
 
 === 例子
 
-您可以使用`+dfx cache install+` 命令从缓存中的版本强制安装`+dfx+`。
+您可以使用 `+dfx cache install+` 命令从缓存中的版本强制安装 `+dfx+`。
 例如，您可以运行以下命令来安装 `+dfx+`:
 
 [source,bash]
@@ -129,8 +130,8 @@ dfx cache list [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|`+-h+`, `+--help+` |显示帮助信息
+|`+-V+`, `+--version+` |显示版本信息
 |===
 
 === Examples
@@ -170,8 +171,8 @@ dfx cache show [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |Flag |Description
-|`+-h+`, `+--help+` |Displays usage information.
-|`+-V+`, `+--version+` |Displays version information.
+|`+-h+`, `+--help+` |显示帮助信息
+|`+-V+`, `+--version+` |显示版本信息
 |===
 
 === 例子

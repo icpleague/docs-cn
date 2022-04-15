@@ -26,9 +26,9 @@ dfx generate [canister_name]
 |===
 |标志 |说明
 
-|`+-h+`, `+--help+` |Displays usage information.
+|`+-h+`, `+--help+` |显示帮助信息。
 
-|`+-V+`, `+--version+` |Displays version information.
+|`+-V+`, `+--version+` |显示版本信息。
 |===
 
 == 参数
@@ -60,7 +60,7 @@ dfx generate [canister_name]
 
 |`+bindings+` |生成类型声明的语言列表。 选项是`+"js"、"ts"、"did"、"mo"+`。 默认为 `+["js", "ts", "did"]+`。
 
-|`+env_override+` |将替换`+src/dfx/assets/language_bindings/canister.js+`模板中的`+process.env.{canister_name_uppercase}_CANISTER_ID+`的字符串。
+|`+env_override+` |将替换 `+src/dfx/assets/language_bindings/canister.js+` 模板中的 `+process.env.{canister_name_uppercase}_CANISTER_ID+` 的字符串。
 
 |===
 

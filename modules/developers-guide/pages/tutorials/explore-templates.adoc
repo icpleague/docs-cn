@@ -288,7 +288,6 @@ ls -l .dfx/local/canisters/explore_hello/
 -rw-r--r--  1 pubs  staff     155 Apr  6 14:25 explore_hello.did.js
 -rw-r--r--  1 pubs  staff     142 Apr  6 14:25 explore_hello.js
 -rw-r--r--  1 pubs  staff  157613 Apr  6 14:25 explore_hello.wasm
-
 ....
 +
 `canisters/explore_hello` 目录包含以下关键文件:

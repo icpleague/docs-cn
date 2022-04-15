@@ -143,9 +143,9 @@ dfx identity whoami
 +
 该命令显示类似于以下内容的输出:
 +
-……
-默认
-……
+....
+default
+....
 . 通过运行以下命令检查主体的“+default+”用户身份:
 +
 [source,bash]
@@ -188,9 +188,9 @@ dfx identity new ic_admin
 该命令显示类似于以下内容的输出:
 +
 ....
-创建身份:“ic_admin”。
-创建身份:“ic_admin”。
-……
+Creating identity: "ic_admin".
+Created identity: "ic_admin".
+....
 . 调用 `+my_role+` 函数查看您的新用户身份尚未分配给任何角色。
 +
 [source,bash]
@@ -201,9 +201,9 @@ dfx --identity ic_admin canister call access_hello my_role
 该命令显示类似于以下内容的输出:
 +
 ....
-在本地网络上创建钱包容器。
-用户“ic_admin”的“本地”网络上的钱包容器是“ryjl3-tyaaa-aaaaa-aaaba-cai”
-（空值）
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "ic_admin" is "ryjl3-tyaaa-aaaaa-aaaba-cai"
+(null)
 ....
 . 切换当前活动的身份上下文以使用新的 `+ic_admin+` 用户身份，并通过运行以下命令显示与 `+ic_admin+` 用户关联的主体:
 +
@@ -252,7 +252,7 @@ dfx identity use default
 dfx canister --wallet=$(dfx identity get-wallet) call access_hello assign_role '((principal "c5wa6-3irl7-tuxuo-4vtyw-xsnhw-rv2a6-vcmdz-bzkca-vejmd-327zo-wae"),opt variant{admin})'
 ----
 
-注意:确保将 `+principal+` 哈希替换为 `+dfx identity get-principal+` 命令为 `+ic_admin+` 身份返回的哈希。
+NOTE: 确保将 `+principal+` 哈希替换为 `+dfx identity get-principal+` 命令为 `+ic_admin+` 身份返回的哈希。
 
 +
 或者，您可以重新运行命令以调用 `+my_role+` 函数来验证角色分配。
@@ -358,7 +358,7 @@ dfx canister call access_hello greet "Alice"
 +
 ....
 (
-“欢迎，爱丽丝。你有一个授权帐户。你想玩游戏吗？”，
+  "Welcome, Alice. You have an authorized account. Would you like to play a game?",
 )
 ....
 
@@ -421,8 +421,8 @@ dfx --identity bob_standard canister call access_hello greet "Bob"
 该命令显示类似于以下内容的输出:
 +
 ....
-（“你好，鲍勃。很高兴认识你！”）
-……
+("Greetings, Bob. Nice to meet you!")
+....
 
 == 为多个命令设置用户身份
 

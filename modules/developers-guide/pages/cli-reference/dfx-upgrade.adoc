@@ -16,7 +16,7 @@ dfx upgrade [flag] [option]
 [width="100%",cols="<32%,<68%",options="header",]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 
 |`+-V+`, `+--version+` |显示版本信息。
 |===
@@ -48,7 +48,7 @@ dfx upgrade
 
 [source,bash]
 ----
-当前版本:0.6.8
-获取清单\https://sdk.dfinity.org/manifest.json
-已经是最新的了
+Current version: 0.6.8
+Fetching manifest \https://sdk.dfinity.org/manifest.json
+Already up to date
 ----

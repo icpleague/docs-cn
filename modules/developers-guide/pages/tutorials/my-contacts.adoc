@@ -9,14 +9,14 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 本教程通过逐步构建联系人 dapp 来说明如何配置 webpack 以导入样式表。
 如果您已经知道如何将级联样式表 (CSS) 添加到基于 webpack 的项目中，则可以跳过本教程。
 
-注意:本教程说明了使用 React 框架来管理前端的文档对象模型 (DOM)。
+NOTE: 本教程说明了使用 React 框架来管理前端的文档对象模型 (DOM)。
 因为 React 有自己的自定义 DOM 语法，所以需要修改 webpack 配置来编译前端代码，前端代码是用 JSX 编写的。 有关学习使用 React 和 JSX 的更多信息，请参见 https://reactjs.org/[React 网站] 上的link:https://reactjs.org/docs/getting-started.html[Getting started]。
 
 == 开始之前
 
 在开始本教程之前，请验证以下内容:
 
-* 你已经为前端开发安装了`+node.js+`，并且可以在你的项目中使用`+npm install+`来安装包。
+* 你已经为前端开发安装了 `+node.js+`，并且可以在你的项目中使用 `+npm install+` 来安装包。
 有关为本地操作系统和包管理器安装节点的信息，请参阅link:https://nodejs.org/en/[Node] 网站。
 
 * 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
@@ -26,7 +26,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 * 您已停止在本地运行的任何本地容器执行环境进程
 计算机。
 
-注意:本教程要求您使用 {sdk-short-name} 版本 `+0.8.0+` 或更高版本。
+NOTE: 本教程要求您使用 {sdk-short-name} 版本 `+0.8.0+` 或更高版本。
 
 == 创建一个新项目
 
@@ -75,7 +75,7 @@ npm install --save-dev style-loader css-loader
 +
 如果 `+npm install+` 命令报告了漏洞，您可能还需要运行 `+npm audit fix+` 命令来尝试修复报告的漏洞，然后再继续。
 +
-注意:作为安装这些模块的替代方法，您可以编辑默认的 `+package.json+` 文件来为您的项目添加依赖项。
+NOTE: 作为安装这些模块的替代方法，您可以编辑默认的 `+package.json+` 文件来为您的项目添加依赖项。
 +
 ....
 include::example$add-stylesheet-package.json[]
@@ -127,7 +127,7 @@ module: {
 +
 . 这些设置使您的程序能够使用 `+ts-loader+` 编译器并导入 CSS 文件。
 +
-注意:如果你想添加对 `+.scss+` 或 `+.sass+` 文件的支持，你应该安装 `+sass-loader+` :
+NOTE: 如果你想添加对 `+.scss+` 或 `+.sass+` 文件的支持，你应该安装 `+sass-loader+` :
 +
 [source,bash]
 ----
@@ -228,10 +228,8 @@ mv index.js index.jsx
   </body>
 </html>
 ----
-. Navigate back to the root of your project directory.
-+
-For example:
-+
+. 返回项目根目录,如:
+
 [source,bash]
 ----
 cd ../../..
@@ -291,7 +289,7 @@ npm start
 
 查看前端:
 
-. 打开浏览器并导航到“http://localhost:8080”。
+. 打开浏览器访问“http://localhost:8080”。
 . 验证是否使用 **My Contacts** 表单提示您。
 +
 例如:

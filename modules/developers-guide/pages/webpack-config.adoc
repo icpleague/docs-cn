@@ -138,7 +138,7 @@ DFX_NETWORK=staging NODE_ENV=production HELLO_CANISTER_ID=rrkah... npm run build
 ----
 
 // tag::node[] 
-[[疑难解答节点]]
+[[troubleshoot-node]]
 === 确保节点在项目中可用
 
 因为项目依赖 webpack 为默认前端提供框架，所以您必须在开发环境中安装 `+node.js+` 并且可以在项目目录中访问。

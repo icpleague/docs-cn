@@ -14,7 +14,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 * `+wallet_balance+` 功能使您可以检查容器的当前循环余额。
 * `+wallet_receive+` 函数使程序能够接受发送到容器的周期。
 * `+greet+` 函数接受文本参数并在终端中显示问候语。
-* `+owner+` 函数返回消息调用者使用的主体。
+* `+owner+` 函数返回消息调用者使用的principal。
 
 == 开始之前
 
@@ -67,7 +67,7 @@ include::example$cycles-main.mo[]
 * 该程序导入了一个 Motoko 基础库——`+ExperimentalCycles+`——它提供了使用循环的基本函数。
 * 该程序使用`+actor class+`而不是单个actor，因此它可以有多个actor实例来接受不同的循环量，直到所有实例的`容量`。
 * `+capacity+` 作为参数传递给actor类。
-* `+msg.caller+` 标识与调用关联的主体。
+* `+msg.caller+` 标识与调用关联的principal。
 --
 . 保存更改并关闭 `+main.mo+` 文件以继续。
 
@@ -135,7 +135,7 @@ Deployed canisters.
 
 测试 dapp:
 
-. 通过运行以下命令检查主体的“+default+”用户身份:
+. 通过运行以下命令检查“+default+”用户身份的principal:
 +
 [source,bash]
 ----
@@ -148,7 +148,7 @@ dfx canister call cycles_hello owner
 (principal "g3jww-sbmtm-gxsag-4mecu-72yc4-kef5v-euixq-og2kd-sav2v-p2sb3-pae")
 ....
 +
-如果您没有更改用于运行 `+dfx deploy+` 命令的身份，则应该通过运行 `+dfx identity get-principal+` 命令获得相同的主体。
+如果您没有更改用于运行 `+dfx deploy+` 命令的身份，则应该通过运行 `+dfx identity get-principal+` 命令获得相同的principal。
 这很重要，因为您必须是钱包容器的所有者才能执行某些任务，例如发送燃料费或授予其他 *保管人* 身份发送周期的权限。
 . 通过运行以下命令检查初始钱包燃料费余额:
 +
@@ -162,7 +162,7 @@ dfx canister call cycles_hello wallet_balance
 ....
 (0)
 ....
-. 通过运行类似于以下的命令，使用容器主体将一些周期从您的默认钱包容器发送到 `+cycles_hello+` 容器:
+. 通过运行类似于以下的命令，使用容器的principal将一些周期从您的默认钱包容器发送到 `+cycles_hello+` 容器:
 +
 [source,bash]
 ----

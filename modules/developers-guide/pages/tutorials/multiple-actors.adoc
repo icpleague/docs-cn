@@ -11,11 +11,11 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 在本教程中，您将为同一项目中的三个actor创建单独的程序文件。
 该项目定义了以下不相关的参与者:
 
-* `+assistant+`actor 提供了在待办事项列表中添加和显示任务的功能。
+* `+assistant+` actor 提供了在待办事项列表中添加和显示任务的功能。
 +
-为简单起见，本教程的代码示例仅包含添加待办事项和显示已添加的待办事项列表的功能。此容器的更完整版本（具有将项目标记为完整和从列表中删除项目的附加功能）可在链接中找到:https://github.com/dfinity/examples/[examples] 存储库作为link:https: //github.com/dfinity/examples/tree/master/motoko/simple-to-do[简单的待办事项清单]。
+为简单起见，本教程的代码示例仅包含添加待办事项和显示已添加的待办事项列表的功能。此容器的更完整版本（具有将项目标记为完整和从列表中删除项目的附加功能）可在link:https://github.com/dfinity/examples/[examples]中找到link:https：//github.com/dfinity/examples/tree/master/motoko/simple-to-do[简单的待办事项清单]。
 
-* `+rock_paper_scissors+`actor 提供了一个函数，用于在硬编码的剪刀石头布比赛中确定获胜者。
+* `+rock_paper_scissors+` actor 提供了一个函数，用于在硬编码的剪刀石头布比赛中确定获胜者。
 +
 此代码示例说明了在带有硬编码播放器和选项的 {proglang} 程序中 `+switch+` 和 `+case+` 的基本用法。
 
@@ -27,7 +27,7 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 在开始本教程之前，请验证以下内容:
 
-* 您已按照链接:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
+* 您已按照link:../../quickstart/local-quickstart{outfilesuffix}#download-and-install[下载并安装]中的说明下载并安装了 {sdk-short-name} 包。
 * 您已停止在您的计算机上运行的任何本地容器执行环境。
 
 完成本教程大约需要 20 分钟。

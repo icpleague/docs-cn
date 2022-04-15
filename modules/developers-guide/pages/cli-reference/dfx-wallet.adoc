@@ -10,8 +10,8 @@ dfx wallet [option] <subcommand> [flag]
 ----
 
 根据您指定的 `+dfx wallet+` 子命令，可能会应用或需要其他参数、选项和标志。
-要查看特定 `+dfx wallet+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx wallet send+` 的使用信息，可以运行以下命令:
+要查看特定 `+dfx wallet+` 子命令的帮助信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx wallet send+` 的帮助信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -24,7 +24,7 @@ dfx wallet send --help
 |===
 |命令 |描述
 
-|<<dfx wallet add-controller,`+add-controller+`>> | 使用所选身份的主体添加控制器。 
+|<<dfx wallet add-controller,`+add-controller+`>> | 使用所选身份的principal添加控制器。 
 
 |<<dfx wallet addresses,`+addresses+`>> |显示燃料费钱包的地址簿。
 
@@ -93,7 +93,7 @@ dfx wallet add-controller [option] <controller> [flag]
 |===
 |标志 |说明
 
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 
 |`+-V+`, `+--version+` |显示版本信息。
 |===
@@ -116,7 +116,7 @@ dfx wallet add-controller [option] <controller> [flag]
 [width="100%",cols="<31%,<69%",options="header",]
 |===
 |参数 |描述
-|`+controller+` |指定要添加到钱包的控制器主体。 
+|`+controller+` |指定要添加到钱包的控制器principal。 
 |===
 
 === 例子
@@ -147,7 +147,7 @@ dfx wallet addresses
 |===
 |标志 |说明
 
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 
 |`+-V+`, `+--version+` |显示版本信息。
 
@@ -168,13 +168,13 @@ Id: e7ptl-4x43t-zxcvh-n6s6c-k2dre-doy7l-bbo6h-ok8ik-msiz3-eoxhl-6qe, Kind: Unkno
 
 使用 `+dfx wallet authorize+` 命令为钱包授权托管人。 分配了保管人角色的身份可以在燃料费钱包上执行以下操作:
 
-*访问钱包信息。
+* 访问钱包信息。
 
 * 发送燃料费。
 
-*转接电话。
+* 转接电话。
 
-*创建容器。
+* 创建容器。
 
 === 基本用法
 
@@ -190,7 +190,7 @@ dfx wallet authorize <custodian> [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -252,7 +252,7 @@ dfx wallet balance
 
 == dfx 钱包控制器
 
-使用 `+dfx wallet controllers+` 命令列出作为所选身份的燃料费钱包控制器的身份的主体。
+使用 `+dfx wallet controllers+` 命令列出作为所选身份的燃料费钱包控制器的身份的principal。
 
 === 基本用法
 
@@ -268,7 +268,7 @@ dfx wallet controllers
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -306,7 +306,7 @@ dfx wallet custodians
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -347,7 +347,7 @@ dfx wallet deauthorize <custodian> [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -388,7 +388,7 @@ dfx wallet name [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -418,7 +418,7 @@ dfx wallet remove-controller <controller> [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -429,12 +429,12 @@ dfx wallet remove-controller <controller> [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |参数 |描述
-|`+<controller>+` |指定要删除的控制器的主体。
+|`+<controller>+` |指定要删除的控制器的principal。
 |===
 
 === 示例
 
-例如，要删除 alice_auth 作为控制器，请在以下命令中指定她的主体:
+例如，要删除 alice_auth 作为控制器，请在以下命令中指定她的principal:
 
 [source,bash]
 ----
@@ -459,7 +459,7 @@ dfx wallet [network] send [flag] <destination> <amount>
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -524,7 +524,7 @@ dfx wallet send r7inp-6aaaa-aaaaa-aaabq-cai 2000000000
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -555,7 +555,7 @@ dfx wallet set-name Terrances_wallet
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 

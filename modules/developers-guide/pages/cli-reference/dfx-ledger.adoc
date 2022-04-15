@@ -19,14 +19,14 @@ dfx ledger [options] [subcommand]
 |<<dfx ledger account-id,`+account-id+`>> |打印所选身份的账户标识符。
 |<<dfx ledger balance,`+balance+`>> |打印用户的账户余额。
 |<<dfx ledger create-canister,`+create-canister+`>> |从 ICP 创建一个容器。
-|`+help+` |显示指定子命令的使用信息消息。
+|`+help+` |显示指定子命令的帮助信息消息。
 |<<dfx ledger notify,`+notify+`>> |当有发送交易到循环铸币容器时通知账本。
 |<<dfx ledger 充值,`+top-up+`>> |使用 ICP 铸造的周期为容器充值。
 |<<dfx ledger transfer,`+transfer+`>> |将 ICP 从用户转移到目标 Account Identifier。
 |===
 
-要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看`+dfx ledger transfer+`的使用信息，可以运行以下命令:
+要查看特定子命令的帮助信息，请指定子命令和 `+--help+` 标志。
+例如，要查看`+dfx ledger transfer+`的帮助信息，可以运行以下命令:
 
 `+dfx ledger transfer --help+`
 
@@ -34,7 +34,7 @@ dfx ledger [options] [subcommand]
 == dfx ledger account-id
 
 使用 `+dfx ledger account-id+` 命令显示与当前活动身份关联的帐户标识符。
-与您的开发者身份主体的文本表示一样，帐户标识符是从您的私钥派生的，用于在账本容器中表示您的身份。
+与您的开发者身份principal的文本表示一样，帐户标识符是从您的私钥派生的，用于在账本容器中表示您的身份。
 
 === 基本用法
 
@@ -50,7 +50,7 @@ dfx ledger account-id [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -87,7 +87,7 @@ dfx ledger --network ic balance [of] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -134,7 +134,7 @@ dfx ledger --network ic create-canister _controller_ [options]  [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -145,7 +145,7 @@ dfx ledger --network ic create-canister _controller_ [options]  [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |参数 |描述
-|`+<controller>+` |指定主体标识符设置为新容器的控制器。
+|`+<controller>+` |指定principal标识符设置为新容器的控制器。
 |===
 
 === 选项
@@ -171,15 +171,15 @@ dfx ledger --network ic create-canister _controller_ [options]  [flag]
 dfx ledger --network ic create-canister tsqwz-udeik-5migd-ehrev-pvoqv-szx2g-akh5s-fkyqc-zy6q7-snav6-uqe --amount 1.25
 ----
 
-此命令将您为 `+--amount+` 参数指定的 ICP 代币数量转换为燃料费，并将燃料费与您指定的主体控制的新容器标识符相关联。
+此命令将您为 `+--amount+` 参数指定的 ICP 代币数量转换为燃料费，并将燃料费与您指定的principal控制的新容器标识符相关联。
 
-在此示例中，该命令将 1.25 个 ICP 代币转换为燃料费，并将默认身份的主体标识符指定为新容器的控制器。
+在此示例中，该命令将 1.25 个 ICP 代币转换为燃料费，并将默认身份的principal标识符指定为新容器的控制器。
 
 如果交易成功，账本会记录该事件，您应该会看到类似于以下内容的输出:
 
-……
-在 BlockHeight 发送的转账:20
-使用 id 创建的容器:“53zcu-tiaaa-aaaaa-qaaba-cai”
+....
+Transfer sent at BlockHeight: 20
+Canister created with id: "53zcu-tiaaa-aaaaa-qaaba-cai"
 ....
 
 您可以通过运行类似于以下的命令为 ICP 令牌和 e8s 指定单独的值来创建新容器:
@@ -209,7 +209,7 @@ dfx ledger notify [options] _block-height_ _destination-principal_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -221,8 +221,8 @@ dfx ledger notify [options] _block-height_ _destination-principal_
 |===
 |参数|描述
 |`+<block-height>+` |指定记录发送交易的区块高度。
-|`+<destination-principal>+` |指定目标的主体，容器标识符或用户主体的文本表示。
-如果发送事务是针对 `+create-canister+` 命令的，请指定 `+controller+` 主体。
+|`+<destination-principal>+` |指定目标的principal，容器标识符或用户principal的文本表示。
+如果发送事务是针对 `+create-canister+` 命令的，请指定 `+controller+` principal。
 如果发送事务用于`+top-up+` 命令，请指定`+canister ID+`。
 |===
 
@@ -254,7 +254,7 @@ dfx ledger --network ic top-up [options] _canister_ [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -296,9 +296,9 @@ dfx ledger --network ic top-up --icp 1 5a46r-jqaaa-aaaaa-qaadq-cai
 ----
 此命令显示类似于以下内容的输出:
 
-……
-在 BlockHeight 发送的转账:59482
-容器被充值了！
+....
+Transfer sent at BlockHeight: 59482
+Canister was topped up!
 ....
 
 [[转移]]
@@ -320,7 +320,7 @@ dfx ledger transfer [options] _to_ --memo _memo_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -389,8 +389,8 @@ dfx ledger --network ic transfer dd81336dbfef5c5870e84b48405c7b229c07ad999fdcacb
 
 此命令显示类似于以下内容的输出:
 
-……
-在 BlockHeight 发送的转账:59513
-……
+....
+Transfer sent at BlockHeight: 59513
+....
 
 然后，您可以使用 `+dfx ledger --network ic balance+` 命令检查您的帐户余额是否反映了您刚刚进行的交易。

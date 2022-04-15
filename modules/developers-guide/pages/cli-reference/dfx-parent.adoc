@@ -22,7 +22,7 @@ dfx [option] [subcommand] [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-q+`, `+--quiet+` |抑制信息性消息。
 |`+-v+`, `+--verbose+` |显示操作的详细信息。
 |`+-V+`, `+--version+` |显示版本信息。
@@ -55,7 +55,7 @@ dfx [option] [subcommand] [flag]
 
 == 子命令
 
-使用以下子命令指定要执行的操作或查看特定命令的使用信息。
+使用以下子命令指定要执行的操作或查看特定命令的帮助信息。
 
 有关参考信息和示例，请选择适当的子命令。
 
@@ -73,7 +73,7 @@ dfx [option] [subcommand] [flag]
 |link:dfx-deploy{outfilesuffix}[`+deploy+`] |从项目中的代码部署所有或特定容器。
 默认情况下，所有容器均已部署。
 
-|link:dfx-help{outfilesuffix}[`+help+`] |显示指定子命令的使用信息。
+|link:dfx-help{outfilesuffix}[`+help+`] |显示指定子命令的帮助信息。
 
 |link:dfx-identity{outfilesuffix}[`+identity+`] |使您能够创建和管理用于与 {platform} 通信的身份。
 
@@ -98,7 +98,7 @@ dfx [option] [subcommand] [flag]
 
 == 例子
 
-您可以使用`+dfx+` 父命令来显示使用信息或版本信息。
+您可以使用`+dfx+` 父命令来显示帮助信息或版本信息。
 例如，要显示有关您当前安装的 `+dfx+` 版本的信息，可以运行以下命令:
 
 [source,bash]
@@ -106,8 +106,8 @@ dfx [option] [subcommand] [flag]
 dfx --version
 ----
 
-要查看特定子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx build+` 的使用信息，可以运行以下命令:
+要查看特定子命令的帮助信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx build+` 的帮助信息，可以运行以下命令:
 
 [source,bash]
 ----

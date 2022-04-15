@@ -22,9 +22,9 @@ $PROJECT_ROOT/.dfx/local/canisters/whoami/whoami.did
 
 == CANISTER_ID_{canister.name}
 
-使用带有“CANISTER_ID”前缀的环境变量来引用项目的“dfx.json”文件中每个容器的容器标识符。
+使用带有 `CANISTER_ID` 前缀的环境变量来引用项目的 `dfx.json` 文件中每个容器的容器标识符。
 
-例如，如果您有一个由“linkedup”和“connectd”容器组成的“linkedup”项目，则可以使用“CANISTER_ID_linkedup”和“CANISTER_ID_connectd”环境变量来引用容器标识符，例如“ryjl3-tyaaa” -aaaaa-aaaba-cai` 和 `rrkah-fqaaa-aaaaa-aaaaq-cai` — 为您的项目创建。
+例如，如果您有一个由 `linkedup` 和 `connectd` 容器组成的 `linkedup` 项目，则可以使用 `CANISTER_ID_linkedup` 和 `CANISTER_ID_connectd` 环境变量来引用容器标识符，例如 `ryjl3-tyaaa” -aaaaa-aaaba-cai` 和 `rrkah-fqaaa-aaaaa-aaaaq-cai` — 为您的项目创建。
 
 == DFX_CONFIG_ROOT
 

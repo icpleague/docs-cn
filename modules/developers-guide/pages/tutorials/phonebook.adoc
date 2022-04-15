@@ -172,7 +172,7 @@ include::example$candid-ui.adoc[]
 +
 image:candid-phonebook.png[Phonebook functions]
 
-== 修改你的 dapp 中的源代码
+== 修改 dapp 中的源代码
 
 要扩展您在本教程中学到的知识，您可能需要尝试修改源代码以返回不同的结果。
 

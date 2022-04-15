@@ -25,7 +25,7 @@ dfx build [flag] [option] [--all | canister_name]
 
 |`+--check+` |使用临时的、硬编码的、本地定义的容器标识符构建容器，以测试您的程序在不连接到 {platform} 的情况下编译。
 
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 
 |`+-V+`, `+--version+` |显示版本信息。
 |===
@@ -52,10 +52,10 @@ dfx build [flag] [option] [--all | canister_name]
 
 |参数 |描述
 
-|`+--all+` |构建项目的`+dfx.json+`文件中配置的所有容器。
+|`+--all+` |构建项目的 `+dfx.json+` 文件中配置的所有容器。
 
 |`+canister_name+` |指定要构建的容器的名称。
-如果您没有使用 `+--all+` 选项，您可以继续使用 `+dfx build+` 或提供容器名称作为参数（容器名称必须与您在 `+ 您项目的 `+dfx.json+` 配置文件的 canisters+` 部分。）
+如果您没有使用 `+--all+` 选项，您可以继续使用 `+dfx build+` 或提供容器名称作为参数（容器名称必须匹配项目 `+dfx.json+` 配置文件中 `+canisters+` 字段中配置的名字）
 
 |===
 

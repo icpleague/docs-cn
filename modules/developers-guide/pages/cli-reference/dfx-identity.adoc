@@ -11,8 +11,8 @@ dfx identity [subcommand] [flag]
 ----
 
 根据您指定的 `+dfx identity+` 子命令，可能会应用或需要其他参数、选项和标志。
-要查看特定 `+dfx identity+` 子命令的使用信息，请指定子命令和 `+--help+` 标志。
-例如，要查看 `+dfx identity new+` 的使用信息，可以运行以下命令:
+要查看特定 `+dfx identity+` 子命令的帮助信息，请指定子命令和 `+--help+` 标志。
+例如，要查看 `+dfx identity new+` 的帮助信息，可以运行以下命令:
 
 [source,bash]
 ----
@@ -25,13 +25,13 @@ dfx identity new --help
 |===
 |命令 |描述
 
-|<<dfx 身份 get-principal,`+get-principal+`>> | 显示与当前身份关联的主体的文本表示。
+|<<dfx 身份 get-principal,`+get-principal+`>> | 显示与当前身份关联的principal的文本表示。
 
-|<<dfx 身份get-wallet,`+get-wallet+`>> | 显示与您当前身份主体关联的钱包的容器标识符。
+|<<dfx 身份get-wallet,`+get-wallet+`>> | 显示与您当前身份principal关联的钱包的容器标识符。
 
 |`+help+` |显示此用法消息或给定子命令的帮助。
 
-|<<dfx 身份导入,`+import+`>> | 通过导入包含主体的密钥信息或安全证书的 PEM 文件来创建新身份。
+|<<dfx 身份导入,`+import+`>> | 通过导入包含principal的密钥信息或安全证书的 PEM 文件来创建新身份。
 
 |<<dfx 身份列表,`+list+`>> |列出现有身份。
 
@@ -41,7 +41,7 @@ dfx identity new --help
 
 |<<dfx identity rename,`+rename+`>> |重命名现有身份。
 
-|<<dfx 身份设置-钱包,`+设置-钱包+`>> | 设置用于您当前身份主体的钱包容器标识符。
+|<<dfx 身份设置-钱包,`+设置-钱包+`>> | 设置用于您当前身份principal的钱包容器标识符。
 
 |<<dfx 身份使用,`+use+`>> |指定要使用的身份。
 
@@ -62,12 +62,12 @@ dfx identity new ic_admin
 
 此命令在 `+~/.config/dfx/identity/ic_admin/identity.pem+` 文件中为 `+ic_admin+` 用户身份添加私钥。
 
-== dfx 身份获取主体
+== dfx 身份获取principal
 
-使用 `+dfx identity get-principal+` 命令显示与当前用户身份上下文关联的主体的文本表示。
+使用 `+dfx identity get-principal+` 命令显示与当前用户身份上下文关联的principal的文本表示。
 
-如果您尚未创建任何用户身份，则可以使用此命令显示 `+default+` 用户的主体。
-主体的文本表示对于建立和测试基于角色的授权方案很有用。
+如果您尚未创建任何用户身份，则可以使用此命令显示 `+default+` 用户的principal。
+principal的文本表示对于建立和测试基于角色的授权方案很有用。
 
 === 基本用法
 
@@ -83,13 +83,13 @@ dfx identity get-principal [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
 === 示例
 
-如果要显示与特定用户身份上下文关联的主体的文本表示，可以运行类似于以下的命令:
+如果要显示与特定用户身份上下文关联的principal的文本表示，可以运行类似于以下的命令:
 
 [source,bash]
 ----
@@ -97,11 +97,11 @@ dfx identity use ic_admin
 dfx identity get-principal
 ----
 
-在此示例中，第一个命令将用户上下文设置为使用 `+ic_admin+` 身份。 然后第二个命令返回与 `+ic_admin+` 身份关联的主体。
+在此示例中，第一个命令将用户上下文设置为使用 `+ic_admin+` 身份。 然后第二个命令返回与 `+ic_admin+` 身份关联的principal。
 
 == dfx 身份获取钱包
 
-使用 `+dfx identity get-wallet+` 命令显示与您当前身份主体关联的钱包的容器标识符。
+使用 `+dfx identity get-wallet+` 命令显示与您当前身份principal关联的钱包的容器标识符。
 
 请注意，您必须连接到 {platform} 或本地容器执行环境才能运行此命令。
 此外，您必须在项目目录中才能运行该命令。
@@ -121,7 +121,7 @@ dfx identity get-wallet [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -159,7 +159,7 @@ dfx identity import [flag] _identity-name_ _pem_file-name_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -196,7 +196,7 @@ dfx identity list [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -222,7 +222,7 @@ ic_admin
 ----
 
 在此示例中，`+bob_standard+` 身份是当前活动的用户上下文。
-运行此命令以确定活动用户后，您知道您运行的任何其他 `+dfx+` 命令都是使用与 `+bob_standard+` 身份关联的主体执行的。
+运行此命令以确定活动用户后，您知道您运行的任何其他 `+dfx+` 命令都是使用与 `+bob_standard+` 身份关联的principal执行的。
 
 == dfx 身份新
 
@@ -244,7 +244,7 @@ dfx identity new [flag] _identity-name_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -299,7 +299,7 @@ dfx identity remove [flag] _identity-name_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -327,17 +327,17 @@ dfx identity remove default
 
 该命令显示确认身份已被删除:
 
-……
-删除身份“默认”。
-删除身份“默认”。
+....
+Removing identity "default".
+Removed identity "default".
 ....
 
 虽然如果您创建了其他身份来替换它，您可以删除`+default+` 身份，但您必须始终至少有一个身份可用。
 如果您尝试删除最后剩余的用户上下文，`+dfx identity remove+` 命令会显示类似于以下内容的错误:
 
 ....
-身份错误:
-   无法删除默认身份
+Identity error:
+  Cannot delete the default identity
 ....
 
 == dfx 身份重命名
@@ -360,7 +360,7 @@ dfx identity rename [flag] _from_identity-name_ _to_identity-name_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -409,13 +409,13 @@ dfx identity set-wallet [flag] [--canister-name canister-name]
 |标志 |说明
 |`+force+` |跳过验证您指定的容器是有效的钱包容器。
 仅当您连接到本地运行的 {IC} 时，此选项才有用。
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
 === 示例
 
-如果您使用多个主体作为您的身份，您可能有权访问多个钱包容器标识符。
+如果您使用多个principal作为您的身份，您可能有权访问多个钱包容器标识符。
 您可以使用 `+dfx identity set-wallet+` 命令指定用于给定身份的钱包容器标识符。
 
 例如，您可以将钱包容器标识符存储在环境变量中，然后调用 `+dfx identity set-wallet+` 命令通过运行以下命令将该钱包容器用于其他操作:
@@ -445,7 +445,7 @@ dfx identity use [flag] _identity-name_
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -490,7 +490,7 @@ dfx identity whoami [flag]
 [width="100%",cols="<32%,<68%",options="header"]
 |===
 |标志 |说明
-|`+-h+`, `+--help+` |显示使用信息。
+|`+-h+`, `+--help+` |显示帮助信息。
 |`+-V+`, `+--version+` |显示版本信息。
 |===
 
@@ -500,7 +500,7 @@ dfx identity whoami [flag]
 
 [source,bash]
 ----
-dfx 身份 whoami
+dfx identity whoami
 ----
 
 该命令显示用户身份的名称。
