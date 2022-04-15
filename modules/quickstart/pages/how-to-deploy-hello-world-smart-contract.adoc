@@ -18,6 +18,7 @@ b. 如果你在浏览器中访问 dapp，它会弹出警告窗口，上面写着
 
 * *燃料费* 是以处理、内存、存储和网络带宽的形式消耗的资源的计量单位。 就本教程而言，这类似于以太坊的 gas:这是运行 dapp 所需要的，但对于开发人员来说，它更稳定、更便宜。 每个容器都有一个燃料费帐户，对容器消耗的资源进行收费。 互联网计算机的实用程序令牌 (ICP) 可以转换为燃料费并转移到容器中。 ICP 始终可以使用测量的 ICP 当前价格转换为燃料费link:https://en.wikipedia.org/wiki/Special_drawing_rights[SDR] 使用一万亿燃料费对应一个 SDR 的约定。 **在本教程中，您将从cycles faucet获得免费燃料费。**
 
+[[supported]]
 == 支持的平台和操作系统
 
 * Linux
@@ -552,7 +553,7 @@ $ dfx canister --network ic call hello greet '("everyone": text)'
 $ dfx canister --network ic id hello
 ----
 
-带上那个容器ID 并访问 +https://<canister-id>.ic0.app+ , 在 URL 中插入 `hello_assets` 容器 ID 作为子域。 在本教程中，它是 `5h5yf-eiaaa-aaaaa-qaada-cai` 所以地址应该是 https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app.
+带上那个容器ID 并访问 +https://<canister-id>.ic0.app+ , 在 URL 中插入 `hello_assets` 容器 ID 作为子域。 在本教程中，它是 `5h5yf-eiaaa-aaaaa-qaada-cai` 所以地址应该是 https://5h5yf-eiaaa-aaaaa-qaada-cai.ic0.app
 
 [[result]]
 == 6. 结论
@@ -561,7 +562,7 @@ $ dfx canister --network ic id hello
 您在本教程中完成了以下操作:
 
 * 安装 Canister SDK
-* 在本地构建和部署一个 dap
+* 在本地构建和部署一个 dapp
 * 为您的 dapp 获得免费燃料费
 * 创建了一个“燃料费钱包”，可以将燃料费转移到您想要支持的任何其他 dapp
 * 在链上部署你的 dapp
