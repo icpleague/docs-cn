@@ -1,14 +1,14 @@
 # 加密笔记 Dapp
 
-link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes]是一个实验性的dapp，用于以短文本的形式创作和存储机密信息。 用户可以通过通过链接验证的任意数量的自动同步设备访问他们的笔记:https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]。 由于 dapp 前端执行的端到端加密，用户不需要信任 dapp 的后端。
+link:https://github.com/dfinity/examples/tree/master/motoko/encrypted-notes-dapp[Encrypted Notes]是一个实验性的dapp，用于以短文本的形式创作和存储机密信息。 用户可以通过link:https://smartcontracts.org/docs/ic-identity-guide/what-is-ic-identity.html[Internet Identity]验证的任意数量的自动同步设备访问他们的笔记。 由于 dapp 前端执行的端到端加密，用户不需要信任 dapp 的后端。
 
-你可以试一下链接link:https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp部署在IC上]。
+你可以试一下 link:https://cvhrw-2yaaa-aaaaj-aaiqa-cai.ic0.app/[dapp部署在IC上]。
 
 ## 主意
 
 我们想构建一个纯粹在 IC 上运行的简单（但不是太简单）dapp 的示例。 此示例依赖于 IC 的_web-serving_ 和_storage capabilities_。 我们专注于示例 dapp 的以下两个关键特性:(1) 客户端，_端到端加密_和 (2) _多用户_和_多设备_支持。
 
-为了展示 IC 作为开发此类 dapp 的平台的潜力，我们使用两个不同的容器开发套件 (CDK) 实现了这个示例。 Motoko CDK 允许开发人员使用以下链接实现基于参与者的 dapp:https://smartcontracts.org/docs/language-guide/motoko.html[Motoko] 语言。 Rust CDK 允许在链接中实现 dapp:https://smartcontracts.org/docs/rust-guide/rust-intro.html[Rust]。 在这两种情况下，容器都被编译成 WebAssembly 文件，然后部署到 IC 上。
+为了展示 IC 作为开发此类 dapp 的平台的潜力，我们使用两个不同的容器开发套件 (CDK) 实现了这个示例。 通过Motoko CDK 实现dapp: https://smartcontracts.org/docs/language-guide/motoko.html[Motoko]。 通过Rust CDK 实现dapp: https://smartcontracts.org/docs/rust-guide/rust-intro.html[Rust]。 在这两种情况下，容器都被编译成 WebAssembly 文件，然后部署到 IC 上。
 
 ## 方法
 

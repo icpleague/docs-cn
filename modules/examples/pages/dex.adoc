@@ -2,7 +2,7 @@
 
 要在 IC 上启用 DEFI 应用程序，容器需要与代币容器和分类帐容器交互。 这个示例 dapp 说明了如何促进这些交互。
 
-示例交换在 https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/defi[Rust ]并且可以看到https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app/[在IC上运行]。
+示例交换在 https://github.com/dfinity/examples/tree/master/motoko/defi[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/defi[Rust] 并且可以看到 https://gzz56-daaaa-aaaal-qai2a-cai.ic0.app[在IC上运行]。
 
 ## 体系
 
