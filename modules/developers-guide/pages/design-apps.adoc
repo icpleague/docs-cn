@@ -1,6 +1,6 @@
 = 设计 dapp
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 当您提出 dapp 的想法时，您将就如何构建和组织您的项目做出许多设计决策。

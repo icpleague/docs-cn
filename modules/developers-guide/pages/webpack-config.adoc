@@ -1,4 +1,5 @@
 = 前端概述
+:platform: Internet Computer platform
 
 {platform} 允许您使用我们的 https://www.npmjs.com/package/@dfinity/agent[JavaScript 代理] 为您的 dapp 托管 Web 3.0 前端。 通过使用 `+dfx+` 提供的 https://github.com/dfinity/certified-assets[asset canister] 将静态文件上传到 {IC}，您将能够在去中心化技术上运行您的整个应用程序。 本节详细介绍了由 `+dfx new+` 提供的默认前端模板、前端配置选项以及使用其他框架为您的项目构建用户界面。
 

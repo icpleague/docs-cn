@@ -1,6 +1,6 @@
 = 计算和存储成本
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 {IC} 需要循环支持计算操作和存储。 循环是从互联网计算机 (ICP) 实用程序令牌的转换中生成的。

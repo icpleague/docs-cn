@@ -2,7 +2,7 @@
 2020 年 5 月（阿尔法）
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 由 DFINITY 开发或社区贡献的示例代码、应用程序和微服务可从以下链接获得link:https://github.com/dfinity/examples[DFINITY public repository]。

@@ -1,7 +1,7 @@
 = 神经元和治理
 :keywords: 互联网计算机,区块链,提案,投票,神经系统,NNS,平台管理,配置管理,网管,智能合约,容器
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 作为一个去中心化的区块链，互联网计算机的配置和行为的所有变化都由一个称为网络神经系统（NNS）的治理机构控制。 NNS 控制互联网计算机区块链的许多方面，包括:

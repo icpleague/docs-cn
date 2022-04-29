@@ -1,4 +1,6 @@
 = 教程
+:platform: Internet Computer platform
+
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 
 link:../quickstart/quickstart-intro{outfilesuffix}[快速入门] 提供了对创建和部署新项目的基本工作流程的简化介绍，无需探索项目目录或示例代码的内容。

@@ -1,5 +1,5 @@
 = Cycles Faucet 快速入门
-
+:platform: Internet Computer platform
 
 准备好在互联网计算机区块链上部署您的第一个智能合约了吗？ 您可以使用我们的 Cycles Faucet 在几分钟内设置 20 美元的免费燃料费。
 

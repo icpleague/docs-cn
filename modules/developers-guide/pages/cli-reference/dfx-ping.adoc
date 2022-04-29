@@ -1,4 +1,5 @@
 = dfx ping
+:platform: Internet Computer platform
 
 使用 `+dfx ping+` 命令检查与 {platform} 或测试网的连接。
 此命令使您能够验证是否可以连接到要部署到的环境。

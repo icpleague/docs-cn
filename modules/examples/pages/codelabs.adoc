@@ -1,8 +1,8 @@
 = CodeLabs
 :描述: CodeLab 教程
 :关键词: 互联网计算机,区块链,加密货币,ICP代币,智能合约,燃料费,钱包,软件容器,开发者入职,dapp,例子,代码,rust,Motoko
-:编程语言: Motoko
-:IC: 互联网计算机
+:proglang: Motoko
+:IC: Internet Computer
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 

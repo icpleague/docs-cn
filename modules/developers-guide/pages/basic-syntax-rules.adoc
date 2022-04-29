@@ -1,8 +1,8 @@
 = 学习 {proglang} 的基础知识
 2019 年 12 月（阿尔法）
 :proglang: Motoko
-:平台:互联网计算机平台
-:IC: 互联网计算机
+:platform: Internet Computer platform
+:IC: Internet Computer
 :ext: .mo
 :company-id: DFINITY
 

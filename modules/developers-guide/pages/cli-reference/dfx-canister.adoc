@@ -1,4 +1,5 @@
 = dfx 容器
+:platform: Internet Computer platform
 
 使用带有标志和子命令的 `+dfx canister+` 命令来管理容器操作以及与 {platform} 或本地容器执行环境的交互。
 在大多数情况下，您在编译程序后使用 `+dfx canister+` 子命令来管理容器生命周期并执行关键任务，例如调用程序函数。

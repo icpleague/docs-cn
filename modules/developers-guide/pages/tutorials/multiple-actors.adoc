@@ -1,7 +1,7 @@
 = Use multiple actors
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在本教程中，您将创建一个包含多个参与者的项目。

@@ -1,4 +1,5 @@
 = dfx build
+:platform: Internet Computer platform
 
 使用 `+dfx build+` 命令将您的程序编译成可以部署在 {IC} 上的 WebAssembly 模块。
 您可以使用此命令编译在项目的`+dfx.json+` 配置文件或特定容器中为项目定义的所有程序。

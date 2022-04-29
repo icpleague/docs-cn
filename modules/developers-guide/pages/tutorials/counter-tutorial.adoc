@@ -1,7 +1,7 @@
 = 增加一个自然数
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在本教程中，您将编写一个程序来创建单个参与者并提供一些基本函数来增加计数器并说明值的持久性。

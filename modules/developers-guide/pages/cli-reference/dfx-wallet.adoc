@@ -1,4 +1,5 @@
 = dfx 钱包
+:platform: Internet Computer platform
 
 使用带有子命令和标志的 `+dfx wallet+` 命令来管理您身份的燃料费钱包，并将燃料费发送到其他帐户燃料费钱包容器的钱包。
 

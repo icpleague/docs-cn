@@ -1,4 +1,5 @@
 = dfx 身份
+:platform: Internet Computer platform
 
 使用带有子命令和标志的 `+dfx identity+` 命令来管理用于执行命令并与 {platform} 或本地容器执行环境通信的身份。
 创建多个用户身份使您能够测试基于用户的访问控制。

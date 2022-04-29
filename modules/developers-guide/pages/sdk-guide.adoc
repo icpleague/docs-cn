@@ -1,7 +1,7 @@
 :title:  {IC} SDK - Developer Tools
 = 开发者中心
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 :page-layout: home
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]

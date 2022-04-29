@@ -1,7 +1,7 @@
 = {IC} 是什么？
 :keywords: 互联网计算机,区块链,协议,副本,子网,数据中心,智能合约,容器,开发者
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 [[ic-overview]]

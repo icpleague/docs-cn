@@ -1,7 +1,7 @@
 = 代币和燃料费
 :keywords: 互联网计算机,区块链,ICP代币,智能合约,燃料费,钱包,软件,智能合约,容器,开发者
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在互联网计算机生态系统中，互联网计算机协议代币（ICP 代币）是一种本地实用代币，其价值在公开市场上确定。

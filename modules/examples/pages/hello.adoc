@@ -5,21 +5,17 @@
 * 一个简单的后端容器，``hello``，实现应用程序的逻辑，以及
 * 一个简单的前端资产容器 `hello_assets`，为 dapp 的 Web 用户界面的资产提供服务。
 
-它是无处不在的 _hello world_ 示例的 dapp 等价物。
+它是无处不在的 _hello world_ 示例dapp版本。
 
 此示例基于通过运行 `dfx new` 创建的默认项目，如
 link:../quickstart/local-quickstart{outfilesuffix}[Motoko] 和
 link:../rust-guide/rust-quickstart{outfilesuffix}[Rust] 快速入门文档。
 
-示例在
-https://github.com/dfinity/examples[examples]
-的Motoko 和 Rust 版本仓库中：
-
-* https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko]
-* https://github.com/dfinity/examples/tree/master/rust/hello[Rust]
+https://github.com/dfinity/examples[samples] 示例有
+https://github.com/dfinity/examples/tree/master/motoko/hello[Motoko] 和 https://github.com/dfinity/examples/tree/master/rust/hello[Rust] 版本。
 
 
-Canister ``hello``，无论是在 Motoko 还是 Rust 中实现，都呈现相同的 Candid 界面：
+Canister ``hello``，无论是在 Motoko 还是 Rust 中实现，都是相同的 Candid 接口：
 
 ```candid
 service : {
@@ -27,15 +23,14 @@ service : {
 }
 ```
 
-前端容器 `hello_assets` 显示一个 HTML 页面，其中包含一个用于参数的文本框和一个用于调用该参数的函数 greet 的按钮。
+前端容器 `hello_assets` 显示一个 HTML 页面，其中包含一个输入参数的文本框和一个用于调用该参数的函数 greet 的按钮。
 调用结果显示在消息框中。
 
 image:hello.png[hello frontend]
 
-前端容器是 dfx 提供的通用容器，但是
-它提供给浏览器的资产由 dfx 项目设置和项目文件决定。
+前端容器是 dfx 提供的通用容器，但是它提供给浏览器访问的资源由 ``dfx`` 项目设置和项目文件决定。
 
-两个项目的前端容器及其资产是相同的。
+两个项目的前端容器及前端资源文件是相同的。
 
 
 

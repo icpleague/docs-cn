@@ -1,6 +1,6 @@
 = 管理项目
 :proglang: Motoko
-:IC: 互联网计算机区块链
+:IC: Internet Computer
 :company-id: DFINITY
 
 您可以通过修改每个项目的 `+dfx.json+` 配置文件来修改个别项目的一些关键设置。

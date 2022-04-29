@@ -1,7 +1,8 @@
 = 容器和代码
 :keywords: Internet Computer,blockchain,protocol,smart contracts,canister,developer
 :proglang: Motoko
-:IC: 互联网计算机
+:platform: Internet Computer platform
+:IC: Internet Computer
 :company-id: DFINITY
 
 要记住的最重要的原则之一是 {IC} 是一个允许以分布式、复制方式运行软件的区块链。

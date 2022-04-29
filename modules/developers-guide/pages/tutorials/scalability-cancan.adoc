@@ -1,7 +1,7 @@
 = 创建可扩展的应用程序
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 CanCan 示例应用程序是一个简化的视频共享服务，它演示了您可以用作您自己的应用程序模型的几个功能。

@@ -1,8 +1,8 @@
 = 介绍互联网计算机
 :描述: 在互联网计算机上开始编程。找到文档、演练和教程，开始构建去中心化的应用程序、DeFi和基于区块链的新颖服务
 :关键词: 互联网计算机,区块链,加密货币,ICP代币,智能合约,燃料费,钱包,软件容器,开发人员入职
-:编程语言: Motoko
-:IC: 互联网计算机
+:proglang: Motoko
+:IC: Internet Computer
 :公司-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 

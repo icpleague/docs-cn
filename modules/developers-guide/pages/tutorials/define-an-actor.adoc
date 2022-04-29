@@ -1,7 +1,7 @@
 = 使用actor查询
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在link:../../quickstart/quickstart-intro{outfilesuffix}[快速入门]中，您第一次看到了一个用于 {IC} 的简单容器，其中涉及一个参与者对象和异步消息传递。

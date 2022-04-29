@@ -2,7 +2,7 @@
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 //:!page-repl:
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 本教程提供了默认程序的简单变体，允许您将单个文本参数传递给单个参与者，编译代码以创建容器智能合约，然后检索参数。

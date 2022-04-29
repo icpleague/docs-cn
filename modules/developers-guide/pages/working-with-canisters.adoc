@@ -2,7 +2,7 @@
 March 2020 (Alpha)
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 如果您按照链接中的教程尝试使用 {sdk-long-name}:tutorials-intro{outfilesuffix}[Tutorials] 部分或通过从链接克隆示例link:https://github.com/dfinity/ examples[examples] 存储库，您已经熟悉如何将程序构建和部署为**容器智能合约**。

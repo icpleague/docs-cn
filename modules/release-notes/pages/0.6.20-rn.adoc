@@ -1,7 +1,7 @@
 = {release} 中的新功能亮点
 :描述: DFINITY容器软件开发套件发行说明
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 :release: 0.6.20
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]

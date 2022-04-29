@@ -1,5 +1,5 @@
 = 一览
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start] 提供了快速部署简单默认应用程序的途径，无需停下来欣赏沿途的风景。

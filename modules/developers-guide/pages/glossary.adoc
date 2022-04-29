@@ -1,6 +1,6 @@
 = 词汇表
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 [[g-actor]]

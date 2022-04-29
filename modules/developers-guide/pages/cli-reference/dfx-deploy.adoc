@@ -1,4 +1,5 @@
 = dfx 部署
+:platform: Internet Computer platform
 
 使用 `+dfx deploy+` 命令在本地容器执行环境、{platform} 或指定的测试网上注册、构建和部署 dapp。
 默认情况下，会部署项目 `+dfx.json+` 配置文件中定义的所有容器。

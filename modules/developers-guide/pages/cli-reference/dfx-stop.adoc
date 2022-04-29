@@ -1,4 +1,5 @@
 = dfx 停止
+:platform: Internet Computer platform
 
 使用 `+dfx stop+` 命令停止您当前在计算机上运行的本地容器执行环境进程。
 在大多数情况下，您在本地运行容器执行环境，以便您可以在开发期间部署容器并测试您的 dapp。

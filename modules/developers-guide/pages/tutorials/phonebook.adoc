@@ -1,7 +1,7 @@
 = 导入库模块
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在本教程中，您将编写一个简单的 dapp，使您能够存储和查找电话号码。

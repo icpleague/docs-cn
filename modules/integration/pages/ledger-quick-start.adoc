@@ -1,7 +1,7 @@
 = 与互联网计算机账本集成
-:编程语言: Motoko
-:平台: 互联网计算机平台
-:IC: 互联网计算机
+:proglang: Motoko
+:platform: Internet Computer platform
+:IC: Internet Computer
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 

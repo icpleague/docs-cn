@@ -1,8 +1,8 @@
 = 使用默认燃料费钱包
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:平台: 互联网计算机平台
-:IC: 互联网计算机
+:platform: Internet Computer platform
+:IC: Internet Computer
 :company-id: DFINITY
 
 如link:concepts/tokens-cycles{outfilesuffix}[代币和周期] 中所述，ICP代币可以转换为 *cycles* 以驱动容器操作。

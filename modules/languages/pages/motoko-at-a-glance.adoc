@@ -1,9 +1,10 @@
 = {proglang} 一览
 :关键词: Motoko,编程语言,互联网计算机,开发人员
-:编程语言: Motoko
+:proglang: Motoko
+:platform: Internet Computer platform
 :company-id: DFINITY
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
-:IC: 互联网计算机
+:IC: Internet Computer
 
 本摘要提供了对 {proglang} 的简单而全面的概述，并提供了一些关键特性示例，可帮助您识别您在其他语言中可能知道的操作和模式，以及它们在 {proglang} 中的样子。
 

@@ -5,8 +5,8 @@ ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :toc-title: COMMAND REFERENCE
 :toclevels: 1
 :proglang: Motoko
-:平台:互联网计算机平台
-:IC: 互联网计算机
+:platform: Internet Computer platform
+:IC: Internet Computer
 :company-id: DFINITY
 
 DFINITY 命令行执行环境 (`+dfx+`) 是为 {platform} 创建、部署和管理 dapp 的主要工具。

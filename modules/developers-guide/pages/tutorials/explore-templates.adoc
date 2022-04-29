@@ -1,6 +1,6 @@
 = 探索默认项目
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 如果您通过以下链接开始了 {sdk-long-name} 之旅link:../../quickstart/quickstart-intro{outfilesuffix}[Quick start]，那么您已经了解了创建可运行的 dapp 的基本工作流程 在 {IC} 上。

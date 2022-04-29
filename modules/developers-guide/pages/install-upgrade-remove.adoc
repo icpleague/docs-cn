@@ -1,7 +1,7 @@
 = 安装、升级或删除软件
 :experimental:
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 如链接中所述link:../quickstart/quickstart-intro{outfilesuffix}[快速启动]，您可以通过在终端 shell 中运行命令来下载并安装最新版本的 DFINITY Canister 智能合约 SDK 包。

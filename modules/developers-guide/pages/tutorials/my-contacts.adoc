@@ -2,7 +2,8 @@
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:platform: Internet Computer platform
+:IC: Internet Computer
 :company-id: DFINITY
 
 级联样式表是任何前端用户界面的重要组成部分。 默认启动器配置为导入可以编辑的 `main.css` 文件，但您可能更喜欢将样式表导入 JavaScript 文件，或者使用替代格式，例如 Syntactically Awesome Style Sheets，又名 SCSS。

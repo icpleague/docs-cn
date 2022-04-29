@@ -2,7 +2,7 @@
 :source-highlighter: coderay
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 对于开发人员而言，{IC} 区块链最重要的功能之一是能够从另一个容器智能合约调用一个容器智能合约中的函数。

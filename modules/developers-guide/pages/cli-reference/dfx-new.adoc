@@ -1,4 +1,5 @@
 = dfx 新
+:platform: Internet Computer platform
 
 使用 `+dfx new+` 命令为 {platform} 创建一个新项目。
 此命令使用模板文件创建默认项目结构，您可以对其进行修改以适合您的 dapp。

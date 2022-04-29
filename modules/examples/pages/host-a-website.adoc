@@ -1,16 +1,21 @@
 = 在互联网计算机上存储一个静态网站
 
+:proglang: Motoko
+:IC: Internet Computer
+:platform: Internet Computer platform
+:company-id: DFINITY
+:sdk-short-name: DFINITY Canister SDK
 
-在开始之前，请确保您已使用我们的 {sdk-short-name} (DFX) 和燃料费钱包进行设置，可以通过link:cycles-faucet{outfilesuffix}[Faucet快速入门] 或通过购买 ICP 并点击我们的
-link:network-quickstart{outfilesuffix}[网络部署]指南。
+在开始之前，请确保您已使用我们的 {sdk-short-name}  和燃料费钱包进行设置，可以通过link:cycles-faucet{outfilesuffix}[Faucet快速入门] 或通过购买 ICP 并根据我们的
+link:network-quickstart{outfilesuffix}[网络部署]指南进行部署。
 
 == 设置你的项目
 
 让我们创建一个简单的静态网站，然后将其设置为使用 dfx 进行部署。
 
-. Create a folder named +static-ic-website+
-. In +static-ic-website+, create a new folder, named +assets+.
-. Inside your +assets+ folder, create 4 files
+. 创建一个文件夹 +static-ic-website+
+. 在 +static-ic-website+ 文件夹中, 创建一个名为 +assets+ 的文件夹.
+. 进入 +assets+ 文件夹, 创建以下四个文件：
     - +index.html+
     - +page-2.html+
     - +script.js+
@@ -42,7 +47,7 @@ link:network-quickstart{outfilesuffix}[网络部署]指南。
 </html>
 ----
 
-接下来，打开 +page-2.html+ 并添加此内容。
+接下来，打开 +page-2.html+ 并添加以下内容。
 
 .page-2.html
 [source,html]
@@ -63,7 +68,7 @@ link:network-quickstart{outfilesuffix}[网络部署]指南。
 </html>
 ----
 
-然后，在 script.js 中添加一些简单的逻辑。
+然后，在 +script.js+ 中添加一些简单的逻辑。
 
 .script.js
 [source,js]
@@ -72,7 +77,7 @@ document.querySelector("#dynamic-content").innerText =
  "This paragraph is dynamically rendered using JavaScript";
 ----
 
-然后在 +style.css 中添加一些样式。
+然后在 +style.css+ 中添加一些样式。
 
 .style.css
 [source,css]

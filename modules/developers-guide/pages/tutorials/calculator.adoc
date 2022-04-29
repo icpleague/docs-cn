@@ -1,7 +1,7 @@
 = 在计算器函数中使用整数
 ifdef::env-github,env-browser[:outfilesuffix:.adoc]
 :proglang: Motoko
-:IC: 互联网计算机
+:IC: Internet Computer
 :company-id: DFINITY
 
 在本教程中，您将编写一个简单的计算器程序，该程序创建一个具有多个公共入口点函数的单个参与者，以执行基本的算术运算。
